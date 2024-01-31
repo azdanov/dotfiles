@@ -1,0 +1,4 @@
+["git/delta"]
+    type = "git-repo"
+    url = "https://github.com/Anomalocaridid/delta"
+    refreshPeriod = "168h"
