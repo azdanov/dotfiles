@@ -62,10 +62,10 @@ function change_background --argument mode_setting
     switch $mode
         case dark
             sed -i '' s/latte/macchiato/g ~/.vim/vimrc
-            sed -i '' s/latte/macchiato/g ~/.config/nvim/lua/az/plugins/theme.lua
+            sed -i '' s/latte/macchiato/g ~/.config/nvim/lua/az/plugins/init.lua
         case light
             sed -i '' s/macchiato/latte/g ~/.vim/vimrc
-            sed -i '' s/macchiato/latte/g ~/.config/nvim/lua/az/plugins/theme.lua
+            sed -i '' s/macchiato/latte/g ~/.config/nvim/lua/az/plugins/init.lua
     end
 
     # change delta
