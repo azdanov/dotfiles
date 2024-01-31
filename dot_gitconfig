@@ -1,0 +1,33 @@
+[user]
+name = Anton Ždanov
+email = anton@azdanov.dev
+
+[core]
+autocrlf = input
+pager = delta
+
+[filter "lfs"]
+required = true
+process = git-lfs filter-process
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+
+[init]
+defaultBranch = main
+
+[interactive]
+diffFilter = delta --color-only
+
+[include]
+path = ~/git/delta/themes/macchiato.gitconfig
+
+[delta]
+features = catppuccin-macchiato
+navigate = true
+light = false
+
+[merge]
+conflictstyle = diff3
+
+[diff]
+colorMoved = default
