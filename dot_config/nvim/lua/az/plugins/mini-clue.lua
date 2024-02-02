@@ -37,6 +37,7 @@ return {
         clues = {
           { mode = "n", keys = "<Leader>c", desc = "+Code" },
           { mode = "n", keys = "<Leader>r", desc = "+Registry" },
+          { mode = "x", keys = "<Leader>r", desc = "+Registry" },
           { mode = "n", keys = "<Leader>d", desc = "+Diagnostic" },
           { mode = "n", keys = "<Leader>s", desc = "+Search" },
           { mode = "n", keys = "<Leader>f", desc = "+File" },
