@@ -52,3 +52,13 @@ vim.g.netrw_winsize = 25
 
 -- Enable mouse support in netrw
 vim.g.netrw_mouse = 2
+
+-- Configure diagnostic display settings for better visibility and interaction
+vim.diagnostic.config({
+  virtual_text = true, -- Enable displaying diagnostics as virtual text next to the line
+  signs = true, -- Show signs in the sign column for diagnostics
+  update_in_insert = false, -- Avoid updating diagnostics while typing in insert mode
+  underline = true, -- Underline the text where diagnostics are detected
+  severity_sort = false, -- Do not sort diagnostics by their severity
+  float = true, -- Enable floating window for diagnostics when hovering
+})
