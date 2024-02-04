@@ -1,6 +1,10 @@
 return {
   "tpope/vim-sleuth",
   {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
