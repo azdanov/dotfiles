@@ -23,7 +23,4 @@ return {
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
     log_level = vim.log.levels.DEBUG,
   },
-  config = function(_, opts)
-    require("conform").setup(opts)
-  end,
 }

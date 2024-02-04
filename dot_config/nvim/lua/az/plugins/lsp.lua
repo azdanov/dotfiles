@@ -42,10 +42,10 @@ return {
   "VonHeikemen/lsp-zero.nvim",
   branch = "v3.x",
   dependencies = {
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim", build = ":MasonUpdate" },
-    { "williamboman/mason-lspconfig.nvim" },
-    { "folke/neodev.nvim", ft = "lua", opts = {} },
+    "neovim/nvim-lspconfig",
+    "mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    { "folke/neodev.nvim", opts = {} },
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()

@@ -1,18 +1,36 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  event = { "BufReadPre", "BufNewFile" },
-  config = function()
-    local configs = require("nvim-treesitter.configs")
-
-    configs.setup({
-      ensure_installed = { "lua", "vim", "vimdoc", "json", "yaml", "bash", "toml", "dockerfile", "fish" },
-      ignore_install = {},
-      modules = {},
-      auto_install = true,
-      sync_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
-    })
+  event = { "VeryLazy" },
+  opts = {
+    highlight = { enable = true },
+    indent = { enable = true },
+    auto_install = true,
+    ensure_installed = {
+      "bash",
+      "fish",
+      "diff",
+      "html",
+      "javascript",
+      "jsdoc",
+      "json",
+      "jsonc",
+      "lua",
+      "luadoc",
+      "luap",
+      "markdown",
+      "markdown_inline",
+      "query",
+      "regex",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "vimdoc",
+      "yaml",
+    },
+  },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
   end,
 }

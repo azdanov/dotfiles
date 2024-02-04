@@ -1,10 +1,4 @@
 return {
-  { "tpope/vim-sleuth" },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {},
-  },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -14,6 +8,13 @@ return {
       vim.cmd.colorscheme("catppuccin-macchiato")
     end,
   },
+  { "tpope/vim-sleuth", event = "VeryLazy" },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "williamboman/mason.nvim", cmd = "Mason", build = ":MasonUpdate" },
   {
     "j-hui/fidget.nvim",
     event = { "VeryLazy" },
