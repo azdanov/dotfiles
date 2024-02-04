@@ -36,6 +36,8 @@ return {
         },
         clues = {
           { mode = "n", keys = "<Leader>c", desc = "+Code" },
+          { mode = "n", keys = "<Leader>x", desc = "+Trouble" },
+          { mode = "x", keys = "<Leader>c", desc = "+Code" },
           { mode = "n", keys = "<Leader>r", desc = "+Registry" },
           { mode = "x", keys = "<Leader>r", desc = "+Registry" },
           { mode = "n", keys = "<Leader>d", desc = "+Diagnostic" },
