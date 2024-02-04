@@ -16,6 +16,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
+    event = { "VeryLazy" },
     opts = {},
   },
   { "echasnovski/mini.comment", version = false, opts = {} },
