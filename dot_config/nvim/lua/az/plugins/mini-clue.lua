@@ -53,8 +53,5 @@ return {
         },
       }
     end,
-    config = function(_, opts)
-      require("mini.clue").setup(opts)
-    end,
   },
 }

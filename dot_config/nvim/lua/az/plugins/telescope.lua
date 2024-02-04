@@ -23,11 +23,11 @@ return {
       desc = "Search files",
     },
     {
-      "<leader>sg",
+      "<leader>sw",
       function()
         require("telescope.builtin").live_grep()
       end,
-      desc = "Search by grep",
+      desc = "Search words",
     },
     {
       "<leader>sb",
