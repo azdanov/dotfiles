@@ -16,10 +16,15 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "j-hui/fidget.nvim",
-    event = { "VeryLazy" },
+    lazy = true,
     opts = {},
   },
-  { "echasnovski/mini.comment", version = false, opts = {} },
+  {
+    "echasnovski/mini.comment",
+    version = false,
+    event = "VeryLazy",
+    opts = {},
+  },
   {
     "mbbill/undotree",
     keys = {
