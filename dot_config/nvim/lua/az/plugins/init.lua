@@ -14,7 +14,6 @@ return {
     opts = {},
   },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "williamboman/mason.nvim", cmd = "Mason", build = ":MasonUpdate" },
   {
     "j-hui/fidget.nvim",
     event = { "VeryLazy" },
