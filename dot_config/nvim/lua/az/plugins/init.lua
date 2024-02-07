@@ -20,6 +20,15 @@ return {
     opts = {},
   },
   {
+    "echasnovski/mini.files",
+    version = false,
+    lazy = false,
+    keys = {
+      { "<leader>fm", "<cmd>:lua MiniFiles.open()<cr>", desc = "Files" },
+    },
+    opts = {},
+  },
+  {
     "echasnovski/mini.comment",
     version = false,
     event = "VeryLazy",
