@@ -1,0 +1,50 @@
+[user]
+name = Anton Ždanov
+email = anton@azdanov.dev
+
+[core]
+autocrlf = input
+
+[filter "lfs"]
+required = true
+process = git-lfs filter-process
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+
+[init]
+defaultBranch = main
+
+[merge]
+conflictstyle = diff3
+tool = nvimdiff
+
+[mergetool]
+hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
+keepBackup = false       # Don't save original file with conflict markers with .orig extension.
+prompt = false           # Don't confirm that I want to open the difftool every time.
+writeToTemp = true       # Write temporary BASE, LOCAL, and REMOTE versions of conflicting files to tempdir not worktree.
+
+[log]
+follow = true            # Log tracks file move/rename.
+date = iso               # Display dates as ISO-8601 (`2023-05-25 13:54:51` instead of `Thu May 25 13:54:51 2023`)
+
+[format]
+pretty = fuller          # Shows author and committer.
+
+[pull]
+rebase = true
+
+[rebase]
+autosquash = true        # Squash/fixup commits starting with squash!/fixup! + commit subject.
+missingCommitsCheck = warn # Print a warning if a rebase removes commits.
+updateRefs = true        # Allow rebasing a stack of branches at the same time.
+
+[diff]
+tool = nvimdiff
+
+[credential "https://github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential
