@@ -20,6 +20,8 @@ history = 5000
 normal = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
 size = 14.0
 
-# [terminal]
+[terminal]
 # shell.program = "tmux"
 # shell.args = ["new-session", "-A", "-D", "-s", "Home"]
+# shell.program = "zellij"
+# shell.args = ["--layout", "compact"]
