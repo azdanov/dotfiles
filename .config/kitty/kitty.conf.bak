@@ -4,11 +4,6 @@ hide_window_decorations yes
 
 font_size 14
 
-font_family CaskaydiaCove Nerd Font
-bold_font auto
-italic_font auto
-bold_italic_font auto
-
 macos_option_as_alt yes
 
 tab_bar_style powerline
@@ -27,7 +22,13 @@ mouse_hide_wait -1
 copy_on_select yes
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Latte
+# Catppuccin-Macchiato
 include current-theme.conf
 # END_KITTY_THEME
 
+# BEGIN_KITTY_FONTS
+font_family      family="Maple Mono NF"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
