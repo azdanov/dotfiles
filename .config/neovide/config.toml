@@ -1,0 +1,23 @@
+[font]
+size = 14
+hinting = "slight"
+edging = "subpixelantialias"
+
+[[font.normal]]
+family = "MonoLisa"
+style = "Regular"
+
+[[font.normal]]
+family = "Symbols Nerd Font"
+
+[[font.bold]]
+family = "MonoLisa"
+style = "SemiBold"
+
+[[font.italic]]
+family = "MonoLisa"
+style = "Regular Italic"
+
+[[font.bold_italic]]
+family = "MonoLisa"
+style = "SemiBold Italic"
