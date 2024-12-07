@@ -1,3 +1,5 @@
+if vim.g.neovide then vim.g.neovide_hide_mouse_when_typing = true end
+
 if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- This will run last in the setup process and is a good place to configure
