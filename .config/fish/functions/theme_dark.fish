@@ -5,6 +5,7 @@ function theme_dark
     sed -i s/latte/macchiato/g ~/.config/nvim/lua/plugins/astroui.lua
     sed -i s/latte/macchiato/g ~/.config/tmux/tmux.conf
     sed -i s/latte/macchiato/g ~/.config/zellij/config.kdl
+    sed -i s/latte/macchiato/g ~/.config/fish/config.fish
     sed -i s/\.profile/\ Dark\.profile/g ~/.config/konsolerc
     kitty +kitten themes --reload-in=all Catppuccin-Macchiato
     # plasma-apply-lookandfeel --apply com.endeavouros.breezedarkeos.desktop

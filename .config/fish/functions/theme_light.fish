@@ -5,11 +5,12 @@ function theme_light
     sed -i s/macchiato/latte/g ~/.config/nvim/lua/plugins/astroui.lua
     sed -i s/macchiato/latte/g ~/.config/tmux/tmux.conf
     sed -i s/macchiato/latte/g ~/.config/zellij/config.kdl
+    sed -i s/macchiato/latte/g ~/.config/fish/config.fish
     sed -i s/\ Dark\.profile/\.profile/g ~/.config/konsolerc
     kitty +kitten themes --reload-in=all Catppuccin-Latte
     # plasma-apply-lookandfeel --apply org.kde.breeze.desktop
-    # plasma-apply-colorscheme BreezeLight >/dev/null
+    # plasma-apply-colorscheme BreezeLight
     # plasma-apply-desktoptheme breeze-light
-    plasma-apply-cursortheme Breeze_Light >/dev/null
+    plasma-apply-cursortheme Breeze_Light
     # systemctl --user restart plasma-plasmashell
 end
