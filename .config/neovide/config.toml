@@ -5,19 +5,19 @@ edging = "subpixelantialias"
 
 [[font.normal]]
 family = "MonoLisa"
-style = "Regular"
+style = "Medium"
 
 [[font.normal]]
 family = "Symbols Nerd Font"
 
 [[font.bold]]
 family = "MonoLisa"
-style = "SemiBold"
+style = "Bold"
 
 [[font.italic]]
 family = "MonoLisa"
-style = "Regular Italic"
+style = "Medium Italic"
 
 [[font.bold_italic]]
 family = "MonoLisa"
-style = "SemiBold Italic"
+style = "Bold Italic"
