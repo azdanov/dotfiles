@@ -14,12 +14,6 @@ return {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      panel = { enabled = false },
-    },
-  },
-  {
     "Saghen/blink.cmp",
     opts = {
       completion = {
