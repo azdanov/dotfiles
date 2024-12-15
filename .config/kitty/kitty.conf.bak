@@ -31,20 +31,8 @@ include current-theme.conf
 # END_KITTY_THEME
 
 # BEGIN_KITTY_FONTS
-<<<<<<< Updated upstream
 font_family      family=MonoLisa style=Medium
 bold_font        family=MonoLisa style=Bold
 italic_font      family=MonoLisa style="Medium Italic"
 bold_italic_font family=MonoLisa style="Bold Italic"
-||||||| Stash base
-font_family      family="MonoLisa" style=Regular
-bold_font        family="MonoLisa" style=SemiBold
-italic_font      family="MonoLisa" style='Regular Italic'
-bold_italic_font family="MonoLisa" style='SemiBold Italic'
-=======
-font_family      family="MonoLisa" style=Medium
-bold_font        family="MonoLisa" style=Bold
-italic_font      family="MonoLisa" style='Medium Italic'
-bold_italic_font family="MonoLisa" style='Bold Italic'
->>>>>>> Stashed changes
 # END_KITTY_FONTS
