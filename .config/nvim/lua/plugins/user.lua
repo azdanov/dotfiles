@@ -16,9 +16,48 @@ return {
   {
     "Saghen/blink.cmp",
     opts = {
+      completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+      },
       keymap = {
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      },
+    },
+    specs = {
+      {
+        "giuxtaposition/blink-cmp-copilot",
+        dependencies = {
+          {
+            "zbirenbaum/copilot.lua",
+            opts = {
+              suggestion = { enabled = false },
+              panel = { enabled = false },
+            },
+          },
+        },
+        specs = {
+          {
+            "Saghen/blink.cmp",
+            opts = function(_, opts)
+              return require("astrocore").extend_tbl(opts, {
+                sources = {
+                  completion = { enabled_providers = { "copilot" } },
+                  providers = {
+                    copilot = {
+                      name = "copilot",
+                      module = "blink-cmp-copilot",
+                      kind = "Copilot",
+                    },
+                  },
+                },
+              })
+            end,
+          },
+        },
       },
     },
   },
