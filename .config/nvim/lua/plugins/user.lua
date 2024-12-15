@@ -40,22 +40,22 @@ return {
           },
         },
         specs = {
+          { import = "astrocommunity.completion.copilot-lua" },
           {
             "Saghen/blink.cmp",
-            opts = function(_, opts)
-              return require("astrocore").extend_tbl(opts, {
-                sources = {
-                  completion = { enabled_providers = { "copilot" } },
-                  providers = {
-                    copilot = {
-                      name = "copilot",
-                      module = "blink-cmp-copilot",
-                      kind = "Copilot",
-                    },
+            opts = {
+              sources = {
+                providers = {
+                  copilot = {
+                    name = "copilot",
+                    module = "blink-cmp-copilot",
                   },
                 },
-              })
-            end,
+                completion = {
+                  enabled_providers = { "copilot" },
+                },
+              },
+            },
           },
         },
       },
