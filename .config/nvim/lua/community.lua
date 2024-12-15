@@ -6,7 +6,8 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.completion.copilot-cmp" },
+  { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
@@ -31,8 +32,8 @@ return {
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
-  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }

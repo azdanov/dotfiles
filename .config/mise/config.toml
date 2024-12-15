@@ -3,6 +3,7 @@ usage = "latest"
 node = "lts"
 java = "prefix:temurin-21"
 go = "prefix:1.23"
+pnpm = "latest"
 
 [settings]
 experimental = true
