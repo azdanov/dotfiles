@@ -14,6 +14,12 @@ return {
     },
   },
   {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      panel = { enabled = false },
+    },
+  },
+  {
     "Saghen/blink.cmp",
     opts = {
       completion = {
@@ -25,39 +31,6 @@ return {
       keymap = {
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      },
-    },
-    specs = {
-      {
-        "giuxtaposition/blink-cmp-copilot",
-        dependencies = {
-          {
-            "zbirenbaum/copilot.lua",
-            opts = {
-              suggestion = { enabled = false },
-              panel = { enabled = false },
-            },
-          },
-        },
-        specs = {
-          { import = "astrocommunity.completion.copilot-lua" },
-          {
-            "Saghen/blink.cmp",
-            opts = {
-              sources = {
-                providers = {
-                  copilot = {
-                    name = "copilot",
-                    module = "blink-cmp-copilot",
-                  },
-                },
-                completion = {
-                  enabled_providers = { "copilot" },
-                },
-              },
-            },
-          },
-        },
       },
     },
   },
