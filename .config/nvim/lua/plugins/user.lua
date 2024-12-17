@@ -12,4 +12,14 @@ return {
       term_colors = vim.g.neovide,
     },
   },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    version = "*",
+    opts = {
+      window = {
+        layout = "vertical",
+        width = 0.5,
+      },
+    },
+  },
 }
