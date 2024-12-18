@@ -1,25 +1,19 @@
----@type LazySpec
 return {
-  "tpope/vim-rsi",
   {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
       background = {
         light = "latte",
-        dark = "macchiato",
+        dark = "latte",
       },
       term_colors = vim.g.neovide,
     },
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    version = "*",
+    "LazyVim/LazyVim",
     opts = {
-      window = {
-        layout = "vertical",
-        width = 0.5,
-      },
+      colorscheme = "catppuccin-latte",
     },
   },
 }
