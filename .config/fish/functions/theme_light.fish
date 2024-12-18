@@ -2,7 +2,7 @@ function theme_light
     yes | fish_config theme save "Catppuccin Latte"
     sed -i s/macchiato/latte/g ~/.config/alacritty/alacritty.toml
     sed -i s/macchiato/latte/g ~/.config/btop/btop.conf
-    sed -i s/macchiato/latte/g ~/.config/nvim/lua/plugins/astroui.lua
+    sed -i s/catppuccin-macchiato/catppuccin-latte/g ~/.config/nvim/lua/plugins/theme.lua
     sed -i s/macchiato/latte/g ~/.config/tmux/tmux.conf
     sed -i s/macchiato/latte/g ~/.config/zellij/config.kdl
     sed -i s/macchiato/latte/g ~/.config/fish/config.fish
