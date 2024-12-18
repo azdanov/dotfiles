@@ -5,7 +5,7 @@ return {
     opts = {
       background = {
         light = "latte",
-        dark = "latte",
+        dark = "macchiato",
       },
       term_colors = vim.g.neovide,
     },
