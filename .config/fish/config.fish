@@ -11,7 +11,7 @@ abbr -a -- gg lazygit
 
 set -gx EDITOR nvim
 set -gx MANPAGER 'nvim +Man!'
-set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/latte-blue.yml"
+set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/tokyonight_day.yml"
 
 starship init fish | source
 zoxide init fish | source

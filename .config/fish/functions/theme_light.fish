@@ -1,16 +1,14 @@
 function theme_light
-    yes | fish_config theme save "Catppuccin Latte"
-    sed -i s/macchiato/latte/g ~/.config/alacritty/alacritty.toml
-    sed -i s/macchiato/latte/g ~/.config/btop/btop.conf
-    sed -i s/catppuccin-macchiato/catppuccin-latte/g ~/.config/nvim/lua/plugins/theme.lua
-    sed -i s/macchiato/latte/g ~/.config/tmux/tmux.conf
-    sed -i s/macchiato/latte/g ~/.config/zellij/config.kdl
-    sed -i s/macchiato/latte/g ~/.config/fish/config.fish
+    yes | fish_config theme save tokyonight_day
+    sed -i s/tokyo-night/adwaita/g ~/.config/btop/btop.conf
+    sed -i s/moon/day/g ~/.config/nvim/lua/plugins/theme.lua
+    sed -i s/moon/day/g ~/.config/fish/config.fish
     sed -i s/\ Dark\.profile/\.profile/g ~/.config/konsolerc
-    kitty +kitten themes --reload-in=all Catppuccin-Latte
+    set -Ux LS_COLORS (vivid generate tokyonight-day)
+    kitty +kitten themes --reload-in=all "Tokyo Night Day"
+    plasma-apply-cursortheme Breeze_Light
     # plasma-apply-lookandfeel --apply org.kde.breeze.desktop
     # plasma-apply-colorscheme BreezeLight
     # plasma-apply-desktoptheme breeze-light
-    plasma-apply-cursortheme Breeze_Light
     # systemctl --user restart plasma-plasmashell
 end
