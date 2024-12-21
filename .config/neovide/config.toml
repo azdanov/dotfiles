@@ -1,3 +1,5 @@
+frame = 'none'
+
 [font]
 size = 14
 hinting = "slight"
