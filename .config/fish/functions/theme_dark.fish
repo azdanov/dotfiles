@@ -5,8 +5,8 @@ function theme_dark
     sed -i s/day/moon/g ~/.config/fish/config.fish
     sed -i s/\.profile/\ Dark\.profile/g ~/.config/konsolerc
     set -Ux LS_COLORS (vivid generate tokyonight-moon)
-    kitty +kitten themes --reload-in=all "Tokyo Night Moon"
     plasma-apply-cursortheme breeze_cursors
+    # kitty +kitten themes --reload-in=all "Tokyo Night Moon"
     # plasma-apply-lookandfeel --apply com.endeavouros.breezedarkeos.desktop
     # plasma-apply-colorscheme BreezeDark
     # plasma-apply-desktoptheme breeze-dark
