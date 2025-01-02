@@ -14,4 +14,20 @@ return {
       },
     },
   },
+  {
+    "folke/noice.nvim",
+    keys = {
+      -- disable the default keymap
+      {
+        "<c-f>",
+        mode = { "i", "n", "s" },
+        false,
+      },
+      {
+        "<c-b>",
+        mode = { "i", "n", "s" },
+        false,
+      },
+    },
+  },
 }
