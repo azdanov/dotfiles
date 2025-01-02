@@ -6,13 +6,3 @@ if vim.g.neovide then
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.snacks_animate = false
 end
-
-vim.filetype.add({
-  extension = {
-    gotmpl = "gotmpl",
-    gohtml = "gotmpl",
-    gohtmltmpl = "gotmpl",
-    gotexttmpl = "gotmpl",
-    tmpl = "gotmpl",
-  },
-})
