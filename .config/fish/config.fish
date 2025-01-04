@@ -13,7 +13,7 @@ alias yl='lazygit --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 
 set -gx EDITOR nvim
 set -gx MANPAGER 'nvim +Man!'
-set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/tokyonight_day.yml"
+set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/astrolight.yml"
 
 starship init fish | source
 zoxide init fish | source
