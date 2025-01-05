@@ -12,6 +12,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.mdx" },
+  { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.sql" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
@@ -19,4 +20,5 @@ return {
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
