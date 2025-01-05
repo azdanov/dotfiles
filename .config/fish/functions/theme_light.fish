@@ -4,5 +4,6 @@ function theme_light
     sed -i s/dark/light/g ~/.config/nvim/lua/plugins/astroui.lua
     sed -i s/dark/light/g ~/.config/fish/config.fish
     sed -i s/\ Dark\.profile/\.profile/g ~/.config/konsolerc
+    set -Ux LS_COLORS (vivid generate one-light)
     plasma-apply-cursortheme Breeze_Light
 end
