@@ -2,7 +2,7 @@
 usage = "latest"
 node = "lts"
 java = "prefix:temurin-21"
-go = "1.23"
+go = "latest"
 pnpm = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:corepack" = "latest"

@@ -3,6 +3,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
+  { import = "astrocommunity.game.leetcode-nvim" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.fish" },
@@ -21,5 +22,6 @@ return {
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
