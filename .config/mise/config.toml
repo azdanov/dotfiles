@@ -8,8 +8,8 @@ pnpm = "latest"
 "npm:corepack" = "latest"
 "npm:@antfu/ni" = "latest"
 "npm:@biomejs/biome" = "latest"
-"npm:prettier" = "latest"
 "aqua:air-verse/air" = "latest"
+"npm:prettier" = "latest"
 "npm:prettier-plugin-go-template" = "latest"
 
 [settings]
