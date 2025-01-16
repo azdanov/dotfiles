@@ -23,5 +23,6 @@ return {
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
+  { import = "astrocommunity.scrolling.satellite-nvim" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
