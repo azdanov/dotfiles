@@ -15,5 +15,7 @@ set -gx EDITOR nvim
 set -gx MANPAGER 'nvim +Man!'
 set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/astrolight.yml"
 
+set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+
 starship init fish | source
 zoxide init fish | source
