@@ -31,31 +31,17 @@ function change_background --argument mode_setting
     # change bat theme
     switch $mode
         case dark
-            set -Ux BAT_THEME Catppuccin-macchiato
+            set -Ux BAT_THEME tokyonight_moon
         case light
-            set -Ux BAT_THEME Catppuccin-latte
+            set -Ux BAT_THEME tokyonight_day
     end
 
     # change LS_COLORS
     switch $mode
         case dark
-            set -Ux LS_COLORS (vivid generate catppuccin-macchiato)
+            set -Ux LS_COLORS (vivid generate tokyonight-moon)
         case light
-            set -Ux LS_COLORS (vivid generate catppuccin-latte)
-    end
-
-    # change tmux
-    switch $mode
-        case dark
-            sed -i '' 's/fg=#bcc0cc/fg=#363a4f/g' ~/.tmux.conf
-            sed -i '' 's/fg=#fe640b/fg=#f5a97f/g' ~/.tmux.conf
-            sed -i '' 's/fg=#4c4f69,bg=#dce0e8/fg=#cad3f5,bg=#24273a/g' ~/.tmux.conf
-            tmux source-file ~/.tmux.conf
-        case light
-            sed -i '' 's/fg=#363a4f/fg=#bcc0cc/g' ~/.tmux.conf
-            sed -i '' 's/fg=#f5a97f/fg=#fe640b/g' ~/.tmux.conf
-            sed -i '' 's/fg=#cad3f5,bg=#24273a/fg=#4c4f69,bg=#dce0e8/g' ~/.tmux.conf
-            tmux source-file ~/.tmux.conf
+            set -Ux LS_COLORS (vivid generate tokyonight-day)
     end
 
     # change nvim

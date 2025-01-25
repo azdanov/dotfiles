@@ -43,8 +43,8 @@ updateRefs = true        # Allow rebasing a stack of branches at the same time.
 tool = nvimdiff
 
 [credential "https://github.com"]
-helper =
+helper = 
 helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-helper =
+helper = 
 helper = !/usr/bin/gh auth git-credential
