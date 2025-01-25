@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script is used by Koi on KDE to change the theme automatically
+
+sleep 1
+
+if grep -q "OS_THEME:light" ~/.config/fish/fish_variables; then
+  sed -i 's/OS_THEME:light/OS_THEME:dark/g' ~/.config/fish/fish_variables
+else
+  sed -i 's/OS_THEME:dark/OS_THEME:light/g' ~/.config/fish/fish_variables
+fi

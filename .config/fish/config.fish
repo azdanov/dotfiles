@@ -11,10 +11,8 @@ abbr -a -- gg lazygit
 
 alias yl='lazygit --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 
-set -Ux EDITOR nvim
-set -Ux MANPAGER 'nvim +Man!'
-set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/astrolight.yml"
-set -Ux BAT_THEME astrolight
+set -gx EDITOR nvim
+set -gx MANPAGER 'nvim +Man!'
 
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
