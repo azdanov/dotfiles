@@ -1,4 +1,4 @@
 ---@type LazySpec
 return {
-  "tpope/vim-rsi",
+  { "tpope/vim-rsi", event = { "CmdlineEnter", "InsertEnter" } },
 }
