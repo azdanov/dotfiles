@@ -30,10 +30,9 @@ function theme
         end
     end
 
-    # Switch between light and dark theme
     if test "$THEME" = light
-        set -Ux OS_THEME light
+        theme_light
     else
-        set -Ux OS_THEME dark
+        theme_dark
     end
 end
