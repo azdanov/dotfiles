@@ -21,5 +21,6 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.scrolling.satellite-nvim" },
+  { import = "astrocommunity.fuzzy-finder.fzf-lua" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
