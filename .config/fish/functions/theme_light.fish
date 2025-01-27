@@ -11,5 +11,10 @@ function theme_light
     set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/astrolight.yml"
     set -Ux BAT_THEME astrolight
 
+    kitty +kitten themes --reload-in=all astrolight
+    plasma-apply-lookandfeel --apply org.kde.breeze.desktop
+    plasma-apply-colorscheme BreezeLight
+    plasma-apply-desktoptheme breeze-light
     plasma-apply-cursortheme Breeze_Light
+    # systemctl --user restart plasma-plasmashell
 end

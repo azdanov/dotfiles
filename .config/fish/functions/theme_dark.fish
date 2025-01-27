@@ -11,5 +11,10 @@ function theme_dark
     set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/astrodark.yml"
     set -Ux BAT_THEME astrodark
 
+    kitty +kitten themes --reload-in=all astrodark
+    plasma-apply-lookandfeel --apply com.endeavouros.breezedarkeos.desktop
+    plasma-apply-colorscheme BreezeDark
+    plasma-apply-desktoptheme breeze-dark
     plasma-apply-cursortheme breeze_cursors
+    # systemctl --user restart plasma-plasmashell
 end

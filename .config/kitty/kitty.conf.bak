@@ -35,8 +35,3 @@ bold_font        family=MonoLisa style=Bold
 italic_font      family=MonoLisa style="Medium Italic"
 bold_italic_font family=MonoLisa style="Bold Italic"
 # END_KITTY_FONTS
-
-# BEGIN_KITTY_THEME
-# AstroLight
-include current-theme.conf
-# END_KITTY_THEME
