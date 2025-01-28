@@ -1,8 +1,10 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  { import = "astrocommunity.color.nvim-highlight-colors" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
+  { import = "astrocommunity.fuzzy-finder.fzf-lua" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.fish" },
@@ -21,6 +23,5 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.scrolling.satellite-nvim" },
-  { import = "astrocommunity.fuzzy-finder.fzf-lua" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
 }
