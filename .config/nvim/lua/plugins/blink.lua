@@ -10,22 +10,6 @@ local function get_kind_icon(CTX)
   -- Evaluate icon provider
   if not icon_provider then
     local base = function(ctx) ctx.kind_icon_highlight = "BlinkCmpKind" .. ctx.kind end
-    local _, mini_icons = pcall(require, "mini.icons")
-    if _G.MiniIcons then
-      icon_provider = function(ctx)
-        base(ctx)
-        if ctx.item.source_name == "LSP" then
-          local icon, hl = mini_icons.get("lsp", ctx.kind or "")
-          if icon then
-            ctx.kind_icon = icon
-            ctx.kind_icon_highlight = hl
-          end
-        elseif ctx.item.source_name == "Path" then
-          ctx.kind_icon, ctx.kind_icon_highlight =
-            mini_icons.get(ctx.kind == "Folder" and "directory" or "file", ctx.label)
-        end
-      end
-    end
     if not icon_provider then
       local lspkind_avail, lspkind = pcall(require, "lspkind")
       if lspkind_avail then
@@ -176,28 +160,6 @@ return {
           opts.features.signature_help = false
         end
       end,
-    },
-    {
-      "folke/lazydev.nvim",
-      optional = true,
-      specs = {
-        {
-          "Saghen/blink.cmp",
-          opts = function(_, opts)
-            if pcall(require, "lazydev.integrations.blink") then
-              return require("astrocore").extend_tbl(opts, {
-                sources = {
-                  -- add lazydev to your completion providers
-                  default = { "lazydev" },
-                  providers = {
-                    lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
-                  },
-                },
-              })
-            end
-          end,
-        },
-      },
     },
     -- disable built in completion plugins
     { "hrsh7th/nvim-cmp", enabled = false },
