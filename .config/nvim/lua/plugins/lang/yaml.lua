@@ -18,7 +18,12 @@ return {
                   require("schemastore").yaml.schemas()
                 )
               end,
-              settings = { yaml = { schemaStore = { enable = false, url = "" } } },
+              settings = {
+                keyOrdering = false,
+                validate = true,
+                redhat = { telemetry = { enabled = false } },
+                yaml = { schemaStore = { enable = false, url = "" } },
+              },
             },
           },
         },
