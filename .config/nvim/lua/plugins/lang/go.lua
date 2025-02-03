@@ -57,15 +57,19 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "go", "gomod", "gosum", "gowork", "gotmpl" },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork", "gotmpl" })
+    end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = { "gopls", "goimports", "gomodifytags", "gotests", "iferr", "impl", "delve" },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "gopls", "goimports", "gomodifytags", "gotests", "iferr", "impl", "delve" }
+      )
+    end,
   },
   {
     "stevearc/conform.nvim",

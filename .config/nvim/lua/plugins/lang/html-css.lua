@@ -14,13 +14,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    init = function()
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "html", "css", "scss" })
       vim.treesitter.language.register("scss", "less")
       vim.treesitter.language.register("scss", "postcss")
     end,
-    opts = {
-      ensure_installed = { "html", "css", "scss" },
-    },
   },
   {
     "AstroNvim/astrolsp",
@@ -43,9 +41,12 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = { "html-lsp", "css-lsp", "emmet-ls", "prettierd" },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "html-lsp", "css-lsp", "emmet-ls", "prettierd" }
+      )
+    end,
   },
   {
     "stevearc/conform.nvim",

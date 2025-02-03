@@ -67,9 +67,10 @@ local conform_formatter = function(bufnr) return has_prettier(bufnr) and { "pret
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "typescript", "tsx", "javascript", "jsdoc" },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "typescript", "tsx", "javascript", "jsdoc" })
+    end,
   },
   {
     "AstroNvim/astrolsp",
@@ -130,9 +131,12 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = { "vtsls", "eslint-lsp", "prettierd", "js-debug-adapter" },
-    },
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "vtsls", "eslint-lsp", "prettierd", "js-debug-adapter" }
+      )
+    end,
   },
   {
     "vuki656/package-info.nvim",

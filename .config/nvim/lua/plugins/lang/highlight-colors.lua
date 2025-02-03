@@ -6,16 +6,14 @@ return {
   dependencies = {
     {
       "AstroNvim/astrocore",
-      opts = {
-        mappings = {
-          n = {
-            ["<Leader>uz"] = { function() vim.cmd.HighlightColors "Toggle" end, desc = "Toggle color highlight" },
-          },
-        },
-      },
+      opts = function(_, opts)
+        local maps = opts.mappings
+        maps.n["<Leader>uz"] = {
+          function() vim.cmd.HighlightColors "Toggle" end,
+          desc = "Toggle color highlight",
+        }
+      end,
     },
   },
-  opts = {
-    enabled_named_colors = false,
-  },
+  opts = { enabled_named_colors = false },
 }
