@@ -23,22 +23,18 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "lua", "luap" })
-      end
-    end,
+    opts = {
+      ensure_installed = { "lua", "luap" },
+    },
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed =
-        require("astrocore").list_insert_unique(opts.ensure_installed, { "lua-language-server", "stylua", "selene" })
-    end,
+    opts = {
+      ensure_installed = { "lua-language-server", "stylua", "selene" },
+    },
   },
   {
     "stevearc/conform.nvim",
-    optional = true,
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
@@ -47,13 +43,14 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    optional = true,
     opts = {
       linters_by_ft = {
         lua = { "selene" },
       },
       linters = {
-        selene = { condition = function(ctx) return selene_configured(ctx.filename) end },
+        selene = {
+          condition = function(ctx) return selene_configured(ctx.filename) end,
+        },
       },
     },
   },

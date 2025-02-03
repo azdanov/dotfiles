@@ -23,8 +23,8 @@ return {
                 useany = true,
               },
               codelenses = {
-                gc_details = true, -- Show a code lens toggling the display of gc's choices.
-                generate = true, -- show the `go generate` lens.
+                gc_details = true,
+                generate = true,
                 regenerate_cgo = true,
                 test = true,
                 tidy = true,
@@ -57,21 +57,15 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed =
-          require("astrocore").list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork", "gotmpl" })
-      end
-    end,
+    opts = {
+      ensure_installed = { "go", "gomod", "gosum", "gowork", "gotmpl" },
+    },
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(
-        opts.ensure_installed,
-        { "delve", "gopls", "gomodifytags", "gotests", "iferr", "impl", "goimports" }
-      )
-    end,
+    opts = {
+      ensure_installed = { "gopls", "goimports", "gomodifytags", "gotests", "iferr", "impl", "delve" },
+    },
   },
   {
     "stevearc/conform.nvim",

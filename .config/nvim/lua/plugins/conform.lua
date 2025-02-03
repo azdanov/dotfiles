@@ -5,7 +5,14 @@ return {
   cmd = "ConformInfo",
   dependencies = {
     "williamboman/mason.nvim",
-    { "AstroNvim/astrolsp", opts = { formatting = { disabled = true } } },
+    {
+      "AstroNvim/astrolsp",
+      opts = {
+        formatting = {
+          disabled = true,
+        },
+      },
+    },
     {
       "AstroNvim/astrocore",
       opts = {

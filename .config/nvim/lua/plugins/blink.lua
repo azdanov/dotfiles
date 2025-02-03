@@ -7,7 +7,6 @@ end
 local icon_provider, hl_provider
 
 local function get_kind_icon(CTX)
-  -- Evaluate icon provider
   if not icon_provider then
     local base = function(ctx) ctx.kind_icon_highlight = "BlinkCmpKind" .. ctx.kind end
     if not icon_provider then
@@ -24,7 +23,7 @@ local function get_kind_icon(CTX)
     end
     if not icon_provider then icon_provider = function(ctx) base(ctx) end end
   end
-  -- Evaluate highlight provider
+
   if not hl_provider then
     local highlight_colors_avail, highlight_colors = pcall(require, "nvim-highlight-colors")
     if highlight_colors_avail then
@@ -50,10 +49,10 @@ local function get_kind_icon(CTX)
       end
     end
   end
-  -- Call resolved providers
+
   icon_provider(CTX)
   hl_provider(CTX)
-  -- Return text and highlight information
+
   return { text = CTX.kind_icon .. CTX.icon_gap, highlight = CTX.kind_icon_highlight }
 end
 
@@ -64,7 +63,6 @@ return {
   version = "0.*",
   opts_extend = { "sources.default", "sources.cmdline" },
   opts = {
-    -- remember to enable your providers here
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },
@@ -149,11 +147,8 @@ return {
     },
     {
       "AstroNvim/astrolsp",
-      optional = true,
       opts = function(_, opts)
         opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities)
-
-        -- disable AstroLSP signature help if `blink.cmp` is providing it
         local blink_opts = require("astrocore").plugin_opts "blink.cmp"
         if vim.tbl_get(blink_opts, "signature", "enabled") == true then
           if not opts.features then opts.features = {} end
@@ -161,7 +156,6 @@ return {
         end
       end,
     },
-    -- disable built in completion plugins
     { "hrsh7th/nvim-cmp", enabled = false },
     { "rcarriga/cmp-dap", enabled = false },
   },

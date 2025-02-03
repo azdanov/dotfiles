@@ -16,7 +16,7 @@ return {
     end
   end,
   dependencies = {
-    { "folke/neodev.nvim", optional = true, enabled = false },
+    { "folke/neodev.nvim", enabled = false },
     { "Bilal2453/luvit-meta", lazy = true },
     {
       "Saghen/blink.cmp",

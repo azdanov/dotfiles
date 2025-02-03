@@ -25,7 +25,14 @@ return {
   dependencies = {
     "zbirenbaum/copilot.lua",
     "nvim-lua/plenary.nvim",
-    { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
+    {
+      "AstroNvim/astroui",
+      opts = {
+        icons = {
+          CopilotChat = "",
+        },
+      },
+    },
     {
       "AstroNvim/astrocore",
       ---@param opts AstroCoreOpts

@@ -35,19 +35,15 @@ return {
     {
       "jay-babu/mason-nvim-dap.nvim",
       optional = true,
-      init = false,
       config = function(_, opts) setup_without_ensure_installed("mason-nvim-dap", opts) end,
     },
     {
       "williamboman/mason-lspconfig.nvim",
-      optional = true,
-      init = false,
       config = function(_, opts) setup_without_ensure_installed("mason-lspconfig", opts) end,
     },
     {
       "jay-babu/mason-null-ls.nvim",
       optional = true,
-      init = false,
     },
   },
 }

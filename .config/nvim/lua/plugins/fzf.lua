@@ -3,9 +3,16 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   dependencies = {
-    { "nvim-telescope/telescope.nvim", optional = true, enabled = false },
-    { "nvim-telescope/telescope-fzf-native.nvim", optional = true, enabled = false },
-    { "stevearc/dressing.nvim", opts = { select = { backend = { "fzf_lua" } } } },
+    { "nvim-telescope/telescope.nvim", enabled = false },
+    { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
+    {
+      "stevearc/dressing.nvim",
+      opts = {
+        select = {
+          backend = { "fzf_lua" },
+        },
+      },
+    },
     {
       "AstroNvim/astrocore",
       opts = function(_, opts)

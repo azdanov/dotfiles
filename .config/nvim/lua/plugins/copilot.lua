@@ -7,7 +7,12 @@ return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   event = "User AstroFile",
-  opts = { suggestion = { auto_trigger = true, debounce = 150 } },
+  opts = {
+    suggestion = {
+      auto_trigger = true,
+      debounce = 150,
+    },
+  },
   filetypes = {
     yaml = true,
     markdown = true,
@@ -16,7 +21,6 @@ return {
   dependencies = {
     {
       "Saghen/blink.cmp",
-      optional = true,
       opts = function(_, opts)
         local copilot = require "copilot.suggestion"
         opts.keymap = opts.keymap or {}
@@ -25,7 +29,7 @@ return {
           return function()
             if copilot.is_visible() then
               copilot[action]()
-              return true -- doesn't run the next command
+              return true
             end
           end
         end

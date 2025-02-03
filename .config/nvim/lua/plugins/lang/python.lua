@@ -35,18 +35,15 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "python", "toml" })
-      end
-    end,
+    opts = {
+      ensure_installed = { "python", "toml" },
+    },
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed =
-        require("astrocore").list_insert_unique(opts.ensure_installed, { "basedpyright", "black", "isort", "debugpy" })
-    end,
+    opts = {
+      ensure_installed = { "basedpyright", "black", "isort", "debugpy" },
+    },
   },
   {
     "linux-cultist/venv-selector.nvim",
