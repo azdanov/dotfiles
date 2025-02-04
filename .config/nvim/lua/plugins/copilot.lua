@@ -3,6 +3,16 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
+local function copilot_action(action)
+  local copilot = require "copilot.suggestion"
+  return function()
+    if copilot.is_visible() then
+      copilot[action]()
+      return true -- doesn't run the next command
+    end
+  end
+end
+
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -21,43 +31,26 @@ return {
   dependencies = {
     {
       "Saghen/blink.cmp",
+      optional = true,
       opts = function(_, opts)
-        local copilot = require "copilot.suggestion"
-        opts.keymap = opts.keymap or {}
+        if not opts.keymap then opts.keymap = {} end
 
-        local function copilot_action(action)
-          return function()
-            if copilot.is_visible() then
-              copilot[action]()
-              return true
-            end
-          end
-        end
-
-        local keymap = {
-          ["<Tab>"] = {
-            copilot_action "accept",
-            "select_next",
-            "snippet_forward",
-            function(cmp)
-              if has_words_before() or vim.api.nvim_get_mode().mode == "c" then return cmp.show() end
-            end,
-            "fallback",
-          },
-          ["<C-x>"] = { copilot_action "next" },
-          ["<C-z>"] = { copilot_action "prev" },
-          ["<C-right>"] = { copilot_action "accept_word" },
-          ["<C-l>"] = { copilot_action "accept_word" },
-          ["<C-down>"] = { copilot_action "accept_line" },
-          ["<C-j>"] = { copilot_action "accept_line", "select_next", "fallback" },
-          ["<C-c>"] = { copilot_action "dismiss" },
+        opts.keymap["<Tab>"] = {
+          copilot_action "accept",
+          "select_next",
+          "snippet_forward",
+          function(cmp)
+            if has_words_before() or vim.api.nvim_get_mode().mode == "c" then return cmp.show() end
+          end,
+          "fallback",
         }
-
-        for k, v in pairs(keymap) do
-          opts.keymap[k] = v
-        end
-
-        return opts
+        opts.keymap["<C-X>"] = { copilot_action "next" }
+        opts.keymap["<C-Z>"] = { copilot_action "prev" }
+        opts.keymap["<C-Right>"] = { copilot_action "accept_word" }
+        opts.keymap["<C-L>"] = { copilot_action "accept_word" }
+        opts.keymap["<C-Down>"] = { copilot_action "accept_line" }
+        opts.keymap["<C-J>"] = { copilot_action "accept_line", "select_next", "fallback" }
+        opts.keymap["<C-C>"] = { copilot_action "dismiss" }
       end,
     },
   },
