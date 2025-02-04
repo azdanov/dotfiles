@@ -3,6 +3,7 @@ local disable = {
   "nvimtools/none-ls.nvim",
   "NvChad/nvim-colorizer.lua",
   "numToStr/Comment.nvim",
+  "JoosepAlviste/nvim-ts-context-commentstring",
 }
 
 ---@type LazySpec
