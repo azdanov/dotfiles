@@ -1,24 +1,40 @@
+local js_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+local prettier_config_files = {
+  ".prettierrc",
+  ".prettierrc.json",
+  ".prettierrc.yml",
+  ".prettierrc.yaml",
+  ".prettierrc.json5",
+  ".prettierrc.js",
+  ".prettierrc.cjs",
+  "prettier.config.js",
+  ".prettierrc.mjs",
+  "prettier.config.mjs",
+  "prettier.config.cjs",
+  ".prettierrc.toml",
+}
+
 local function decode_json(filename)
   local file = io.open(filename, "r")
-  if not file then
-    return false -- File doesn't exist or cannot be opened
-  end
+  if not file then return false end
 
   local content = file:read "*all"
   file:close()
 
-  local json_parsed, json = pcall(vim.fn.json_decode, content)
-  if not json_parsed or type(json) ~= "table" then return false end
-  return json
+  local ok, data = pcall(vim.fn.json_decode, content)
+  return ok and type(data) == "table" and data or false
 end
 
-local format_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+local function has_key(json, ...) return vim.tbl_get(json, ...) ~= nil end
 
-local function check_json_key_exists(json, ...) return vim.tbl_get(json, ...) ~= nil end
 local lsp_rooter, prettierrc_rooter
-local has_prettier = function(bufnr)
+
+local function has_prettier(bufnr)
   if type(bufnr) ~= "number" then bufnr = vim.api.nvim_get_current_buf() end
+
   local rooter = require "astrocore.rooter"
+  local astrocore = require "astrocore"
+
   if not lsp_rooter then
     lsp_rooter = rooter.resolve("lsp", {
       ignore = {
@@ -28,37 +44,20 @@ local has_prettier = function(bufnr)
       },
     })
   end
-  if not prettierrc_rooter then
-    prettierrc_rooter = rooter.resolve {
-      ".prettierrc",
-      ".prettierrc.json",
-      ".prettierrc.yml",
-      ".prettierrc.yaml",
-      ".prettierrc.json5",
-      ".prettierrc.js",
-      ".prettierrc.cjs",
-      "prettier.config.js",
-      ".prettierrc.mjs",
-      "prettier.config.mjs",
-      "prettier.config.cjs",
-      ".prettierrc.toml",
-    }
-  end
-  local prettier_dependency = false
-  for _, root in ipairs(require("astrocore").list_insert_unique(lsp_rooter(bufnr), { vim.fn.getcwd() })) do
+
+  if not prettierrc_rooter then prettierrc_rooter = rooter.resolve(prettier_config_files) end
+
+  for _, root in ipairs(astrocore.list_insert_unique(lsp_rooter(bufnr), { vim.fn.getcwd() })) do
     local package_json = decode_json(root .. "/package.json")
     if
       package_json
-      and (
-        check_json_key_exists(package_json, "dependencies", "prettier")
-        or check_json_key_exists(package_json, "devDependencies", "prettier")
-      )
+      and (has_key(package_json, "dependencies", "prettier") or has_key(package_json, "devDependencies", "prettier"))
     then
-      prettier_dependency = true
-      break
+      return true
     end
   end
-  return prettier_dependency or next(prettierrc_rooter(bufnr))
+
+  return next(prettierrc_rooter(bufnr)) ~= nil
 end
 
 local conform_formatter = function(bufnr) return has_prettier(bufnr) and { "prettierd" } or {} end
@@ -82,7 +81,9 @@ return {
           {
             event = "BufWritePost",
             desc = "Fix all eslint errors",
-            callback = function() vim.cmd.EslintFixAll() end,
+            callback = function(args)
+              if vim.F.if_nil(vim.b[args.buf].autoformat, vim.g.autoformat, true) then vim.cmd.EslintFixAll() end
+            end,
           },
         },
       },
@@ -123,8 +124,8 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      if not opts.formatters_by_ft then opts.formatters_by_ft = {} end
-      for _, filetype in ipairs(format_filetypes) do
+      opts.formatters_by_ft = opts.formatters_by_ft or {}
+      for _, filetype in ipairs(js_filetypes) do
         opts.formatters_by_ft[filetype] = conform_formatter
       end
     end,
@@ -178,7 +179,7 @@ return {
     optional = true,
     dependencies = { { "nvim-neotest/neotest-jest", config = function() end } },
     opts = function(_, opts)
-      if not opts.adapters then opts.adapters = {} end
+      opts.adapters = opts.adapters or {}
       table.insert(opts.adapters, require "neotest-jest"(require("astrocore").plugin_opts "neotest-jest"))
     end,
   },
@@ -187,6 +188,9 @@ return {
     optional = true,
     config = function()
       local dap = require "dap"
+      local js_debug_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+        .. "/js-debug/src/dapDebugServer.js"
+
       if not dap.adapters["pwa-node"] then
         dap.adapters["pwa-node"] = {
           type = "server",
@@ -194,14 +198,11 @@ return {
           port = "${port}",
           executable = {
             command = "node",
-            args = {
-              require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-                .. "/js-debug/src/dapDebugServer.js",
-              "${port}",
-            },
+            args = { js_debug_path, "${port}" },
           },
         }
       end
+
       if not dap.adapters.node then
         dap.adapters.node = function(cb, config)
           if config.type == "node" then config.type = "pwa-node" end
@@ -214,7 +215,6 @@ return {
         end
       end
 
-      local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
       local js_config = {
         {
           type = "pwa-node",
@@ -232,8 +232,8 @@ return {
         },
       }
 
-      for _, language in ipairs(js_filetypes) do
-        if not dap.configurations[language] then dap.configurations[language] = js_config end
+      for _, filetype in ipairs(js_filetypes) do
+        if not dap.configurations[filetype] then dap.configurations[filetype] = js_config end
       end
 
       local vscode_filetypes = require("dap.ext.vscode").type_to_filetypes
