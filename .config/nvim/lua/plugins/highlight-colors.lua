@@ -4,6 +4,7 @@ return {
   event = "User AstroFile",
   cmd = "HighlightColors",
   dependencies = {
+    { "NvChad/nvim-colorizer.lua", enabled = true },
     {
       "AstroNvim/astrocore",
       opts = function(_, opts)
@@ -14,7 +15,6 @@ return {
         }
       end,
     },
-    { "NvChad/nvim-colorizer.lua", optional = true, disable = true },
   },
   opts = { enabled_named_colors = false },
 }
