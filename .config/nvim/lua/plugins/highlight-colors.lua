@@ -14,6 +14,7 @@ return {
         }
       end,
     },
+    { "NvChad/nvim-colorizer.lua", optional = true, disable = true },
   },
   opts = { enabled_named_colors = false },
 }

@@ -70,7 +70,6 @@ return {
     },
     {
       "zbirenbaum/copilot.lua",
-      optional = true,
       opts = {
         filetypes = {
           ["grug-far"] = false,
@@ -80,7 +79,6 @@ return {
     },
     {
       "folke/which-key.nvim",
-      optional = true,
       opts = function(_, opts)
         if not opts.disable then opts.disable = {} end
         opts.disable.ft = require("astrocore").list_insert_unique(opts.disable.ft, { "grug-far" })
@@ -88,7 +86,6 @@ return {
     },
     {
       "nvim-neo-tree/neo-tree.nvim",
-      optional = true,
       opts = {
         commands = {
           grug_far_replace = function(state)
