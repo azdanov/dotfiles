@@ -4,6 +4,7 @@ local disable = {
   "NvChad/nvim-colorizer.lua",
   "numToStr/Comment.nvim",
   "JoosepAlviste/nvim-ts-context-commentstring",
+  "max397574/better-escape.nvim",
 }
 
 ---@type LazySpec
