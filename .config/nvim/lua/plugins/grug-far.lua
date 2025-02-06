@@ -69,13 +69,13 @@ return {
       end,
     },
     {
-      "zbirenbaum/copilot.lua",
-      opts = {
-        filetypes = {
+      "github/copilot.vim",
+      init = function()
+        vim.g.copilot_filetypes = {
           ["grug-far"] = false,
           ["grug-far-history"] = false,
-        },
-      },
+        }
+      end,
     },
     {
       "folke/which-key.nvim",

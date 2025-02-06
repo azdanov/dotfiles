@@ -3,39 +3,29 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
-local function copilot_action(action)
-  local copilot = require "copilot.suggestion"
-  return function()
-    if copilot.is_visible() then
-      copilot[action]()
-      return true -- doesn't run the next command
-    end
-  end
-end
-
 return {
-  "zbirenbaum/copilot.lua",
+  "github/copilot.vim",
   cmd = "Copilot",
   event = "User AstroFile",
-  opts = {
-    suggestion = {
-      auto_trigger = true,
-      debounce = 150,
-    },
-  },
-  filetypes = {
-    yaml = true,
-    markdown = true,
-    help = true,
-  },
+  init = function()
+    vim.g.copilot_filetypes = {
+      markdown = true,
+    }
+  end,
   dependencies = {
     {
       "Saghen/blink.cmp",
       opts = function(_, opts)
         if not opts.keymap then opts.keymap = {} end
-
         opts.keymap["<Tab>"] = {
-          copilot_action "accept",
+          function()
+            if vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
+              vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](), "n", true)
+              return true
+            else
+              return false
+            end
+          end,
           "select_next",
           "snippet_forward",
           function(cmp)
@@ -43,13 +33,34 @@ return {
           end,
           "fallback",
         }
-        opts.keymap["<C-X>"] = { copilot_action "next" }
-        opts.keymap["<C-Z>"] = { copilot_action "prev" }
-        opts.keymap["<C-Right>"] = { copilot_action "accept_word" }
-        opts.keymap["<C-L>"] = { copilot_action "accept_word" }
-        opts.keymap["<C-Down>"] = { copilot_action "accept_line" }
-        opts.keymap["<C-J>"] = { copilot_action "accept_line", "select_next", "fallback" }
-        opts.keymap["<C-C>"] = { copilot_action "dismiss" }
+        opts.keymap["<M-]>"] = {
+          function() vim.fn["copilot#Next"]() end,
+        }
+        opts.keymap["<M-[>"] = {
+          function() vim.fn["copilot#Previous"]() end,
+        }
+        opts.keymap["<M-\\>"] = {
+          function() vim.fn["copilot#Suggest"]() end,
+        }
+        opts.keymap["<M-Right>"] = {
+          function()
+            local copilot_keys = vim.fn["copilot#AcceptWord"]()
+            if copilot_keys ~= "" and type(copilot_keys) == "string" then
+              vim.api.nvim_feedkeys(copilot_keys, "i", true)
+            end
+          end,
+        }
+        opts.keymap["<M-C-Right>"] = {
+          function()
+            local copilot_keys = vim.fn["copilot#AcceptLine"]()
+            if copilot_keys ~= "" and type(copilot_keys) == "string" then
+              vim.api.nvim_feedkeys(copilot_keys, "i", true)
+            end
+          end,
+        }
+        opts.keymap["<C-]>"] = {
+          function() vim.fn["copilot#Dismiss"]() end,
+        }
       end,
     },
   },
