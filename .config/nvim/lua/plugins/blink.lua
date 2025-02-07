@@ -1,7 +1,4 @@
-local function has_words_before()
-  local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-end
+local shared = require "shared"
 
 ---@type function?, function?
 local icon_provider, hl_provider
@@ -62,6 +59,7 @@ return {
   event = { "InsertEnter", "CmdlineEnter" },
   version = "0.*",
   opts_extend = { "sources.default", "sources.cmdline" },
+  ---@type blink.cmp.Config
   opts = {
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
@@ -82,7 +80,7 @@ return {
         "select_next",
         "snippet_forward",
         function(cmp)
-          if has_words_before() or vim.api.nvim_get_mode().mode == "c" then return cmp.show() end
+          if shared.has_words_before() or vim.api.nvim_get_mode().mode == "c" then return cmp.show() end
         end,
         "fallback",
       },
@@ -144,6 +142,7 @@ return {
       dependencies = {
         {
           "Saghen/blink.cmp",
+          ---@type blink.cmp.Config
           opts = {
             snippets = {
               preset = "luasnip",
@@ -154,6 +153,7 @@ return {
     },
     {
       "AstroNvim/astrolsp",
+      ---@param _ blink.cmp.Config
       opts = function(_, opts)
         opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities)
         local blink_opts = require("astrocore").plugin_opts "blink.cmp"
@@ -165,6 +165,7 @@ return {
     },
     {
       "saghen/blink.cmp",
+      ---@type blink.cmp.Config
       opts = {
         sources = {
           default = { "lazydev" },

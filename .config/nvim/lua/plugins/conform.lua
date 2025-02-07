@@ -1,3 +1,58 @@
+local shared = require('shared')
+
+local lsp_rooter, prettierrc_rooter
+
+local function has_prettier(bufnr)
+  if type(bufnr) ~= "number" then bufnr = vim.api.nvim_get_current_buf() end
+
+  local rooter = require "astrocore.rooter"
+  local astrocore = require "astrocore"
+
+  if not lsp_rooter then
+    lsp_rooter = rooter.resolve("lsp", {
+      ignore = {
+        servers = function(client)
+          return not vim.tbl_contains({ "eslint", "ts_ls", "typescript-tools", "volar", "vtsls" }, client.name)
+        end,
+      },
+    })
+  end
+
+  if not prettierrc_rooter then
+    prettierrc_rooter = rooter.resolve {
+      ".prettierrc",
+      ".prettierrc.json",
+      ".prettierrc.yml",
+      ".prettierrc.yaml",
+      ".prettierrc.json5",
+      ".prettierrc.js",
+      ".prettierrc.cjs",
+      "prettier.config.js",
+      ".prettierrc.mjs",
+      "prettier.config.mjs",
+      "prettier.config.cjs",
+      ".prettierrc.toml",
+    }
+  end
+
+  for _, root in ipairs(astrocore.list_insert_unique(lsp_rooter(bufnr), { vim.fn.getcwd() })) do
+    local package_json = shared.decode_json_file(root .. "/package.json")
+    if
+      package_json
+      and (
+        shared.has_nested_key(package_json, "dependencies", "prettier")
+        or shared.has_nested_key(package_json, "devDependencies", "prettier")
+      )
+    then
+      return true
+    end
+  end
+
+  return next(prettierrc_rooter(bufnr)) ~= nil
+end
+
+local conform_formatter = function(bufnr) return has_prettier(bufnr) and { "prettierd" } or {} end
+
 ---@type LazySpec
 return {
   "stevearc/conform.nvim",
@@ -7,6 +62,7 @@ return {
     "williamboman/mason.nvim",
     {
       "AstroNvim/astrolsp",
+      ---@type AstroLSPOpts
       opts = {
         formatting = {
           disabled = true,
@@ -15,6 +71,7 @@ return {
     },
     {
       "AstroNvim/astrocore",
+      ---@type AstroCoreOpts
       opts = {
         options = { opt = { formatexpr = "v:lua.require'conform'.formatexpr()" } },
         commands = {
@@ -67,7 +124,28 @@ return {
       },
     },
   },
+  ---@type conform.setupOpts
   opts = {
+    formatters_by_ft = {
+      lua = { "stylua" },
+      sh = { "shfmt", "shellcheck" },
+      fish = { "fish_indent" },
+      css = { "prettierd" },
+      scss = { "prettierd" },
+      less = { "prettierd" },
+      html = { "prettierd" },
+      json = { "prettierd" },
+      python = { "isort", "black" },
+      go = { "goimports", lsp_format = "last" },
+      yaml = { "prettierd" },
+      markdown = { "prettierd" },
+      ["markdown.mdx"] = { "prettierd" },
+      ["yaml.docker-compose"] = { "prettierd" },
+      javascript = conform_formatter,
+      javascriptreact = conform_formatter,
+      typescript = conform_formatter,
+      typescriptreact = conform_formatter,
+    },
     default_format_opts = { lsp_format = "fallback" },
     format_on_save = function(bufnr)
       if vim.g.autoformat == nil then vim.g.autoformat = true end

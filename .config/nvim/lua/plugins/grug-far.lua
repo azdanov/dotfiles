@@ -69,15 +69,6 @@ return {
       end,
     },
     {
-      "github/copilot.vim",
-      init = function()
-        vim.g.copilot_filetypes = {
-          ["grug-far"] = false,
-          ["grug-far-history"] = false,
-        }
-      end,
-    },
-    {
       "folke/which-key.nvim",
       opts = function(_, opts)
         if not opts.disable then opts.disable = {} end

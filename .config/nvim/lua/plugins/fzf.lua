@@ -15,8 +15,10 @@ return {
     },
     {
       "AstroNvim/astrocore",
+      ---@param opts AstroCoreOpts
       opts = function(_, opts)
-        local maps = opts.mappings
+        local maps = opts.mappings or {}
+
         maps.n["<Leader>f"] = vim.tbl_get(opts, "_map_sections", "f")
         if vim.fn.executable "git" == 1 then
           maps.n["<Leader>g"] = vim.tbl_get(opts, "_map_sections", "g")
@@ -48,10 +50,13 @@ return {
           maps.n["<Leader>fw"] = { function() require("fzf-lua").live_grep_native() end, desc = "Find words" }
         end
         maps.n["<Leader>ls"] = { function() require("fzf-lua").lsp_document_symbols() end, desc = "Search symbols" }
+
+        opts.mappings = maps
       end,
     },
     {
       "AstroNvim/astrolsp",
+      ---@param _ AstroLSPOpts
       opts = function(_, opts)
         if require("astrocore").is_available "fzf-lua" then
           local maps = opts.mappings
@@ -66,6 +71,7 @@ return {
           if maps.n["<Leader>lG"] then
             maps.n["<Leader>lG"][1] = function() require("fzf-lua").lsp_workspace_symbols() end
           end
+          opts.mappings = maps
         end
       end,
     },

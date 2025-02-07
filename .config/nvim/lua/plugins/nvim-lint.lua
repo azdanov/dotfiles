@@ -1,4 +1,5 @@
 local lint
+
 ---@type LazySpec
 return {
   "mfussenegger/nvim-lint",
@@ -17,10 +18,14 @@ return {
             desc = "Automatically lint with nvim-lint",
             callback = function()
               if lint then
-                timer:start(100, 0, function()
-                  timer:stop()
-                  vim.schedule(lint.try_lint)
-                end)
+                if timer then
+                  timer:start(100, 0, function()
+                    timer:stop()
+                    vim.schedule(lint.try_lint)
+                  end)
+                else
+                  require("astrocore").notify("nvim-lint: timer not found", vim.log.levels.ERROR)
+                end
               end
             end,
           },
@@ -28,7 +33,21 @@ return {
       end,
     },
   },
-  opts = {},
+  opts = {
+    linters_by_ft = {
+      lua = { "selene" },
+      sh = { "shellcheck" },
+      fish = { "fish" },
+      dockerfile = { "hadolint" },
+    },
+    linters = {
+      selene = {
+        condition = function(ctx)
+          return #vim.fs.find("selene.toml", { path = ctx.filename, upward = true, type = "file" }) > 0
+        end,
+      },
+    },
+  },
   config = function(_, opts)
     local astrocore = require "astrocore"
     lint = require "lint"
