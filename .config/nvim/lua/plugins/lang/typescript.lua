@@ -75,6 +75,14 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
+      servers = {
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectories = { mode = "auto" },
+          },
+        },
+      },
       autocmds = {
         eslint_fix_on_save = {
           cond = function(client) return client.name == "eslint" and vim.fn.exists ":EslintFixAll" > 0 end,
@@ -123,6 +131,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
+    optional = true,
     opts = function(_, opts)
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       for _, filetype in ipairs(js_filetypes) do
@@ -132,6 +141,7 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(
         opts.ensure_installed,

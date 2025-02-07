@@ -41,7 +41,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       config = function(_, opts) setup_without_ensure_installed("mason-lspconfig", opts) end,
     },
-    { "jay-babu/mason-null-ls.nvim", enabled = false },
-    { "nvimtools/none-ls.nvim", enabled = false },
+    { "jay-babu/mason-null-ls.nvim", enabled = false, optional = true },
+    { "nvimtools/none-ls.nvim", enabled = false, optional = true },
   },
 }

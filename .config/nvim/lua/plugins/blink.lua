@@ -116,11 +116,14 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 0,
+        auto_show_delay_ms = 200,
         window = {
           border = "rounded",
           winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
         },
+      },
+      ghost_text = {
+        enabled = false,
       },
     },
     signature = {
@@ -128,6 +131,10 @@ return {
         border = "rounded",
         winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
       },
+    },
+    appearance = {
+      use_nvim_cmp_as_default = false,
+      nerd_font_variant = "mono",
     },
   },
   dependencies = {
@@ -156,7 +163,22 @@ return {
         end
       end,
     },
-    { "hrsh7th/nvim-cmp", enabled = false },
-    { "rcarriga/cmp-dap", enabled = false },
+    {
+      "saghen/blink.cmp",
+      opts = {
+        sources = {
+          default = { "lazydev" },
+          providers = {
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              score_offset = 100, -- show at a higher priority than lsp
+            },
+          },
+        },
+      },
+    },
+    { "hrsh7th/nvim-cmp", enabled = false, optional = true },
+    { "rcarriga/cmp-dap", enabled = false, optional = true },
   },
 }

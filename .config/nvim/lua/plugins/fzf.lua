@@ -3,8 +3,8 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   dependencies = {
-    { "nvim-telescope/telescope.nvim", enabled = false },
-    { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
+    { "nvim-telescope/telescope.nvim", enabled = false, optional = true },
+    { "nvim-telescope/telescope-fzf-native.nvim", enabled = false, optional = true },
     {
       "stevearc/dressing.nvim",
       opts = {

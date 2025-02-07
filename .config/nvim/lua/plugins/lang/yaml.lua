@@ -38,12 +38,14 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    optional = true,
     opts = {
       ensure_installed = { "yaml-language-server", "prettierd" },
     },
   },
   {
     "stevearc/conform.nvim",
+    optional = true,
     opts = {
       formatters_by_ft = {
         yaml = { "prettierd" },
