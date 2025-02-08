@@ -1,78 +1,32 @@
----@type LazySpec
 return {
+  "tpope/vim-rsi",
   {
-    "tpope/vim-rsi",
-    event = { "CmdlineEnter", "InsertEnter" },
-  },
-  {
-    "johmsalas/text-case.nvim",
-    event = "User AstroFile",
-    opts = {},
-  },
-  {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "lewis6991/satellite.nvim",
-    event = "User AstroFile",
+    "neovim/nvim-lspconfig",
     opts = {
-      excluded_filetypes = {
-        "prompt",
-        "TelescopePrompt",
-        "noice",
-        "notify",
-        "neo-tree",
+      inlay_hints = { enabled = false },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "gotmpl",
       },
     },
   },
   {
-    "folke/ts-comments.nvim",
-    opts = {},
-    event = "VeryLazy",
-    enabled = vim.fn.has "nvim-0.10.0" == 1,
-    dependencies = {
-      { "numToStr/Comment.nvim", enabled = false, optional = true },
-      { "JoosepAlviste/nvim-ts-context-commentstring", enabled = false, optional = true },
-    },
-  },
-  {
-    "brenoprata10/nvim-highlight-colors",
-    event = "User AstroFile",
-    cmd = "HighlightColors",
-    dependencies = {
-      { "NvChad/nvim-colorizer.lua", enabled = false, optional = true },
+    "folke/noice.nvim",
+    keys = {
+      -- disable the default keymap that conflict with backward and forward navigation
       {
-        "AstroNvim/astrocore",
-        ---@param opts AstroCoreOpts
-        opts = function(_, opts)
-          local maps = opts.mappings or {}
-          maps.n["<Leader>uz"] = {
-            function() vim.cmd.HighlightColors "Toggle" end,
-            desc = "Toggle color highlight",
-          }
-          opts.mappings = maps
-        end,
+        "<c-f>",
+        mode = { "i", "n", "s" },
+        false,
       },
-    },
-    opts = { enabled_named_colors = false },
-  },
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    dependencies = {
-      "AstroNvim/astrocore",
-      ---@param opts AstroCoreOpts
-      opts = function(_, opts)
-        if not opts.signs then opts.signs = {} end
-        opts.signs.BqfSign = { text = " " .. require("astroui").get_icon "Selected", texthl = "BqfSign" }
-      end,
-    },
-    opts = {
-      auto_resize_height = true,
-      preview = {
-        auto_preview = false,
+      {
+        "<c-b>",
+        mode = { "i", "n", "s" },
+        false,
       },
     },
   },
