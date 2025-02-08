@@ -1,17 +1,17 @@
 function theme_dark
-    yes | fish_config theme save astrodark
+    yes | fish_config theme save tokyonight_moon
 
-    sed -i s/TTY/Default/g ~/.config/btop/btop.conf
-    sed -i s/astrolight/astrodark/g ~/.config/nvim/lua/plugins/astroui.lua
-    sed -i s/astrolight/astrodark/g ~/.config/fish/config.fish
+    sed -i s/adwaita/tokyo-night/g ~/.config/btop/btop.conf
+    sed -i s/tokyonight-day/tokyonight-moon/g ~/.config/nvim/lua/plugins/theme.lua
+    sed -i s/tokyonight_day/tokyonight_moon/g ~/.config/fish/config.fish
     sed -i s/\.profile/\ Dark\.profile/g ~/.config/konsolerc
 
-    set -Ux LS_COLORS (vivid generate astrodark)
-    set -Ux FZF_DEFAULT_OPTS "--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#1E222A --color=bg:#1A1D23 --color=border:#3A3E47 --color=fg+:#ADB0BB --color=fg:#ADB0BB --color=gutter:#1A1D23 --color=header:#50A4E9 --color=hl+:#5EB7FF --color=hl:#5EB7FF --color=info:#3A3E47 --color=marker:#5EB7FF --color=pointer:#5EB7FF --color=prompt:#5EB7FF --color=query:#ADB0BB:regular --color=scrollbar:#3A3E47 --color=separator:#3A3E47 --color=spinner:#5EB7FF"
-    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/astrodark.yml"
-    set -Ux BAT_THEME astrodark
+    set -Ux LS_COLORS (vivid generate tokyonight-moon)
+    set -Ux FZF_DEFAULT_OPTS "--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#2d3f76 --color=bg:#1e2030 --color=border:#589ed7 --color=fg:#c8d3f5 --color=gutter:#1e2030 --color=header:#ff966c --color=hl+:#65bcff --color=hl:#65bcff --color=info:#545c7e --color=marker:#ff007c --color=pointer:#ff007c --color=prompt:#65bcff --color=query:#c8d3f5:regular --color=scrollbar:#589ed7 --color=separator:#ff966c --color=spinner:#ff007c"
+    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/tokyonight_moon.yml"
+    set -Ux BAT_THEME tokyonight_moon
 
-    kitty +kitten themes --reload-in=all astrodark
+    kitty +kitten themes --reload-in=all 'Tokyo Night Moon'
     plasma-apply-cursortheme breeze_cursors &>/dev/null
     # plasma-apply-lookandfeel --apply com.endeavouros.breezedarkeos.desktop
     # plasma-apply-colorscheme BreezeDark
