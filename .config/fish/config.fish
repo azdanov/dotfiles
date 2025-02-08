@@ -16,5 +16,8 @@ set -gx MANPAGER 'nvim +Man!'
 
 set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
+set -e -g LS_COLORS FZF_DEFAULT_OPTS LG_CONFIG_FILE BAT_THEME
+dbus-update-activation-environment --systemd LS_COLORS FZF_DEFAULT_OPTS LG_CONFIG_FILE BAT_THEME
+
 starship init fish | source
 zoxide init fish | source
