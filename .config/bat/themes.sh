@@ -4,8 +4,8 @@
 set -eu
 type bat >/dev/null 2>&1
 
-REPO='https://github.com/AstroNvim/astrotheme.git'
-REPO_NAME='astrotheme/'
+REPO='https://github.com/folke/tokyonight.nvim.git'
+REPO_NAME='tokyonight.nvim/'
 THEME_DIR='extras/sublime/'
 
 BAT_THEMES_DIR="$(command bat --config-dir)/themes"
