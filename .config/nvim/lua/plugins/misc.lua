@@ -45,7 +45,7 @@ return {
       { "NvChad/nvim-colorizer.lua", enabled = false, optional = true },
       {
         "AstroNvim/astrocore",
-        ---@param _ AstroCoreOpts
+        ---@param opts AstroCoreOpts
         opts = function(_, opts)
           local maps = opts.mappings or {}
           maps.n["<Leader>uz"] = {

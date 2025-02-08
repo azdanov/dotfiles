@@ -153,7 +153,7 @@ return {
     },
     {
       "AstroNvim/astrolsp",
-      ---@param _ blink.cmp.Config
+      ---@param opts AstroLSPOpts
       opts = function(_, opts)
         opts.capabilities = require("blink.cmp").get_lsp_capabilities(opts.capabilities)
         local blink_opts = require("astrocore").plugin_opts "blink.cmp"

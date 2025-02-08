@@ -56,10 +56,10 @@ return {
     },
     {
       "AstroNvim/astrolsp",
-      ---@param _ AstroLSPOpts
+      ---@param opts AstroLSPOpts
       opts = function(_, opts)
         if require("astrocore").is_available "fzf-lua" then
-          local maps = opts.mappings
+          local maps = opts.mappings or {}
           maps.n["<Leader>lD"] =
             { function() require("fzf-lua").diagnostics_document() end, desc = "Search diagnostics" }
           if maps.n.gd then
