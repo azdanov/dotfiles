@@ -24,4 +24,30 @@ return {
       },
     },
   },
+  {
+    "folke/noice.nvim",
+    opts = {
+      lsp = {
+        hover = {
+          silent = true,
+        },
+      },
+    },
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            layout = {
+              layout = {
+                width = 30,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }
