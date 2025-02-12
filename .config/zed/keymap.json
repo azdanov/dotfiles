@@ -1,0 +1,79 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-s": "workspace::Save"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "H": "pane::ActivatePrevItem",
+      "K": "editor::Hover",
+      "L": "pane::ActivateNextItem",
+      "[ d": "editor::GoToPrevDiagnostic",
+      "] d": "editor::GoToDiagnostic",
+      "g I": "editor::GoToImplementation",
+      "g K": "editor::ShowSignatureHelp",
+      "g c c": "vim::ToggleComments",
+      "g d": "editor::GoToDefinition",
+      "g r": "editor::FindAllReferences",
+      "g y": "editor::GoToTypeDefinition",
+      "space b [": "pane::ActivatePrevItem",
+      "space b ]": "pane::ActivateNextItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b n": "workspace::NewFile",
+      "space c a": "editor::ToggleCodeActions",
+      "space c f": "editor::Format",
+      "space c r": "editor::Rename",
+      "space e": "workspace::ToggleLeftDock",
+      "space f f": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space space": "file_finder::Toggle",
+      "space f n": "workspace::NewFile",
+      "space q q": "zed::Quit",
+      "space s w": "buffer_search::Deploy",
+      "space s d": "diagnostics::Deploy",
+      "space s g": "workspace::NewSearch",
+      "space t t": "workspace::ToggleBottomDock",
+      "space u d": "workspace::ClearAllNotifications",
+      "space u w": "editor::ToggleSoftWrap",
+      "space |": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "alt-h": "vim::Left",
+      "alt-j": "vim::Down",
+      "alt-k": "vim::Up",
+      "alt-l": "vim::Right"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-/": "workspace::ToggleBottomDock",
+      "space f t": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
+    }
+  }
+]
