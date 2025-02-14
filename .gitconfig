@@ -16,7 +16,13 @@ defaultBranch = main
 
 [merge]
 conflictstyle = diff3
-tool = nvimdiff
+tool = vimdiff
+
+[diff]
+tool = vimdiff
+
+[mergetool "vimdiff"]
+cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [mergetool]
 hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
@@ -35,16 +41,14 @@ pretty = fuller          # Shows author and committer.
 rebase = true
 
 [rebase]
-autosquash = true        # Squash/fixup commits starting with squash!/fixup! + commit subject.
+autosquash = true          # Squash/fixup commits starting with squash!/fixup! + commit subject.
 missingCommitsCheck = warn # Print a warning if a rebase removes commits.
-updateRefs = true        # Allow rebasing a stack of branches at the same time.
-
-[diff]
-tool = nvimdiff
+updateRefs = true          # Allow rebasing a stack of branches at the same time.
 
 [credential "https://github.com"]
 helper = 
 helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 helper = 
 helper = !/usr/bin/gh auth git-credential
