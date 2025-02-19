@@ -57,4 +57,26 @@ return {
       auto_insert_mode = false,
     },
   },
+  {
+    "lewis6991/satellite.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      excluded_filetypes = {
+        "Lazy",
+        "Outline",
+        "bigfile",
+        "dashboard",
+        "edgy",
+        "floaterm",
+        "noice",
+        "notify",
+        "outline",
+        "prompt",
+        "qf",
+        "snacks_picker_list",
+        "toggleterm",
+        "trouble",
+      },
+    },
+  },
 }
