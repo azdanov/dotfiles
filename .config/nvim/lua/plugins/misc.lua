@@ -1,81 +1,103 @@
+---@type LazySpec
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      inlay_hints = { enabled = false },
-    },
+    "tpope/vim-rsi",
+    event = { "CmdlineEnter", "InsertEnter" },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "gotmpl",
-      },
-    },
+    "johmsalas/text-case.nvim",
+    event = "User AstroFile",
+    opts = {},
   },
   {
-    "MagicDuck/grug-far.nvim",
-    opts = {
-      headerMaxWidth = 80,
-      engines = {
-        astgrep = {
-          path = "ast-grep",
-        },
-      },
-    },
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {},
   },
   {
-    "folke/noice.nvim",
+    "karb94/neoscroll.nvim",
+    event = "VeryLazy",
     opts = {
-      lsp = {
-        hover = {
-          silent = true,
-        },
-      },
-    },
-  },
-  {
-    "folke/snacks.nvim",
-    opts = {
-      picker = {
-        sources = {
-          explorer = {
-            layout = {
-              layout = {
-                width = 30,
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    opts = {
-      question_header = " User ",
-      auto_insert_mode = false,
+      duration_multiplier = 0.5,
     },
   },
   {
     "lewis6991/satellite.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "User AstroFile",
     opts = {
       excluded_filetypes = {
-        "Lazy",
-        "Outline",
-        "bigfile",
-        "dashboard",
-        "edgy",
-        "floaterm",
+        "prompt",
+        "TelescopePrompt",
         "noice",
         "notify",
-        "outline",
-        "prompt",
-        "qf",
-        "snacks_picker_list",
-        "toggleterm",
-        "trouble",
+        "neo-tree",
+      },
+    },
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    dependencies = {
+      { "numToStr/Comment.nvim", enabled = false, optional = true },
+      { "JoosepAlviste/nvim-ts-context-commentstring", enabled = false, optional = true },
+    },
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    event = "User AstroFile",
+    cmd = "HighlightColors",
+    dependencies = {
+      { "NvChad/nvim-colorizer.lua", enabled = false, optional = true },
+      {
+        "AstroNvim/astrocore",
+        ---@param opts AstroCoreOpts
+        opts = function(_, opts)
+          local maps = opts.mappings or {}
+          maps.n["<Leader>uz"] = {
+            function() vim.cmd.HighlightColors "Toggle" end,
+            desc = "Toggle color highlight",
+          }
+          opts.mappings = maps
+        end,
+      },
+    },
+    opts = { enabled_named_colors = false },
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    dependencies = {
+      "AstroNvim/astrocore",
+      ---@param opts AstroCoreOpts
+      opts = function(_, opts)
+        if not opts.signs then opts.signs = {} end
+        opts.signs.BqfSign = { text = " " .. require("astroui").get_icon "Selected", texthl = "BqfSign" }
+      end,
+    },
+    opts = {
+      auto_resize_height = true,
+      preview = {
+        auto_preview = false,
+      },
+    },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_by_name = {
+            ".git",
+          },
+        },
+      },
+      window = {
+        width = 30,
+        mappings = {
+          ["z"] = "none",
+        },
       },
     },
   },

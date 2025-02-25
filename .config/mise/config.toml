@@ -12,7 +12,6 @@ pnpm = "latest"
 "npm:prettier" = "latest"
 "npm:prettier-plugin-go-template" = "latest"
 "aqua:astral-sh/uv" = "latest"
-"aqua:quarylabs/sqruff" = "latest"
 
 [settings]
 experimental = true

@@ -1,7 +1,7 @@
 if status is-interactive
-    $HOME/.local/bin/mise activate fish | source
+    mise activate fish | source
 else
-    $HOME/.local/bin/mise activate fish --shims | source
+    mise activate fish --shims | source
 end
 
 abbr -a -- vi nvim
@@ -21,3 +21,8 @@ dbus-update-activation-environment --systemd LS_COLORS FZF_DEFAULT_OPTS LG_CONFI
 
 starship init fish | source
 zoxide init fish | source
+
+source /usr/share/cachyos-fish-config/cachyos-config.fish
+
+function fish_greeting
+end
