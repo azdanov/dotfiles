@@ -5,12 +5,10 @@ local icon_provider, hl_provider
 
 local function get_kind_icon(CTX)
   if not icon_provider then
-    local base = function(ctx) ctx.kind_icon_highlight = "BlinkCmpKind" .. ctx.kind end
     if not icon_provider then
       local lspkind_avail, lspkind = pcall(require, "lspkind")
       if lspkind_avail then
         icon_provider = function(ctx)
-          base(ctx)
           if ctx.item.source_name == "LSP" then
             local icon = lspkind.symbolic(ctx.kind, { mode = "symbol" })
             if icon then ctx.kind_icon = icon end
@@ -18,7 +16,7 @@ local function get_kind_icon(CTX)
         end
       end
     end
-    if not icon_provider then icon_provider = function(ctx) base(ctx) end end
+    if not icon_provider then icon_provider = function() end end
   end
 
   if not hl_provider then
@@ -33,24 +31,19 @@ local function get_kind_icon(CTX)
             local color_item = highlight_colors_avail and highlight_colors.format(doc, { kind = kinds[kinds.Color] })
             if color_item and color_item.abbr_hl_group then
               if color_item.abbr then ctx.kind_icon = color_item.abbr end
-              ctx.kind_icon_highlight = color_item.abbr_hl_group
+              ctx.kind_hl = color_item.abbr_hl_group
             end
           end
         end
       end
     end
-    if not hl_provider then
-      hl_provider = function(ctx)
-        local tailwind_hl = require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
-        if tailwind_hl then ctx.kind_icon_highlight = tailwind_hl end
-      end
-    end
+    if not hl_provider then hl_provider = function() end end
   end
 
   icon_provider(CTX)
   hl_provider(CTX)
 
-  return { text = CTX.kind_icon .. CTX.icon_gap, highlight = CTX.kind_icon_highlight }
+  return { text = CTX.kind_icon .. CTX.icon_gap, highlight = CTX.kind_hl }
 end
 
 ---@type LazySpec

@@ -15,10 +15,11 @@ return {
     opts = {},
   },
   {
-    "karb94/neoscroll.nvim",
+    "folke/snacks.nvim",
     event = "VeryLazy",
+    ---@type snacks.Config
     opts = {
-      duration_multiplier = 0.5,
+      scroll = {},
     },
   },
   {
