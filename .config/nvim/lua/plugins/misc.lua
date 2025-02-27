@@ -15,14 +15,6 @@ return {
     opts = {},
   },
   {
-    "folke/snacks.nvim",
-    event = "VeryLazy",
-    ---@type snacks.Config
-    opts = {
-      scroll = {},
-    },
-  },
-  {
     "lewis6991/satellite.nvim",
     event = "User AstroFile",
     opts = {
