@@ -21,9 +21,9 @@ from kitty.utils import color_as_int
 opts = get_options()
 icon_fg = as_rgb(color_as_int(opts.color16))
 icon_bg = as_rgb(color_as_int(opts.color0))
-bat_text_color = as_rgb(color_as_int(opts.color15))
-clock_color = as_rgb(color_as_int(opts.color15))
-date_color = as_rgb(color_as_int(opts.color8))
+bat_text_color = as_rgb(color_as_int(opts.color7))
+clock_color = as_rgb(color_as_int(opts.color7))
+date_color = as_rgb(color_as_int(opts.color7))
 SEPARATOR_SYMBOL, SOFT_SEPARATOR_SYMBOL = ("", "")
 RIGHT_MARGIN = 1
 REFRESH_TIME = 1
@@ -45,7 +45,7 @@ PLUGGED_ICONS = {
 }
 UNPLUGGED_COLORS = {
     15: as_rgb(color_as_int(opts.color1)),
-    16: as_rgb(color_as_int(opts.color15)),
+    16: as_rgb(color_as_int(opts.color7)),
 }
 PLUGGED_COLORS = {
     15: as_rgb(color_as_int(opts.color1)),
