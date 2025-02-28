@@ -6,18 +6,6 @@ hide_window_decorations yes
 
 macos_option_as_alt yes
 
-tab_bar_edge bottom
-tab_bar_align left
-tab_bar_style custom
-tab_bar_min_tabs 1
-tab_activity_symbol none
-bell_on_tab no
-tab_separator ""
-tab_bar_margin_width 1.0
-tab_bar_margin_height 2.0 0.0
-tab_title_template "{f'{title[:30]}…' if title.rindex(title[-1]) + 1 > 30 else (title.center(6) if (title.rindex(title[-1]) + 1) % 2 == 0 else title.center(5))}"
-active_tab_font_style   bold
-
 scrollback_lines 5000
 touch_scroll_multiplier 3
 wheel_scroll_multiplier 3
@@ -47,6 +35,6 @@ bold_italic_font family='MonoLisa Variable' style=Bold variable_name=MonoLisaVar
 # END_KITTY_FONTS
 
 # BEGIN_KITTY_THEME
-# AstroLight
+# AstroDark
 include current-theme.conf
 # END_KITTY_THEME
