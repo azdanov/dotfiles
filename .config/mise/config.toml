@@ -11,7 +11,8 @@ pnpm = "latest"
 "aqua:air-verse/air" = "latest"
 "npm:prettier" = "latest"
 "npm:prettier-plugin-go-template" = "latest"
-"aqua:astral-sh/uv" = "latest"
+uv = "latest"
+python = "latest"
 
 [settings]
 experimental = true
