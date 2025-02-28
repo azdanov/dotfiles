@@ -1,7 +1,7 @@
 {
   "AstroNvim": { "branch": "main", "commit": "1411df4d970e59f1b5721556a043c5c828daf5ad" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "CopilotChat.nvim": { "branch": "main", "commit": "f8d47ce9adace3c1fe9fa7737bc1fde861bb8317" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "f7bd923e8af0d7ca03868afbb5bc28801b97f588" },
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
   "SchemaStore.nvim": { "branch": "main", "commit": "9f548557c1ef2ea24a4e24940cf0011c448112ae" },
   "aerial.nvim": { "branch": "master", "commit": "3284a2cb858ba009c79da87d5e010ccee3c99c4d" },
@@ -43,7 +43,6 @@
   "neoconf.nvim": { "branch": "main", "commit": "7c4427112d75f866d630d3eef4c06c4e37b5d042" },
   "none-ls.nvim": { "branch": "main", "commit": "f41624ea1a73f020ddbd33438f74abb95ea17d55" },
   "nui.nvim": { "branch": "main", "commit": "a0fd35fcbb4cb479366f1dc5f20145fd718a3733" },
-  "nvcheatsheet.nvim": { "branch": "master", "commit": "618850d2a14ac82f8d9bc560cce923d728e7424a" },
   "nvim-autopairs": { "branch": "master", "commit": "68f0e5c3dab23261a945272032ee6700af86227a" },
   "nvim-bqf": { "branch": "main", "commit": "ebb6d2689e4427452180f17c53f29f7e460236f1" },
   "nvim-cmp": { "branch": "main", "commit": "12509903a5723a876abd65953109f926f4634c30" },

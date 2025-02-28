@@ -6,7 +6,6 @@ return {
   { import = "astrocommunity.color.nvim-highlight-colors" },
   { import = "astrocommunity.comment.ts-comments-nvim" },
   { import = "astrocommunity.completion.blink-cmp" },
-  { import = "astrocommunity.keybinding.nvcheatsheet-nvim" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.scrolling.satellite-nvim" },
