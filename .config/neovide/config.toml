@@ -6,20 +6,20 @@ hinting = "slight"
 edging = "subpixelantialias"
 
 [[font.normal]]
-family = "MonoLisa"
+family = "MonoLisa Variable"
 style = "Medium"
 
 [[font.normal]]
 family = "Symbols Nerd Font"
 
 [[font.bold]]
-family = "MonoLisa"
+family = "MonoLisa Variable"
 style = "Bold"
 
 [[font.italic]]
-family = "MonoLisa"
+family = "MonoLisa Variable"
 style = "Medium Italic"
 
 [[font.bold_italic]]
-family = "MonoLisa"
+family = "MonoLisa Variable"
 style = "Bold Italic"
