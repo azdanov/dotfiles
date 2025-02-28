@@ -41,6 +41,7 @@ pretty = fuller          # Shows author and committer.
 rebase = true
 
 [rebase]
+autoStash = true
 autosquash = true          # Squash/fixup commits starting with squash!/fixup! + commit subject.
 missingCommitsCheck = warn # Print a warning if a rebase removes commits.
 updateRefs = true          # Allow rebasing a stack of branches at the same time.
