@@ -26,7 +26,6 @@ return {
   -- LSP and code quality
   { import = "astrocommunity.lsp.nvim-lint" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
-  { import = "astrocommunity.programming-language-support.rest-nvim" },
 
   -- Language packs
   { import = "astrocommunity.pack.bash" },
