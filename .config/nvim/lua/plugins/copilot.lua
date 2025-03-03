@@ -16,6 +16,7 @@ return {
     opts = {
       options = {
         g = {
+          copilot_workspace_folders = { vim.fn.getcwd() },
           copilot_filetypes = {
             markdown = true,
             ["grug-far"] = false,
