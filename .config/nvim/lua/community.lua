@@ -20,8 +20,9 @@ return {
 
   -- Search and navigation
   { import = "astrocommunity.fuzzy-finder.snacks-picker" },
-  { import = "astrocommunity.search.grug-far-nvim" },
+  { import = "astrocommunity.motion.mini-jump" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
+  { import = "astrocommunity.search.grug-far-nvim" },
 
   -- LSP and code quality
   { import = "astrocommunity.lsp.nvim-lint" },
