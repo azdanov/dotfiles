@@ -10,7 +10,6 @@ pnpm = "latest"
 "npm:prettier" = "latest"
 "npm:prettier-plugin-go-template" = "latest"
 uv = "latest"
-python = "latest"
 "aqua:ast-grep/ast-grep" = "latest"
 "aqua:biome" = "latest"
 

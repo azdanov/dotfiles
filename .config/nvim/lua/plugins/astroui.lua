@@ -4,5 +4,11 @@ return {
   ---@type AstroUIOpts
   opts = {
     colorscheme = "astrolight",
+    status = {
+      separators = {
+        breadcrumbs = "  ",
+        path = "  ",
+      },
+    },
   },
 }
