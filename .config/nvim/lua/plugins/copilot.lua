@@ -16,6 +16,8 @@ return {
     opts = {
       options = {
         g = {
+          copilot_integration_id = "vscode-chat",
+          copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" },
           copilot_workspace_folders = { vim.fn.getcwd() },
           copilot_filetypes = {
             markdown = true,
