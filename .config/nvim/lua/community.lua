@@ -3,20 +3,20 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
-  { import = "astrocommunity.color.nvim-highlight-colors" },
-  { import = "astrocommunity.comment.ts-comments-nvim" },
   { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.scrolling.satellite-nvim" },
 
+  -- AI and code assistance
+  { import = "astrocommunity.completion.copilot-vim-cmp" },
+  { import = "astrocommunity.editing-support.copilotchat-nvim" },
+
   -- Advanced editing support
   { import = "astrocommunity.editing-support.conform-nvim" },
-  { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.suda-vim" },
-  { import = "astrocommunity.editing-support.text-case-nvim" },
 
   -- Search and navigation
   { import = "astrocommunity.fuzzy-finder.snacks-picker" },
@@ -51,9 +51,6 @@ return {
 
   -- Database
   { import = "astrocommunity.pack.full-dadbod" },
-
-  -- Media and special file types
-  { import = "astrocommunity.media.image-nvim" },
 
   -- Terminal integration
   { import = "astrocommunity.terminal-integration.flatten-nvim" },

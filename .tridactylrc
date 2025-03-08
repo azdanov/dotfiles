@@ -11,3 +11,6 @@ set smoothscroll true
 " Use smaller scroll increments.
 bind j scrollline 5
 bind k scrollline -5
+
+" hide modeindicator
+set modeindicator false
