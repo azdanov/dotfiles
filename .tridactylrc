@@ -9,26 +9,19 @@ sanitize tridactyllocal tridactylsync
 set smoothscroll true
 
 " Use smaller scroll increments.
-bind j scrollline +5
-bind k scrollline -5
+bind j scrollline +3
+bind k scrollline -3
 
 " Follow promising-looking links to visit the likely next and previous pages of content.
 bind [[ followpage prev
 bind ]] followpage next
 
-" use native firefox search and unbind opposite just to make it equal
-unbind <C-f>
-unbind <C-b>
-
 " hide modeindicator
 set modeindicator false
 
-" Do not allow pages to focus elements for me.
-" (Remember to also set browser.autofocus=false in about:config.)
-set allowautofocus false
-
 " Vimperator-like hinting mode.
 set hintfiltermode vimperator-reflow
+set hintuppercase false
 
 " Include numbers in tab names, to make 'b' and '<A-<number>>'
 " switching easier.
