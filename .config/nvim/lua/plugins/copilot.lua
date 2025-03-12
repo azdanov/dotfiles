@@ -7,6 +7,9 @@ return {
     dependencies = {
       { "zbirenbaum/copilot.lua", optional = true, enabled = false },
     },
+    opts = {
+      model = "claude-3.7-sonnet",
+    },
   },
   {
     "AstroNvim/astrocore",
