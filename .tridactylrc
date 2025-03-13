@@ -6,7 +6,7 @@
 sanitize tridactyllocal tridactylsync
 
 " Smooth scrolling
-set smoothscroll true
+set smoothscroll false
 
 " Use smaller scroll increments.
 bind j scrollline +3
