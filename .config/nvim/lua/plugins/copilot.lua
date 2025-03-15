@@ -22,8 +22,6 @@ return {
           copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" },
           copilot_filetypes = {
             markdown = true,
-            ["grug-far"] = false,
-            ["grug-far-history"] = false,
           },
         },
       },
@@ -48,7 +46,6 @@ return {
       sources = {
         providers = {
           path = {
-            -- Path sources triggered by "/" interfere with CopilotChat commands
             enabled = function() return vim.bo.filetype ~= "copilot-chat" end,
           },
         },

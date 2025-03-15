@@ -19,15 +19,5 @@ return {
         },
       },
     },
-    file_operations = {
-      operations = {
-        willCreate = true,
-        didCreate = true,
-        willRename = true,
-        didRename = true,
-        willDelete = true,
-        didDelete = true,
-      },
-    },
   },
 }
