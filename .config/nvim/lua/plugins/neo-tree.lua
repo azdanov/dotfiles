@@ -11,7 +11,7 @@ return {
       },
     },
     window = {
-      width = 30,
+      width = 28,
       mappings = {
         ["z"] = "none",
       },
