@@ -6,15 +6,28 @@
 sanitize tridactyllocal tridactylsync
 
 " Smooth scrolling
-set smoothscroll false
+set smoothscroll true
 
 " Use smaller scroll increments.
 bind j scrollline +3
 bind k scrollline -3
 
+" Rebind page scroll
+bind u scrollpage -0.5
+bind d scrollpage 0.5
+
+" Undo
+bind <C-u> undo
+
 " Follow promising-looking links to visit the likely next and previous pages of content.
 bind [[ followpage prev
 bind ]] followpage next
+
+" Close tab
+bind <Space>c tabclose
+
+" Ctrl-F should use the browser's native 'find' functionality.
+unbind <C-f>
 
 " hide modeindicator
 set modeindicator false
@@ -30,3 +43,4 @@ guiset tabs numbers
 " Make Tridactyl work on more sites at the expense of some security
 " set csp clobber
 fixamo_quiet
+
