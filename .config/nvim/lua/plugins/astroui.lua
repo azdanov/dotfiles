@@ -11,6 +11,13 @@ return {
         breadcrumbs = "  ",
         path = "  ",
       },
+      providers = {
+        lsp_client_names = {
+          mappings = {
+            ["GitHub Copilot"] = "copilot",
+          },
+        },
+      },
     },
   },
 }
