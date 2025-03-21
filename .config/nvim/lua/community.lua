@@ -6,6 +6,7 @@ return {
   { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.vscode" },
+  { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
 
   -- AI and code assistance
   { import = "astrocommunity.completion.copilot-vim-cmp" },
