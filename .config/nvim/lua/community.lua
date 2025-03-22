@@ -15,7 +15,6 @@ return {
   -- Advanced editing support
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
-  { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.suda-vim" },
 
   -- Search and navigation
