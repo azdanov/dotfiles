@@ -2,7 +2,6 @@ require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
     version = "^5", -- Remove version tracking to elect for nightly AstroNvim
-    branch = "v5", -- TODO: Remove
     import = "astronvim.plugins",
     opts = { -- AstroNvim options must be set here with the `import` key
       mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
@@ -12,9 +11,6 @@ require("lazy").setup({
       update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
     },
   },
-  { "AstroNvim/astrocore", version = false, branch = "v2" },
-  { "AstroNvim/astrolsp", version = false, branch = "v3" },
-  { "AstroNvim/astroui", version = false, branch = "v3" },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {

@@ -18,7 +18,6 @@ return {
       options = {
         g = {
           copilot_workspace_folders = { vim.fn.getcwd() },
-          copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" },
           copilot_filetypes = {
             markdown = true,
           },

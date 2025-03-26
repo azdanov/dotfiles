@@ -3,7 +3,6 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
-  { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
