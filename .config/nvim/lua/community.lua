@@ -3,9 +3,10 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
+  { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
-  { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
+  { import = "astrocommunity.recipes.vscode" },
 
   -- AI and code assistance
   { import = "astrocommunity.completion.copilot-vim-cmp" },
