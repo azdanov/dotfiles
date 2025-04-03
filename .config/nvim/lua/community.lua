@@ -21,6 +21,7 @@ return {
   { import = "astrocommunity.fuzzy-finder.snacks-picker" },
   { import = "astrocommunity.motion.mini-jump" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
+  { import = "astrocommunity.recipes.picker-lsp-mappings" },
   { import = "astrocommunity.search.grug-far-nvim" },
 
   -- LSP and code quality
