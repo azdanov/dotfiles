@@ -12,6 +12,4 @@ pnpm = "latest"
 uv = "latest"
 "aqua:ast-grep/ast-grep" = "latest"
 "aqua:biome" = "latest"
-
-[settings]
-experimental = true
+"aqua:golangci/golangci-lint" = "latest"
