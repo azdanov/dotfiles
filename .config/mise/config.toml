@@ -1,7 +1,7 @@
 [tools]
 usage = "latest"
 node = "lts"
-java = "temurin-21"
+java = "lts"
 go = "latest"
 pnpm = "latest"
 "npm:npm-check-updates" = "latest"
