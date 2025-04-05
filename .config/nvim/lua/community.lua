@@ -7,6 +7,7 @@ return {
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
   { import = "astrocommunity.recipes.vscode" },
+  { import = "astrocommunity.recipes.diagnostic-virtual-lines-current-line" },
 
   -- AI and code assistance
   { import = "astrocommunity.completion.copilot-vim-cmp" },
@@ -54,4 +55,5 @@ return {
 
   -- Terminal integration
   { import = "astrocommunity.terminal-integration.flatten-nvim" },
+  { import = "astrocommunity.code-runner.overseer-nvim" },
 }
