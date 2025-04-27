@@ -33,6 +33,13 @@ return {
             },
           },
         },
+        gopls = {
+          settings = {
+            gopls = {
+              buildFlags = { "-tags=unit integration e2e" },
+            },
+          },
+        },
       },
     },
   },

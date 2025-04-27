@@ -5,7 +5,9 @@ return {
     ---@module "snacks"
     ---@type snacks.Config
     opts = {
-      scroll = {},
+      scroll = {
+        enabled = false,
+      },
     },
   },
   {
