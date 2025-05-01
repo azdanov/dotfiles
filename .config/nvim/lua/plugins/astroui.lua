@@ -1,5 +1,3 @@
-if vim.g.vscode then return {} end
-
 ---@type LazySpec
 return {
   "AstroNvim/astroui",

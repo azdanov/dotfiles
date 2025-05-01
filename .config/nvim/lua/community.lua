@@ -5,7 +5,6 @@ return {
   -- Core editing and UI enhancements
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
-  { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
   { import = "astrocommunity.recipes.vscode" },
 
   -- AI and code assistance
@@ -32,20 +31,17 @@ return {
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.fish" },
   { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.harper" },
+  { import = "astrocommunity.pack.golangci-lint" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.mdx" },
-  { import = "astrocommunity.pack.php" },
   { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
 
@@ -54,5 +50,4 @@ return {
 
   -- Terminal integration
   { import = "astrocommunity.terminal-integration.flatten-nvim" },
-  { import = "astrocommunity.code-runner.overseer-nvim" },
 }
