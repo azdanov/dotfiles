@@ -15,9 +15,12 @@ return {
   { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.suda-vim" },
+  { import = "astrocommunity.editing-support.text-case-nvim" },
+  { import = "astrocommunity.motion.mini-move" },
 
   -- Search and navigation
   { import = "astrocommunity.fuzzy-finder.snacks-picker" },
+  { import = "astrocommunity.motion.hop-nvim" },
   { import = "astrocommunity.motion.mini-jump" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
