@@ -1,4 +1,4 @@
-function ll --wraps='eza -l --color=always --group-directories-first --icons' --wraps=exa_git --description 'alias ll exa_git'
-  exa_git $argv
+function ll --wraps='eza -l --color=always --group-directories-first --icons' --wraps=eza_git --description 'alias ll eza_git'
+  eza_git $argv
         
 end
