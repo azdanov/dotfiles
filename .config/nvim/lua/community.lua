@@ -29,6 +29,7 @@ return {
   { import = "astrocommunity.lsp.nvim-lint" },
 
   -- Language packs
+  { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.fish" },
