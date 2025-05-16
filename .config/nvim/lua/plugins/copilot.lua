@@ -1,12 +1,6 @@
 ---@type LazySpec
 return {
   {
-    "catppuccin",
-    optional = true,
-    ---@type CatppuccinOptions
-    opts = { integrations = { copilot_vim = true } },
-  },
-  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
     version = false,

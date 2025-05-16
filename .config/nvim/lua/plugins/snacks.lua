@@ -1,20 +1,6 @@
 ---@type LazySpec
 return {
   {
-    "catppuccin",
-    optional = true,
-    ---@module 'catppuccin'
-    ---@type CatppuccinOptions
-    opts = {
-      integrations = {
-        snacks = {
-          enabled = true,
-          indent_scope_color = "lavender",
-        },
-      },
-    },
-  },
-  {
     "folke/snacks.nvim",
     ---@module "snacks"
     ---@type snacks.Config
