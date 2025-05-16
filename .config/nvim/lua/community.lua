@@ -3,6 +3,7 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.vscode" },
