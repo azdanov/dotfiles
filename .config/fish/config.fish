@@ -1,3 +1,5 @@
+source /usr/share/cachyos-fish-config/cachyos-config.fish
+
 if status is-interactive
     mise activate fish | source
 else
@@ -21,8 +23,6 @@ dbus-update-activation-environment --systemd LS_COLORS FZF_DEFAULT_OPTS LG_CONFI
 
 starship init fish | source
 zoxide init fish | source
-
-source /usr/share/cachyos-fish-config/cachyos-config.fish
 
 function fish_greeting
 end
