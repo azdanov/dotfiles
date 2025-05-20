@@ -1,21 +1,16 @@
 function theme_light
-    yes | fish_config theme save "Catppuccin Latte"
+    yes | fish_config theme save astrolight
 
-    sed -i s/macchiato/latte/g ~/.config/btop/btop.conf
-    sed -i s/macchiato/latte/g ~/.config/nvim/lua/plugins/astroui.lua
-    sed -i s/macchiato/latte/g ~/.config/fish/config.fish
+    sed -i s/tokyo-night/adwaita/g ~/.config/btop/btop.conf
+    sed -i s/astrodark/astrolight/g ~/.config/nvim/lua/plugins/astroui.lua
+    sed -i s/astrodark/astrolight/g ~/.config/fish/config.fish
 
-    set -Ux LS_COLORS (vivid generate catppuccin-latte)
-    set -Ux FZF_DEFAULT_OPTS "\
-    --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
-    --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
-    --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
-    --color=selected-bg:#BCC0CC \
-    --color=border:#CCD0DA,label:#4C4F69"
-    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/catppuccin_latte.yml"
-    set -Ux BAT_THEME "Catppuccin Latte"
+    set -Ux LS_COLORS (vivid generate astrolight)
+    set -Ux FZF_DEFAULT_OPTS "--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#EAEBEB --color=bg:#F7F8F8 --color=border:#671FF0 --color=fg+:#4F4F4F --color=fg:#4F4F4F --color=gutter:#F7F8F8 --color=header:#671FF0 --color=hl+:#00508A --color=hl:#00508A --color=info:#B5B9BD --color=marker:#00508A --color=pointer:#00508A --color=prompt:#00508A --color=query:#4F4F4F:regular --color=scrollbar:#671FF0 --color=separator:#671FF0 --color=spinner:#00508A"
+    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/astrolight.yml"
+    set -Ux BAT_THEME astrolight
 
-    kitty +kitten themes --reload-in=all Catppuccin-Latte
+    kitty +kitten themes --reload-in=all AstroLight
     plasma-apply-cursortheme Breeze_Light &>/dev/null
     # plasma-apply-lookandfeel --apply org.kde.breeze.desktop
     # plasma-apply-colorscheme BreezeLight
