@@ -3,7 +3,7 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "catppuccin-latte",
+    colorscheme = "astrolight",
     status = {
       separators = {
         breadcrumbs = "  ",
