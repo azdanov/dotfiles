@@ -3,8 +3,10 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
+  { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.recipes.vscode" },
 
   -- AI and code assistance
