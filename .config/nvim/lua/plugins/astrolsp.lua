@@ -4,6 +4,9 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
+      autocmds = {
+        eslint_fix_on_save = false,
+      },
       ---@diagnostic disable: missing-fields
       config = {
         vtsls = {

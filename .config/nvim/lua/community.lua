@@ -3,7 +3,6 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
-  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.vim-matchup" },
@@ -30,11 +29,13 @@ return {
 
   -- LSP and code quality
   { import = "astrocommunity.lsp.nvim-lint" },
+  { import = "astrocommunity.lsp.sonarlint-nvim" },
 
   -- Language packs
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.eslint" },
   { import = "astrocommunity.pack.fish" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.golangci-lint" },
@@ -46,6 +47,7 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.spring-boot" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
@@ -56,5 +58,6 @@ return {
   { import = "astrocommunity.pack.full-dadbod" },
 
   -- Terminal integration
+  { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.terminal-integration.flatten-nvim" },
 }
