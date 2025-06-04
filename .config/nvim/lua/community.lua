@@ -21,7 +21,6 @@ return {
   { import = "astrocommunity.motion.mini-move" },
 
   -- Search and navigation
-  { import = "astrocommunity.fuzzy-finder.snacks-picker" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
