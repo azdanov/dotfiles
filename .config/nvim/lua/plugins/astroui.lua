@@ -13,7 +13,6 @@ return {
         lsp_client_names = {
           mappings = {
             ["GitHub Copilot"] = "copilot",
-            ["sonarlint.nvim"] = "sonarlint",
           },
         },
       },
