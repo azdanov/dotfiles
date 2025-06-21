@@ -28,7 +28,6 @@ return {
 
   -- LSP and code quality
   { import = "astrocommunity.lsp.nvim-lint" },
-  { import = "astrocommunity.lsp.sonarlint-nvim" },
 
   -- Language packs
   { import = "astrocommunity.pack.astro" },
@@ -46,7 +45,8 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.spring-boot" },
+  { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.spring-boot" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
@@ -57,6 +57,5 @@ return {
   { import = "astrocommunity.pack.full-dadbod" },
 
   -- Terminal integration
-  { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.terminal-integration.flatten-nvim" },
 }
