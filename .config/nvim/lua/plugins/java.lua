@@ -24,4 +24,40 @@ return {
       },
     },
   },
+  {
+    "mfussenegger/nvim-jdtls",
+    opts = {
+      flags = {
+        allow_incremental_sync = true,
+        server_side_fuzzy_completion = true,
+      },
+      settings = {
+        java = {
+          codeGeneration = {
+            toString = {
+              template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+            },
+            hashCodeEquals = {
+              useJava7Objects = true,
+              useInstanceOf = true,
+            },
+            generateComments = true,
+            useBlocks = true,
+            addFinalForNewDeclaration = "fields",
+          },
+          completion = {
+            favoriteStaticMembers = {
+              "org.assertj.core.api.Assertions.assertThat",
+              "org.assertj.core.api.Assertions.assertThatThrownBy",
+              "org.assertj.core.api.Assertions.catchThrowable",
+              "java.util.Objects.requireNonNull",
+              "java.util.Objects.requireNonNullElse",
+              "org.mockito.Mockito.mock",
+              "org.mockito.Mockito.when",
+            },
+          },
+        },
+      },
+    },
+  },
 }
