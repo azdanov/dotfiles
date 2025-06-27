@@ -26,6 +26,7 @@ return {
   },
   {
     "mfussenegger/nvim-jdtls",
+    optional = true,
     opts = {
       flags = {
         allow_incremental_sync = true,

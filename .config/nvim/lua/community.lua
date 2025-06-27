@@ -3,6 +3,7 @@ return {
   "AstroNvim/astrocommunity",
 
   -- Core editing and UI enhancements
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.vim-matchup" },
@@ -46,7 +47,6 @@ return {
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
-  -- { import = "astrocommunity.pack.spring-boot" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
