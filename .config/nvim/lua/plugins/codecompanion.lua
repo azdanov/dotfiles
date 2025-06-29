@@ -8,9 +8,18 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       {
+        "ravitemer/mcphub.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        event = "User AstroFile",
+        opts = {},
+      },
+      {
         "AstroNvim/astrocore",
         ---@param opts AstroCoreOpts
         opts = function(_, opts)
+          local spinner = require "plugins.utils.spinner"
+          spinner:init()
+
           if not opts.mappings then opts.mappings = {} end
 
           opts.mappings.n[prefix] = { desc = require("astroui").get_icon("CodeCompanion", 1, true) .. "CodeCompanion" }
@@ -40,7 +49,34 @@ return {
       "CodeCompanionChat",
       "CodeCompanionCmd",
     },
-    opts = {},
+    opts = {
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            show_result_in_chat = true,
+            make_vars = true,
+            make_slash_commands = true,
+          },
+        },
+      },
+      strategies = {
+        chat = {
+          keymaps = {
+            send = {
+              callback = function(chat)
+                -- https://github.com/olimorris/codecompanion.nvim/discussions/640#discussioncomment-12866279
+                vim.cmd "stopinsert"
+                chat:submit()
+                chat:add_buf_message { role = "llm", content = "" }
+              end,
+              index = 1,
+              description = "Send",
+            },
+          },
+        },
+      },
+    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
