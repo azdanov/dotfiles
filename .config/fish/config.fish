@@ -21,6 +21,3 @@ dbus-update-activation-environment --systemd LS_COLORS FZF_DEFAULT_OPTS LG_CONFI
 
 starship init fish | source
 zoxide init fish | source
-
-function fish_greeting
-end

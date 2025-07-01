@@ -18,25 +18,20 @@ local format_filetypes = {
   "yaml",
 }
 
-local lsp_rooter_cache, prettierrc_rooter_cache
-
 local function get_lsp_rooter()
-  if not lsp_rooter_cache then
-    lsp_rooter_cache = require("astrocore.rooter").resolve("lsp", {
-      ignore = {
-        servers = function(client)
-          return not vim.tbl_contains({
-            "eslint",
-            "ts_ls",
-            "typescript-tools",
-            "volar",
-            "vtsls",
-          }, client.name)
-        end,
-      },
-    })
-  end
-  return lsp_rooter_cache
+  return require("astrocore.rooter").resolve("lsp", {
+    ignore = {
+      servers = function(client)
+        return not vim.tbl_contains({
+          "eslint",
+          "ts_ls",
+          "typescript-tools",
+          "volar",
+          "vtsls",
+        }, client.name)
+      end,
+    },
+  })
 end
 
 local prettier_files = {
@@ -59,10 +54,7 @@ local prettier_files = {
   "prettier.config.mts",
 }
 
-local function get_prettierrc_rooter()
-  if not prettierrc_rooter_cache then prettierrc_rooter_cache = require("astrocore.rooter").resolve(prettier_files) end
-  return prettierrc_rooter_cache
-end
+local function get_prettierrc_rooter() return require("astrocore.rooter").resolve(prettier_files) end
 
 local function decode_json(filename)
   local file = io.open(filename, "r")
@@ -79,8 +71,6 @@ local function check_json_key_exists(json, ...) return vim.tbl_get(json, ...) ~=
 local function has_prettier(bufnr)
   if type(bufnr) ~= "number" then bufnr = vim.api.nvim_get_current_buf() end
 
-  local prettier_dependency = false
-
   local lsp_rooter = get_lsp_rooter()
   local search_roots = require("astrocore").list_insert_unique(lsp_rooter(bufnr) or {}, { vim.fn.getcwd() })
 
@@ -95,24 +85,14 @@ local function has_prettier(bufnr)
           or check_json_key_exists(package_json, "devDependencies", "prettier")
         )
       then
-        prettier_dependency = true
-        break
+        return true
       end
     end
   end
 
-  if prettier_dependency then return true end
-
   local prettierrc_root = get_prettierrc_rooter()(bufnr)
   return prettierrc_root and next(prettierrc_root) ~= nil
 end
-
-local null_ls_formatter = function(params)
-  if vim.tbl_contains(format_filetypes, params.filetype) then return has_prettier(params.bufnr) end
-  return true
-end
-
-local conform_formatter = function(bufnr) return has_prettier(bufnr) and { "prettierd" } or {} end
 
 ---@type LazySpec
 return {
@@ -126,7 +106,12 @@ return {
       opts.handlers.prettierd = function(source_name, methods)
         local null_ls = require "null-ls"
         for _, method in ipairs(methods) do
-          null_ls.register(null_ls.builtins[method][source_name].with { runtime_condition = null_ls_formatter })
+          null_ls.register(null_ls.builtins[method][source_name].with {
+            runtime_condition = function(params)
+              if vim.tbl_contains(format_filetypes, params.filetype) then return has_prettier(params.bufnr) end
+              return true
+            end,
+          })
         end
       end
     end,
@@ -137,7 +122,7 @@ return {
     opts = function(_, opts)
       if not opts.formatters_by_ft then opts.formatters_by_ft = {} end
       for _, filetype in ipairs(format_filetypes) do
-        opts.formatters_by_ft[filetype] = conform_formatter
+        opts.formatters_by_ft[filetype] = function(bufnr) return has_prettier(bufnr) and { "prettierd" } or {} end
       end
     end,
   },
