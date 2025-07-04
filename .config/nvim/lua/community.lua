@@ -49,7 +49,6 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
-  { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
 
