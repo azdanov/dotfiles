@@ -10,7 +10,7 @@ return {
           {
             event = "VimLeavePre",
             desc = "Kill daemons on exit",
-            callback = function() vim.fn.jobstart("killall prettierd eslint_d", { detach = true }) end,
+            callback = function() vim.fn.jobstart("killall prettierd", { detach = true }) end,
           },
         },
       },

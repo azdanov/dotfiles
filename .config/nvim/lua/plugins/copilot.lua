@@ -1,12 +1,10 @@
 ---@type LazySpec
 return {
+  { "zbirenbaum/copilot.lua", optional = true, enabled = false },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
     version = false,
-    dependencies = {
-      { "zbirenbaum/copilot.lua", optional = true, enabled = false },
-    },
   },
   {
     "AstroNvim/astrocore",

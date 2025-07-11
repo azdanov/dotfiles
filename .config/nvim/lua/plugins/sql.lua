@@ -1,5 +1,3 @@
-local astrocore = require "astrocore"
-
 -- Find the applicable SQLFluff configuration path
 local function get_config_path()
   local system_config = vim.env.HOME .. "/.sqlfluff"
@@ -54,7 +52,7 @@ return {
     optional = true,
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = astrocore.list_insert_unique(opts.ensure_installed, { "sql" })
+        opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sql" })
       end
     end,
   },
@@ -62,7 +60,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = astrocore.list_insert_unique(opts.ensure_installed, { "sqlfluff" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqlfluff" })
     end,
   },
   {

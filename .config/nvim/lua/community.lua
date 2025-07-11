@@ -22,7 +22,6 @@ return {
   { import = "astrocommunity.motion.mini-move" },
 
   -- Search and navigation
-  { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
   { import = "astrocommunity.search.grug-far-nvim" },
@@ -36,8 +35,6 @@ return {
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.eslint" },
   { import = "astrocommunity.pack.fish" },
-  { import = "astrocommunity.pack.go" },
-  { import = "astrocommunity.pack.golangci-lint" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.pack.json" },
@@ -45,16 +42,12 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.mdx" },
-  { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
-
-  -- Database
-  { import = "astrocommunity.pack.full-dadbod" },
 
   -- Terminal integration
   { import = "astrocommunity.terminal-integration.flatten-nvim" },
