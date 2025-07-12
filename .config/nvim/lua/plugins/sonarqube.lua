@@ -4,6 +4,7 @@ local analyzers_path = vim.fn.stdpath "data" .. "/mason/packages/sonarlint-langu
 ---@type LazySpec
 return {
   "iamkarasik/sonarqube.nvim",
+  event = "User AstroFile",
   opts = {
     lsp = {
       cmd = {

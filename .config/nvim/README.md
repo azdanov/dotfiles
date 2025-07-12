@@ -8,7 +8,7 @@ See https://docs.astronvim.com/ for more info.
 
 - Put the contents of this directory in your `~/.config/nvim`
 
-- Initialize AstroVim
+- Initialize AstroNvim
   ```sh
   nvim --headless -c 'quitall'
   ```
