@@ -96,6 +96,7 @@ function Spinner:init()
   })
 end
 
+---@see https://github.com/olimorris/codecompanion.nvim
 ---@type LazySpec
 return {
   {

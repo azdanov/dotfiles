@@ -1,26 +1,9 @@
 local analyzers_path = vim.fn.stdpath "data" .. "/mason/packages/sonarlint-language-server/extension/analyzers/"
 
+---@see https://github.com/iamkarasik/sonarqube.nvim
 ---@type LazySpec
 return {
   "iamkarasik/sonarqube.nvim",
-  specs = {
-    {
-      "williamboman/mason-lspconfig.nvim",
-      optional = true,
-      opts = function(_, opts)
-        opts.ensure_installed =
-          require("astrocore").list_insert_unique(opts.ensure_installed, { "sonarlint-language-server" })
-      end,
-    },
-    {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      optional = true,
-      opts = function(_, opts)
-        local astrocore = require "astrocore"
-        opts.ensure_installed = astrocore.list_insert_unique(opts.ensure_installed, { "sonarlint-language-server" })
-      end,
-    },
-  },
   opts = {
     lsp = {
       cmd = {

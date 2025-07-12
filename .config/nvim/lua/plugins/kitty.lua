@@ -1,3 +1,4 @@
+---@see https://github.com/mikesmithgh/kitty-scrollback.nvim
 ---@type LazySpec
 return {
   "mikesmithgh/kitty-scrollback.nvim",

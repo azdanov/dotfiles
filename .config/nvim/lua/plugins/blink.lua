@@ -1,3 +1,5 @@
+---@see https://github.com/Saghen/blink.cmp
+---@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/blink.lua
 ---@type LazySpec
 return {
   "saghen/blink.cmp",
@@ -14,8 +16,19 @@ return {
       },
       list = {
         selection = {
-          preselect = false,
           auto_insert = false,
+          preselect = false,
+        },
+      },
+    },
+    sources = {
+      providers = {
+        path = {
+          enabled = function() return vim.bo.filetype ~= "copilot-chat" end,
+          opts = {
+            show_hidden_files_by_default = true,
+            trailing_slash = false,
+          },
         },
       },
     },

@@ -11,6 +11,8 @@ require("lazy").setup({
       update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
     },
   },
+  -- Override https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/lazy_snapshot.lua
+  { "neovim/nvim-lspconfig", version = "^2", optional = true },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {

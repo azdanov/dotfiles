@@ -1,3 +1,4 @@
+---@see https://github.com/AstroNvim/astroui
 ---@type LazySpec
 return {
   "AstroNvim/astroui",
