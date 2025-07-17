@@ -4,33 +4,7 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
-    autocmds = {
-      killall_daemons_on_exit = {
-        {
-          event = "VimLeavePre",
-          desc = "Kill daemons on exit",
-          callback = function() vim.fn.jobstart("killall prettierd", { detach = true }) end,
-        },
-      },
-      no_insert_inlay_hints = {
-        cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
-        {
-          event = "InsertEnter",
-          desc = "disable inlay hints on insert",
-          callback = function(args)
-            local filter = { bufnr = args.buf }
-            if vim.lsp.inlay_hint.is_enabled(filter) then
-              vim.lsp.inlay_hint.enable(false, filter)
-              vim.api.nvim_create_autocmd("InsertLeave", {
-                buffer = args.buf,
-                once = true,
-                callback = function() vim.lsp.inlay_hint.enable(true, filter) end,
-              })
-            end
-          end,
-        },
-      },
-    },
+    handlers = { rust_analyzer = false, jdtls = false }, -- disable automated setup
     ---@diagnostic disable: missing-fields
     config = {
       bashls = { filetypes = { "sh", "bash", "zsh" } },
@@ -65,6 +39,52 @@ return {
             },
             updateImportsOnFileMove = { enabled = "always" },
           },
+        },
+      },
+    },
+    rust_analyzer = {
+      settings = {
+        ["rust-analyzer"] = {
+          files = {
+            excludeDirs = {
+              ".direnv",
+              ".git",
+              "target",
+            },
+          },
+          check = {
+            command = "clippy",
+            extraArgs = {
+              "--no-deps",
+            },
+          },
+        },
+      },
+    },
+    autocmds = {
+      killall_daemons_on_exit = {
+        {
+          event = "VimLeavePre",
+          desc = "Kill daemons on exit",
+          callback = function() vim.fn.jobstart("killall prettierd", { detach = true }) end,
+        },
+      },
+      no_insert_inlay_hints = {
+        cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
+        {
+          event = "InsertEnter",
+          desc = "disable inlay hints on insert",
+          callback = function(args)
+            local filter = { bufnr = args.buf }
+            if vim.lsp.inlay_hint.is_enabled(filter) then
+              vim.lsp.inlay_hint.enable(false, filter)
+              vim.api.nvim_create_autocmd("InsertLeave", {
+                buffer = args.buf,
+                once = true,
+                callback = function() vim.lsp.inlay_hint.enable(true, filter) end,
+              })
+            end
+          end,
         },
       },
     },

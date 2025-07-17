@@ -47,6 +47,7 @@ return {
 
       -- Debuggers
       "bash-debug-adapter",
+      "codelldb",
       "debugpy",
       "delve",
       "java-debug-adapter",
