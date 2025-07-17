@@ -8,6 +8,7 @@ return {
       -- Language Servers
       "astro-language-server",
       "bash-language-server",
+      "clangd",
       "css-lsp",
       "docker-compose-language-service",
       "dockerfile-language-server",
