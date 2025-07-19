@@ -1,3 +1,14 @@
 config
 AstroNvim
 astronvim
+PostgreSQL
+util
+TOML
+queryable
+RESTful
+OpenAPI
+Themeable
+js
+v1
+v20
+localhost
