@@ -25,6 +25,8 @@ return {
     rules = {
       -- React props should be read-only
       ["typescript:S6759"] = { enabled = false },
+      -- Nullish coalescing should be preferred
+      ["typescript:S6606"] = { enabled = false },
     },
   },
 }
