@@ -58,7 +58,6 @@ return {
       -- Other Tools
       "java-test",
       "tree-sitter-cli",
-      "vectorcode",
     },
     integrations = {
       ["mason-lspconfig"] = false,
