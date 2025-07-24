@@ -41,6 +41,7 @@ return {
       "CodeCompanionChat",
       "CodeCompanionCmd",
     },
+    opts = {},
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
