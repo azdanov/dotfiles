@@ -6,7 +6,6 @@
 "npm:corepack" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:prettier" = "latest"
-"ubi:go-task/task" = "latest"
 "ubi:google/google-java-format" = "latest"
 bun = "latest"
 go = "latest"
