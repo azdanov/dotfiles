@@ -7,6 +7,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
+      "franco-ruggeri/codecompanion-spinner.nvim",
       {
         "AstroNvim/astrocore",
         ---@param opts AstroCoreOpts
@@ -41,6 +42,7 @@ return {
     },
     opts = {
       extensions = {
+        spinner = {},
         history = {
           enabled = true,
           opts = {
