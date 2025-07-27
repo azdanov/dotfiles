@@ -6,6 +6,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "ravitemer/codecompanion-history.nvim",
       {
         "AstroNvim/astrocore",
         ---@param opts AstroCoreOpts
@@ -27,9 +28,6 @@ return {
           opts.mappings.v[prefix .. "q"] = { "<cmd>CodeCompanion<cr>", desc = "Open inline assistant" }
 
           opts.mappings.v[prefix .. "a"] = { "<cmd>CodeCompanionChat Add<cr>", desc = "Add selection to chat" }
-
-          -- Expand cc to CodeCompanion in cmdline mode
-          vim.cmd [[cab cc CodeCompanion]]
         end,
       },
       { "AstroNvim/astroui", opts = { icons = { CodeCompanion = "󱙺" } } },
@@ -41,7 +39,33 @@ return {
       "CodeCompanionChat",
       "CodeCompanionCmd",
     },
-    opts = {},
+    opts = {
+      extensions = {
+        history = {
+          enabled = true,
+          opts = {
+            expiration_days = 30,
+            auto_generate_title = true,
+            title_generation_opts = {
+              adapter = "copilot",
+              model = "gpt-4.1",
+              refresh_every_n_prompts = 3,
+              max_refreshes = 10,
+            },
+            dir_to_save = vim.fn.stdpath "data" .. "/codecompanion-history",
+            summary = {
+              generation_opts = {
+                adapter = "copilot",
+                model = "gpt-4.1",
+                context_size = 90000,
+                include_references = true,
+                include_tool_outputs = true,
+              },
+            },
+          },
+        },
+      },
+    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
