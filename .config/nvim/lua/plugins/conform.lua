@@ -62,16 +62,6 @@ return {
       "yaml",
       "yaml.docker-compose",
     })
-
-    opts.formatters = {
-      prettierd = {
-        options = {
-          ft_parsers = {
-            markdown = "markdown",
-          },
-        },
-      },
-    }
   end,
   specs = {
     { "AstroNvim/astrolsp", opts = { formatting = { disabled = true } } },

@@ -11,6 +11,8 @@ return {
       lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
       taplo = { evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } } },
       typos_lsp = { single_file_support = true, workspace_required = true },
+      eslint = { filetypes = { "markdown.mdx" } },
+      mdx_analyzer = { filetypes = { "markdown.mdx" } },
       vtsls = {
         settings = {
           vtsls = {
