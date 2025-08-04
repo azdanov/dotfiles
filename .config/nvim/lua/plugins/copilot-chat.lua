@@ -1,30 +1,26 @@
 ---@see https://github.com/CopilotC-Nvim/CopilotChat.nvim
----@see https://github.com/CopilotC-Nvim/CopilotChat.nvim
 ---@type LazySpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   cmd = {
     "CopilotChat",
-    "CopilotChatOpen",
     "CopilotChatClose",
-    "CopilotChatToggle",
-    "CopilotChatStop",
-    "CopilotChatReset",
-    "CopilotChatSave",
-    "CopilotChatLoad",
-    "CopilotChatDebugInfo",
-    "CopilotChatModels",
-    "CopilotChatAgents",
-    "CopilotChatExplain",
-    "CopilotChatReview",
-    "CopilotChatFix",
-    "CopilotChatOptimize",
-    "CopilotChatDocs",
-    "CopilotChatFixTests",
     "CopilotChatCommit",
+    "CopilotChatDocs",
+    "CopilotChatExplain",
+    "CopilotChatFix",
+    "CopilotChatLoad",
+    "CopilotChatModels",
+    "CopilotChatOpen",
+    "CopilotChatOptimize",
+    "CopilotChatReset",
+    "CopilotChatReview",
+    "CopilotChatSave",
+    "CopilotChatStop",
+    "CopilotChatTests",
+    "CopilotChatToggle",
   },
   dependencies = {
-    { "github/copilot.vim" },
     { "nvim-lua/plenary.nvim" },
     {
       "AstroNvim/astrocore",
