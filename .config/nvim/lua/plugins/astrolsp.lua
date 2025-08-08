@@ -63,6 +63,16 @@ return {
       },
     },
     autocmds = {
+      eslint_fix_on_save = {
+        cond = function(client) return client.name == "eslint" and vim.fn.exists ":EslintFixAll" > 0 end,
+        {
+          event = "BufWritePost",
+          desc = "Fix all eslint errors",
+          callback = function(args)
+            if vim.F.if_nil(vim.b[args.buf].autoformat, vim.g.autoformat, true) then vim.cmd.EslintFixAll() end
+          end,
+        },
+      },
       killall_daemons_on_exit = {
         {
           event = "VimLeavePre",
