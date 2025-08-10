@@ -4,7 +4,8 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
-    handlers = { rust_analyzer = false, jdtls = false }, -- disable automated setup
+    handlers = { jdtls = false },
+    servers = { "rust_analyzer" },
     ---@diagnostic disable: missing-fields
     config = {
       bashls = { filetypes = { "sh", "bash", "zsh" } },
@@ -14,10 +15,7 @@ return {
       mdx_analyzer = { filetypes = { "markdown.mdx" } },
       vtsls = {
         settings = {
-          vtsls = {
-            autoUseWorkspaceTsdk = true,
-            enableMoveToFileCodeAction = true,
-          },
+          vtsls = { autoUseWorkspaceTsdk = true, enableMoveToFileCodeAction = true },
           typescript = {
             inlayHints = {
               enumMemberValues = { enabled = true },
@@ -42,22 +40,23 @@ return {
           },
         },
       },
-    },
-    rust_analyzer = {
-      settings = {
-        ["rust-analyzer"] = {
-          files = {
-            excludeDirs = {
-              ".direnv",
-              ".git",
-              "target",
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            files = {
+              excludeDirs = {
+                ".direnv",
+                ".git",
+                ".github",
+                ".gitlab",
+                ".venv",
+                "bin",
+                "node_modules",
+                "target",
+                "venv",
+              },
             },
-          },
-          check = {
-            command = "clippy",
-            extraArgs = {
-              "--no-deps",
-            },
+            check = { command = "clippy", extraArgs = { "--no-deps" } },
           },
         },
       },
