@@ -1,4 +1,4 @@
----@see https://github.com/folke/noice.nvim
+--- https://github.com/folke/noice.nvim
 ---@type LazySpec
 return {
   "folke/noice.nvim",

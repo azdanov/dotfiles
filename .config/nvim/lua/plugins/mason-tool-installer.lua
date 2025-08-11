@@ -1,5 +1,5 @@
----@see https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
----@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/mason-tool-installer.lua
+--- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+--- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/mason-tool-installer.lua
 ---@type LazySpec
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",

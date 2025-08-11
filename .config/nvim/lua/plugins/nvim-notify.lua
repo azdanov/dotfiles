@@ -1,4 +1,4 @@
----@see https://github.com/rcarriga/nvim-notify
+--- https://github.com/rcarriga/nvim-notify
 ---@type LazySpec
 return {
   "rcarriga/nvim-notify",

@@ -1,4 +1,4 @@
----@see https://github.com/jay-babu/mason-nvim-dap.nvim
+--- https://github.com/jay-babu/mason-nvim-dap.nvim
 ---@type LazySpec
 return {
   "jay-babu/mason-nvim-dap.nvim",

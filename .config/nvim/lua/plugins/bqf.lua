@@ -1,4 +1,4 @@
----@see https://github.com/kevinhwang91/nvim-bqf
+--- https://github.com/kevinhwang91/nvim-bqf
 ---@type LazySpec
 return {
   "kevinhwang91/nvim-bqf",

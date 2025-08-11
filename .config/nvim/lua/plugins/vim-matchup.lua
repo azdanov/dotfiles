@@ -1,4 +1,4 @@
----@see https://github.com/andymass/vim-matchup
+--- https://github.com/andymass/vim-matchup
 ---@type LazySpec
 return {
   "andymass/vim-matchup",

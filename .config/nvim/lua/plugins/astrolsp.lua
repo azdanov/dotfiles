@@ -1,4 +1,4 @@
----@see https://github.com/AstroNvim/astrolsp
+--- https://github.com/AstroNvim/astrolsp
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",

@@ -1,4 +1,4 @@
----@see https://github.com/junegunn/vim-easy-align
+--- https://github.com/junegunn/vim-easy-align
 ---@type LazySpec
 return {
   "junegunn/vim-easy-align",

@@ -41,7 +41,7 @@ Config.options.change_detection.enabled = false
 -- replace the default `cond`
 Config.options.defaults.cond = function(plugin) return enabled[plugin.name] end
 
----@see https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/vscode
+--- https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/vscode
 ---@type LazySpec
 return {
   -- add a few keybindings

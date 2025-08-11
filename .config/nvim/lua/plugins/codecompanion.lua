@@ -1,4 +1,4 @@
----@see https://github.com/olimorris/codecompanion.nvim
+--- https://github.com/olimorris/codecompanion.nvim
 ---@type LazySpec
 return {
   {

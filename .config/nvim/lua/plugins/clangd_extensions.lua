@@ -1,4 +1,4 @@
----@see https://github.com/p00f/clangd_extensions.nvim
+--- https://github.com/p00f/clangd_extensions.nvim
 ---@type LazySpec
 return {
   "p00f/clangd_extensions.nvim",

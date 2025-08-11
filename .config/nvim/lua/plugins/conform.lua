@@ -1,4 +1,4 @@
----@see https://github.com/stevearc/conform.nvim
+--- https://github.com/stevearc/conform.nvim
 ---@type LazySpec
 return {
   "stevearc/conform.nvim",

@@ -1,4 +1,4 @@
----@see https://github.com/yioneko/nvim-vtsls
+--- https://github.com/yioneko/nvim-vtsls
 ---@type LazySpec
 return {
   "yioneko/nvim-vtsls",

@@ -21,7 +21,7 @@ local function grug_far_open(opts, selection)
   end
 end
 
----@see https://github.com/MagicDuck/grug-far.nvim
+--- https://github.com/MagicDuck/grug-far.nvim
 ---@type LazySpec
 return {
   "MagicDuck/grug-far.nvim",

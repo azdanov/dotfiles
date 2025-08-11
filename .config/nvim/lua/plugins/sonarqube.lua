@@ -1,6 +1,6 @@
 local analyzers_path = vim.fn.stdpath "data" .. "/mason/packages/sonarlint-language-server/extension/analyzers/"
 
----@see https://github.com/iamkarasik/sonarqube.nvim
+--- https://github.com/iamkarasik/sonarqube.nvim
 ---@type LazySpec
 return {
   "iamkarasik/sonarqube.nvim",

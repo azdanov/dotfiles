@@ -1,4 +1,4 @@
----@see https://github.com/saecki/crates.nvim
+--- https://github.com/saecki/crates.nvim
 ---@type LazySpec
 return {
   "saecki/crates.nvim",

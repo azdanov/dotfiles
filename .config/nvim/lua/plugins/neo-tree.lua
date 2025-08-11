@@ -1,5 +1,5 @@
----@see https://github.com/nvim-neo-tree/neo-tree.nvim
----@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/neo-tree.lua
+--- https://github.com/nvim-neo-tree/neo-tree.nvim
+--- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/neo-tree.lua
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",

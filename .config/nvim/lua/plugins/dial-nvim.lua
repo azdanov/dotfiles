@@ -1,4 +1,4 @@
----@see https://github.com/monaqa/dial.nvim
+--- https://github.com/monaqa/dial.nvim
 ---@type LazySpec
 return {
   "monaqa/dial.nvim",

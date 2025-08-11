@@ -1,4 +1,4 @@
----@see https://github.com/machakann/vim-sandwich
+--- https://github.com/machakann/vim-sandwich
 ---@type LazySpec
 return {
   "machakann/vim-sandwich",

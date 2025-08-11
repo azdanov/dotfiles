@@ -1,4 +1,4 @@
----@see https://github.com/willothy/flatten.nvim
+--- https://github.com/willothy/flatten.nvim
 ---@type LazySpec
 return {
   "willothy/flatten.nvim",

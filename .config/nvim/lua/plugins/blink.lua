@@ -1,5 +1,5 @@
----@see https://github.com/Saghen/blink.cmp
----@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/blink.lua
+--- https://github.com/Saghen/blink.cmp
+--- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/blink.lua
 ---@type LazySpec
 return {
   "saghen/blink.cmp",

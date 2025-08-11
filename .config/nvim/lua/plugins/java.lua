@@ -1,4 +1,4 @@
----@see https://github.com/mfussenegger/nvim-jdtls
+--- https://github.com/mfussenegger/nvim-jdtls
 ---@type LazySpec
 return {
   "mfussenegger/nvim-jdtls",

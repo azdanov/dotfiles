@@ -1,4 +1,4 @@
----@see https://github.com/Civitasv/cmake-tools.nvim
+--- https://github.com/Civitasv/cmake-tools.nvim
 ---@type LazySpec
 return {
   "Civitasv/cmake-tools.nvim",

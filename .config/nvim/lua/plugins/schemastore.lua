@@ -1,4 +1,4 @@
----@see https://github.com/b0o/SchemaStore.nvim
+--- https://github.com/b0o/SchemaStore.nvim
 ---@type LazySpec
 return {
   "b0o/schemastore.nvim",

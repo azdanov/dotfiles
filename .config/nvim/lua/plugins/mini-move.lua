@@ -1,4 +1,4 @@
----@see https://github.com/echasnovski/mini.move
+--- https://github.com/echasnovski/mini.move
 ---@type LazySpec
 return {
   "echasnovski/mini.move",

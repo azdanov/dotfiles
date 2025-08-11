@@ -1,4 +1,4 @@
----@see https://github.com/dmmulroy/tsc.nvim
+--- https://github.com/dmmulroy/tsc.nvim
 ---@type LazySpec
 return {
   "dmmulroy/tsc.nvim",

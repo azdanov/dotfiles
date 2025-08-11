@@ -1,4 +1,4 @@
----@see https://github.com/CopilotC-Nvim/CopilotChat.nvim
+--- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 ---@type LazySpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",

@@ -1,5 +1,5 @@
----@see https://github.com/echasnovski/mini.icons
----@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/mini-icons.lua
+--- https://github.com/echasnovski/mini.icons
+--- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/mini-icons.lua
 ---@type LazySpec
 return {
   "echasnovski/mini.icons",

@@ -1,5 +1,5 @@
----@see https://github.com/nvim-treesitter/nvim-treesitter
----@see https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/treesitter.lua
+--- https://github.com/nvim-treesitter/nvim-treesitter
+--- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/treesitter.lua
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",

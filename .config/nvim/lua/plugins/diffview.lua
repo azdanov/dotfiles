@@ -1,6 +1,6 @@
 local prefix = "<Leader>D"
 
----@see https://github.com/sindrets/diffview.nvim
+--- https://github.com/sindrets/diffview.nvim
 ---@type LazySpec
 return {
   "sindrets/diffview.nvim",

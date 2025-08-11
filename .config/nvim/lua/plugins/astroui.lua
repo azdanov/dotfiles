@@ -1,10 +1,10 @@
----@see https://github.com/AstroNvim/astroui
+--- https://github.com/AstroNvim/astroui
 ---@type LazySpec
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "astrolight",
+    colorscheme = "astrodark",
     status = {
       separators = {
         breadcrumbs = "  ",

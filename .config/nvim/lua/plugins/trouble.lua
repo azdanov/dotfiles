@@ -1,4 +1,4 @@
----@see https://github.com/folke/trouble.nvim
+--- https://github.com/folke/trouble.nvim
 ---@type LazySpec
 return {
   "folke/trouble.nvim",

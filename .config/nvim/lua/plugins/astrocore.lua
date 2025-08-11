@@ -1,4 +1,4 @@
----@see https://github.com/AstroNvim/astrocore
+--- https://github.com/AstroNvim/astrocore
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
