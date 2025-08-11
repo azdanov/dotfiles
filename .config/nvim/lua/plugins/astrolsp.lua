@@ -56,7 +56,7 @@ return {
                 "venv",
               },
             },
-            check = { command = "clippy", extraArgs = { "--no-deps" } },
+            check = { command = "clippy" },
           },
         },
       },
