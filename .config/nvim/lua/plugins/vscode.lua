@@ -10,7 +10,6 @@ vim.tbl_map(function(plugin) enabled[plugin] = true end, {
   "AstroNvim",
   "astrocore",
   "astroui",
-  "Comment.nvim",
   "nvim-autopairs",
   "nvim-treesitter",
   "nvim-ts-autotag",
