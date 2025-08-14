@@ -1,3 +1,9 @@
+local function to_uri(filepath)
+  filepath = vim.fs.normalize(filepath)
+  local absolute_path = vim.fn.fnamemodify(filepath, ":p")
+  return vim.uri_from_fname(absolute_path)
+end
+
 --- https://github.com/AstroNvim/astrolsp
 ---@type LazySpec
 return {
@@ -60,19 +66,26 @@ return {
           },
         },
       },
-      cssls = {
-        settings = {
-          css = {
-            lint = {
-              unknownAtRules = "ignore",
-            },
-            -- doesn't work
-            customData = { vim.fn.expand "~/.config/nvim/misc/tailwind.json" },
-          },
-        },
-      },
     },
     autocmds = {
+      attach_css_custom_data = {
+        cond = function(client) return client.name == "cssls" end,
+        {
+          event = "LspAttach",
+          desc = "Attach custom data for CSS",
+          callback = function(args)
+            local success = vim.lsp.buf_notify(args.buf, "css/customDataChanged", {
+              { to_uri "~/.config/nvim/misc/tailwind.json" },
+            })
+            if success then
+              vim.defer_fn(function()
+                vim.diagnostic.reset(nil, args.buf)
+                vim.lsp.buf.document_highlight()
+              end, 0)
+            end
+          end,
+        },
+      },
       eslint_fix_on_save = {
         cond = function(client) return client.name == "eslint" and vim.fn.exists ":LspEslintFixAll" > 0 end,
         {
