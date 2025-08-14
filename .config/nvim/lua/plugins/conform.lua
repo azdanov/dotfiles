@@ -25,6 +25,7 @@ return {
       java = { "google-java-format" },
       lua = { "stylua" },
       python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+      rust = { "rustfmt" },
       sh = { "shfmt", "shellcheck" },
       sql = { "sqruff" },
       toml = { "taplo" },
