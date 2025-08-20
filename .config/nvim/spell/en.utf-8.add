@@ -55,3 +55,7 @@ json
 astro
 mjs
 stdout
+serializable
+SyntaxError
+deserialization
+autogenerating
