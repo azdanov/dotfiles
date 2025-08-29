@@ -6,10 +6,12 @@ return {
   dependencies = {
     "nvim-neotest/nvim-nio",
   },
-  opts = function(_, opts)
-    if not opts.adapters then opts.adapters = {} end
-    local rustaceanvim_avail, rustaceanvim = pcall(require, "rustaceanvim.neotest")
-    if rustaceanvim_avail then table.insert(opts.adapters, rustaceanvim) end
+  opts = function()
+    return {
+      adapters = {
+        require "rustaceanvim.neotest",
+      },
+    }
   end,
   config = function(_, opts)
     vim.diagnostic.config({

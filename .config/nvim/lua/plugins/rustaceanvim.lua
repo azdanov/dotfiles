@@ -13,11 +13,11 @@ return {
             files = {
               excludeDirs = {
                 ".git",
+                ".github",
                 "node_modules",
                 "target",
               },
             },
-            check = { command = "clippy" },
           },
         },
       },
