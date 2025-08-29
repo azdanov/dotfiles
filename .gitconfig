@@ -1,6 +1,7 @@
 [user]
 name = Anton Ždanov
 email = anton@azdanov.dev
+signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
 autocrlf = input
@@ -53,3 +54,9 @@ helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 helper = 
 helper = !/usr/bin/gh auth git-credential
+
+[gpg]
+format = ssh
+
+[commit]
+gpgsign = true
