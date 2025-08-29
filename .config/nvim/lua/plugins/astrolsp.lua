@@ -10,8 +10,7 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
-    handlers = { jdtls = false },
-    servers = { "rust_analyzer" },
+    handlers = { jdtls = false, rust_analyzer = false },
     ---@diagnostic disable: missing-fields
     config = {
       bashls = { filetypes = { "sh", "bash", "zsh" } },
@@ -46,26 +45,6 @@ return {
           },
         },
       },
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            files = {
-              excludeDirs = {
-                ".direnv",
-                ".git",
-                ".github",
-                ".gitlab",
-                ".venv",
-                "bin",
-                "node_modules",
-                "target",
-                "venv",
-              },
-            },
-            check = { command = "clippy" },
-          },
-        },
-      },
     },
     autocmds = {
       attach_css_custom_data = {
@@ -94,13 +73,6 @@ return {
           callback = function(args)
             if vim.F.if_nil(vim.b[args.buf].autoformat, vim.g.autoformat, true) then vim.cmd.LspEslintFixAll() end
           end,
-        },
-      },
-      killall_daemons_on_exit = {
-        {
-          event = "VimLeavePre",
-          desc = "Kill daemons on exit",
-          callback = function() vim.fn.jobstart("killall prettierd", { detach = true }) end,
         },
       },
       no_insert_inlay_hints = {
