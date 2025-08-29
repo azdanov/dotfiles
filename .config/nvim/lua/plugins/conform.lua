@@ -18,13 +18,14 @@ return {
     end
 
     opts.formatters_by_ft = {
-      -- ["*"] = function(bufnr)
-      --   return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
-      -- end,
+      ["*"] = function(bufnr)
+        return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
+      end,
+      dockerfile = { "dockerfmt" },
       fish = { "fish_indent" },
       java = { "google-java-format" },
       lua = { "stylua" },
-      python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+      python = { "ruff" },
       rust = { "rustfmt" },
       sh = { "shfmt", "shellcheck" },
       sql = { "sqruff" },
@@ -40,7 +41,7 @@ return {
       end,
     }
 
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettierd" } end, {
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
       "astro",
       "css",
       "graphql",

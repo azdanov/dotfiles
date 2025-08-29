@@ -8,10 +8,10 @@ return {
       -- Language Servers
       "astro-language-server",
       "bash-language-server",
+      "biome",
       "clangd",
       "css-lsp",
-      "docker-compose-language-service",
-      "dockerfile-language-server",
+      "docker-language-server",
       "eslint-lsp",
       "fish-lsp",
       "gopls",
@@ -42,7 +42,7 @@ return {
 
       -- Formatters
       "google-java-format",
-      "prettierd",
+      "prettier",
       "shfmt",
       "stylua",
 
