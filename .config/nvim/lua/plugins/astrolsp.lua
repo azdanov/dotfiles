@@ -10,6 +10,9 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    defaults = {
+      hover = { wrap = false },
+    },
     handlers = { jdtls = false, rust_analyzer = false },
     ---@diagnostic disable: missing-fields
     config = {

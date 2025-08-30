@@ -7,13 +7,12 @@ return {
     opts = require("astrocore").extend_tbl(opts, {
       options = {
         opt = {
-          list = true, -- show whitespace characters
+          list = false, -- show whitespace characters
           listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
           showbreak = "↪ ",
           showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
           splitkeep = "screen",
           swapfile = false,
-          wrap = true, -- soft wrap lines
         },
       },
       signs = {
@@ -25,10 +24,7 @@ return {
             event = "FileType",
             desc = "Enable wrap and spell for text like documents",
             pattern = { "gitcommit", "markdown", "text", "plaintex" },
-            callback = function()
-              vim.opt_local.wrap = true
-              vim.opt_local.spell = true
-            end,
+            callback = function() vim.opt_local.spell = true end,
           },
         },
         autohide_tabline = {
