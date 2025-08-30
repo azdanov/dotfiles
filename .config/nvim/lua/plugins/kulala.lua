@@ -1,3 +1,5 @@
+--- https://github.com/mistweaverco/kulala.nvim
+---@type LazySpec
 return {
   "mistweaverco/kulala.nvim",
   ft = { "http", "rest" },
