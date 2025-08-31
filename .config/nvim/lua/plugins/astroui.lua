@@ -14,6 +14,10 @@ return {
         lsp_client_names = {
           mappings = {
             ["GitHub Copilot"] = "copilot",
+            ["crates.nvim"] = "crates",
+            ["lua_ls"] = "lua",
+            ["rust-analyzer"] = "rust",
+            ["typos_lsp"] = "typos",
           },
         },
       },
