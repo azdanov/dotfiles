@@ -17,6 +17,7 @@ return {
             ["crates.nvim"] = "crates",
             ["lua_ls"] = "lua",
             ["rust-analyzer"] = "rust",
+            ["rustfmt"] = "rust",
             ["typos_lsp"] = "typos",
           },
         },

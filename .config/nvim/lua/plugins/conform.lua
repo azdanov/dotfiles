@@ -18,9 +18,9 @@ return {
     end
 
     opts.formatters_by_ft = {
-      ["*"] = function(bufnr)
-        return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
-      end,
+      -- ["*"] = function(bufnr)
+      --   return buf_utils.is_valid(bufnr) and buf_utils.has_filetype(bufnr) and { "injected" } or {}
+      -- end,
       dockerfile = { "dockerfmt" },
       fish = { "fish_indent" },
       java = { "google-java-format" },
