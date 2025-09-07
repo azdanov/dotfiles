@@ -13,6 +13,7 @@ return {
     {
       "Saghen/blink.cmp",
       optional = true,
+      ---@module 'blink-cmp'
       ---@param opts blink.cmp.Config
       opts = function(_, opts)
         if not opts.keymap then opts.keymap = {} end

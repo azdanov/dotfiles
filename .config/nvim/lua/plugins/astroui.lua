@@ -13,7 +13,7 @@ return {
       providers = {
         lsp_client_names = {
           mappings = {
-            ["GitHub Copilot"] = "copilot",
+            ["node"] = "copilot",
             ["crates.nvim"] = "crates",
             ["lua_ls"] = "lua",
             ["rust-analyzer"] = "rust",
