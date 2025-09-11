@@ -1,7 +1,7 @@
---- https://github.com/echasnovski/mini.move
+--- https://github.com/nvim-mini/mini.move
 ---@type LazySpec
 return {
-  "echasnovski/mini.move",
+  "nvim-mini/mini.move",
   keys = function(_, keys)
     local plugin = require("lazy.core.config").spec.plugins["mini.move"]
     local opts = require("lazy.core.plugin").values(plugin, "opts", false) -- resolve mini.clue options

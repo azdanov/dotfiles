@@ -51,7 +51,7 @@ return {
             },
             [prefix .. "f"] = {
               function()
-                local filter = require("astrocore.buffer").is_valid() and vim.fn.expand "%" or nil
+                local filter = require("astrocore.buffer").is_valid() and vim.fn.fnameescape(vim.fn.expand "%") or nil
                 grug_far_open { prefills = { paths = filter } }
               end,
               desc = "Search/Replace file",

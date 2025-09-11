@@ -1,8 +1,8 @@
---- https://github.com/echasnovski/mini.icons
+--- https://github.com/nvim-mini/mini.icons
 --- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/mini-icons.lua
 ---@type LazySpec
 return {
-  "echasnovski/mini.icons",
+  "nvim-mini/mini.icons",
   opts = {
     file = {
       [".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
