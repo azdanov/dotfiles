@@ -1,10 +1,11 @@
 jorgebucaran/fisher
 catppuccin/fish
 blackjid/plugin-kubectl
-demartini/plugin-docker-compose
 edc/bass
 rcny/gh-copilot-cli-alias.fish
 jhillyerd/plugin-git
 xelorr/pbcopy.fish
 patrickf1/fzf.fish
 plttn/fish-eza
+asim-tahir/docker.fish
+asim-tahir/docker-compose.fish
