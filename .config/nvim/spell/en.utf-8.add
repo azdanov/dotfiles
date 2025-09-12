@@ -152,3 +152,7 @@ cmdline
 TypeError
 configs
 PKGBUILD
+yamlls
+CMD
+exec'd
+gh

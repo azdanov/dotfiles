@@ -169,6 +169,11 @@ function __kubectl.init
   __kubectl.create_abbr kdds      kubectl describe ds
   __kubectl.create_abbr kdelds    kubectl delete ds
 
+  # Events management
+  __kubectl.create_abbr kge      kubectl get events
+  __kubectl.create_abbr kgea     kubectl get events --all-namespaces
+  __kubectl.create_abbr kgew     kubectl get events --watch
+
   # Cleanup declared functions
   functions -e __kubectl.create_abbr
 end
