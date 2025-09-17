@@ -4,12 +4,15 @@ local prefix = "<Leader>T"
 return {
   "nvim-neotest/neotest",
   dependencies = {
+    "nvim-lua/plenary.nvim",
     "nvim-neotest/nvim-nio",
+    "nvim-treesitter/nvim-treesitter",
   },
   opts = function()
     return {
       adapters = {
         require "rustaceanvim.neotest",
+        require "neotest-java",
       },
     }
   end,
