@@ -3,13 +3,14 @@ local prefix = "<Leader>T"
 ---@type LazySpec
 return {
   "nvim-neotest/neotest",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-neotest/nvim-nio",
-    "nvim-treesitter/nvim-treesitter",
-  },
   opts = function()
+    ---@module 'neotest'
+    ---@type neotest.Config
+    ---@diagnostic disable: missing-fields
     return {
+      floating = {
+        border = "rounded",
+      },
       adapters = {
         require "rustaceanvim.neotest",
         require "neotest-java",
@@ -26,8 +27,11 @@ return {
     }, vim.api.nvim_create_namespace "neotest")
     require("neotest").setup(opts)
   end,
-  specs = {
+  dependencies = {
     "nvim-lua/plenary.nvim",
+    "nvim-neotest/nvim-nio",
+    "nvim-treesitter/nvim-treesitter",
+    "antoinemadec/FixCursorHold.nvim",
     {
       "AstroNvim/astrocore",
       opts = {

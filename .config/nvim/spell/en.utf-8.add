@@ -246,3 +246,5 @@ isUnicodeIdentifierStart
 isUpperCase
 isJavaIdentifierStart
 getType
+nonfair
+reentrant
