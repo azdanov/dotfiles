@@ -248,3 +248,5 @@ isJavaIdentifierStart
 getType
 nonfair
 reentrant
+lang
+toString
