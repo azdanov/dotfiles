@@ -16,6 +16,7 @@ usage = "latest"
 uv = "latest"
 "asdf:mise-plugins/mise-quarkus" = "latest"
 "ubi:reteps/dockerfmt" = "latest"
+"ubi:DevinR528/cargo-sort" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
