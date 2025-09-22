@@ -10,7 +10,6 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
-    handlers = { jdtls = false, rust_analyzer = false },
     ---@diagnostic disable: missing-fields
     config = {
       bashls = { filetypes = { "sh", "bash", "zsh" } },

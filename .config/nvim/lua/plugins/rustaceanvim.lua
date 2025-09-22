@@ -23,4 +23,7 @@ return {
       },
     }
   end,
+  specs = {
+    { "AstroNvim/astrolsp", opts = { handlers = { rust_analyzer = false } } },
+  },
 }

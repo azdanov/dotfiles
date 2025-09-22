@@ -6,6 +6,9 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
   },
+  specs = {
+    { "AstroNvim/astrolsp", optional = true, opts = { handlers = { jdtls = false } } },
+  },
   opts = function(_, opts)
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
     local workspace_dir = vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. project_name
