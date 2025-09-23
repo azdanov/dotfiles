@@ -3,6 +3,7 @@ local prefix = "<Leader>T"
 ---@type LazySpec
 return {
   "nvim-neotest/neotest",
+  event = "User AstroFile",
   opts = function()
     ---@module 'neotest'
     ---@type neotest.Config
