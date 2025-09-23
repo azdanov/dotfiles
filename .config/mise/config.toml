@@ -1,7 +1,6 @@
 [tools]
 "aqua:apache/maven" = "latest"
 "aqua:ast-grep/ast-grep" = "latest"
-"aqua:golangci/golangci-lint" = "latest"
 "aqua:gradle/gradle" = "latest"
 "npm:corepack" = "latest"
 "npm:npm-check-updates" = "latest"
@@ -11,10 +10,8 @@ bun = "latest"
 go = "latest"
 java = "liberica"
 node = "latest"
-pnpm = "latest"
 usage = "latest"
 uv = "latest"
-"asdf:mise-plugins/mise-quarkus" = "latest"
 "ubi:reteps/dockerfmt" = "latest"
 "ubi:DevinR528/cargo-sort" = "latest"
 
