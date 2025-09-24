@@ -1,4 +1,4 @@
-;; extends
+; extends
 
 (var_spec) @local.scope
 
@@ -12,4 +12,7 @@
 (type_declaration
   (type_spec
     name: (type_identifier) @local.name
-    type: [(struct_type) (interface_type)] @local.type)) @local.start
+    type: [
+      (struct_type)
+      (interface_type)
+    ] @local.type)) @local.start

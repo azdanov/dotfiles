@@ -254,3 +254,6 @@ slf4j
 SLF4J
 throwable
 MDC
+valgrind
+M3
+LazyLock

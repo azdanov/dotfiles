@@ -10,6 +10,7 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    servers = { "sqruff" },
     ---@diagnostic disable: missing-fields
     config = {
       bashls = { filetypes = { "sh", "bash", "zsh" } },
