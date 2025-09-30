@@ -43,7 +43,6 @@ return {
       sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
     },
   },
-
   init_options = {
     bundles = get_mason_bundles(),
   },

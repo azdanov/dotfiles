@@ -1,12 +1,27 @@
 local analyzers_path = vim.fn.stdpath "data" .. "/mason/packages/sonarlint-language-server/extension/analyzers/"
+local filetypes = {
+  "c",
+  "cpp",
+  "dockerfile",
+  "java",
+  "javascript",
+  "javascriptreact",
+  "php",
+  "python",
+  "typescript",
+  "typescriptreact",
+  "vue",
+}
 
---- https://github.com/iamkarasik/sonarqube.nvim
+--- https://gitlab.com/schrieveslaach/sonarlint.nvim
 ---@type LazySpec
 return {
-  "iamkarasik/sonarqube.nvim",
-  ft = { "c", "cpp", "css", "dockerfile", "html", "java", "javascript", "php", "python", "typescript" },
+  "https://gitlab.com/schrieveslaach/sonarlint.nvim",
+  branch = "new-jdtls-setup-handling",
+  ft = filetypes,
   opts = {
-    lsp = {
+    server = {
+      capabilities = vim.lsp.config["*"].capabilities,
       cmd = {
         "sonarlint-language-server",
         "-stdio",
@@ -21,15 +36,7 @@ return {
         analyzers_path .. "sonarpython.jar",
         analyzers_path .. "sonarxml.jar",
       },
-      capabilities = vim.lsp.config["*"].capabilities,
     },
-    rules = {
-      -- React props should be read-only
-      ["typescript:S6759"] = { enabled = false },
-      -- Nullish coalescing should be preferred
-      ["typescript:S6606"] = { enabled = false },
-      -- Console output should not be used
-      ["java:S106"] = { enabled = false },
-    },
+    filetypes = filetypes,
   },
 }
