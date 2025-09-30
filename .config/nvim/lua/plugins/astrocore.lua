@@ -75,7 +75,7 @@ return {
           ["<ESC><ESC>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
         },
       },
-    } --[[@as AstroCoreOpts]]) --[[@as AstroCoreOpts]]
+    })
 
     local maps = opts.mappings
     ---@cast maps -nil

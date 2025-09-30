@@ -27,6 +27,8 @@ return {
       ["typescript:S6759"] = { enabled = false },
       -- Nullish coalescing should be preferred
       ["typescript:S6606"] = { enabled = false },
+      -- Console output should not be used
+      ["java:S106"] = { enabled = false },
     },
   },
 }

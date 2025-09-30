@@ -3,6 +3,16 @@
 ---@type LazySpec
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
+  dependencies = {
+    {
+      "AstroNvim/astrolsp",
+      opts = {
+        handlers = {
+          rust_analyzer = false,
+        },
+      },
+    },
+  },
   opts = {
     ensure_installed = {
       -- Language Servers
@@ -13,7 +23,7 @@ return {
       "css-lsp",
       "docker-language-server",
       "eslint-lsp",
-      "fish-lsp",
+      -- "fish-lsp",
       "gh-actions-language-server",
       "gopls",
       "html-lsp",
@@ -26,8 +36,8 @@ return {
       "mdx-analyzer",
       "ruff",
       "sonarlint-language-server",
-      "svelte-language-server",
       "sqruff",
+      "svelte-language-server",
       "tailwindcss-language-server",
       "taplo",
       "typos-lsp",
@@ -59,6 +69,7 @@ return {
       -- Other Tools
       "java-test",
       "tree-sitter-cli",
+      "vscode-spring-boot-tools",
     },
     integrations = {
       ["mason-lspconfig"] = false,

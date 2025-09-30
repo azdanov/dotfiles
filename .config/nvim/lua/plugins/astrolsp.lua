@@ -11,40 +11,6 @@ return {
   ---@type AstroLSPOpts
   opts = {
     servers = { "sqruff" },
-    ---@diagnostic disable: missing-fields
-    config = {
-      bashls = { filetypes = { "sh", "bash", "zsh" } },
-      lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
-      taplo = { evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } } },
-      mdx_analyzer = { filetypes = { "markdown.mdx" } },
-      vtsls = {
-        settings = {
-          vtsls = { autoUseWorkspaceTsdk = true, enableMoveToFileCodeAction = true },
-          typescript = {
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-            },
-            updateImportsOnFileMove = { enabled = "always" },
-          },
-          javascript = {
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
-            },
-            updateImportsOnFileMove = { enabled = "always" },
-          },
-        },
-      },
-    },
     autocmds = {
       attach_css_custom_data = {
         cond = function(client) return client.name == "cssls" end,

@@ -3,6 +3,7 @@
 return {
   "mrcjkb/rustaceanvim",
   version = "^6",
+  lazy = false,
   init = function()
     ---@module 'rustaceanvim'
     ---@type rustaceanvim.Opts
@@ -23,7 +24,4 @@ return {
       },
     }
   end,
-  specs = {
-    { "AstroNvim/astrolsp", opts = { handlers = { rust_analyzer = false } } },
-  },
 }
