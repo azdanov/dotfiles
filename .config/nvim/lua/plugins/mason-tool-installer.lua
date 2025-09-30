@@ -3,16 +3,6 @@
 ---@type LazySpec
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
-  dependencies = {
-    {
-      "AstroNvim/astrolsp",
-      opts = {
-        handlers = {
-          rust_analyzer = false,
-        },
-      },
-    },
-  },
   opts = {
     ensure_installed = {
       -- Language Servers
@@ -70,10 +60,6 @@ return {
       "java-test",
       "tree-sitter-cli",
       "vscode-spring-boot-tools",
-    },
-    integrations = {
-      ["mason-lspconfig"] = false,
-      ["mason-nvim-dap"] = false,
     },
   },
 }

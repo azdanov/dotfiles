@@ -4,7 +4,10 @@ return {
   "stevearc/conform.nvim",
   event = "User AstroFile",
   cmd = "ConformInfo",
-  dependencies = { "williamboman/mason.nvim" },
+  dependencies = {
+    "williamboman/mason.nvim",
+    { "nvimtools/none-ls.nvim", optional = true, enabled = false },
+  },
   ---@param opts conform.setupOpts
   opts = function(_, opts)
     local buf_utils = require "astrocore.buffer"

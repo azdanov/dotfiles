@@ -2,8 +2,8 @@
 ---@type LazySpec
 return {
   "dstein64/nvim-scrollview",
+  event = "User AstroFile",
   opts = {
     signs_scrollbar_overlap = "over",
   },
-  event = "User AstroFile",
 }

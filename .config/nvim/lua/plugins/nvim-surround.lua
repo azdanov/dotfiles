@@ -2,6 +2,6 @@
 ---@type LazySpec
 return {
   "kylechui/nvim-surround",
-  event = "VeryLazy",
+  event = "User AstroFile",
   opts = {},
 }
