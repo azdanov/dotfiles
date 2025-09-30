@@ -4,7 +4,7 @@ local analyzers_path = vim.fn.stdpath "data" .. "/mason/packages/sonarlint-langu
 ---@type LazySpec
 return {
   "iamkarasik/sonarqube.nvim",
-  event = "User AstroFile",
+  ft = { "c", "cpp", "css", "dockerfile", "html", "java", "javascript", "php", "python", "typescript" },
   opts = {
     lsp = {
       cmd = {
@@ -21,6 +21,7 @@ return {
         analyzers_path .. "sonarpython.jar",
         analyzers_path .. "sonarxml.jar",
       },
+      capabilities = vim.lsp.config["*"].capabilities,
     },
     rules = {
       -- React props should be read-only
