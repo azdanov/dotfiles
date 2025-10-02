@@ -76,6 +76,27 @@ function __kubectl.init
   __kubectl.create_abbr kdi       kubectl describe ingress
   __kubectl.create_abbr kdeli     kubectl delete ingress
 
+  # HTTPRoute management
+  __kubectl.create_abbr kgh       kubectl get httproute
+  __kubectl.create_abbr kgha      kubectl get httproute --all-namespaces
+  __kubectl.create_abbr keh       kubectl edit httproute
+  __kubectl.create_abbr kdh       kubectl describe httproute
+  __kubectl.create_abbr kdelh     kubectl delete httproute
+
+  # GRPCRoute management
+  __kubectl.create_abbr kgg       kubectl get grpcroute
+  __kubectl.create_abbr kgga      kubectl get grpcroute --all-namespaces
+  __kubectl.create_abbr keg       kubectl edit grpcroute
+  __kubectl.create_abbr kdg       kubectl describe grpcroute
+  __kubectl.create_abbr kdelg     kubectl delete grpcroute
+
+  # ReferenceGrant management
+  __kubectl.create_abbr kgr       kubectl get referencegrant
+  __kubectl.create_abbr kgra      kubectl get referencegrant --all-namespaces
+  __kubectl.create_abbr ker       kubectl edit referencegrant
+  __kubectl.create_abbr kdr       kubectl describe referencegrant
+  __kubectl.create_abbr kdelr     kubectl delete referencegrant
+
   # Namespace management
   __kubectl.create_abbr kgns      kubectl get namespaces
   __kubectl.create_abbr kens      kubectl edit namespace
