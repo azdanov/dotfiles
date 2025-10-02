@@ -13,7 +13,7 @@ return {
       "css-lsp",
       "docker-language-server",
       "eslint-lsp",
-      -- "fish-lsp",
+      "fish-lsp",
       "gh-actions-language-server",
       "gopls",
       "html-lsp",

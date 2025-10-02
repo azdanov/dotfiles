@@ -18,6 +18,7 @@ return {
             ["lua_ls"] = "lua",
             ["rust-analyzer"] = "rust",
             ["rustfmt"] = "rust",
+            ["sonarlint.nvim"] = "sonarlint",
             ["typos_lsp"] = "typos",
           },
         },
