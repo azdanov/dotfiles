@@ -17,7 +17,6 @@ local filetypes = {
 ---@type LazySpec
 return {
   "https://gitlab.com/schrieveslaach/sonarlint.nvim",
-  branch = "new-jdtls-setup-handling",
   ft = filetypes,
   opts = {
     server = {
