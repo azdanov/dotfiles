@@ -27,7 +27,6 @@ return {
       dockerfile = { "dockerfmt" },
       fish = { "fish_indent" },
       java = { "google-java-format" },
-      lua = { "stylua" },
       python = { "ruff" },
       rust = { "rustfmt" },
       sh = { "shfmt", "shellcheck" },

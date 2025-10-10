@@ -24,6 +24,7 @@ return {
       "lua-language-server",
       "marksman",
       "mdx-analyzer",
+      "neocmakelsp",
       "ruff",
       "sonarlint-language-server",
       "sqruff",
