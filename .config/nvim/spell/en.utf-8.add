@@ -317,3 +317,9 @@ tryLock
 ExecutorService
 newVirtualThreadPerTaskExecutor
 accessor
+ingroup
+tparam
+CharT
+endcode
+len
+headerfile
