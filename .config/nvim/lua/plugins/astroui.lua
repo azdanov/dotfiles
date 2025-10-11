@@ -4,7 +4,7 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "astrolight",
+    colorscheme = "astrodark",
     status = {
       separators = {
         breadcrumbs = "  ",
@@ -18,7 +18,7 @@ return {
             ["lua_ls"] = "lua",
             ["rust-analyzer"] = "rust",
             ["rustfmt"] = "rust",
-            ["sonarlint.nvim"] = "sonarlint",
+            ["sonarlint.nvim"] = "sonar",
             ["typos_lsp"] = "typos",
           },
         },

@@ -8,6 +8,8 @@ return {
   dependencies = { "williamboman/mason.nvim" },
   opts = {
     linters_by_ft = {
+      c = { "cppcheck" },
+      cpp = { "cppcheck" },
       dockerfile = { "hadolint" },
       fish = { "fish" },
       kotlin = { "ktlint" },
