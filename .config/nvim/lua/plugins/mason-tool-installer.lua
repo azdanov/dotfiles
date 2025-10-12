@@ -26,7 +26,6 @@ return {
       "mdx-analyzer",
       "neocmakelsp",
       "ruff",
-      "sonarlint-language-server",
       "sqruff",
       "svelte-language-server",
       "tailwindcss-language-server",
@@ -41,6 +40,7 @@ return {
       "ktlint",
       "selene",
       "shellcheck",
+      "sonarlint-language-server",
 
       -- Formatters
       "google-java-format",
