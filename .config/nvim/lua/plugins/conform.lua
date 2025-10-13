@@ -5,7 +5,6 @@ return {
   event = "User AstroFile",
   cmd = "ConformInfo",
   dependencies = {
-    "williamboman/mason.nvim",
     { "nvimtools/none-ls.nvim", optional = true, enabled = false },
   },
   ---@param opts conform.setupOpts

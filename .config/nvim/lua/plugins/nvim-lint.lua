@@ -5,7 +5,6 @@ local lint -- cache for the nvim-lint package
 return {
   "mfussenegger/nvim-lint",
   event = "User AstroFile",
-  dependencies = { "williamboman/mason.nvim" },
   opts = {
     linters_by_ft = {
       c = { "cppcheck" },

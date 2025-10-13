@@ -325,3 +325,11 @@ len
 headerfile
 statusline
 CMake
+mapToObj
+IntFunction
+ThreadLocalRandom
+IntStream
+ints
+streamSize
+randomNumberOrigin
+randomNumberBound
