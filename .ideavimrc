@@ -37,8 +37,7 @@ set incsearch
 set hlsearch
 
 " Quality of life settings
-set clipboard+=unnamed
-set clipboard+=ideaput
+set clipboard+=unnamedplus
 set scrolloff=0
 set showmode
 set showcmd

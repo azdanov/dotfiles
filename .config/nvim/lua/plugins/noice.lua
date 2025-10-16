@@ -3,6 +3,9 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
+  dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+  ---@module 'noice'
+  ---@type NoiceConfig
   opts = {
     cmdline = { view = "cmdline" },
     messages = { view_search = false },
@@ -19,8 +22,5 @@ return {
       { filter = { event = "msg_show", find = "^%d+ fewer lines$" }, opts = { skip = true } }, -- skip delete notifications
       { filter = { event = "msg_show", find = "^%d+ lines yanked$" }, opts = { skip = true } }, -- skip yank notifications
     },
-  },
-  specs = {
-    { "rcarriga/nvim-notify", init = false, config = true },
   },
 }

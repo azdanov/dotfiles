@@ -8,7 +8,7 @@
 "ubi:google/google-java-format" = "latest"
 bun = "latest"
 go = "latest"
-java = "liberica"
+java = "latest"
 node = "latest"
 usage = "latest"
 uv = "latest"
