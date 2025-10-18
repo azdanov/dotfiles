@@ -1,6 +1,6 @@
 local uv = require "luv"
 
-local cpus = uv.available_parallelism()
+local threads = uv.available_parallelism and uv.available_parallelism() - 1 or 1
 
 return {
   cmd = {
@@ -20,7 +20,7 @@ return {
     "--pch-storage=memory",
     "--pretty",
     "--suggest-missing-includes",
-    "-j=" .. cpus,
+    "-j=" .. threads,
   },
   init_options = {
     clangdFileStatus = true,
