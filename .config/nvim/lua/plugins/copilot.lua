@@ -6,6 +6,13 @@ return {
   build = ":Copilot auth",
   event = "User AstroFile",
   opts = {
+    server_opts_overrides = {
+      settings = {
+        telemetry = {
+          telemetryLevel = "off",
+        },
+      },
+    },
     filetypes = {
       markdown = true,
       help = true,
