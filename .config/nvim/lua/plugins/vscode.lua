@@ -10,6 +10,7 @@ vim.tbl_map(function(plugin) enabled[plugin] = true end, {
   "AstroNvim",
   "astrocore",
   "astroui",
+  "Comment.nvim",
   "nvim-autopairs",
   "nvim-treesitter",
   "nvim-ts-autotag",
@@ -41,7 +42,6 @@ Config.options.change_detection.enabled = false
 -- replace the default `cond`
 Config.options.defaults.cond = function(plugin) return enabled[plugin.name] end
 
---- https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/vscode
 ---@type LazySpec
 return {
   -- add a few keybindings
@@ -76,6 +76,7 @@ return {
       maps.n["[b"] = "<Cmd>Tabprevious<CR>"
       maps.n["<Leader>c"] = "<Cmd>Tabclose<CR>"
       maps.n["<Leader>C"] = "<Cmd>Tabclose!<CR>"
+      maps.n["<Leader>bc"] = function() require("vscode").action "workbench.action.closeOtherEditors" end
       maps.n["<Leader>bp"] = "<Cmd>Tablast<CR>"
 
       -- file explorer
@@ -100,6 +101,7 @@ return {
       maps.n["<Leader>fo"] = function() require("vscode").action "workbench.action.openRecent" end
       maps.n["<Leader>ft"] = function() require("vscode").action "workbench.action.selectTheme" end
       maps.n["<Leader>fw"] = function() require("vscode").action "workbench.action.findInFiles" end
+      maps.n["<Leader>fb"] = function() require("vscode").action "workbench.action.showEditorsInGroup" end
 
       -- git client
       maps.n["<Leader>gg"] = function() require("vscode").action "workbench.view.scm" end
