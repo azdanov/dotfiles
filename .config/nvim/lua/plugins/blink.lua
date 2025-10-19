@@ -6,29 +6,15 @@ return {
   ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {
-    completion = {
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 200,
-      },
-      ghost_text = {
-        enabled = false,
-      },
-      list = {
-        selection = {
-          auto_insert = false,
-          preselect = false,
-        },
-      },
+    keymap = {
+      ["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
     },
+    signature = { enabled = true },
     sources = {
       providers = {
         path = {
-          enabled = function() return vim.bo.filetype ~= "copilot-chat" end,
-          opts = {
-            show_hidden_files_by_default = true,
-            trailing_slash = false,
-          },
+          opts = { show_hidden_files_by_default = true, trailing_slash = false },
         },
       },
     },
