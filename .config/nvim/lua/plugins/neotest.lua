@@ -9,9 +9,6 @@ return {
     ---@type neotest.Config
     ---@diagnostic disable: missing-fields
     return {
-      floating = {
-        border = "rounded",
-      },
       adapters = {
         require "rustaceanvim.neotest",
         require "neotest-java",

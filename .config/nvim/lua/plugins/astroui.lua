@@ -2,9 +2,17 @@
 ---@type LazySpec
 return {
   "AstroNvim/astroui",
+  dependencies = {
+    {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+    },
+  },
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "astrolight",
+    colorscheme = "tokyonight-day",
     status = {
       separators = {
         breadcrumbs = "  ",
