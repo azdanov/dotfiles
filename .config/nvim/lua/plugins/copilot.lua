@@ -6,6 +6,11 @@ return {
   build = ":Copilot auth",
   event = "User AstroFile",
   opts = {
+    suggestion = {
+      keymap = {
+        accept = "<M-\\>",
+      },
+    },
     server_opts_overrides = {
       settings = {
         telemetry = {
