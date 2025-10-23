@@ -5,9 +5,6 @@ return {
   ---@param opts AstroCoreOpts
   opts = function(_, opts)
     opts = require("astrocore").extend_tbl(opts, {
-      treesitter = {
-        auto_install = true,
-      },
       options = {
         opt = {
           list = false, -- show whitespace characters
