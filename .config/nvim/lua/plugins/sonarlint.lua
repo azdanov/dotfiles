@@ -26,7 +26,7 @@ return {
         "-stdio",
         "-analyzers",
         -- Need manual installation for cfamily: https://docs.sonarsource.com/sonarqube-for-vs-code/getting-started/offline-installation#performing-the-offline-installation
-        analyzers_path .. "sonar-cfamily.jar",
+        analyzers_path .. "sonarcfamily.jar",
         analyzers_path .. "sonargo.jar",
         analyzers_path .. "sonarhtml.jar",
         analyzers_path .. "sonariac.jar",
