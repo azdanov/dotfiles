@@ -37,6 +37,13 @@ return {
         analyzers_path .. "sonarpython.jar",
         analyzers_path .. "sonarxml.jar",
       },
+      settings = {
+        sonarlint = {
+          rules = {
+            ["typescript:S6759"] = { level = "off" },
+          },
+        },
+      },
     },
     filetypes = filetypes,
   },

@@ -13,6 +13,7 @@ node = "latest"
 usage = "latest"
 uv = "latest"
 "ubi:reteps/dockerfmt" = "latest"
+biome = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
