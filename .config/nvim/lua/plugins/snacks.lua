@@ -7,7 +7,6 @@ return {
   ---@module 'snacks'
   ---@type snacks.plugins.Config
   opts = {
-    scroll = {},
     picker = {
       win = {
         list = {

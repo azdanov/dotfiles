@@ -8,12 +8,12 @@
 "ubi:google/google-java-format" = "latest"
 bun = "latest"
 go = "latest"
-java = "latest"
 node = "latest"
 usage = "latest"
 uv = "latest"
 "ubi:reteps/dockerfmt" = "latest"
 biome = "latest"
+java = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
