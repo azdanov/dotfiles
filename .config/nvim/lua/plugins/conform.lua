@@ -43,28 +43,31 @@ return {
       end,
     }
 
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "biome" } end, {
-      "astro",
-      "css",
-      "graphql",
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
       "handlebars",
-      "html",
       "htmlangular",
-      "javascript",
-      "javascriptreact",
-      "json",
-      "jsonc",
       "less",
       "less",
       "markdown",
       "markdown.mdx",
       "scss",
+      "yaml",
+      "yaml.docker-compose",
+    })
+
+    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "biome" } end, {
+      "astro",
+      "css",
+      "graphql",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "json",
+      "jsonc",
       "svelte",
       "typescript",
       "typescriptreact",
       "vue",
-      "yaml",
-      "yaml.docker-compose",
     })
   end,
   specs = {
