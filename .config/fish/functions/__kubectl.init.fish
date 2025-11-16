@@ -190,6 +190,23 @@ function __kubectl.init
   __kubectl.create_abbr kdds      kubectl describe ds
   __kubectl.create_abbr kdelds    kubectl delete ds
 
+  # CronJob management
+  __kubectl.create_abbr kgcj      kubectl get cronjob
+  __kubectl.create_abbr kgcja     kubectl get cronjob --all-namespaces
+  __kubectl.create_abbr kgcjw     kubectl get cronjob --watch
+  __kubectl.create_abbr kecj      kubectl edit cronjob
+  __kubectl.create_abbr kdcj      kubectl describe cronjob
+  __kubectl.create_abbr kdelcj    kubectl delete cronjob
+
+  # Job management
+  __kubectl.create_abbr kgj       kubectl get job
+  __kubectl.create_abbr kgja      kubectl get job --all-namespaces
+  __kubectl.create_abbr kgjw      kubectl get job --watch
+  __kubectl.create_abbr kcjj      kubectl create job --from=cronjob/
+  __kubectl.create_abbr kej       kubectl edit job
+  __kubectl.create_abbr kdj       kubectl describe job
+  __kubectl.create_abbr kdelj     kubectl delete job
+
   # Events management
   __kubectl.create_abbr kge      kubectl get events
   __kubectl.create_abbr kgea     kubectl get events --all-namespaces
