@@ -10,8 +10,9 @@ return {
     ---@diagnostic disable: missing-fields
     return {
       adapters = {
-        require "rustaceanvim.neotest",
         require "neotest-java",
+        require "neotest-python",
+        require "rustaceanvim.neotest",
       },
     }
   end,
@@ -26,10 +27,12 @@ return {
     require("neotest").setup(opts)
   end,
   dependencies = {
+    "antoinemadec/FixCursorHold.nvim",
     "nvim-lua/plenary.nvim",
+    "nvim-neotest/neotest-python",
     "nvim-neotest/nvim-nio",
     "nvim-treesitter/nvim-treesitter",
-    "antoinemadec/FixCursorHold.nvim",
+    "rcasia/neotest-java",
     {
       "AstroNvim/astrocore",
       opts = {

@@ -7,6 +7,7 @@ return {
     ensure_installed = {
       -- Language Servers
       "astro-language-server",
+      "basedpyright",
       "bash-language-server",
       "biome",
       "clangd",
