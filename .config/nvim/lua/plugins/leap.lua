@@ -9,7 +9,7 @@ return {
         mappings = {
           n = {
             ["s"] = { "<Plug>(leap)", desc = "Leap" },
-            ["gs"] = { "<Plug>(leap-from-window)", desc = "Leap from Window" },
+            ["S"] = { "<Plug>(leap-from-window)", desc = "Leap from Window" },
           },
           x = {
             ["s"] = { "<Plug>(leap)", desc = "Leap" },

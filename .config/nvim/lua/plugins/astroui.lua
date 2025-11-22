@@ -7,7 +7,11 @@ return {
       "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
-      opts = {},
+      ---@module 'tokyonight'
+      ---@type tokyonight.Config
+      opts = {
+        day_brightness = 0.25,
+      },
     },
   },
   ---@type AstroUIOpts
