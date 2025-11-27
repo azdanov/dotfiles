@@ -6,6 +6,12 @@ return {
   ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {
+    completion = {
+      ghost_text = { enabled = true },
+      list = {
+        selection = { preselect = false, auto_insert = false },
+      },
+    },
     keymap = {
       ["<Tab>"] = { "accept", "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
