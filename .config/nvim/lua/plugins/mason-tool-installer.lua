@@ -27,7 +27,7 @@ return {
       "mdx-analyzer",
       "neocmakelsp",
       "ruff",
-      "sqruff",
+      "sqlfluff",
       "svelte-language-server",
       "tailwindcss-language-server",
       "taplo",

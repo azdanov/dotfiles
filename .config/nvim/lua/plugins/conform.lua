@@ -30,7 +30,7 @@ return {
       python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
       rust = { "rustfmt" },
       sh = { "shfmt", "shellcheck" },
-      sql = { "sqruff" },
+      sql = { "sqlfluff" },
       toml = { "taplo" },
       zsh = { "shfmt", "shellcheck" },
       ["_"] = function(bufnr)

@@ -14,6 +14,7 @@ return {
       kotlin = { "ktlint" },
       lua = { "selene" },
       sh = { "shellcheck" },
+      sql = { "sqlfluff" },
       zsh = { "shellcheck" },
     },
     linters = {
