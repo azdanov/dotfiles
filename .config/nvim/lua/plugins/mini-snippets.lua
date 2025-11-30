@@ -63,11 +63,6 @@ return {
       optional = true,
       opts = { snippets = { preset = "mini_snippets" } },
     },
-    {
-      "danymat/neogen",
-      optional = true,
-      opts = { snippet_engine = "mini" },
-    },
     { "L3MON4D3/LuaSnip", enabled = false },
   },
 }
