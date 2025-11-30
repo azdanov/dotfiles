@@ -1,8 +1,8 @@
---- https://github.com/Saghen/blink.cmp
+--- https://github.com/saghen/blink.cmp
 --- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/blink.lua
 ---@type LazySpec
 return {
-  "saghen/blink.cmp",
+  "Saghen/blink.cmp",
   ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {
