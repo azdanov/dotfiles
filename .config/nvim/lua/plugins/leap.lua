@@ -1,7 +1,7 @@
---- https://github.com/ggandor/leap.nvim
+--- https://codeberg.org/andyg/leap.nvim
 ---@type LazySpec
 return {
-  "ggandor/leap.nvim",
+  "https://codeberg.org/andyg/leap.nvim",
   dependencies = {
     {
       "AstroNvim/astrocore",
