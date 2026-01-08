@@ -16,13 +16,15 @@ smudge = git-lfs smudge -- %f
 defaultBranch = main
 
 [merge]
-conflictstyle = diff3
-tool = vimdiff
+tool = codediff 
+
+[mergetool "codediff"]
+cmd = nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""
 
 [diff]
 tool = vimdiff
 
-[mergetool "vimdiff"]
+[difftool "vimdiff"]
 cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [mergetool]

@@ -1,7 +1,7 @@
---- https://github.com/esmuellert/vscode-diff.nvim
+--- https://github.com/esmuellert/codediff.nvim
 ---@type LazySpec
 return {
-  "esmuellert/vscode-diff.nvim",
+  "esmuellert/codediff.nvim",
   dependencies = {
     "MunifTanjim/nui.nvim",
     {
@@ -9,7 +9,7 @@ return {
       opts = {
         mappings = {
           n = {
-            ["<Leader>gD"] = { "<Cmd>CodeDiff<CR>", desc = "View Git VSCode diff" },
+            ["<Leader>gD"] = { "<Cmd>CodeDiff<CR>", desc = "View Git Codediff" },
           },
         },
       },
