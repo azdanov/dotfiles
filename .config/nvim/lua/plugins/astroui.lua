@@ -4,19 +4,15 @@ return {
   "AstroNvim/astroui",
   dependencies = {
     {
-      "folke/tokyonight.nvim",
+      "thesimonho/kanagawa-paper.nvim",
       lazy = false,
       priority = 1000,
-      ---@module 'tokyonight'
-      ---@type tokyonight.Config
-      opts = {
-        day_brightness = 0.25,
-      },
+      opts = {},
     },
   },
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "tokyonight-day",
+    colorscheme = "kanagawa-paper-canvas",
     status = {
       separators = {
         breadcrumbs = "  ",

@@ -1,40 +1,15 @@
 function theme_light
-    yes | fish_config theme save tokyonight_day
+    sed -i s/adwaita-dark\.theme/adwaita\.theme/g ~/.config/btop/btop.conf
+    sed -i s/kanagawa-paper-ink/kanagawa-paper-canvas/g ~/.config/nvim/lua/plugins/astroui.lua
 
-    sed -i s/tokyo-night/adwaita/g ~/.config/btop/btop.conf
-    sed -i s/tokyonight-moon/tokyonight-day/g ~/.config/nvim/lua/plugins/astroui.lua
-
-    set -Ux LS_COLORS (vivid generate tokyonight-day)
+    set -Ux LS_COLORS (vivid generate kanagawa-paper-canvas)
     set -Ux FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS \
-  --highlight-line \
-  --info=inline-right \
-  --ansi \
-  --layout=reverse \
-  --border=none \
-  --color=bg+:#b7c1e3 \
-  --color=bg:#d0d5e3 \
-  --color=border:#4094a3 \
-  --color=fg:#3760bf \
-  --color=gutter:#d0d5e3 \
-  --color=header:#b15c00 \
-  --color=hl+:#188092 \
-  --color=hl:#188092 \
-  --color=info:#8990b3 \
-  --color=marker:#d20065 \
-  --color=pointer:#d20065 \
-  --color=prompt:#188092 \
-  --color=query:#3760bf:regular \
-  --color=scrollbar:#4094a3 \
-  --color=separator:#b15c00 \
-  --color=spinner:#d20065 \
+--color=bg:-1,bg+:#d8d8d2,fg:-1,fg+:#73787d,hl:#9e7e98,hl+:#c27672 \
+--color=header:#b28d77,info:#809ba7,pointer:#516e7d \
+--color=marker:#516e7d,prompt:#c27672,spinner:#7e8faf
 "
-    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/tokyonight_day.yml"
-    set -Ux BAT_THEME tokyonight_day
+    set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/kanagawa-paper-canvas.yml"
+    set -Ux BAT_THEME gruvbox-light
 
-    kitty +kitten themes --reload-in=all "Tokyo Night Day"
     plasma-apply-cursortheme Breeze_Light &>/dev/null
-    # plasma-apply-lookandfeel --apply org.kde.breeze.desktop
-    # plasma-apply-colorscheme BreezeLight
-    # plasma-apply-desktoptheme breeze-light
-    # systemctl --user restart plasma-plasmashell
 end
