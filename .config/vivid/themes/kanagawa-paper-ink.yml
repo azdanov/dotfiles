@@ -20,8 +20,7 @@ colors:
   light_cyan: '96ada7'
 
   black: '0f0f15'
-  gray: '1a1a22'
-  darkgray: '181820'
+  gray: '54546D'
   darkergray: '16161D'
 
 core:
@@ -125,4 +124,4 @@ executable:
   font-style: bold
 
 unimportant:
-  foreground: darkgray
+  foreground: gray
