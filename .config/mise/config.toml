@@ -5,15 +5,15 @@
 "npm:corepack" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:prettier" = "latest"
-"ubi:google/google-java-format" = "latest"
 bun = "latest"
 go = "latest"
 node = "latest"
 usage = "latest"
 uv = "latest"
-"ubi:reteps/dockerfmt" = "latest"
 biome = "latest"
 java = "latest"
+heroku = "latest"
+"github:google/google-java-format" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
