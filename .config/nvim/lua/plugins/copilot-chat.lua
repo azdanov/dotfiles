@@ -103,5 +103,7 @@ return {
     },
     { "AstroNvim/astroui", opts = { icons = { CopilotChat = "" } } },
   },
-  opts = {},
+  opts = {
+    chat_autocomplete = false,
+  },
 }

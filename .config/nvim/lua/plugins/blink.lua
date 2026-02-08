@@ -1,8 +1,12 @@
 --- https://github.com/saghen/blink.cmp
 --- https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/blink.lua
+--- https://github.com/pxwg/blink-cmp-copilot-chat
 ---@type LazySpec
 return {
   "Saghen/blink.cmp",
+  dependencies = {
+    "pxwg/blink-cmp-copilot-chat",
+  },
   ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {
@@ -22,6 +26,13 @@ return {
         path = {
           opts = { show_hidden_files_by_default = true, trailing_slash = false },
         },
+        copilot_c = {
+          name = "CopilotChat",
+          module = "blink-cmp-copilot-chat",
+        },
+      },
+      per_filetype = {
+        ["copilot-chat"] = { "copilot_c" },
       },
     },
   },
