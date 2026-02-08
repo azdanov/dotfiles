@@ -12,7 +12,6 @@ usage = "latest"
 uv = "latest"
 biome = "latest"
 java = "latest"
-heroku = "latest"
 "github:google/google-java-format" = "latest"
 
 [settings]
