@@ -7,12 +7,18 @@ return {
       "thesimonho/kanagawa-paper.nvim",
       lazy = false,
       priority = 1000,
-      opts = {},
+      opts = {
+        overrides = function()
+          return {
+            LazyButtonActive = { link = "Visual" },
+          }
+        end,
+      },
     },
   },
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "kanagawa-paper-canvas",
+    colorscheme = "kanagawa-paper-ink",
     status = {
       separators = {
         breadcrumbs = "  ",
@@ -32,5 +38,6 @@ return {
         },
       },
     },
+    lazygit = false,
   },
 }
