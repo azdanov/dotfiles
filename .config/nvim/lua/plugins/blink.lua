@@ -3,7 +3,7 @@
 --- https://github.com/pxwg/blink-cmp-copilot-chat
 ---@type LazySpec
 return {
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   dependencies = {
     "pxwg/blink-cmp-copilot-chat",
   },
