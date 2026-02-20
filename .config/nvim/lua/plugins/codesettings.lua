@@ -3,7 +3,7 @@
 return {
   "mrjones2014/codesettings.nvim",
   opts = {
-    live_reload = true,
+    live_reload = false,
   },
   specs = {
     {
