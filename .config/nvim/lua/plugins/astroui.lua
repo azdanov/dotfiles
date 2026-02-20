@@ -38,6 +38,5 @@ return {
         },
       },
     },
-    lazygit = false,
   },
 }
