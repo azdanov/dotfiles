@@ -4,37 +4,8 @@
 local prefix = "<Leader>D"
 return {
   "esmuellert/codediff.nvim",
-  dependencies = { "MunifTanjim/nui.nvim" },
   cmd = "CodeDiff",
-  opts = {
-    explorer = {
-      view_mode = "tree",
-    },
-    diff = {
-      hide_merge_artifacts = true,
-    },
-    keymaps = {
-      view = {
-        next_hunk = "]C",
-        prev_hunk = "[C",
-        next_file = "]D",
-        prev_file = "[D",
-        diff_get = prefix .. "o",
-        diff_put = prefix .. "p",
-        accept_current = prefix .. "o",
-      },
-      conflict = {
-        accept_incoming = prefix .. "t",
-        accept_current = prefix .. "o",
-        accept_both = prefix .. "a",
-        discard = prefix .. "b",
-        next_conflict = "]C",
-        prev_conflict = "[C",
-        diffget_incoming = prefix .. "T",
-        diffget_current = prefix .. "O",
-      },
-    },
-  },
+  opts = {},
   specs = {
     {
       "AstroNvim/astrocore",
@@ -47,7 +18,7 @@ return {
             [prefix .. "o"] = {
               function()
                 local branch
-                for _, origin in ipairs { "origin/main", "origin/master" } do
+                for _, origin in ipairs { "origin/main", "origin/master", "origin/develop" } do
                   if require("astrocore").cmd({ "git", "rev-parse", "--verify", origin }, false) then
                     branch = origin
                     break
