@@ -9,8 +9,6 @@ RESTful
 OpenAPI
 Themeable
 js
-v1
-v20
 localhost
 CachyOS
 Stephane
@@ -352,3 +350,5 @@ repr
 utf
 refetch
 refetching
+ReadFile
+EOF
