@@ -26,6 +26,8 @@ return {
             desc = "Enable wrap and spell for text like documents",
             pattern = { "gitcommit", "markdown", "markdown.*", "text", "plaintex" },
             callback = function()
+              -- Skip on floating windows (e.g. LSP Signature Help)
+              if vim.api.nvim_win_get_config(0).relative ~= "" then return end
               vim.opt_local.wrap = true
               vim.opt_local.spell = true
             end,
