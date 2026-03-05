@@ -55,11 +55,7 @@ return {
       },
       filetypes = {
         extension = {
-          mdx = "markdown.mdx",
-        },
-        filename = {
-          ["docker-compose.yaml"] = "yaml.docker-compose",
-          ["docker-compose.yml"] = "yaml.docker-compose",
+          mdx = "markdown",
         },
         pattern = {
           ["%.env%.[%w_.-]+"] = "sh",

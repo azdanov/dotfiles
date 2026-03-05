@@ -44,31 +44,29 @@ return {
     }
 
     vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
-      "handlebars",
-      "htmlangular",
-      "less",
-      "less",
-      "markdown",
-      "markdown.mdx",
-      "scss",
-      "yaml",
-      "yaml.docker-compose",
-    })
-
-    vim.tbl_map(function(ft) opts.formatters_by_ft[ft] = { "prettier" } end, {
       "astro",
       "css",
       "graphql",
+      "handlebars",
       "html",
+      "htmlangular",
       "javascript",
       "javascriptreact",
       "json",
       "jsonc",
+      "less",
+      "less",
+      "markdown",
+      "scss",
       "svelte",
       "typescript",
       "typescriptreact",
       "vue",
+      "yaml",
     })
+
+    opts.formatters = opts.formatters or {}
+    opts.formatters.prettier = { require_cwd = true }
   end,
   specs = {
     { "AstroNvim/astrolsp", opts = { formatting = { disabled = true } } },

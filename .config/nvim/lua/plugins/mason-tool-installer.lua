@@ -15,7 +15,6 @@ return {
       "docker-language-server",
       "eslint-lsp",
       "fish-lsp",
-      "gh-actions-language-server",
       "gopls",
       "html-lsp",
       "jdtls",
@@ -26,9 +25,9 @@ return {
       "marksman",
       "mdx-analyzer",
       "neocmakelsp",
+      "oxlint",
       "ruff",
       "sqlfluff",
-      "svelte-language-server",
       "tailwindcss-language-server",
       "taplo",
       "typos-lsp",
@@ -44,6 +43,7 @@ return {
 
       -- Formatters
       "google-java-format",
+      "oxfmt",
       "prettier",
       "shfmt",
       "stylua",
