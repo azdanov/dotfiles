@@ -1,0 +1,66 @@
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+
+window-rule {
+    match app-id="firefox-developer-edition"
+    match app-id="^jetbrains-"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+window-rule {
+    match app-id="GParted"
+    match app-id="com.github.tenderowl.frog$"
+    match app-id="easyeffects"
+    match app-id="firefox-developer-edition" title="^About"
+    match app-id="jamesdsp"
+    match app-id="nwg-look"
+    match app-id="org.gnome.Calculator"
+    match app-id="org.gnome.FileRoller"
+    match app-id="org.gnome.Nautilus"
+    match app-id="org.gnome.Nautilus$" title="^Open File$"
+    match app-id="org.gnome.Nautilus$" title="^Select Export Location$"
+    match app-id="qt5ct"
+    match app-id="qt6ct"
+    match app-id="satty"
+    match app-id="wev"
+    match app-id="xdg-desktop-portal-gtk"
+    match app-id="zenity"
+    match title="Friends List"
+    match title="Picture-in-Picture"
+    match title="Special Offers"
+    match title="Steam Settings"
+    match title="gtk*"
+    open-floating true
+    default-column-width {}
+    default-window-height {}
+}
+
+window-rule {
+    match app-id="vlc"
+    match app-id="mpv"
+    open-floating true
+    default-column-width { proportion 0.6; }
+    default-window-height { proportion 0.6; }
+}
+
+window-rule {
+    match app-id="firefox-developer-edition" title="^Picture-in-Picture$"
+    open-floating true
+    open-focused false
+    default-column-width {}
+    default-window-height {}
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}

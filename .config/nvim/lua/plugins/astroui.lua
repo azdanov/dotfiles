@@ -18,7 +18,7 @@ return {
   },
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "kanagawa-paper-ink",
+    colorscheme = "kanagawa-paper-canvas",
     status = {
       separators = {
         breadcrumbs = "  ",
