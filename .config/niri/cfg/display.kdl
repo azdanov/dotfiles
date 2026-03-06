@@ -1,0 +1,14 @@
+// ────────────── Output Configuration ──────────────
+// You can run `niri msg outputs` to get the correct name for your displays.
+// You will have to remove "/-" and edit it before it takes effect.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+
+output "Lenovo Group Limited 0x403D Unknown" {
+    mode "1920x1200@60.003"
+    variable-refresh-rate
+}
+
+output "Dell Inc. DELL U2724DE 12T8CP3" {
+    mode "2560x1440@120.000"
+    variable-refresh-rate
+}
