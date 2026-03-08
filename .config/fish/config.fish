@@ -1,8 +1,8 @@
 if status is-interactive
-    mise activate fish | source
+    $HOME/.local/bin/mise activate fish | source
     theme
 else
-    mise activate fish --shims | source
+    $HOME/.local/bin/mise activate fish --shims | source
 end
 
 starship init fish | source
