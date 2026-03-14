@@ -27,7 +27,9 @@ local function get_mason_bundles()
   return bundles
 end
 
+---@type vim.lsp.Config
 return {
+  ---@type lspconfig.settings.jdtls
   settings = {
     java = {
       codeGeneration = { generateComments = false, useBlocks = true },

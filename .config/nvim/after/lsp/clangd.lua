@@ -2,6 +2,7 @@ local uv = require "luv"
 
 local threads = uv.available_parallelism and uv.available_parallelism() - 1 or 1
 
+---@type vim.lsp.Config
 return {
   cmd = {
     "clangd",
