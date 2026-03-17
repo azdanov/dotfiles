@@ -16,16 +16,16 @@ smudge = git-lfs smudge -- %f
 defaultBranch = main
 
 [merge]
-tool = codediff 
+tool = codediff
 
 [mergetool "codediff"]
 cmd = nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""
 
 [diff]
-tool = vimdiff
+tool = codediff
 
-[difftool "vimdiff"]
-cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool "codediff"]
+cmd = nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"
 
 [mergetool]
 hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
@@ -62,3 +62,4 @@ format = ssh
 
 [commit]
 gpgsign = true
+
