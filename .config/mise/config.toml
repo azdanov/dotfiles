@@ -10,7 +10,6 @@ go = "latest"
 node = "latest"
 usage = "latest"
 uv = "latest"
-biome = "latest"
 java = "latest"
 "github:google/google-java-format" = "latest"
 

@@ -9,7 +9,6 @@ return {
       "astro-language-server",
       "basedpyright",
       "bash-language-server",
-      "biome",
       "clangd",
       "css-lsp",
       "docker-language-server",
