@@ -30,6 +30,7 @@ return {
       "tailwindcss-language-server",
       "taplo",
       "typos-lsp",
+      -- "tsgo",
       "vtsls",
       "yaml-language-server",
 
