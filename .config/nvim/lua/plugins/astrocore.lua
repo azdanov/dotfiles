@@ -10,7 +10,7 @@ return {
           list = false, -- show whitespace characters
           listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
           showbreak = "↪ ",
-          -- showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
+          showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
           splitkeep = "screen",
           swapfile = false,
           wrap = false,
@@ -33,17 +33,17 @@ return {
             end,
           },
         },
-        -- autohide_tabline = {
-        --   {
-        --     event = "User",
-        --     desc = "Auto hide tabline",
-        --     pattern = "AstroBufsUpdated",
-        --     callback = function()
-        --       local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-        --       if new_showtabline ~= vim.opt.showtabline:get() then vim.opt.showtabline = new_showtabline end
-        --     end,
-        --   },
-        -- },
+        autohide_tabline = {
+          {
+            event = "User",
+            desc = "Auto hide tabline",
+            pattern = "AstroBufsUpdated",
+            callback = function()
+              local new_showtabline = #vim.t.bufs > 1 and 2 or 1
+              if new_showtabline ~= vim.opt.showtabline:get() then vim.opt.showtabline = new_showtabline end
+            end,
+          },
+        },
       },
       diagnostics = {
         update_in_insert = false,

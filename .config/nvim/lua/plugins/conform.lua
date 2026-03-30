@@ -66,7 +66,7 @@ return {
     })
 
     opts.formatters = opts.formatters or {}
-    opts.formatters.prettier = { require_cwd = true }
+    opts.formatters.prettier = { require_cwd = false }
   end,
   specs = {
     { "AstroNvim/astrolsp", opts = { formatting = { disabled = true } } },

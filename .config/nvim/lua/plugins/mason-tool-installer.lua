@@ -24,7 +24,7 @@ return {
       "marksman",
       "mdx-analyzer",
       "neocmakelsp",
-      "oxlint",
+      -- "oxlint",
       "ruff",
       "sqlfluff",
       "tailwindcss-language-server",
@@ -43,7 +43,7 @@ return {
 
       -- Formatters
       "google-java-format",
-      "oxfmt",
+      -- "oxfmt",
       "prettier",
       "shfmt",
       "stylua",

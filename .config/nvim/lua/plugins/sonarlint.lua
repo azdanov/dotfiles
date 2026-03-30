@@ -3,6 +3,7 @@ local filetypes = {
   "c",
   "cpp",
   "dockerfile",
+  "go",
   "java",
   "javascript",
   "javascriptreact",
@@ -11,6 +12,7 @@ local filetypes = {
   "typescript",
   "typescriptreact",
   "vue",
+  "xml",
 }
 
 --- https://gitlab.com/schrieveslaach/sonarlint.nvim
