@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  ---@type lspconfig.settings.cssls
+  ---@type lsp.cssls
   settings = {
     css = {
       lint = {

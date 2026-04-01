@@ -24,13 +24,12 @@ return {
       "marksman",
       "mdx-analyzer",
       "neocmakelsp",
-      -- "oxlint",
       "ruff",
+      "rust-analyzer",
       "sqlfluff",
       "tailwindcss-language-server",
       "taplo",
       "typos-lsp",
-      -- "tsgo",
       "vtsls",
       "yaml-language-server",
 
@@ -43,7 +42,6 @@ return {
 
       -- Formatters
       "google-java-format",
-      -- "oxfmt",
       "prettier",
       "shfmt",
       "stylua",

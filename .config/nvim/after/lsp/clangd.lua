@@ -23,6 +23,7 @@ return {
     "--suggest-missing-includes",
     "-j=" .. threads,
   },
+  ---@type lsp.clangd.Clangd
   init_options = {
     clangdFileStatus = true,
     completeUnimported = true,

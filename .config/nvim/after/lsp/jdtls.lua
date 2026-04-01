@@ -29,7 +29,7 @@ end
 
 ---@type vim.lsp.Config
 return {
-  ---@type lspconfig.settings.jdtls
+  ---@type lsp.jdtls
   settings = {
     java = {
       codeGeneration = { generateComments = false, useBlocks = true },
