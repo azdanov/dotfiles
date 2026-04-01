@@ -4,6 +4,9 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    features = {
+      codelens = false,
+    },
     autocmds = {
       eslint_fix_on_save = {
         cond = function(client) return client.name == "eslint" and vim.fn.exists ":LspEslintFixAll" > 0 end,
