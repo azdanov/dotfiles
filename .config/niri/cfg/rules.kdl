@@ -3,10 +3,10 @@ window-rule {
     clip-to-geometry true
 }
 
-
 window-rule {
     match app-id="firefox-developer-edition"
     match app-id="^jetbrains-"
+    match app-id="com.shellyorg.shelly"
     open-maximized true
 }
 
