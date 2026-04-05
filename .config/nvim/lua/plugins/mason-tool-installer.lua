@@ -9,6 +9,7 @@ return {
       "astro-language-server",
       "basedpyright",
       "bash-language-server",
+      "biome",
       "clangd",
       "css-lsp",
       "docker-language-server",
@@ -36,12 +37,14 @@ return {
       -- Linters
       "hadolint",
       "ktlint",
+      "oxlint",
       "selene",
       "shellcheck",
       "sonarlint-language-server",
 
       -- Formatters
       "google-java-format",
+      "oxfmt",
       "prettier",
       "shfmt",
       "stylua",

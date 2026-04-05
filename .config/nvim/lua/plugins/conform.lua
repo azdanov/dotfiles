@@ -20,13 +20,28 @@ return {
       if autoformat then return { timeout_ms = 2000 } end
     end
 
-    local prettier_fts = {
+    local function use_web_formatter()
+      local conform = require "conform"
+      if conform.get_formatter_info("prettier").available then
+        return { "prettier" }
+      elseif conform.get_formatter_info("biome").available then
+        return { "biome" }
+      else
+        return { "oxfmt" }
+      end
+    end
+
+    local prettier_only_fts = {
       "astro",
+      "handlebars",
+      "htmlangular",
+      "svelte",
+    }
+
+    local web_formatter_fts = {
       "css",
       "graphql",
-      "handlebars",
       "html",
-      "htmlangular",
       "javascript",
       "javascriptreact",
       "json",
@@ -34,7 +49,6 @@ return {
       "less",
       "markdown",
       "scss",
-      "svelte",
       "typescript",
       "typescriptreact",
       "vue",
@@ -42,7 +56,6 @@ return {
     }
 
     opts.formatters_by_ft = {
-      dockerfile = { "dockerfmt" },
       fish = { "fish_indent" },
       java = { "google-java-format" },
       lua = { "stylua" },
@@ -62,12 +75,18 @@ return {
       end,
     }
 
-    for _, ft in ipairs(prettier_fts) do
+    for _, ft in ipairs(prettier_only_fts) do
       opts.formatters_by_ft[ft] = { "prettier" }
     end
 
+    for _, ft in ipairs(web_formatter_fts) do
+      opts.formatters_by_ft[ft] = use_web_formatter
+    end
+
     opts.formatters = vim.tbl_deep_extend("force", opts.formatters or {}, {
-      prettier = { require_cwd = false },
+      prettier = { require_cwd = true },
+      biome = { require_cwd = true },
+      oxfmt = { require_cwd = false },
     })
   end,
   specs = {
