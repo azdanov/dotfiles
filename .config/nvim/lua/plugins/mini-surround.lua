@@ -1,4 +1,4 @@
-local prefix = "gz"
+local prefix = "gs"
 
 --- https://github.com/nvim-mini/mini.surround
 ---@type LazySpec
