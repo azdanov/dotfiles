@@ -4,7 +4,6 @@ return {
   "andymass/vim-matchup",
   event = "User AstroFile",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
     {
       "AstroNvim/astrocore",
       opts = {

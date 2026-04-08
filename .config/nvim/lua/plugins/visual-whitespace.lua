@@ -6,7 +6,7 @@ return {
   opts = {
     enabled = false,
   },
-  specs = {
+  dependencies = {
     {
       "AstroNvim/astrocore",
       opts = function(_, opts)
