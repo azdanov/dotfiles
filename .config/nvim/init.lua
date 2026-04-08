@@ -23,7 +23,5 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
--- Temporarily disable deprecation warnings until plugin fixes them.
-vim.deprecate = function() end
-
 require "lazy_setup"
+require "polish"

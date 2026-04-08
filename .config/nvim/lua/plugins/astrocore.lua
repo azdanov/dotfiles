@@ -8,6 +8,7 @@ return {
     opts = require("astrocore").extend_tbl(opts, {
       options = {
         opt = {
+          cmdheight = 0,
           list = false, -- show whitespace characters
           listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
           showbreak = "↪ ",
