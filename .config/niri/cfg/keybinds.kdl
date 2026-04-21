@@ -124,6 +124,15 @@ binds {
     Mod+Shift+Minus                     { set-window-height "-10%"; }
     Mod+Shift+Equal                     { set-window-height "+10%"; }
 
+    // If the window is alone, they will consume it into the nearby column to the side.
+    // If the window is already in a column, they will expel it out.
+    Mod+BracketLeft                     { consume-or-expel-window-left; }
+    Mod+BracketRight                    { consume-or-expel-window-right; }
+    // Consume one window from the right to the bottom of the focused column.
+    Mod+Comma                           { consume-window-into-column; }
+    // Expel the bottom window from the focused column to the right.
+    Mod+Period                          { expel-window-from-column; }
+
     // ─── Modes ───
     Mod+T                               { toggle-window-floating; }
     Mod+CTRL+T                          { switch-focus-between-floating-and-tiling; }

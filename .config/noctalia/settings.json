@@ -103,6 +103,7 @@
             "left": [
                 {
                     "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
                     "customIconPath": "",
                     "enableColorization": false,
                     "icon": "rocket",
@@ -124,7 +125,7 @@
                     "showDiskUsageAsPercent": false,
                     "showGpuTemp": false,
                     "showLoadAverage": false,
-                    "showMemoryAsPercent": false,
+                    "showMemoryAsPercent": true,
                     "showMemoryUsage": true,
                     "showNetworkStats": false,
                     "showSwapUsage": false,
@@ -245,6 +246,7 @@
                 {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
                     "customIconPath": "",
                     "enableColorization": false,
                     "icon": "noctalia",
