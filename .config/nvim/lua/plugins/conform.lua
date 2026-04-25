@@ -25,7 +25,7 @@ return {
       if conform.get_formatter_info("prettier").available then
         return { "prettier" }
       elseif conform.get_formatter_info("biome").available then
-        return { "biome" }
+        return { "biome-check" }
       else
         return { "oxfmt" }
       end
