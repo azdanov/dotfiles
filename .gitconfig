@@ -16,16 +16,14 @@ smudge = git-lfs smudge -- %f
 defaultBranch = main
 
 [merge]
-tool = codediff
-
-[mergetool "codediff"]
-cmd = nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""
+conflictstyle = diff3
+tool = vimdiff
 
 [diff]
-tool = codediff
+tool = vimdiff
 
-[difftool "codediff"]
-cmd = nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"
+[mergetool "vimdiff"]
+cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [mergetool]
 hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
@@ -50,11 +48,11 @@ missingCommitsCheck = warn # Print a warning if a rebase removes commits.
 updateRefs = true          # Allow rebasing a stack of branches at the same time.
 
 [credential "https://github.com"]
-helper = 
+helper =
 helper = !/usr/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-helper = 
+helper =
 helper = !/usr/bin/gh auth git-credential
 
 [gpg]
@@ -62,4 +60,3 @@ format = ssh
 
 [commit]
 gpgsign = true
-
