@@ -23,7 +23,7 @@ tool = vimdiff
 tool = vimdiff
 
 [mergetool "vimdiff"]
-cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 
 [mergetool]
 hideResolved = true      # Don't show merge conflicts that have already been resolved by git in the mergetool diff.
