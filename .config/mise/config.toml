@@ -12,6 +12,7 @@ usage = "latest"
 uv = "latest"
 java = "latest"
 "github:google/google-java-format" = "latest"
+dotnet = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
