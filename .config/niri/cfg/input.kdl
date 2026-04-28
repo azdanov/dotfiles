@@ -14,6 +14,11 @@ input {
 	    repeat-rate 45
     }
 
+    mouse {
+        accel-profile "flat"
+        accel-speed 0.67
+    }
+
     touchpad {
         tap // Enable tap-to-click
         natural-scroll // Enable natural (macOS-style) scrolling
