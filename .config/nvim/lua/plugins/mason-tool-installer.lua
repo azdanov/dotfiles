@@ -26,13 +26,14 @@ return {
       "mdx-analyzer",
       "neocmakelsp",
       "oxlint",
+      "roslyn",
       "ruff",
       "rust-analyzer",
       "sqlfluff",
       "tailwindcss-language-server",
       "taplo",
-      "typos-lsp",
       "tsgo",
+      "typos-lsp",
       "yaml-language-server",
 
       -- Linters
