@@ -5,6 +5,7 @@ window-rule {
 
 window-rule {
     match app-id="firefox-developer-edition"
+    match app-id="zen"
     match app-id="^jetbrains-"
     match app-id="com.shellyorg.shelly"
     open-maximized true
@@ -53,6 +54,7 @@ window-rule {
 
 window-rule {
     match app-id="firefox-developer-edition" title="^Picture-in-Picture$"
+    match app-id="zen" title="^Picture-in-Picture$"
     open-floating true
     open-focused false
     default-column-width {}
