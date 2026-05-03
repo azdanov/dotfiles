@@ -4,7 +4,6 @@ return {
   "AstroNvim/astrocore",
   ---@param opts AstroCoreOpts
   opts = function(_, opts)
-    local Snacks = require "snacks"
     opts = require("astrocore").extend_tbl(opts, {
       options = {
         opt = {
@@ -69,7 +68,6 @@ return {
           -- better buffer navigation
           ["L"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
           ["H"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
-          ["<Leader>gg"] = { function() Snacks.lazygit() end, desc = "Lazygit" },
         },
         -- terminal mappings
         t = {
