@@ -387,7 +387,7 @@
         "onlySameOutput": true,
         "pinnedApps": [
             "kitty",
-            "firefox-developer-edition",
+            "zen",
             "org.gnome.Nautilus"
         ],
         "pinnedStatic": true,
