@@ -1,136 +1,206 @@
-" .ideavimrc configuration based on AstroNvim mappings
+" ============================================================================
+" .ideavimrc
+" Based on AstroNvim-style mappings
+" ============================================================================
 
-" Enable IdeaVim plugins
+" ============================================================================
+" Leader keys
+" ============================================================================
+let mapleader = " "
+let maplocalleader = ","
+
+" ============================================================================
+" Plugins
+" ============================================================================
 set ideajoin
 set highlightedyank
-set surround
-set nerdtree
 set which-key
 set matchit
 set commentary
+set surround
+set NERDTree
 
-" Set leader keys
-let mapleader=" "
-let maplocalleader=","
+" ============================================================================
+" Plugin configuration
+" ============================================================================
 
-" Basic mappings
+" surround
+let g:surround_no_mappings = 1
+let g:WhichKeyDesc_surround = "gs +surround"
+let g:WhichKeyDesc_surround_add = "gsa Add Surrounding"
+let g:WhichKeyDesc_surround_delete = "gsd Delete Surrounding"
+let g:WhichKeyDesc_surround_replace = "gsr Replace Surrounding"
+
+nmap gsa <Plug>YSurround
+xmap gsa <Plug>VSurround
+nmap gsd <Plug>DSurround
+nmap gsr <Plug>CSurround
+
+" NERDTree
+let g:NERDTreeMapActivateNode = "l"
+let g:NERDTreeMapCloseChildren = "z"
+let g:NERDTreeMapCloseDir = "h"
+let g:NERDTreeMapNewDir = "A"
+let g:NERDTreeMapNewFile = "a"
+let g:NERDTreeMapOpenSplit = "S"
+let g:NERDTreeMapOpenVSplit = "s"
+let g:NERDTreeMapPreviewSplit = "gS"
+let g:NERDTreeMapPreviewVSplit = "gs"
+
+" Which-Key
 set timeoutlen=5000
 set notimeout
-" make the popup appear much slower
 let g:WhichKey_DefaultDelay = 400
-" set if the sorting should be case-sensitive or not
 let g:WhichKey_SortCaseSensitive = "false"
-" close the popup and don't process formerly typed keys
 let g:WhichKey_ProcessUnknownMappings = "false"
-" set if the Vim actions should be shown
 let g:WhichKey_ShowVimActions = "false"
-set undolevels=10000
 
-" Enable relative line numbers
+" ============================================================================
+" Core editor settings
+" ============================================================================
+set undolevels=10000
+set nrformats-=octal
+set scrolloff=5
+set sidescrolloff=5
+set history=1000
+
 set number
 set relativenumber
 
-" Search settings
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 
-" Quality of life settings
-set clipboard+=unnamedplus
-set scrolloff=0
+set clipboard^=unnamedplus,unnamed
 set showmode
 set showcmd
 set shiftround
-set idearefactormode=keep
-set ideavimsupport+=dialog
-set ideaenabledbufs+=singleline
 
-" Neovim mappings
-" https://neovim.io/doc/user/vim_diff.html#_default-mappings
-nnoremap Y y$
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
-" Q isn't exactly the same.
-nnoremap Q @@
-
-" Neovim settings that differ from Vim
-" https://neovim.io/doc/user/diff.html
-" https://github.com/mikeslattery/nvim-defaults.vim/blob/main/plugin/.vimrc
 set backspace=indent,eol,start
-set formatoptions=tcqj
+set formatoptions=jcroqlnt
 set listchars=tab:>\ ,trail:-,nbsp:+
 set shortmess=filnxtToOF
 
-" Workaround for unifying navigation history:
-" https://youtrack.jetbrains.com/issue/VIM-44/Unify-navigation-history-between-ideavim-and-idea"
-nmap <C-o> <Action>(Back)
-nmap <C-i> <Action>(Forward)
+" ============================================================================
+" Vim/Neovim behavior compatibility
+" ============================================================================
+nnoremap Y y$
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+nnoremap Q @@
 
-" Basic operations
+vnoremap > >gv
+vnoremap < <gv
+
+" ============================================================================
+" File operations
+" ============================================================================
 nnoremap <C-s> :w!<CR>
-nnoremap <Leader>w :action SaveDocument<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <C-q> :q!<CR>
-nnoremap <Leader>n :new<CR>
-nnoremap <Leader>c :q<CR>
 
-" File explorer
+" New file / new window
+nnoremap <Leader>n :new<CR>
+nmap <Leader>n <Action>(NewElementSamePlace)
+
+" ============================================================================
+" Explorer / navigation
+" ============================================================================
+let g:WhichKeyDesc_buffer_explorer = "<leader>e Buffer Explorer"
 nnoremap <Leader>e :NERDTreeToggle<CR>
+
+let g:WhichKeyDesc_buffer_explorer_focus = "<leader>o Focus Buffer Explorer"
 nnoremap <Leader>o :NERDTreeFocus<CR>
 
-" Splits
-nmap <leader><Bar> <action>(SplitVertically)
-nmap <leader>- <action>(SplitHorizontally)
+" ============================================================================
+" Window management / splits
+" ============================================================================
+nmap <leader><Bar> <Action>(SplitVertically)
+nmap <leader>- <Action>(SplitHorizontally)
+
+nmap \ <C-w>s
+nmap | <C-w>v
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-nmap <C-Down> <action>(StretchSplitToBottom)
-nmap <C-Left> <action>(StretchSplitToLeft)
-nmap <C-Right> <action>(StretchSplitToRight)
-nmap <C-Up> <action>(StretchSplitToTop)
+nmap <C-Down> <Action>(StretchSplitToBottom)
+nmap <C-Left> <Action>(StretchSplitToLeft)
+nmap <C-Right> <Action>(StretchSplitToRight)
+nmap <C-Up> <Action>(StretchSplitToTop)
 
-" Move Lines
+" ============================================================================
+" Moving lines
+" ============================================================================
+let g:WhichKeyDesc_move_down = "<A-j> Move Down"
 nmap <A-j> <Action>(MoveLineDown)
+vmap <A-j> <Action>(MoveLineDown)
 imap <A-j> <Esc><Action>(MoveLineDown)i
+
+let g:WhichKeyDesc_move_up = "<A-k> Move Up"
 nmap <A-k> <Action>(MoveLineUp)
+vmap <A-k> <Action>(MoveLineUp)
 imap <A-k> <Esc><Action>(MoveLineUp)i
 
-" Buffers
+" ============================================================================
+" Buffers / tabs
+" ============================================================================
+let g:WhichKeyDesc_buffer_next = "]b Next Buffer"
 nmap [b <Action>(PreviousTab)
+let g:WhichKeyDesc_buffer_previous = "[b Previous Buffer"
 nmap ]b <Action>(NextTab)
+
 nnoremap <Leader>fb <C-^>
+let g:WhichKeyDesc_buffer_close = "<leader>q Close Buffer"
+nmap <Leader>q <Action>(CloseContent)
+let g:WhichKeyDesc_buffer_close_alt = "<leader>c Close Buffer"
 nmap <Leader>c <Action>(CloseContent)
-nmap <Leader>bC <Action>(CloseContent)
+let g:WhichKeyDesc_buffer_close_all_but_active = "<leader>bc Close All But Active"
 nmap <Leader>bc <Action>(CloseAllEditorsButActive)
 
-" Escape and Clear hlsearch
+let g:WhichKeyDesc_tab_next = "]t Next Tab"
+nmap ]t <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
+
+let g:WhichKeyDesc_tab_previous = "[t Previous Tab"
+nmap [t <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
+
+" Bufferline
+nmap <Leader>bl <Action>(CloseAllToTheLeft)
+nmap <Leader>br <Action>(CloseAllToTheRight)
+
+" ============================================================================
+" Search / clear / help
+" ============================================================================
 nmap <esc> :nohlsearch<CR>
+nnoremap <silent> <C-L> :nohlsearch<CR>
 nmap <Leader>ur :nohlsearch<CR>
 
-" Keywordprg
-nmap <Leader>K <Action>(ShowHoverInfo)
-
-" Comments
+" ============================================================================
+" Comments / formatting / folds
+" ============================================================================
 nmap <Leader>/ <Action>(CommentByLineComment)
 vmap <Leader>/ <Action>(CommentByLineComment)
 
-" New File
-nmap <Leader>n Action(NewElementSamePlace)
+let g:WhichKeyDesc_zc = "zc Collapse"
+map zc <Action>(CollapseRegion)
 
-" Quickfix
+let g:WhichKeyDesc_zo = "zo Expand"
+map zo <Action>(ExpandRegion)
+
+let g:WhichKeyDesc_format = "<leader>lf Format"
+nmap <Leader>lf <Action>(Format)
+vmap <Leader>lf <Action>(Format)
+
+" ============================================================================
+" Diagnostics / quickfix
+" ============================================================================
 nmap <Leader>xq <Action>(ActivateProblemsViewToolWindow)
 nmap [q <Action>(GotoPreviousError)
 nmap ]q <Action>(GotoNextError)
 
-" Format
-nmap <Leader>lf <Action>(Format)
-vmap <Leader>lf <Action>(Format)
-
-" Diagnostics
 nmap <Leader>ld <Action>(ShowErrorDescription)
 nmap <Leader>lD <Action>(ActivateProblemsViewToolWindow)
 nmap ]d <Action>(GotoNextError)
@@ -140,123 +210,102 @@ nmap [e <Action>(GotoPreviousError)
 nmap ]w <Action>(GotoNextError)
 nmap [w <Action>(GotoPreviousError)
 
-" Spelling
+" ============================================================================
+" Toggles
+" ============================================================================
 nmap <Leader>us :setlocal spell!<CR>
-
-" Wrap
 nmap <Leader>uw :setlocal wrap!<CR>
-
-" Toggle Relative Number
 nmap <Leader>uL :set relativenumber!<CR>
-
-" Toggle Line Numbers
 nmap <Leader>ul :set number!<CR>
-
-" Toggle Background
 nmap <Leader>ub <Action>(QuickChangeScheme)
+nmap <Leader>ui <Action>(ActivateStructureToolWindow)
+nmap <Leader>uD <Action>(ClearAllNotifications)
 
+" ============================================================================
 " Git
+" ============================================================================
 nmap <Leader>gg <Action>(ActivateCommitToolWindow)
 nmap <Leader>gb <Action>(Annotate)
 nmap <Leader>gB <Action>(Vcs.Show.Log)
 nmap <Leader>gf <Action>(Vcs.ShowTabbedFileHistory)
 nmap <Leader>gl <Action>(Vcs.Show.Log)
 
-" Quit All
-nmap <Leader>qQ <Action>(Exit)
+" ============================================================================
+" Terminal / quitting
+" ============================================================================
+let g:WhichKeyDesc_terminal_ctrl = "<Leader>tf Terminal (Root Dir)"
+nmap <Leader>tf <Action>(ActivateTerminalToolWindow)
 
-" Inspect Pos
-nmap <Leader>ui <Action>(ActivateStructureToolWindow)
-
-" Terminal
-nmap <Leader>ft <Action>(ActivateTerminalToolWindow)
+let g:WhichKeyDesc_terminal_ctrl_alt = "<C-'> Terminal (Root Dir)"
 nmap <C-'> <Action>(ActivateTerminalToolWindow)
 
-" Split
-nmap \ <c-w>s
-nmap | <c-w>v
+nmap <Leader>qq <Action>(Exit)
 
-" Delete Window
-nmap <Leader>q <Action>(CloseContent)
-
-" Tabs are treated as saved layouts
-
-" Tabs
-nmap ]t <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-nmap [t <Action>(StoreDefaultLayout)<Action>(ChangeToolWindowLayout)
-
-" LSP Keymaps
-
+" ============================================================================
+" LSP / code intelligence
+" ============================================================================
+let g:WhichKeyDesc_goto_definition = "gd Goto Definition"
 nmap gd <Action>(GotoDeclaration)
-nmap gr <Action>(FindUsages)
+
+let g:WhichKeyDesc_references = "grr References"
+nmap grr <Action>(FindUsages)
+
+let g:WhichKeyDesc_references_alt = "<Leader>lR References"
 nmap <Leader>lR <Action>(FindUsages)
-nmap gI <Action>(GotoImplementation)
+
+let g:WhichKeyDesc_goto_implementation = "gri Goto Implementation"
+nmap gri <Action>(GotoImplementation)
+
+let g:WhichKeyDesc_goto_type_definition = "gy Goto Type Definition"
 nmap gy <Action>(GotoTypeDeclaration)
-nmap gD <Action>(GotoDeclaration)
-nmap gK <Action>(ShowHoverInfo)
+
+let g:WhichKeyDesc_goto_type_definition_alt = "grt Goto Type Definition"
+nmap grt <Action>(GotoTypeDeclaration)
+
+let g:WhichKeyDesc_hover_info = "gk Hover Info"
+nmap gk <Action>(ShowHoverInfo)
+
+let g:WhichKeyDesc_signature_help_alt2 = "<Leader>lh Signature Help"
 nmap <Leader>lh <Action>(ParameterInfo)
-nmap <Leader>r <Action>(RefactoringMenu)
-vmap <Leader>r <Action>(RefactoringMenu)
-nmap <Leader>grn <Action>(RenameElement)
+
+let g:WhichKeyDesc_rename = "grn Rename"
+nmap grn <Action>(RenameElement)
+
+let g:WhichKeyDesc_rename_alt = "<Leader>lr Rename"
 nmap <Leader>lr <Action>(RenameElement)
+
+let g:WhichKeyDesc_code_action = "<leader>lA Refactoring"
+nmap <leader>lA <Action>(RefactoringMenu)
+vmap <leader>lA <Action>(RefactoringMenu)
+
+let g:WhichKeyDesc_source_action = "<leader>la Code Action"
 nmap <Leader>la <Action>(ShowIntentionActions)
 vmap <Leader>la <Action>(ShowIntentionActions)
 
-" Bufferline
-nmap <Leader>bl <Action>(CloseAllToTheLeft)
-nmap <Leader>br <Action>(CloseAllToTheRight)
-
-" Notifications
-nmap <Leader>uD <Action>(ClearAllNotifications)
-
-" Telescope Keymaps
-
+" ============================================================================
+" Finder / Telescope-like actions
+" ============================================================================
 nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>fw <Action>(FindInPath)
-nmap <Leader>fC :history<cr>
+nmap <Leader>fC :history<CR>
 nmap <Leader>fb <Action>(Switcher)
 nmap <Leader>gc <Action>(Vcs.Show.Log)
-nmap <Leader>fr :registers<cr>
-nmap <Leader>lD <Action>(ActivateProblemsViewToolWindow)
+nmap <Leader>fr :registers<CR>
 nmap <Leader>fh <Action>(HelpTopics)
-nmap <Leader>fk :map<cr>
+nmap <Leader>fk :map<CR>
 nmap <Leader>fm <Action>(ShowDocumentation)
 nmap <Leader>fs <Action>(GotoSymbol)
 nmap <Leader>fc <Action>(FindWordAtCaret)
 nmap <Leader>ft <Action>(QuickChangeScheme)
 
+" ============================================================================
+" Smart selection
+" ============================================================================
+sethandler <C-Space> n:vim v:vim i:ide
 
-" DAP Keymaps
+let g:WhichKeyDesc_selection_increment = "<C-Space> Increment Selection"
+nmap <C-Space> <Action>(EditorSelectWord)
+vmap <C-Space> <Action>(EditorSelectWord)
 
-nmap <Leader>da <Action>(ChooseRunConfiguration)
-nmap <Leader>db <Action>(ToggleLineBreakpoint)
-nmap <Leader>dB <Action>(AddConditionalBreakpoint)
-nmap <Leader>dc <Action>(Resume)
-nmap <Leader>dC <Action>(ForceRunToCursor)
-nmap <Leader>di <Action>(StepInto)
-nmap <Leader>dj <Action>(GotoNextError)
-nmap <Leader>dk <Action>(GotoPreviousError)
-nmap <Leader>dl <Action>(Debug)
-nmap <Leader>do <Action>(StepOut)
-nmap <Leader>dO <Action>(StepOver)
-nmap <Leader>dp <Action>(Pause)
-nmap <Leader>dr <Action>(JShell.Console)
-nmap <Leader>dt <Action>(Stop)
-
-" DAP UI Keymaps
-
-nmap <Leader>de <Action>(EvaluateExpression)
-vmap <Leader>de <Action>(EvaluateExpression)
-nmap <Leader>du <Action>(ActivateDebugToolWindow)
-
-" Neotest Keymaps
-
-nmap <Leader>tl <Action>(Run)
-nmap <Leader>tr <Action>(RunClass)
-nmap <Leader>ts <Action>(ShowTestSummary)
-nmap <Leader>tS <Action>(Stop)
-nmap <Leader>tt <Action>(RunClass)
-nmap <Leader>tT <Action>(RunAllTests)
-nmap <Leader>tw <Action>(ToggleTestWatch)
-nmap <Leader>td <Action>(ChooseDebugConfiguration)
-
+let g:WhichKeyDesc_selection_decrement = "<BS> Decrement Selection"
+vmap <BS> <Action>(EditorUnSelectWord)
