@@ -44,6 +44,7 @@ return {
       "sonarlint-language-server",
 
       -- Formatters
+      "csharpier",
       "google-java-format",
       "oxfmt",
       "prettier",
