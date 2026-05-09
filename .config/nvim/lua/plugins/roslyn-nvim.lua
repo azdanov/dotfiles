@@ -4,6 +4,7 @@ local init_handles = {}
 ---@type LazySpec
 return {
   "seblyng/roslyn.nvim",
+  ft = "cs",
   ---@module 'roslyn.config'
   ---@type RoslynNvimConfig
   opts = {

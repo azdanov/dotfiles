@@ -56,7 +56,7 @@ return {
     }
 
     opts.formatters_by_ft = {
-      cs = { "csharpier" },
+      cs = { "trim_whitespace", "trim_newlines", "squeeze_blanks", lsp_format = "last" },
       fish = { "fish_indent" },
       java = { "google-java-format" },
       lua = { "stylua" },
