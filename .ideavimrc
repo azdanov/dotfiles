@@ -12,13 +12,13 @@ let maplocalleader = ","
 " ============================================================================
 " Plugins
 " ============================================================================
-set ideajoin
-set highlightedyank
-set which-key
-set matchit
-set commentary
-set surround
 set NERDTree
+set commentary
+set highlightedyank
+set ideajoin
+set matchit
+set surround
+set which-key
 
 " ============================================================================
 " Plugin configuration
@@ -72,15 +72,9 @@ set smartcase
 set incsearch
 set hlsearch
 
-set clipboard^=unnamedplus,unnamed
+set clipboard^=unnamedplus,ideaput
 set showmode
 set showcmd
-set shiftround
-
-set backspace=indent,eol,start
-set formatoptions=jcroqlnt
-set listchars=tab:>\ ,trail:-,nbsp:+
-set shortmess=filnxtToOF
 
 " ============================================================================
 " Vim/Neovim behavior compatibility
