@@ -7,12 +7,11 @@
 "npm:prettier" = "latest"
 bun = "latest"
 go = "latest"
-node = "latest"
+node = "lts"
 usage = "latest"
 uv = "latest"
 java = "latest"
 "github:google/google-java-format" = "latest"
-dotnet = "latest"
 tree-sitter = "latest"
 
 [settings]
