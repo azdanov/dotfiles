@@ -4,48 +4,58 @@ window-rule {
 }
 
 window-rule {
-    match app-id="firefox-developer-edition"
-    match app-id="zen"
-    match app-id="helium"
-    match app-id="^jetbrains-"
+    match app-id="codium"
     match app-id="com.shellyorg.shelly"
-    match app-id="niri"
+    match app-id="firefox-developer-edition"
+    match app-id="helium"
+    match app-id="zen"
+	match app-id="^jetbrains-" title="^Welcome to "
+	match app-id="^jetbrains-" title="^$"
     open-maximized true
 }
 
 window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=10 y=10 relative-to="bottom-right"
-}
-
-window-rule {
     match app-id="vlc|mpv"
-    open-floating true
     default-column-width { proportion 0.6; }
     default-window-height { proportion 0.6; }
+    open-floating true
 }
 
 window-rule {
     match app-id="org.gnome.Nautilus|org.gnome.FileRoller"
-    open-floating true
     default-column-width { proportion 0.7; }
     default-window-height { proportion 0.7; }
+    open-floating true
 }
 
 window-rule {
     match app-id="zen|firefox-developer-edition" title="^Picture-in-Picture$"
-    open-floating true
-    open-focused false
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+    shadow { on; }
     default-column-width {}
     default-window-height {}
-    default-floating-position x=32 y=32 relative-to="bottom-right"
+    open-focused false
+    open-floating true
+}
+
+window-rule {
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    shadow { on; }
+    open-focused false
+    open-floating true
+}
+
+window-rule {
+    match app-id="^jetbrains-toolbox$" title="^Toolbox$"
+    default-floating-position x=10 y=10 relative-to="top-right"
+    shadow { on; }
 }
 
 window-rule {
     match app-id="satty|scrcpy|.*Loupe|.*Celluloid|GStreamer"
     match app-id=".*(NautilusPreviewer|Vaults|Recorder|Decibels|Calculator|pwvucontrol|inspector)$"
     match title="^(Open|Save|Select|Sign in|Picture in picture|Meet)"
-
     open-floating true
 }
 
