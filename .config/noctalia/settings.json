@@ -388,7 +388,7 @@
         "pinnedApps": [
             "kitty",
             "zen",
-            "org.gnome.Nautilus"
+            "nemo"
         ],
         "pinnedStatic": true,
         "position": "bottom",
