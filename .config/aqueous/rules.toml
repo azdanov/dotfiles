@@ -9,7 +9,7 @@
 [game_mode]
 remainder_layout = "grid" # tile | grid | monocle | scrolling | float
 gaps_inner = 8
-fallback_layout = "grid"  # used when no anchor is present on the output
+fallback_layout = "grid" # used when no anchor is present on the output
 
 # -----------------------------------------------------------------------------
 # Window rules. First match wins; rules are evaluated on manage_start and on
@@ -19,8 +19,8 @@ fallback_layout = "grid"  # used when no anchor is present on the output
 [[window]]
 app_id = "dota2"
 layout = "game-mode"
-anchor = "center"    # center | top | bottom | left | right
-size = "native"      # "native" | "WxH" | "FxF"
+anchor = "center" # center | top | bottom | left | right
+size = "native" # "native" | "WxH" | "FxF"
 scale = 1.0
 tag = 9
 fullscreen = false

@@ -15,14 +15,13 @@ gaps_inner = 4 # default 4
 
 # Master/stack split for the `tile` engine.
 master_ratio = 0.55 # default 0.55  (0.0–1.0)
-master_count = 1    # default 1     (windows in master area)
+master_count = 1 # default 1     (windows in master area)
 
 # Borders (ARGB hex, 0xAARRGGBB).
 border_width = 2
 border_focused = 0xFF88C0D0 # Nord frost
-border_normal = 0xFF3B4252  # Nord polar night
-border_urgent = 0xFFBF616A  # Nord aurora red
-
+border_normal = 0xFF3B4252 # Nord polar night
+border_urgent = 0xFFBF616A # Nord aurora red
 
 # -----------------------------------------------------------------------------
 # Layout slots — symbolic names you can later bind keys to (Super+t/f/m/g
@@ -33,7 +32,6 @@ primary = "tile"
 secondary = "scrolling"
 tertiary = "monocle"
 quaternary = "grid"
-
 
 # -----------------------------------------------------------------------------
 # Per-layout option overrides. Section name pattern: [layout.options.<id>]
@@ -71,16 +69,16 @@ enabled = true
 apply_on_start = true
 apply_on_reload = true
 #
-#[[output]]
-#name   = "HDMI-A-1"
-#layout = "tile"
+# [[output]]
+# name   = "HDMI-A-1"
+# layout = "tile"
 #
-#[[output]]
-#name   = "eDP-1"
-#layout = "monocle"
+# [[output]]
+# name   = "eDP-1"
+# layout = "monocle"
 
 [struts]
-top = 32   # Noctalia bar height; adjust to match your bar
+top = 32 # Noctalia bar height; adjust to match your bar
 bottom = 0
 left = 0
 right = 0
@@ -113,21 +111,21 @@ lock_screen = "qs -c noctalia-shell ipc call lockScreen lock"
 [keybinds]
 # --- Window / session ---
 toggle_start_menu = "Super+Space" # default
-spawn_terminal = "Super+Return"   # default
-close_focused = "Super+Q"         # default
-cycle_focus = "Super+Tab"         # default
+spawn_terminal = "Super+Return" # default
+close_focused = "Super+Q" # default
+cycle_focus = "Super+Tab" # default
 
 # --- Directional focus (works in tile/grid; scrolling = prev/next column) ---
-focus_left = "Super+H"  # default
+focus_left = "Super+H" # default
 focus_right = "Super+L" # default
-focus_up = "Super+K"    # default
-focus_down = "Super+J"  # default
+focus_up = "Super+K" # default
+focus_down = "Super+J" # default
 
 # --- Scrolling-layout viewport pan + column move ---
-scroll_viewport_left = "Super+Comma"   # default
+scroll_viewport_left = "Super+Comma" # default
 scroll_viewport_right = "Super+Period" # default
-move_column_left = "Super+Shift+H"     # default
-move_column_right = "Super+Shift+L"    # default
+move_column_left = "Super+Shift+H" # default
+move_column_right = "Super+Shift+L" # default
 
 # --- Opt-in actions (no default chord) ---
 reload_config = "Super+R" # re-read this file (layout opts hot-swap;
@@ -140,15 +138,15 @@ reload_config = "Super+R" # re-read this file (layout opts hot-swap;
 #   game-mode         → reorder within the non-anchor band (anchor immovable;
 #                       use rules.toml to change which window is the anchor)
 #   float             → no-op (use rules.toml / future nudge_floating_*)
-move_window_left = "Super+Shift+Left"   # default
+move_window_left = "Super+Shift+Left" # default
 move_window_right = "Super+Shift+Right" # default
-move_window_up = "Super+Shift+Up"       # default
-move_window_down = "Super+Shift+Down"   # default
+move_window_up = "Super+Shift+Up" # default
+move_window_down = "Super+Shift+Down" # default
 
 # Layout-switch sugar: resolves through [layout.slots] above.
-set_layout_primary = "Super+T"    # → tile
-set_layout_secondary = "Super+F"  # → scrolling
-set_layout_tertiary = "Super+M"   # → monocle
+set_layout_primary = "Super+T" # → tile
+set_layout_secondary = "Super+F" # → scrolling
+set_layout_tertiary = "Super+M" # → monocle
 set_layout_quaternary = "Super+G" # → grid
 
 # --- Tags / workspaces (Phase B1c) ---
@@ -157,27 +155,27 @@ set_layout_quaternary = "Super+G" # → grid
 # the "all" actions use the full mask 0xFFFFFFFF (sticky / show-everything).
 #
 # View: switch the focused output's visible tagset to exactly this tag.
-view_tag_1 = "Super+1"   # default
-view_tag_2 = "Super+2"   # default
-view_tag_3 = "Super+3"   # default
-view_tag_4 = "Super+4"   # default
-view_tag_5 = "Super+5"   # default
-view_tag_6 = "Super+6"   # default
-view_tag_7 = "Super+7"   # default
-view_tag_8 = "Super+8"   # default
-view_tag_9 = "Super+9"   # default
+view_tag_1 = "Super+1" # default
+view_tag_2 = "Super+2" # default
+view_tag_3 = "Super+3" # default
+view_tag_4 = "Super+4" # default
+view_tag_5 = "Super+5" # default
+view_tag_6 = "Super+6" # default
+view_tag_7 = "Super+7" # default
+view_tag_8 = "Super+8" # default
+view_tag_9 = "Super+9" # default
 view_tag_all = "Super+0" # default — show every tag
 
 # Send: reassign the focused window to exactly this tag (moves it).
-send_tag_1 = "Super+Shift+1"   # default
-send_tag_2 = "Super+Shift+2"   # default
-send_tag_3 = "Super+Shift+3"   # default
-send_tag_4 = "Super+Shift+4"   # default
-send_tag_5 = "Super+Shift+5"   # default
-send_tag_6 = "Super+Shift+6"   # default
-send_tag_7 = "Super+Shift+7"   # default
-send_tag_8 = "Super+Shift+8"   # default
-send_tag_9 = "Super+Shift+9"   # default
+send_tag_1 = "Super+Shift+1" # default
+send_tag_2 = "Super+Shift+2" # default
+send_tag_3 = "Super+Shift+3" # default
+send_tag_4 = "Super+Shift+4" # default
+send_tag_5 = "Super+Shift+5" # default
+send_tag_6 = "Super+Shift+6" # default
+send_tag_7 = "Super+Shift+7" # default
+send_tag_8 = "Super+Shift+8" # default
+send_tag_9 = "Super+Shift+9" # default
 send_tag_all = "Super+Shift+0" # default — make focused sticky
 
 # Toggle view: add/remove this tag from the output's visible mask (union view).
@@ -211,18 +209,17 @@ swap_last_tagset = "Super+grave" # default (the ` key)
 # remembers the prior state so a second press round-trips. Only ONE
 # fullscreen window per output is allowed (toggling another auto-restores
 # the prior). Minimized windows are excluded from layout + focus cycle.
-toggle_fullscreen = "Super+Shift+F"          # default
-toggle_maximize = "Super+Shift+M"            # default
-toggle_floating = "Super+Shift+Space"        # default
-toggle_minimize = "Super+N"                  # default — hide from layout
-unminimize_last = "Super+Shift+N"            # default — restore most-recent minimized
-toggle_scratchpad = "Super+Backslash"        # default — summon/dismiss "default" pad
+toggle_fullscreen = "Super+Shift+F" # default
+toggle_maximize = "Super+Shift+M" # default
+toggle_floating = "Super+Shift+Space" # default
+toggle_minimize = "Super+N" # default — hide from layout
+unminimize_last = "Super+Shift+N" # default — restore most-recent minimized
+toggle_scratchpad = "Super+Backslash" # default — summon/dismiss "default" pad
 send_to_scratchpad = "Super+Shift+Backslash" # default — park focused in "default" pad
 
 # Examples of the array form and explicit unbind:
 #   cycle_focus = ["Super+Tab", "Alt+Tab"]
 #   close_focused = []                      # disables Super+Q entirely
-
 
 # -----------------------------------------------------------------------------
 # Free-form custom chords. Key = chord string, value = action verb.
@@ -265,7 +262,6 @@ send_to_scratchpad = "Super+Shift+Backslash" # default — park focused in "defa
 # "Super+grave"        = "builtin:toggle_scratchpad_named:term"
 # "Super+Shift+grave"  = "builtin:send_to_scratchpad_named:term"
 
-
 # -----------------------------------------------------------------------------
 # Window-state behaviour (Phase B1e). Controls fullscreen / maximize / float /
 # minimize / scratchpad semantics. All keys are optional — defaults shown.
@@ -279,7 +275,6 @@ fullscreen_hides_bar = true
 # Maximize ignores layer-shell exclusive zones (i.e. covers the bar).
 # false → cover usable_area only (the conventional behaviour).
 maximize_full_output = false
-
 
 # -----------------------------------------------------------------------------
 # Scratchpad geometry + spawn-on-empty policy.
@@ -310,27 +305,26 @@ focus_follows_mouse = false
 accel_profile = "flat"
 accel_speed = 0.0
 
-
 [[exec]]
 name = "noctalia"
 command = "qs -c noctalia-shell"
-when = "startup"                 # "startup" (default) | "reload" | "always"
-once = false                     # don't relaunch on --reload
-restart = false                  # respawn (with backoff) on non-zero exit
+when = "startup" # "startup" (default) | "reload" | "always"
+once = false # don't relaunch on --reload
+restart = false # respawn (with backoff) on non-zero exit
 log = "/tmp/noctalia.log"
 
-#[[exec]]
-#name    = "xwayland-satellite"
-#command = "xwayland-satellite :0"
-#when    = "startup"
-#restart = true
-#log     = "/tmp/xwayland-satellite.log"
-#env     = { DISPLAY = ":0" }
+# [[exec]]
+# name    = "xwayland-satellite"
+# command = "xwayland-satellite :0"
+# when    = "startup"
+# restart = true
+# log     = "/tmp/xwayland-satellite.log"
+# env     = { DISPLAY = ":0" }
 
-#[[exec]]
-#name    = "ghostty"
-#command = "ghostty"
-#when    = "startup"
+# [[exec]]
+# name    = "ghostty"
+# command = "ghostty"
+# when    = "startup"
 
 [rules]
 # Optional. Absolute path or ~-prefixed. Overrides the XDG search above.
