@@ -1,0 +1,71 @@
+[general]
+font-sans = "Noto Sans"
+font-mono = "MonoLisa Variable"
+
+[bar]
+scale = 0.75
+bg = "transparent"
+
+[[bar.layout]]
+monitor = "*"
+show = true
+left = [
+    "media",
+    "world-clock",
+    "weather",
+    "clock",
+    { name = "System", modules = [
+    "cpu",
+    "ram",
+    "netstat",
+] },
+]
+center = []
+right = [
+    "systray",
+    "bluetooth",
+    "network",
+    "microphone",
+    "volume",
+    "dashboard",
+]
+
+[styling.palette]
+bg = "#000000"
+surface = "#000000"
+elevated = "#111827"
+fg = "#9ca3af"
+fg-muted = "#9ca3af"
+primary = "#8b68cf"
+red = "#f472b6"
+yellow = "#facc15"
+green = "#2dd4a8"
+blue = "#7ecae5"
+
+[modules.cava]
+stereo = true
+style = "wave"
+
+[modules.clock]
+format = "%a %d %b %H:%M"
+
+[modules.power]
+right-click = "systemctl poweroff"
+middle-click = "systemctl reboot"
+
+[modules.weather]
+location = "Tallinn"
+units = "metric"
+format = "{{ temp }}{{ temp_unit }} {{ condition }}"
+time-format = "24h"
+
+[modules.world-clock]
+format = "{{ tz('America/New_York', '%H:%M %Z') }}"
+
+[wallpaper]
+cycling-same-image = true
+
+[[wallpaper.monitors]]
+name = "eDP-1"
+fit-mode = "fill"
+wallpaper = "/home/azdanov/Pictures/Wallpapers/limine-splash.png"
