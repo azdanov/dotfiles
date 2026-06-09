@@ -88,7 +88,7 @@ right = 0
 # This is where you set actions that are attached to a keybind
 # -----------------------------------------------------------------------------
 [actions]
-toggle_start_menu = "qs -c noctalia-shell ipc call launcher toggle"
+toggle_start_menu = "sherlock"
 spawn_terminal = "kitty"
 lock_screen = "qs -c noctalia-shell ipc call lockScreen lock"
 
@@ -309,12 +309,12 @@ accel_profile = "flat"
 accel_speed = 0.0
 
 [[exec]]
-name = "noctalia"
-command = "qs -c noctalia-shell"
+name = "wayle"
+command = "wayle panel start"
 when = "startup" # "startup" (default) | "reload" | "always"
 once = false # don't relaunch on --reload
 restart = false # respawn (with backoff) on non-zero exit
-log = "/tmp/noctalia.log"
+log = "/tmp/wayle.log"
 
 # [[exec]]
 # name    = "xwayland-satellite"
