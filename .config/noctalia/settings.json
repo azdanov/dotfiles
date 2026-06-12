@@ -387,8 +387,8 @@
         "onlySameOutput": true,
         "pinnedApps": [
             "kitty",
-            "zen",
-            "nemo"
+            "nemo",
+            "helium"
         ],
         "pinnedStatic": true,
         "position": "bottom",
