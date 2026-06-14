@@ -30,6 +30,7 @@ window-rule {
 
 window-rule {
     match app-id="zen|firefox-developer-edition" title="^Picture-in-Picture$"
+    match title="^Picture in picture$"
     default-floating-position x=32 y=32 relative-to="bottom-right"
     shadow { on; }
     default-column-width {}
