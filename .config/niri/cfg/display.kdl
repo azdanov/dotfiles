@@ -9,7 +9,7 @@ output "Lenovo Group Limited 0x403D Unknown" {
     variable-refresh-rate
 }
 
-output "Dell Inc. DELL U2724DE 12T8CP3" {
-    mode "2560x1440@120.000"
-    variable-refresh-rate
+output "Dell Inc. AW3425DWM 5MP5444" {
+    mode "3440x1440@179.989"
+    // variable-refresh-rate
 }

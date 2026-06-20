@@ -260,7 +260,7 @@
         "backlightDeviceMappings": [
         ],
         "brightnessStep": 5,
-        "enableDdcSupport": false,
+        "enableDdcSupport": true,
         "enforceMinimum": true
     },
     "calendar": {
@@ -387,8 +387,8 @@
         "onlySameOutput": true,
         "pinnedApps": [
             "kitty",
-            "nemo",
-            "helium"
+            "helium",
+            "nemo"
         ],
         "pinnedStatic": true,
         "position": "bottom",
