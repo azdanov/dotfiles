@@ -16,9 +16,17 @@ scale = 1.25
 position = [0, 0]
 enabled = true
 
+[[output]]
+name = "DP-1"
+mode = "3440x1440@179.989"
+scale = 1.0
+position = [0, 0]
+enabled = true
+
 [display]
 apply_on_start = true
 apply_on_reload = true
+
 #
 # [[output]]
 # name   = "HDMI-A-1"
@@ -29,7 +37,7 @@ apply_on_reload = true
 # layout = "monocle"
 
 [struts]
-top = 32 # Noctalia bar height; adjust to match your bar
+top = 32  # Noctalia bar height; adjust to match your bar
 bottom = 0
 left = 0
 right = 0
@@ -39,12 +47,12 @@ right = 0
 # content. Per-window exclusions (e.g. games) live in rules.toml as `blur = false`.
 # -----------------------------------------------------------------------------
 [blur]
-enabled = true # set true to enable compositor backdrop blur
-radius = 8 # blur radius in pixels
-passes = 3 # number of blur passes (higher = blurrier, costlier)
+enabled = true  # set true to enable compositor backdrop blur
+radius = 8  # blur radius in pixels
+passes = 3  # number of blur passes (higher = blurrier, costlier)
 
 [opacity]
-enabled = false # set true to apply the default opacity below to all windows
+enabled = false  # set true to apply the default opacity below to all windows
 value = 0.85
 
 # -----------------------------------------------------------------------------
@@ -76,26 +84,26 @@ toggle_start_menu = "noctalia msg panel-toggle launcher"
 [keybinds]
 # --- Window / session ---
 screenshot = "PrintScreen"
-toggle_start_menu = "Super+Space" # default
-spawn_terminal = "Super+Return" # default
-close_focused = "Super+Q" # default
-cycle_focus = "Super+Tab" # default
-lock_screen = "Super+Shift+L" # default
+toggle_start_menu = "Super+Space"  # default
+spawn_terminal = "Super+Return"  # default
+close_focused = "Super+Q"  # default
+cycle_focus = "Super+Tab"  # default
+lock_screen = "Super+Shift+L"  # default
 
 # --- Directional focus (works in tile/grid; scrolling = prev/next column) ---
-focus_left = "Super+H" # default
-focus_right = "Super+L" # default
-focus_up = "Super+K" # default
-focus_down = "Super+J" # default
+focus_left = "Super+H"  # default
+focus_right = "Super+L"  # default
+focus_up = "Super+K"  # default
+focus_down = "Super+J"  # default
 
 # --- Scrolling-layout viewport pan + column move ---
-scroll_viewport_left = "Super+Comma" # default
-scroll_viewport_right = "Super+Period" # default
-move_column_left = "Super+Shift+H" # default
-move_column_right = "Super+Shift+L" # default
+scroll_viewport_left = "Super+Comma"  # default
+scroll_viewport_right = "Super+Period"  # default
+move_column_left = "Super+Shift+H"  # default
+move_column_right = "Super+Shift+L"  # default
 
 # --- Opt-in actions (no default chord) ---
-reload_config = "Super+R" # re-read this file (layout opts hot-swap;
+reload_config = "Super+R"  # re-read this file (layout opts hot-swap;
 # chord changes still need WM restart)
 
 # Per-engine semantics:
@@ -105,16 +113,16 @@ reload_config = "Super+R" # re-read this file (layout opts hot-swap;
 #   game-mode         → reorder within the non-anchor band (anchor immovable;
 #                       use rules.toml to change which window is the anchor)
 #   float             → no-op (use rules.toml / future nudge_floating_*)
-move_window_left = "Super+Shift+Left" # default
-move_window_right = "Super+Shift+Right" # default
-move_window_up = "Super+Shift+Up" # default
-move_window_down = "Super+Shift+Down" # default
+move_window_left = "Super+Shift+Left"  # default
+move_window_right = "Super+Shift+Right"  # default
+move_window_up = "Super+Shift+Up"  # default
+move_window_down = "Super+Shift+Down"  # default
 
 # Layout-switch sugar: resolves through [layout.slots] above.
-set_layout_primary = "Super+T" # → tile
-set_layout_secondary = "Super+F" # → scrolling
-set_layout_tertiary = "Super+M" # → monocle
-set_layout_quaternary = "Super+G" # → grid
+set_layout_primary = "Super+T"  # → tile
+set_layout_secondary = "Super+F"  # → scrolling
+set_layout_tertiary = "Super+M"  # → monocle
+set_layout_quaternary = "Super+G"  # → grid
 
 # --- Tags / workspaces (Phase B1c) ---
 # Tags are a per-output 32-bit bitmask. A window is visible on its output iff
@@ -154,13 +162,13 @@ move_to_workspace_down = "Super+Shift+Bracketright"
 # remembers the prior state so a second press round-trips. Only ONE
 # fullscreen window per output is allowed (toggling another auto-restores
 # the prior). Minimized windows are excluded from layout + focus cycle.
-toggle_fullscreen = "Super+Shift+F" # default
-toggle_maximize = "Super+Shift+M" # default
-toggle_floating = "Super+Shift+Space" # default
-toggle_minimize = "Super+N" # default — hide from layout
-unminimize_last = "Super+Shift+N" # default — restore most-recent minimized
-toggle_scratchpad = "Super+Backslash" # default — summon/dismiss "default" pad
-send_to_scratchpad = "Super+Shift+Backslash" # default — park focused in "default" pad
+toggle_fullscreen = "Super+Shift+F"  # default
+toggle_maximize = "Super+Shift+M"  # default
+toggle_floating = "Super+Shift+Space"  # default
+toggle_minimize = "Super+N"  # default — hide from layout
+unminimize_last = "Super+Shift+N"  # default — restore most-recent minimized
+toggle_scratchpad = "Super+Backslash"  # default — summon/dismiss "default" pad
+send_to_scratchpad = "Super+Shift+Backslash"  # default — park focused in "default" pad
 
 # Examples of the array form and explicit unbind:
 #   cycle_focus = ["Super+Tab", "Alt+Tab"]
@@ -257,9 +265,9 @@ accel_speed = 0.0
 command = "noctalia"
 log = "/tmp/noctalia.log"
 name = "noctalia"
-once = false # don't relaunch on --reload
-restart = true # respawn (with backoff) on non-zero exit
-when = "startup" # "startup" (default) | "reload" | "always"
+once = false  # don't relaunch on --reload
+restart = true  # respawn (with backoff) on non-zero exit
+when = "startup"  # "startup" (default) | "reload" | "always"
 
 # [[exec]]
 # name    = "xwayland-satellite"

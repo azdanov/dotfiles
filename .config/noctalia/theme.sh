@@ -2,7 +2,7 @@
 
 niri msg action do-screen-transition
 
-darkMode=$(qs -c noctalia-shell ipc call state all | jq -r '.settings.colorSchemes.darkMode')
+darkMode=$(noctalia config export full | yq -p toml -r '.theme.mode')
 gtk_settings="$HOME/.config/gtk-4.0/settings.ini"
 
 if [ "$darkMode" = "true" ]; then

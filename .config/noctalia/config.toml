@@ -55,17 +55,39 @@ widget_order = []
 auto_hide = true
 enabled = true
 icon_size = 36
+launcher_position = "end"
 magnification_scale = 1.2000000029802322
 pinned = [ "helium", "nemo", "kitty" ]
 reserve_space = false
 show_dots = true
 
+[hooks]
+theme_mode_changed = "~/.config/noctalia/theme.sh"
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 600
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 900
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 660
+
 [keybinds]
 cancel = [ "Escape" ]
-down = [ "Ctrl+j" ]
-left = [ "Ctrl+h" ]
-right = [ "Ctrl+l" ]
-up = [ "Ctrl+k" ]
+down = [ "Ctrl+j", "Down" ]
+left = [ "Ctrl+h", "Left" ]
+right = [ "Ctrl+l", "Right" ]
+up = [ "Ctrl+k", "Up" ]
 validate = [ "Return" ]
 
 [location]
@@ -218,8 +240,8 @@ hide_when_no_unread = true
 type = "noctalia/screen_recorder:recorder"
 
 [widget.taskbar]
-inactive_opacity = 0.80000000000000004
-only_active_workspace = true
+inactive_opacity = 0.84999999999999998
+only_active_workspace = false
 
 [widget.volume]
 show_label = false
