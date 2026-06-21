@@ -14,6 +14,7 @@ end = [
 margin_edge = 0
 margin_ends = 0
 radius = 0
+start = [ "launcher", "clipboard", "workspaces", "taskbar" ]
 widget_spacing = 14
 
 [brightness]
@@ -202,7 +203,7 @@ show_label = false
 
 [widget.clock]
 format = "{:%H:%M %a, %b %d}"
-tooltip_format = "{:%T %F}"
+tooltip_format = ""
 
 [widget.media]
 hide_when_no_media = true
@@ -218,6 +219,7 @@ type = "noctalia/screen_recorder:recorder"
 
 [widget.taskbar]
 inactive_opacity = 0.80000000000000004
+only_active_workspace = true
 
 [widget.volume]
 show_label = false

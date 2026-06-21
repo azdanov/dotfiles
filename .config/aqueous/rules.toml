@@ -1,31 +1,65 @@
-# =============================================================================
-# Aqueous WM — window rules
-# Path: ~/.config/aqueous/rules.toml
-# Reloaded by Super+R together with wm.toml. Missing file = no rules.
-# =============================================================================
+# =============================================================================================
+# Rules for games or other windows to take layout priority
+# =============================================================================================
 
-# Options for the game-mode layout engine. Moved out of wm.toml because they
-# only matter when at least one [[window]] rule targets layout = "game-mode".
+# ---------------------------------------------------------------------------------------------
+# Dota 2
+# ---------------------------------------------------------------------------------------------
+
 [game_mode]
-remainder_layout = "grid" # tile | grid | monocle | scrolling | float
+remainder_layout = "grid"
 gaps_inner = 8
-fallback_layout = "grid" # used when no anchor is present on the output
+fallback_layout = "grid"
 
-# -----------------------------------------------------------------------------
-# Window rules. First match wins; rules are evaluated on manage_start and on
-# app_id / title changes. At least one matcher (app_id / class / title) is
-# required; rules with none are dropped with a warning.
-# -----------------------------------------------------------------------------
 [[window]]
 app_id = "dota2"
 layout = "game-mode"
-anchor = "center" # center | top | bottom | left | right
-size = "native" # "native" | "WxH" | "FxF"
+anchor = "center"
+size = "3840x2160"
 scale = 1.0
-tag = 9
+# tag        = 1
 fullscreen = false
+ignore_struts = true
 
+[[window]]
+app_id = "steam_app_2694490"
+layout = "game-mode"
+anchor = "center"
+size = "3840x2160"
+scale = 1.0
+fullscreen = false
+ignore_struts = true
+
+[[window]]
+app_id = "steam_app_3583210"
+layout = "game-mode"
+anchor = "center"
+size = "3840x2160"
+scale = 1.0
+fullscreen = false
+ignore_struts = true
+
+[[window]]
+app_id = "steam_app_1217060"
+layout = "game-mode"
+anchor = "center"
+size = "3840x2160"
+scale = 1.0
+fullscreen = false
+ignore_struts = true
+
+# 2) Some builds report the Source 2 engine name
 # [[window]]
-# class  = "steam_app_570"
-# layout = "game-mode"
-# size   = "1920x1080"
+# app_id     = "steam_app_570"
+# layout     = "game-mode"
+# anchor     = "center"
+# size       = "native"
+# tag        = 1
+
+# 3) XWayland fallback (class = WM_CLASS)
+# [[window]]
+# class      = "steam_app_570"
+# layout     = "game-mode"
+# anchor     = "center"
+# size       = "native"
+# tag        = 1

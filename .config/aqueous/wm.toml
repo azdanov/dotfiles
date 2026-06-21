@@ -5,55 +5,6 @@
 # Unknown keys are ignored; a malformed file falls back to defaults silently.
 # =============================================================================
 
-[layout]
-# Global default layout id. One of: tile | monocle | grid | float | scrolling | game-mode
-default = "grid"
-
-# Gaps (px). Outer = around the screen edge; inner = between tiles.
-gaps_outer = 8 # default 8
-gaps_inner = 4 # default 4
-
-# Master/stack split for the `tile` engine.
-master_ratio = 0.55 # default 0.55  (0.0–1.0)
-master_count = 1 # default 1     (windows in master area)
-
-# Borders (ARGB hex, 0xAARRGGBB).
-border_width = 2
-border_focused = 0xFF88C0D0 # Nord frost
-border_normal = 0xFF3B4252 # Nord polar night
-border_urgent = 0xFFBF616A # Nord aurora red
-
-# -----------------------------------------------------------------------------
-# Layout slots — symbolic names you can later bind keys to (Super+t/f/m/g
-# wiring is deferred to phase B1c, but the slot table is already parsed).
-# -----------------------------------------------------------------------------
-[layout.slots]
-primary = "tile"
-secondary = "scrolling"
-tertiary = "monocle"
-quaternary = "grid"
-
-# -----------------------------------------------------------------------------
-# Per-layout option overrides. Section name pattern: [layout.options.<id>]
-# Recognised scalar keys: gaps_outer, gaps_inner, master_ratio, master_count.
-# Anything else lands in LayoutOptions.Extra (string→string) for the engine.
-# -----------------------------------------------------------------------------
-[layout.options.tile]
-gaps_outer = 12
-gaps_inner = 6
-master_ratio = 0.6
-
-[layout.options.grid]
-gaps_inner = 8
-
-[layout.options.scrolling]
-# PaperWM-style knobs consumed by ScrollingLayout via Extra:
-column_fraction = "0.5" # each column = 50% of output width
-center_focused = "true" # auto-pan so focused column is centred
-
-[layout.options.float]
-# Floating engine has no scalar knobs today; reserved for future use.
-
 # -----------------------------------------------------------------------------
 # Per-output overrides. Repeat the [[output]] block once per monitor.
 # `name` matches river_output_v1.name (e.g. "DP-1", "HDMI-A-1", "eDP-1").
@@ -101,9 +52,10 @@ value = 0.85
 # This is where you set actions that are attached to a keybind
 # -----------------------------------------------------------------------------
 [actions]
-toggle_start_menu = "fuzzel"
+lock_screen = "noctalia msg session lock"
+screenshot = "noctalia msg screenshot-region"
 spawn_terminal = "kitty"
-lock_screen = "qs -c noctalia-shell ipc call lockScreen lock"
+toggle_start_menu = "noctalia msg panel-toggle launcher"
 
 # -----------------------------------------------------------------------------
 # Keybindings.
@@ -123,10 +75,12 @@ lock_screen = "qs -c noctalia-shell ipc call lockScreen lock"
 # -----------------------------------------------------------------------------
 [keybinds]
 # --- Window / session ---
+screenshot = "PrintScreen"
 toggle_start_menu = "Super+Space" # default
 spawn_terminal = "Super+Return" # default
 close_focused = "Super+Q" # default
 cycle_focus = "Super+Tab" # default
+lock_screen = "Super+Shift+L" # default
 
 # --- Directional focus (works in tile/grid; scrolling = prev/next column) ---
 focus_left = "Super+H" # default
@@ -300,12 +254,12 @@ accel_profile = "flat"
 accel_speed = 0.0
 
 [[exec]]
-name = "wayle"
-command = "wayle panel start"
-when = "startup" # "startup" (default) | "reload" | "always"
+command = "noctalia"
+log = "/tmp/noctalia.log"
+name = "noctalia"
 once = false # don't relaunch on --reload
-restart = false # respawn (with backoff) on non-zero exit
-log = "/tmp/wayle.log"
+restart = true # respawn (with backoff) on non-zero exit
+when = "startup" # "startup" (default) | "reload" | "always"
 
 # [[exec]]
 # name    = "xwayland-satellite"
