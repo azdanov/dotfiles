@@ -2,20 +2,20 @@
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-s": "workspace::Save"
     }
   },
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "H": "pane::ActivatePreviousItem",
+      "H": "pane::ActivatePrevItem",
       "K": "editor::Hover",
       "L": "pane::ActivateNextItem",
-      "[ d": "editor::GoToPreviousDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
       "] d": "editor::GoToDiagnostic",
       "g I": "editor::GoToImplementation",
       "g K": "editor::ShowSignatureHelp",
@@ -23,7 +23,7 @@
       "g d": "editor::GoToDefinition",
       "g r": "editor::FindAllReferences",
       "g y": "editor::GoToTypeDefinition",
-      "space b [": "pane::ActivatePreviousItem",
+      "space b [": "pane::ActivatePrevItem",
       "space b ]": "pane::ActivateNextItem",
       "space b d": "pane::CloseActiveItem",
       "space b n": "workspace::NewFile",
@@ -70,10 +70,10 @@
   {
     "context": "Dock",
     "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight"
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
     }
   }
 ]

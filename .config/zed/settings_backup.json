@@ -7,16 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "vim": {
-    "toggle_relative_line_numbers": true
-  },
-  "document_symbols": "on",
-  "document_folding_ranges": "on",
-  "semantic_tokens": "full",
-  "proxy": "",
-  "edit_predictions": {
-    "provider": "copilot"
-  },
   "session": {
     "trust_all_worktrees": true
   },
@@ -32,7 +22,8 @@
     }
   },
   "buffer_font_fallbacks": [
-    "MonoLisa"
+    "Droid Sans Mono",
+    "monospace"
   ],
   "agent_servers": {
     "github-copilot-cli": {
@@ -41,9 +32,12 @@
   },
   "base_keymap": "VSCode",
   "icon_theme": "Zed (Default)",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "agent": {
     "default_profile": "ask",
-    "play_sound_when_agent_done": "always",
+    "play_sound_when_agent_done": true,
     "default_model": {
       "provider": "openrouter",
       "model": "anthropic/claude-sonnet-4"
@@ -55,7 +49,7 @@
   "buffer_font_family": "MonoLisa",
   "theme": {
     "mode": "system",
-    "light": "Noctalia Light",
-    "dark": "Noctalia Dark"
+    "light": "One Light",
+    "dark": "One Dark"
   }
 }
