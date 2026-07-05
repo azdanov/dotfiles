@@ -10,9 +10,13 @@ go = "latest"
 node = "lts"
 usage = "latest"
 uv = "latest"
-java = "latest"
+java = "lts"
 "github:google/google-java-format" = "latest"
 tree-sitter = "latest"
+kotlin = { version = "latest", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
+zig = "latest"
+zls = "latest"
+k6 = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
