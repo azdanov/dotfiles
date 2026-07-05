@@ -7,7 +7,7 @@ window-rule {
     match app-id="codium"
     match app-id="com.shellyorg.shelly"
     match app-id="firefox-developer-edition"
-    match app-id="helium"
+    match app-id="zen"
     match app-id="zen"
 	match app-id="^jetbrains-" title="^Welcome to "
 	match app-id="^jetbrains-" title="^$"

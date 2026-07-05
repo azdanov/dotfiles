@@ -6,7 +6,7 @@
 output "Lenovo Group Limited 0x403D Unknown" {
     mode "1920x1200@60.003"
     position x=0 y=0
-    variable-refresh-rate
+    // variable-refresh-rate
 }
 
 output "Dell Inc. AW3425DWM 5MP5444" {
