@@ -64,6 +64,7 @@ return {
       rust = { "rustfmt" },
       sh = { "shfmt", "shellcheck" },
       sql = { "sqlfluff" },
+      zig = { "zigfmt" },
       zsh = { "shfmt", "shellcheck" },
       ["_"] = function(bufnr)
         local clients = vim.lsp.get_clients { bufnr = bufnr, method = "textDocument/formatting" }
