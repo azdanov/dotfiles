@@ -4,6 +4,7 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    servers = { "zls" },
     features = {
       codelens = false,
     },
