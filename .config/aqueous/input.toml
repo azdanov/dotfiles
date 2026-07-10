@@ -8,7 +8,9 @@ xkb_layout = "us"
 # xkb_variant = "dvorak"
 # Remap Caps Lock to Escape (standard xkb option string).
 xkb_options = "caps:escape"
+repeat_delay = 270
+repeat_rate = 45
 
 [input.mouse]
 accel_profile = "flat"
-accel_speed = 0.0
+accel_speed = 0.67
