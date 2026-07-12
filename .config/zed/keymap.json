@@ -12,42 +12,122 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
+      "ctrl-up": "vim::ResizePaneUp",
+      "ctrl-down": "vim::ResizePaneDown",
+      "ctrl-left": "vim::ResizePaneLeft",
+      "ctrl-right": "vim::ResizePaneRight",
+      "ctrl-q": "zed::Quit",
+      "ctrl-f5": "debugger::Restart",
+      "f9": "editor::ToggleBreakpoint",
+      "shift-f9": "editor::EditLogBreakpoint",
+      "f10": "debugger::StepOver",
+      "f11": "debugger::StepInto",
+      "shift-f11": "debugger::StepOut",
       "H": "pane::ActivatePreviousItem",
       "K": "editor::Hover",
       "L": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
       "[ d": "editor::GoToPreviousDiagnostic",
       "] d": "editor::GoToDiagnostic",
+      "[ e": ["editor::GoToPreviousDiagnostic", { "severity": { "min": "error", "max": "error" } }],
+      "] e": ["editor::GoToDiagnostic", { "severity": { "min": "error", "max": "error" } }],
+      "[ w": [
+        "editor::GoToPreviousDiagnostic",
+        { "severity": { "min": "warning", "max": "warning" } }
+      ],
+      "] w": ["editor::GoToDiagnostic", { "severity": { "min": "warning", "max": "warning" } }],
+      "< b": "pane::SwapItemLeft",
+      "> b": "pane::SwapItemRight",
+      "\\": "pane::SplitDown",
+      "|": "pane::SplitRight",
+      "g D": "editor::GoToDeclaration",
       "g I": "editor::GoToImplementation",
       "g K": "editor::ShowSignatureHelp",
+      "g O": "outline::Toggle",
       "g c c": "vim::ToggleComments",
       "g d": "editor::GoToDefinition",
+      "g l": "editor::Hover",
       "g r": "editor::FindAllReferences",
+      "g r a": "editor::ToggleCodeActions",
+      "g r i": "editor::GoToImplementation",
+      "g r n": "editor::Rename",
+      "g r r": "editor::FindAllReferences",
       "g y": "editor::GoToTypeDefinition",
+      "space /": "vim::ToggleComments",
       "space b [": "pane::ActivatePreviousItem",
       "space b ]": "pane::ActivateNextItem",
+      "space b C": "pane::CloseAllItems",
+      "space b b": "tab_switcher::ToggleAll",
+      "space b c": "pane::CloseOtherItems",
       "space b d": "pane::CloseActiveItem",
+      "space b l": "pane::CloseItemsToTheLeft",
       "space b n": "workspace::NewFile",
+      "space b p": "pane::AlternateFile",
+      "space b r": "pane::CloseItemsToTheRight",
+      "space c": "pane::CloseActiveItem",
       "space c a": "editor::ToggleCodeActions",
       "space c f": "editor::Format",
       "space c r": "editor::Rename",
-      "space e": "workspace::ToggleLeftDock",
+      "space e": "project_panel::ToggleFocus",
+      "space o": "project_panel::ToggleFocus",
+      "space f C": "command_palette::Toggle",
+      "space f b": "tab_switcher::ToggleAll",
       "space f f": "file_finder::Toggle",
+      "space f k": "zed::OpenKeymap",
+      "space f l": "outline::Toggle",
+      "space f o": "file_finder::Toggle",
       "space f p": "projects::OpenRecent",
-      "space space": "file_finder::Toggle",
-      "space f n": "workspace::NewFile",
+      "space f s": "file_finder::Toggle",
+      "space f t": "theme_selector::Toggle",
+      "space f w": "pane::DeploySearch",
+      "space g t": "git_panel::ToggleFocus",
+      "space l A": "editor::ToggleCodeActions",
+      "space l D": "diagnostics::Deploy",
+      "space l G": "project_symbols::Toggle",
+      "space l R": "editor::FindAllReferences",
+      "space l S": "outline_panel::ToggleFocus",
+      "space l a": "editor::ToggleCodeActions",
+      "space l d": "editor::Hover",
+      "space l f": "editor::Format",
+      "space l h": "editor::ShowSignatureHelp",
+      "space l i": "lsp_tool::ToggleMenu",
+      "space l r": "editor::Rename",
+      "space l s": "outline::Toggle",
+      "space l w": "diagnostics::Deploy",
+      "space n": "workspace::NewFile",
       "space q q": "zed::Quit",
-      "space s w": "buffer_search::Deploy",
       "space s d": "diagnostics::Deploy",
       "space s g": "workspace::NewSearch",
-      "space t t": "workspace::ToggleBottomDock",
-      "space u d": "workspace::ClearAllNotifications",
+      "space s w": "buffer_search::Deploy",
+      "space space": "file_finder::Toggle",
+      "space d b": "editor::ToggleBreakpoint",
+      "space d c": "debugger::Start",
+      "space d i": "debugger::StepInto",
+      "space d O": "debugger::StepOut",
+      "space d o": "debugger::StepOver",
+      "space d p": "debugger::Pause",
+      "space d q": "debugger::Stop",
+      "space d r": "debugger::Restart",
+      "space d u": "debug_panel::ToggleFocus",
+      "ctrl-'": "workspace::NewTerminal",
+      "space t f": "workspace::NewTerminal",
+      "space t h": "workspace::NewTerminal",
+      "space t t": "terminal_panel::Toggle",
+      "space t v": "workspace::NewTerminal",
+      "space u D": "workspace::ClearAllNotifications",
+      "space u h": "editor::ToggleInlayHints",
+      "space u n": "editor::ToggleLineNumbers",
       "space u w": "editor::ToggleSoftWrap",
+      "space u Z": "workspace::ToggleZoom",
       "space |": "pane::SplitRight"
     }
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
+      "j j": ["workspace::SendKeystrokes", "escape"],
+      "j k": ["workspace::SendKeystrokes", "escape"],
       "alt-h": "vim::Left",
       "alt-j": "vim::Down",
       "alt-k": "vim::Up",
@@ -55,16 +135,51 @@
     }
   },
   {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space /": "vim::ToggleComments",
+      "space l a": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && showing_completions",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "ctrl-e": "editor::Cancel",
+      "ctrl-d": "vim::ScrollDown",
+      "ctrl-u": "vim::ScrollUp"
+    }
+  },
+  {
+    "context": "Workspace && !debugger_running && !debugger_stopped > Editor && vim_mode == normal",
+    "bindings": {
+      "f5": "debugger::Start"
+    }
+  },
+  {
+    "context": "debugger_stopped > Editor && vim_mode == normal",
+    "bindings": {
+      "f5": "debugger::Continue"
+    }
+  },
+  {
     "context": "ProjectPanel",
     "bindings": {
-      "space e": "workspace::ToggleLeftDock"
+      "space e": "workspace::ToggleLeftDock",
+      "space o": "editor::ToggleFocus"
     }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-/": "workspace::ToggleBottomDock",
-      "space f t": "workspace::ToggleBottomDock"
+      "ctrl-/": "terminal_panel::Toggle",
+      "f7": "terminal_panel::Toggle",
+      "ctrl-'": "terminal_panel::Toggle",
+      "space t f": "terminal_panel::Toggle",
+      "space t h": "terminal_panel::Toggle",
+      "space t t": "terminal_panel::Toggle",
+      "space t v": "terminal_panel::Toggle"
     }
   },
   {
