@@ -28,6 +28,7 @@ return {
       "oxlint",
       "roslyn",
       "ruff",
+      "rumdl",
       "rust-analyzer",
       "sqlfluff",
       "tailwindcss-language-server",
