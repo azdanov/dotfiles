@@ -1,65 +1,127 @@
-# =============================================================================================
-# Rules for games or other windows to take layout priority
-# =============================================================================================
+# =============================================================================
+# Aqueous window-rules configuration reference
+# Copy to: ~/.config/aqueous/rules.toml
+# =============================================================================
+#
+# Discovery order (first path wins):
+#   1. $AQUEOUS_RULES (~ is expanded)
+#   2. [rules].path from wm.toml
+#   3. $XDG_CONFIG_HOME/aqueous/rules.toml
+#   4. ~/.config/aqueous/rules.toml
+#
+# Rules are hot-reloaded with the rest of the configuration. The unbound
+# builtin action `reload_rules` can also reload only this file.
 
-# ---------------------------------------------------------------------------------------------
-# Dota 2
-# ---------------------------------------------------------------------------------------------
-
+# -----------------------------------------------------------------------------
+# Game Mode policy
+# -----------------------------------------------------------------------------
 [game_mode]
-remainder_layout = "grid"
-gaps_inner = 8
-fallback_layout = "grid"
+# Layout used for non-anchor companion windows. Each surviving side column gets
+# an independent instance of this layout.
+remainder_layout = "grid"  # tile | monocle | grid | rows | dwindle | scrolling | float
+# Layout used on an output/workspace where Game Mode has no matching anchor.
+fallback_layout = "grid"  # same accepted values as remainder_layout
+# Gap between the anchor and companion columns.
+gaps_inner = 8  # integer >= 0
 
-[[window]]
-app_id = "dota2"
-layout = "game-mode"
-anchor = "center"
-size = "3840x2160"
-scale = 1.0
-# tag        = 1
-fullscreen = false
-ignore_struts = true
+# [layout.options.game-mode] is not a substitute for this section: only common
+# layout geometry/border keys are accepted there.
 
-[[window]]
-app_id = "steam_app_2694490"
-layout = "game-mode"
-anchor = "center"
-size = "3840x2160"
-scale = 1.0
-fullscreen = false
-ignore_struts = true
+# -----------------------------------------------------------------------------
+# Rule fields
+# -----------------------------------------------------------------------------
+# Rules use first-match-wins order. At least one matcher is required; a block
+# without app_id, class, or title is silently discarded. Every matcher present
+# in a block must match. app_id is used by native Wayland clients, class is
+# useful for XWayland clients, and title matches the current window title.
+# Matchers support `*` and `?` globs.
+#
+# Accepted fields inside [[window]]:
+#
+# Matchers:
+#   app_id, class, title
+#
+# Layout/state:
+#   layout          tile | monocle | grid | rows | dwindle | scrolling |
+#                   float | floating | game-mode | game_mode
+#   workspace       1-based workspace number
+#   floating        true/false; enables floating placement independently of
+#                   layout (layout="float" also sets floating=true)
+#   fullscreen      true/false
+#   ignore_struts   true/false; use the full output instead of panel struts
+#
+# Floating placement:
+#   width, height   positive pixel sizes; 0/invalid means automatic
+#   x, y            offsets from the usable area's origin; 0 means centered
+#
+# Game Mode placement:
+#   anchor          center | top | bottom | left | right
+#   size            native, pixels ("2560x1080"), or output fractions
+#                   ("0.7x0.8", each component > 0 and <= 1)
+#   scale           positive multiplier applied to the resolved anchor size
+#
+# Visuals:
+#   blur            true/false per-window preference; false is useful for
+#                   games/video.
+#   opacity         0.0 through 1.0
+#
+# Stateful rule properties have lifecycle ownership. A manual workspace move,
+# fullscreen toggle, or floating toggle overrides that property until a new
+# matcher becomes active; the rule is not blindly enforced every manage cycle.
 
-[[window]]
-app_id = "steam_app_3583210"
-layout = "game-mode"
-anchor = "center"
-size = "3840x2160"
-scale = 1.0
-fullscreen = false
-ignore_struts = true
-
-[[window]]
-app_id = "steam_app_1217060"
-layout = "game-mode"
-anchor = "center"
-size = "3840x2160"
-scale = 1.0
-fullscreen = false
-ignore_struts = true
-
-# 2) Some builds report the Source 2 engine name
+# -----------------------------------------------------------------------------
+# Complete Game Mode example
+# -----------------------------------------------------------------------------
 # [[window]]
-# app_id     = "steam_app_570"
+# app_id = "steam_app_*"
+# title = "*"
+# layout     = "game-mode"
+# workspace = 9
+# anchor     = "center"
+# size = "0.70x0.80"
+# scale = 1.0
+# fullscreen = false
+# ignore_struts = false
+# blur = false
+# opacity = 1.0
+
+# -----------------------------------------------------------------------------
+# Complete floating placement example
+# -----------------------------------------------------------------------------
+# [[window]]
+# app_id = "org.example.Dialog"
+# class = "ExampleDialog"
+# title = "Preferences*"
+# layout = "float"
+# floating = true
+# workspace = 2
+# width = 900
+# height = 640
+# x = 120
+# y = 80
+# fullscreen = false
+# ignore_struts = false
+# blur = true
+# opacity = 0.95
+
+# -----------------------------------------------------------------------------
+# Other valid size forms
+# -----------------------------------------------------------------------------
+# [[window]]
+# app_id = "cs2"
+# layout = "game-mode"
+# anchor = "left"
+# size = "2560x1080"
+# scale = 1.0
+#
+# [[window]]
+# app_id = "dota2"
 # layout     = "game-mode"
 # anchor     = "center"
 # size       = "native"
-# tag        = 1
+# scale = 1.0
 
-# 3) XWayland fallback (class = WM_CLASS)
-# [[window]]
-# class      = "steam_app_570"
-# layout     = "game-mode"
-# anchor     = "center"
-# size       = "native"
-# tag        = 1
+# Note: the current rule snapshot defaults an omitted layout to game-mode.
+# Specify layout explicitly in every rule so visual-only or placement-only
+# rules cannot unexpectedly select Game Mode for their output/workspace.
+

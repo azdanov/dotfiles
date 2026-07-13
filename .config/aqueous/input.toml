@@ -1,16 +1,91 @@
-# input settings
+# =============================================================================
+# Aqueous input configuration reference
+# Copy to: ~/.config/aqueous/input.toml
+# =============================================================================
+#
+# Discovery order (first path wins):
+#   1. $AQUEOUS_INPUT (~ is expanded)
+#   2. [input].path from wm.toml
+#   3. $XDG_CONFIG_HOME/aqueous/input.toml
+#   4. ~/.config/aqueous/input.toml
+#   5. /etc/xdg/aqueous/input.toml
+#
+# This file overlays [input] settings from wm.toml and is hot-reloaded. Device
+# options are nullable overrides: omit a key to retain the libinput default.
+# The legacy pointer scalar settings below are best defined in only one file:
+# their default values cannot clear non-default values inherited from wm.toml.
+# Keyboard repeat fields track explicit presence and can override any wm.toml
+# value, including by restoring the documented defaults.
+
+# Gesture bindings may live here or in wm.toml. When the same gesture appears
+# in both files, the binding in this input sidecar takes precedence.
+[gestures]
+swipe_3_left = "builtin:focus_workspace_down"
+swipe_3_right = "builtin:focus_workspace_up"
+pinch_4_in = "builtin:toggle_start_menu"
+
 [input]
-focus_follows_mouse = true
-# --- XKB keyboard layout -----------------------------------------------------
-# Pushed to the compositor via river_xkb_config_v1. Null/unset -> compositor
-# default (xkbcommon honours XKB_DEFAULT_* environment variables).
-xkb_layout = "us"
-# xkb_variant = "dvorak"
-# Remap Caps Lock to Escape (standard xkb option string).
-xkb_options = "caps:escape"
-repeat_delay = 270
+# Focus a window when the pointer enters it.
+focus_follows_mouse = false
+
+# Legacy global mouse acceleration controls. Per-device accel_profile and
+# accel_speed below take precedence. pointer_acceleration=true selects the
+# adaptive profile for non-touchpad pointer devices; false selects flat.
+pointer_acceleration = false
+pointer_acceleration_factor = 0.0  # libinput speed, -1.0 through 1.0
+
+# XKB rule names. Empty/omitted values use xkbcommon/XKB_DEFAULT_* defaults.
+xkb_layout = "us"  # comma-separated layouts are accepted, e.g. "us,de"
+xkb_variant = ""  # e.g. "dvorak"
+xkb_options = "caps:escape"  # e.g. "caps:escape,grp:alt_shift_toggle"
+
+# Keyboard repeat. A rate of 0 disables repeat; delay is milliseconds before
+# repeating begins. Changes apply to connected and subsequently added keyboards.
 repeat_rate = 45
+repeat_delay = 270
 
 [input.mouse]
-accel_profile = "flat"
-accel_speed = 0.67
+accel_profile = "flat"  # flat | adaptive
+accel_speed = 0.67  # -1.0 through 1.0
+natural_scroll = false
+left_handed = false
+middle_emulation = false
+dwt = false  # disable-while-typing, when supported by the device
+
+# tap, click_method, and scroll_method are accepted by the parser in every
+# device section but are only applied to devices detected as touchpads.
+# tap = false
+# click_method = "button-areas" # clickfinger | button-areas
+# scroll_method = "no-scroll"   # two-finger | edge | no-scroll
+
+# -----------------------------------------------------------------------------
+# Touchpads
+# -----------------------------------------------------------------------------
+[input.touchpad]
+accel_profile = "adaptive"  # flat | adaptive
+accel_speed = 0.0  # -1.0 through 1.0
+natural_scroll = true
+tap = true
+dwt = true
+left_handed = false
+middle_emulation = false
+click_method = "clickfinger"  # clickfinger | button-areas
+scroll_method = "two-finger"  # two-finger | edge | no-scroll
+
+# -----------------------------------------------------------------------------
+# Trackpoints
+# -----------------------------------------------------------------------------
+# These keys are accepted and retained by the configuration parser. The current
+# libinput application path classifies every non-touchpad device as mouse, so
+# [input.mouse] is presently the effective policy for trackpoints as well.
+[input.trackpoint]
+accel_profile = "adaptive"
+accel_speed = 0.0
+natural_scroll = false
+tap = false
+dwt = false
+left_handed = false
+middle_emulation = false
+click_method = "button-areas"
+scroll_method = "no-scroll"
+
