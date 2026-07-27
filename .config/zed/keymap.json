@@ -190,5 +190,17 @@
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight"
     }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-\\": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "unbind": {
+      "alt-tab": "editor::AcceptEditPrediction"
+    }
   }
 ]
