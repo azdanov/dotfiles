@@ -28,15 +28,16 @@
 # -----------------------------------------------------------------------------
 [layout]
 # Layout used when there is no runtime, output, or workspace override.
-# Accepted: tile | monocle | grid | rows | dwindle | scrolling | float |
-#           floating | game-mode | game_mode
+# Accepted: tile | monocle | grid | rows | dwindle | reverse-dwindle |
+#           reverse_dwindle | scrolling | float | floating | game-mode |
+#           game_mode | composable
 default = "tile"
 
 # Common geometry applied to every layout. Layout-specific sections below can
 # override any common field for one engine.
 gaps_outer = 8  # pixels around the usable output rectangle; >= 0
 gaps_inner = 4  # pixels between placements; >= 0
-master_ratio = 0.55  # master share used by tile/dwindle; strictly 0 < value < 1
+master_ratio = 0.55  # master share used by tile/dwindle/reverse-dwindle; strictly 0 < value < 1
 master_count = 1  # number of windows in tile's master area; >= 1
 
 # Border colors use 0xAARRGGBB.
@@ -64,10 +65,50 @@ tertiary = "monocle"
 quaternary = "grid"
 
 # -----------------------------------------------------------------------------
+# Composable regions
+# -----------------------------------------------------------------------------
+# Optional. Select `composable` as the default, a slot, or a workspace/output
+# layout to divide that workspace into as many as four independent layouts.
+# Region names are fixed: a, b, c, and d. Unconfigured regions are disabled.
+#
+# Points are normalized [x, y] coordinates in the strut-adjusted usable output:
+# p1 = top-left, p2 = top-right, p3 = bottom-right, p4 = bottom-left. The four
+# points must describe a non-zero, axis-aligned rectangle in clockwise order.
+# Regions may touch and may leave unused space, but must not overlap. Invalid or
+# incomplete region configuration makes `composable` fall back to full-area
+# `tile` placement.
+#
+# Child layouts may be tile, monocle, grid, rows, dwindle, reverse-dwindle, scrolling, or float.
+# game-mode and composable cannot be nested. Each child retains independent
+# ordering, scrolling, and floating state. A region is active whenever one of
+# its windows has focus, and newly managed windows join that active region.
+
+[layout.composable.a]
+layout = "tile"
+p1 = [0.0, 0.0]
+p2 = [0.5, 0.0]
+p3 = [0.5, 1.0]
+p4 = [0.0, 1.0]
+
+[layout.composable.b]
+layout = "scrolling"
+p1 = [0.5, 0.0]
+p2 = [1.0, 0.0]
+p3 = [1.0, 1.0]
+p4 = [0.5, 1.0]
+
+# Optional custom actions in wm.toml can target a region directly:
+# [keybinds.custom]
+# "Super+Alt+1"       = "builtin:focus_composable:a"
+# "Super+Alt+Shift+1" = "builtin:move_to_composable:a"
+# Region arguments also accept b/c/d or their numeric aliases 1/2/3/4.
+
+# -----------------------------------------------------------------------------
 # Per-layout options
 # -----------------------------------------------------------------------------
-# Every [layout.options.<id>] section accepts the eight common geometry/border
-# keys from [layout]: gaps_outer, gaps_inner, master_ratio, master_count,
+# Every [layout.options.<leaf-id>] section accepts the eight common
+# geometry/border keys from [layout]: gaps_outer, gaps_inner, master_ratio,
+# master_count,
 # border_width, border_focused, border_normal, and border_urgent.
 # Unknown options are ignored; there is no generic Extra option map.
 
@@ -80,7 +121,7 @@ master_count = 1
 [layout.options.monocle]
 # Show only the focused/current window when true. false leaves every monocle
 # participant visible in its full-output stack.
-hide_others = true
+hide_others = false
 # Draw the configured border around the visible window.
 show_borders = false
 
@@ -98,6 +139,12 @@ split_ratio = 0.5
 # First split: vertical = left/right; horizontal = top/bottom.
 start_axis = "vertical"  # vertical | horizontal
 
+[layout.options.reverse-dwindle]
+# Horizontal mirror of dwindle: vertical splits start on the right while
+# horizontal splits still start at the top.
+split_ratio = 0.5
+start_axis = "vertical"  # vertical | horizontal
+
 [layout.options.scrolling]
 # Width of each scrolling column as a fraction of the usable output.
 column_fraction = 0.5
@@ -105,10 +152,16 @@ column_fraction = 0.5
 center_focused = true
 # Pan to a newly managed window when it extends the column order.
 follow_new_windows = true
+# Add new windows to a vertical stack when this scrolling instance's local
+# usable rectangle is taller than it is wide. false keeps horizontal placement.
+prefer_vertical_on_portrait = false
 # Quantize manual viewport movement to whole column steps.
 snap_to_columns = false
 # Permit the first/last column to move beyond the centered viewport bound.
 allow_overscroll = true
+# Milliseconds of real pointer dwell before focus follows a scrolling member.
+# Keyboard navigation and pointer clicks remain immediate. Zero disables delay.
+focus_follows_mouse_delay_ms = 0
 
 [layout.options.float]
 # Floating has no engine-only keys. Common borders apply; each window otherwise
@@ -167,4 +220,3 @@ layout = "float"
 # output = "DP-1"
 # workspace = 5
 # layout = "grid"
-

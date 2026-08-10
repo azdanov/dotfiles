@@ -10,6 +10,11 @@
 # -----------------------------------------------------------------------------
 # Output management
 # -----------------------------------------------------------------------------
+# Legacy-compatible fallback: physical display settings in outputs.toml are
+# checked first, and values omitted there continue to come from this section.
+# New configurations should place [display], physical [[output]] fields, and
+# display profiles in ~/.config/aqueous/outputs.toml. Per-output `layout`
+# mappings remain valid here and in layout.toml.
 [display]
 # Apply [[output]] display fields when Aqueous starts and when this file reloads.
 apply_on_start = true
@@ -25,12 +30,12 @@ fallback_profile = ""
 identify_by = "edid"
 rollback_seconds = 0
 
-[[output]]
-name = "eDP-1"
-mode = "1920x1200@60.002998"
-scale = 1.0
-position = [0, 0]
-enabled = false
+# [[output]]
+# name = "eDP-1"
+# mode = "1920x1200@60.003"
+# scale = 1.0
+# position = [0, 0]
+# enabled = false
 
 [[output]]
 name = "DP-1"
@@ -59,7 +64,11 @@ primary = true
 # transform = "normal"
 # position = [0, 0]
 # adaptive_sync = true
-# hdr = true # fixed HDR10 profile: 10-bit BT.2020 with PQ; capable DRM outputs only
+# hdr = true # HDR10 profile: 10-bit BT.2020 with PQ; capable DRM outputs only
+# hdr_level = "auto" # mastering peak preset: 100, 400, 1000 cd/m², or "auto" from EDID (default 1000)
+# sdr_white_level = 200 # SDR diffuse white on the HDR output in cd/m² (80–1000, default 200)
+# auto_hdr = false # expand SDR highlights toward the HDR peak (fullscreen windows by default; hdr_expand rule overrides)
+# auto_hdr_boost = 0.5 # Auto HDR expansion strength, 0.0–1.0
 # primary = true
 # layout = "scrolling" # optional default WM layout for this output
 
@@ -105,6 +114,7 @@ primary = true
 # [input]
 # path = "~/.config/aqueous/input.toml"
 # focus_follows_mouse = false
+# focus_new_windows = false
 # pointer_acceleration = false
 # pointer_acceleration_factor = 0.0
 # repeat_rate = 40       # characters per second; 0 disables repeat
@@ -156,12 +166,17 @@ right = 0
 
 # -----------------------------------------------------------------------------
 # Backdrop blur (available in the default Vulkan-effects build). Applied behind
-# window content with per-window masks controlled by rules.
+# window and layer-shell content with masks controlled by rules.toml.
 # -----------------------------------------------------------------------------
 [blur]
 enabled = true  # set true to enable compositor backdrop blur
 radius = 10  # blur radius in pixels
 passes = 8  # number of blur passes (higher = blurrier, costlier)
+noise = 0.0  # stable screen-space noise, 0.0–1.0
+contrast = 1.0  # backdrop contrast, 0.0–2.0; 1.0 is neutral
+brightness = 1.0  # backdrop brightness, 0.0–2.0; 1.0 is neutral
+vibrancy = 0.0  # saturation boost, 0.0–1.0
+vibrancy_darkness = 0.0  # vibrancy applied to dark colors, 0.0–1.0
 
 # Default window-content opacity (requires Aqueous with opacity support).
 # Per-window overrides live in rules.toml as `opacity = 0.85`.
@@ -172,6 +187,9 @@ focus_sensitive = false  # true = use focused/unfocused below per window focus
 focused = 1.0  # focused-window opacity when focus_sensitive = true
 unfocused = 0.9  # unfocused-window opacity when focus_sensitive = true
 
+# Workspace slide animation. `rate = 0` selects the compiled default rate;
+# larger positive values settle more quickly. Animations can also be compiled
+# out entirely with -Danimations=false.
 [workspace_transition]
 enabled = true
 rate = 0.0
@@ -209,6 +227,7 @@ toggle_start_menu = "Super+Space"  # default
 spawn_terminal = "Super+Return"  # default
 screenshot = "Print"  # default; select a region and copy it
 close_focused = "Super+Q"  # default
+toggle_overview = "Super+W"  # default; active-workspace window overview
 cycle_focus = "Super+Tab"  # default
 lock_screen = "Super+Shift+L"  # default
 
@@ -223,6 +242,8 @@ scroll_viewport_left = "Super+Comma"  # legacy alias
 scroll_viewport_right = "Super+Period"  # legacy alias
 scroll_viewport_left_arrow = "Super+Left"  # default
 scroll_viewport_right_arrow = "Super+Right"  # default
+scroll_viewport_up = "Super+Up"  # scroll the focused column without changing focus
+scroll_viewport_down = "Super+Down"  # scroll the focused column without changing focus
 move_column_left = "Super+Shift+H"  # default
 move_column_right = "Super+Shift+L"  # default
 toggle_scrolling_full_width = "Super+Shift+Z"  # expand only the focused column; press again to restore
@@ -234,11 +255,13 @@ reload_config = "Super+R"  # immediately reload all TOML snapshots
 # reload_rules        = "Super+Shift+R"    # reload only rules.toml
 
 # Per-engine semantics:
-#   tile/grid/dwindle → swap with neighbour at (row±1, col)/(row, col±1)
-#   scrolling         → swap columns (L/R) or intra-column reorder (U/D)
+#   tile/grid/dwindle/reverse-dwindle → swap with neighbour at (row±1, col)/(row, col±1)
+#   scrolling         → join the adjacent column (L/R) or reorder within the column (U/D)
 #   monocle           → reorder in z-stack
-#   game-mode         → reorder within the non-anchor band (anchor immovable;
-#                       use rules.toml to change which window is the anchor)
+#   game-mode         → delegate to the active remainder engine; a scrolling
+#                       remainder joins columns like scrolling (anchor immovable)
+#   composable        → delegate to the focused window's configured child;
+#                       cross-region drops exchange region membership
 #   float             → no-op (use rules.toml / future nudge_floating_*)
 move_window_left = "Super+Shift+Left"  # default
 move_window_right = "Super+Shift+Right"  # default
@@ -324,9 +347,13 @@ untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
 # Action verbs:
 #   spawn:<command>         — run through /bin/sh -c as a detached child
 #   set_layout:<id-or-slot> — switch layout; IDs are tile, monocle, grid, rows,
-#                             dwindle, scrolling, float/floating, game-mode;
+#                             dwindle, reverse-dwindle, scrolling, float/floating, game-mode,
+#                             composable;
 #                             slots are primary..quaternary
 #   builtin:<action_name>   — invoke any canonical [keybinds] action name
+#   builtin:focus_composable:<a-d>   — focus the last-focused member of a region
+#   builtin:move_to_composable:<a-d> — move the focused tiled window to a region
+#                                      (1-4 are aliases for a-d)
 # -----------------------------------------------------------------------------
 [keybinds.custom]
 "Super+E" = "spawn:nemo"
@@ -354,7 +381,11 @@ untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
 # "Super+Alt+F"        = "set_layout:float"
 # "Super+Alt+R"        = "set_layout:rows"
 # "Super+Alt+D"        = "set_layout:dwindle"
+# "Super+Alt+Shift+D"  = "set_layout:reverse-dwindle"
 # "Super+Alt+V"        = "set_layout:game-mode"
+# "Super+Alt+C"        = "set_layout:composable"
+# "Super+Alt+1"        = "builtin:focus_composable:a"
+# "Super+Alt+Shift+1"  = "builtin:move_to_composable:a"
 
 # Re-route a built-in onto an extra chord:
 "Alt+F4" = "builtin:close_focused"

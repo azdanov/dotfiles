@@ -27,6 +27,7 @@ pinch_4_in = "builtin:toggle_start_menu"
 [input]
 # Focus a window when the pointer enters it.
 focus_follows_mouse = false
+focus_new_windows = false
 
 # Legacy global mouse acceleration controls. Per-device accel_profile and
 # accel_speed below take precedence. pointer_acceleration=true selects the
@@ -44,6 +45,12 @@ xkb_options = "caps:escape"  # e.g. "caps:escape,grp:alt_shift_toggle"
 repeat_rate = 45
 repeat_delay = 270
 
+# Optional when selecting this sidecar from wm.toml:
+# path = "~/.config/aqueous/input.toml"
+
+# -----------------------------------------------------------------------------
+# Mouse / other non-touchpad pointer devices
+# -----------------------------------------------------------------------------
 [input.mouse]
 accel_profile = "flat"  # flat | adaptive
 accel_speed = 0.67  # -1.0 through 1.0
@@ -88,4 +95,3 @@ left_handed = false
 middle_emulation = false
 click_method = "button-areas"
 scroll_method = "no-scroll"
-
