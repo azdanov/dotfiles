@@ -7,82 +7,177 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "context_servers": {
-    "mcp-server-github": {
-      "enabled": true,
-      "remote": false,
-      "settings": {
-        "github_personal_access_token": ""
-      }
-    }
+  "status_bar": {
+    "show_active_file": false,
+  },
+  "extend_comment_on_newline": false,
+  "diff_view_style": "unified",
+  "outline_panel": {
+    "dock": "left",
+  },
+  "which_key": {
+    "enabled": false,
+  },
+  "terminal": {
+    "copy_on_select": true,
+    "font_size": 15.0,
   },
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "code_lens": "on",
   "toolbar": {
-    "code_actions": true
+    "code_actions": true,
   },
-  "window_decorations": "client",
   "bottom_dock_layout": "contained",
   "tabs": {
     "show_close_button": "always",
     "show_diagnostics": "errors",
     "git_status": false,
-    "file_icons": true
+    "file_icons": true,
   },
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": false,
     "show_tab_bar_buttons": true,
     "show_nav_history_buttons": false,
-    "show": true
+    "show": true,
   },
   "title_bar": {
+    "show_onboarding_banner": true,
+    "show_project_items": true,
+    "show_worktree_name": false,
+    "show_branch_status_icon": false,
+    "show_branch_name": true,
     "button_layout": "platform_default",
     "show_menus": false,
-    "show_user_picture": true
+    "show_user_picture": true,
   },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
-    "anthropic_retention": false
+    "anthropic_retention": false,
   },
   "languages": {
     "Java": {
-      "format_on_save": "off"
+      "format_on_save": "off",
     },
     "CSharp": {
-      "language_servers": ["csharp-ls", "!roslyn", "!omnisharp"]
-    }
+      "language_servers": ["csharp-ls", "!roslyn", "!omnisharp", "..."],
+    },
+    "Markdown": {
+      "language_servers": ["rumdl", "..."],
+      "formatter": {
+        "language_server": {
+          "name": "rumdl",
+        },
+      },
+    },
+    "Fish": {
+      "formatter": {
+        "external": {
+          "command": "fish_indent",
+        },
+      },
+    },
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": ["--filename", "{buffer_path}", "--indent", "2"],
+        },
+      },
+    },
   },
   "lsp": {
     "jdtls": {
       "settings": {
-        // Controls when to check for updates for JDTLS, Lombok, and Debugger
-        // - "always" (default): Always check for and download the latest version
-        // - "once": Check for updates only if no local installation exists
-        // - "never": Never check for updates, only use existing local installations (errors if missing)
-        //
-        // Note: Invalid values will default to "always"
-        // If custom paths (below) are provided, check_updates is IGNORED for that component
-        "check_updates": "once"
-      }
-    }
+        "check_updates": "always",
+      },
+    },
+    "csharp-ls": {
+      "settings": {
+        "razorSupport": true,
+        "useMetadataUris": true,
+      },
+    },
+    "zls": {
+      "settings": {
+        "zls": {
+          "enable_build_on_save": true,
+          "warn_style": true,
+        },
+      },
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "astro": "html",
+        },
+        "experimental": {
+          "classRegex": [
+            "class=\"([^\"]*)\"",
+            "class='([^']*)'",
+            "class:list=\"{([^}]*)}\"",
+            "class:list='{([^}]*)}'",
+          ],
+        },
+      },
+    },
   },
   "cli_default_open_behavior": "existing_window",
   "language_models": {
     "openai_compatible": {
+      "Qwen": {
+        "api_url": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+        "available_models": [
+          {
+            "name": "qwen3.8-max",
+            "max_tokens": 1000000,
+            "max_output_tokens": 131072,
+            "reasoning_effort": "medium",
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+            },
+          },
+          {
+            "name": "deepseek-v4-flash-0731",
+            "max_tokens": 1000000,
+            "max_output_tokens": 393216,
+            "reasoning_effort": "medium",
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+            },
+          },
+        ],
+      },
       "Z.ai": {
         "api_url": "https://api.z.ai/api/coding/paas/v4",
         "available_models": [
           {
-            "name": "glm-5.2",
-            "display_name": "GLM-5.2",
+            "name": "glm-5.3",
+            "display_name": "GLM-5.3",
             "max_tokens": 1000000,
-            "max_output_tokens": 128000,
-            "max_completion_tokens": 128000,
+            "max_output_tokens": 131072,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+            },
+          },
+          {
+            "name": "glm-4.7",
+            "display_name": "GLM-4.7",
+            "max_tokens": 204800,
+            "max_output_tokens": 98000,
             "capabilities": {
               "tools": true,
               "images": false,
@@ -96,39 +191,39 @@
         "api_url": "",
         "available_models": [
           {
-            "name": "ZoeyAGI",
+            "name": "qwen",
             "max_tokens": 262144,
             "max_output_tokens": 64000,
-            "max_completion_tokens": 100000,
             "capabilities": {
               "tools": true,
               "images": true,
               "parallel_tool_calls": true,
               "prompt_cache_key": true,
               "chat_completions": true,
-              "interleaved_reasoning": false
-            }
-          }
-        ]
-      }
-    }
+              "interleaved_reasoning": false,
+            },
+          },
+        ],
+      },
+    },
   },
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
   "git_panel": {
+    "group_by": "staging",
     "tree_view": true,
     "file_icons": true,
-    "dock": "left"
+    "dock": "left",
   },
   "project_panel": {
     "sort_mode": "directories_first",
     "hide_hidden": false,
     "hide_root": false,
     "indent_guides": {
-      "show": "always"
+      "show": "always",
     },
     "diagnostic_badges": false,
     "bold_folder_labels": false,
@@ -136,77 +231,126 @@
     "entry_spacing": "standard",
     "hide_gitignore": false,
     "sticky_scroll": false,
-    "dock": "left"
+    "dock": "left",
   },
   "vim": {
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
   "document_symbols": "on",
   "document_folding_ranges": "on",
   "semantic_tokens": "combined",
   "proxy": "",
   "edit_predictions": {
-    "allow_data_collection": "no",
-    "provider": "copilot"
+    "disabled_globs": [],
+    "provider": "zed",
   },
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "sticky_scroll": {
-    "enabled": false
+    "enabled": false,
   },
   "minimap": {
-    "show": "never"
+    "show": "never",
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
-    }
+      "milliseconds": 1000,
+    },
   },
-  "buffer_font_fallbacks": ["MonoLisa"],
   "agent_servers": {
     "github-copilot-cli": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "base_keymap": "JetBrains",
   "icon_theme": "Soft Charmed Icons",
   "agent": {
-    "tool_permissions": {
-      "tools": {
-        "create_directory": {
-          "default": "allow"
+    "enable_feedback": false,
+    "sandbox_permissions": {
+      "allow_unsandboxed": true,
+      "write_paths": [
+        {
+          "requested": "/home/azdanov/.cache/zig",
+          "resolved": "/home/azdanov/.cache/zig",
         },
+        {
+          "requested": "/tmp",
+          "resolved": "/tmp",
+        },
+      ],
+      "network_hosts": ["github.com"],
+    },
+    "profiles": {
+      "write": {
+        "name": "Write",
+        "tools": {
+          "copy_path": true,
+          "create_directory": true,
+          "create_thread": true,
+          "delete_path": true,
+          "diagnostics": true,
+          "apply_code_action": true,
+          "edit_file": true,
+          "write_file": true,
+          "fetch": true,
+          "find_path": true,
+          "find_references": true,
+          "get_code_actions": true,
+          "go_to_definition": true,
+          "list_agents_and_models": true,
+          "list_directory": true,
+          "move_path": true,
+          "rename_symbol": true,
+          "read_file": true,
+          "grep": true,
+          "skill": true,
+          "spawn_agent": true,
+          "terminal": true,
+          "search_web": true,
+        },
+        "enable_all_context_servers": true,
+        "context_servers": {
+          "chunkhound": {
+            "tools": {
+              "websearch": false,
+              "code_research": false,
+            },
+          },
+        },
+      },
+    },
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
         "terminal": {
           "default": "allow",
-          "always_allow": [
-            {
-              "pattern": "^cd\\s+/home/azdanov/Projects/corebanking(\\s|$)"
-            },
-            {
-              "pattern": "^grep\\b"
-            }
-          ]
-        }
-      }
+          "always_confirm": [{ "pattern": "sudo\\s+/" }],
+        },
+      },
     },
     "dock": "right",
     "sidebar_side": "right",
     "default_profile": "write",
     "play_sound_when_agent_done": "always",
     "default_model": {
-      "enable_thinking": false,
-      "provider": "Zoey",
-      "model": "ZoeyAGI"
-    }
+      "effort": "medium",
+      "enable_thinking": true,
+      "provider": "Qwen",
+      "model": "qwen3.8-max",
+    },
   },
   "vim_mode": true,
   "ui_font_size": 16,
-  "buffer_font_size": 17,
+  "buffer_font_size": 17.0,
   "buffer_font_family": "MonoLisa",
+  "buffer_font_fallbacks": ["MesloLGS Nerd Font"],
   "theme": {
     "mode": "system",
     "light": "JetBrains Light",
-    "dark": "JetBrains Dark"
-  }
+    "dark": "JetBrains Dark",
+  },
+  "file_types": {
+    "XML": ["rdf", "gpx", "kml", "ui"],
+  },
 }
