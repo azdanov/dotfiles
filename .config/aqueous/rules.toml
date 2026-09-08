@@ -18,11 +18,11 @@
 [game_mode]
 # Layout used for non-anchor companion windows. Each surviving side column gets
 # an independent instance of this layout.
-remainder_layout = "grid"  # tile | monocle | grid | rows | dwindle | reverse-dwindle | scrolling | float
+remainder_layout = "grid" # tile | monocle | grid | rows | dwindle | reverse-dwindle | scrolling | float
 # Layout used on an output/workspace where Game Mode has no matching anchor.
-fallback_layout = "grid"  # same accepted values as remainder_layout
+fallback_layout = "grid" # same accepted values as remainder_layout
 # Gap between the anchor and companion columns.
-gaps_inner = 8  # integer >= 0
+gaps_inner = 8 # integer >= 0
 
 # [layout.options.game-mode] is not a substitute for this section: only common
 # layout geometry/border keys are accepted there.
@@ -31,29 +31,45 @@ gaps_inner = 8  # integer >= 0
 # Rule fields
 # -----------------------------------------------------------------------------
 # Rules use first-match-wins order. At least one matcher is required; a block
-# without app_id, class, or title is silently discarded. Every matcher present
-# in a block must match. app_id is used by native Wayland clients, class is
-# useful for XWayland clients, and title matches the current window title.
-# Matchers support `*` and `?` globs.
+# without app_id, class, title, or content_type is silently discarded. Every
+# matcher present in a block must match. app_id is used by native Wayland
+# clients, class is useful for XWayland clients, and title matches the current
+# window title. Matchers support `*` and `?` globs.
 #
 # Accepted fields inside [[window]]:
 #
 # Matchers:
 #   app_id, class, title
+#   content_type    none | photo | video | game; matches the wp_content_type_v1
+#                   state committed by the client. Rules with this matcher only
+#                   apply blur, opacity, hdr_expand, buffer_scale_policy, and
+#                   overlay_plane -
+#                   layout and placement edits are ignored because the content
+#                   type commonly arrives long after map and must never move an
+#                   arranged window.
 #
 # Layout/state:
 #   layout          tile | monocle | grid | rows | dwindle | reverse-dwindle |
-#                   reverse_dwindle | scrolling | float | floating |
+#                   reverse_dwindle | scrolling | float | floating | stack | stacking |
 #                   game-mode | game_mode | composable
-#   workspace       1-based workspace number
+#   output          exact enabled connector name from `aqueousctl outputs`;
+#                   without workspace, uses that output's active workspace
+#   workspace       1-based workspace number; without output, uses the normal
+#                   admission output
 #   floating        true/false; enables floating placement independently of
 #                   layout (layout="float" also sets floating=true)
 #   fullscreen      true/false
 #   ignore_struts   true/false; use the full output instead of panel struts
+#   stack_layer     below | normal | above
+#   focus           true/false; false excludes the window from focus actions
+#   fixed_position  true/false; reject pointer and keyboard geometry changes
+#   skip_switcher   true/false; omit from MRU cycling and overview
+#   skip_taskbar    true/false; exported through window-info state
 #
 # Floating placement:
 #   width, height   positive pixel sizes; 0/invalid means automatic
 #   x, y            offsets from the usable area's origin; 0 means centered
+#   placement_policy cascade | center | under-pointer | minimal-overlap
 #
 # Game Mode placement:
 #   anchor          center | top | bottom | left | right
@@ -65,10 +81,22 @@ gaps_inner = 8  # integer >= 0
 #   blur            true/false per-window preference; false is useful for
 #                   games/video.
 #   opacity         0.0 through 1.0
+#   buffer_scale_policy
+#                   native | integer-ceil; integer-ceil requests a larger
+#                   integer-scale client buffer while preserving fractional
+#                   logical geometry. It is opt-in and costs GPU/memory.
+#   hdr_expand      true/false; expand SDR highlights toward the HDR peak on
+#                   auto_hdr outputs. Unset follows the default (fullscreen
+#                   windows and game content).
+#   overlay_plane   off | prefer; request zero-copy DRM overlay promotion when
+#                   [render].overlay_planes is enabled. Aqueous tests one
+#                   deterministic candidate per output and composes on rejection.
 #
-# Stateful rule properties have lifecycle ownership. A manual workspace move,
-# fullscreen toggle, or floating toggle overrides that property until a new
-# matcher becomes active; the rule is not blindly enforced every manage cycle.
+# Stateful rule properties have lifecycle ownership. A manual workspace/output
+# move, fullscreen toggle, or floating toggle overrides that property until a
+# new matcher becomes active; the rule is not blindly enforced every manage
+# cycle. A missing or disabled output falls back to normal admission placement
+# and does not move the established window if that output appears later.
 
 # -----------------------------------------------------------------------------
 # Complete Game Mode example
@@ -77,6 +105,7 @@ gaps_inner = 8  # integer >= 0
 # app_id = "steam_app_*"
 # title = "*"
 # layout     = "game-mode"
+# output = "DP-2"
 # workspace = 9
 # anchor     = "center"
 # size = "0.70x0.80"
@@ -104,6 +133,21 @@ gaps_inner = 8  # integer >= 0
 # ignore_struts = false
 # blur = true
 # opacity = 0.95
+# buffer_scale_policy = "integer-ceil"
+
+# -----------------------------------------------------------------------------
+# Content-type example
+# -----------------------------------------------------------------------------
+# Clients such as Steam commit wp_content_type_v1 once a window is a game.
+# Content-type rules are visual-only, so they are safe to place ahead of
+# broader rules: they never move a window when the tag arrives late.
+#
+# [[window]]
+# content_type = "game"
+# blur = false
+# opacity = 1.0
+# hdr_expand = true
+# overlay_plane = "prefer"
 
 # -----------------------------------------------------------------------------
 # Layer-shell blur examples
@@ -162,3 +206,4 @@ gaps_inner = 8  # integer >= 0
 # Note: the current rule snapshot defaults an omitted layout to game-mode.
 # Specify layout explicitly in every rule so visual-only or placement-only
 # rules cannot unexpectedly select Game Mode for their output/workspace.
+

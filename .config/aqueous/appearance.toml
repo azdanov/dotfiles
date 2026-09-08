@@ -1,0 +1,8 @@
+[desktop.font]
+size_pt = 12
+family = "sans-serif"
+
+[desktop.cursor]
+size = 20
+managed = true
+theme = "Adwaita"

@@ -29,25 +29,36 @@
 [layout]
 # Layout used when there is no runtime, output, or workspace override.
 # Accepted: tile | monocle | grid | rows | dwindle | reverse-dwindle |
-#           reverse_dwindle | scrolling | float | floating | game-mode |
+#           reverse_dwindle | scrolling | float | floating | stack | stacking | game-mode |
 #           game_mode | composable
 default = "tile"
+# Default named snap layout for stacking workspaces.
+snap_layout = "work"
 
 # Common geometry applied to every layout. Layout-specific sections below can
 # override any common field for one engine.
-gaps_outer = 8  # pixels around the usable output rectangle; >= 0
-gaps_inner = 4  # pixels between placements; >= 0
-master_ratio = 0.55  # master share used by tile/dwindle/reverse-dwindle; strictly 0 < value < 1
-master_count = 1  # number of windows in tile's master area; >= 1
+gaps_outer = 8 # pixels around the usable output rectangle; >= 0
+gaps_inner = 4 # pixels between placements; >= 0
+master_ratio = 0.55 # master share used by tile/dwindle/reverse-dwindle; strictly 0 < value < 1
+master_count = 1 # number of windows in tile's master area; >= 1
 
 # Border colors use 0xAARRGGBB.
 border_width = 2
-border_focused = 0xFF88C0D0
-border_normal = 0xFF3B4252
-border_urgent = 0xFFBF616A
+border_focused = 0xFF333343
+border_normal = 0xFF1f1f28
+border_urgent = 0xFFc4746e
 
-# Ask SSD-capable clients to use compositor-side decoration. CSD-only clients
-# may continue to draw their own title bars.
+# Force server-side mode for native clients. Aqueous enforces the mode for
+# clients that create an xdg-decoration object and publishes the matching
+# display-wide legacy server-decoration preference used by GTK 3 and GTK 4.
+# Reloading this setting updates both protocols; GTK applies the new preference
+# to newly created windows but does not rebuild existing window chrome.
+# This cannot remove a title bar drawn into the application's own content.
+# Diagnose a remaining title bar with:
+#   aqueousctl windows --json | jq '.[] | {app_id, title, decoration}'
+# `capability: "unavailable"` means there is no per-window xdg-decoration
+# object. A normal GTK window may still follow the legacy display preference;
+# a custom GtkHeaderBar/AdwHeaderBar remains application content.
 force_ssd = false
 
 # Optional when these settings live in wm.toml instead of this sidecar:
@@ -121,7 +132,7 @@ master_count = 1
 [layout.options.monocle]
 # Show only the focused/current window when true. false leaves every monocle
 # participant visible in its full-output stack.
-hide_others = false
+hide_others = true
 # Draw the configured border around the visible window.
 show_borders = false
 
@@ -137,23 +148,29 @@ gaps_inner = 4
 # Fraction assigned to each recursive split, strictly between 0 and 1.
 split_ratio = 0.5
 # First split: vertical = left/right; horizontal = top/bottom.
-start_axis = "vertical"  # vertical | horizontal
+start_axis = "vertical" # vertical | horizontal
 
 [layout.options.reverse-dwindle]
 # Horizontal mirror of dwindle: vertical splits start on the right while
 # horizontal splits still start at the top.
 split_ratio = 0.5
-start_axis = "vertical"  # vertical | horizontal
+start_axis = "vertical" # vertical | horizontal
 
 [layout.options.scrolling]
 # Width of each scrolling column as a fraction of the usable output.
 column_fraction = 0.5
 # Automatically pan to keep the focused column centered.
+# When false, pan only enough to keep it visible, preserving other columns that
+# fit beside it in the viewport.
 center_focused = true
 # Pan to a newly managed window when it extends the column order.
 follow_new_windows = true
+# Insert immediately after the focused column instead of at the far right.
+# When enabled, this takes precedence over portrait stacking.
+open_new_windows_to_right = true
 # Add new windows to a vertical stack when this scrolling instance's local
 # usable rectangle is taller than it is wide. false keeps horizontal placement.
+# Vertically arranged instances also swap the wheel navigation chords.
 prefer_vertical_on_portrait = false
 # Quantize manual viewport movement to whole column steps.
 snap_to_columns = false
@@ -164,9 +181,56 @@ allow_overscroll = true
 focus_follows_mouse_delay_ms = 0
 
 [layout.options.float]
-# Floating has no engine-only keys. Common borders apply; each window otherwise
-# uses remembered, native, or rule-provided geometry.
+# `stack` and `stacking` are aliases for this layout.
+# New-window policy: cascade | center | under-pointer | minimal-overlap.
+placement = "cascade"
+cascade_step = 32
+# Opt-in keyboard actions use these pixel increments.
+move_step = 10
+move_step_coarse = 50
+resize_step = 10
+# Pointer snapping uses half/quarter regions. Reaching the top edge maximizes
+# to the usable area by default; false selects the top half instead.
+snap_gap = 0
+snap_threshold = 24
+resistance = 12
+top_edge_maximize = true
 border_width = 2
+
+# Named zone sets are available only while the workspace uses stacking. The
+# active set is tracked per output; padding is applied after resolving each
+# normalized region against that output's usable area.
+[layout.snap-layout.work]
+name = "Work"
+padding = 8
+
+[layout.snap-layout.work.zone.editor]
+name = "Editor"
+x = 0.0
+y = 0.0
+width = 0.6666667
+height = 1.0
+
+[layout.snap-layout.work.zone.terminal]
+name = "Terminal"
+x = 0.6666667
+y = 0.0
+width = 0.3333333
+height = 1.0
+
+# Legacy normalized regions remain supported for existing a-d bindings when
+# no named snap layout is configured.
+[layout.snap-zone.a]
+x = 0.0
+y = 0.0
+width = 0.6666667
+height = 1.0
+
+[layout.snap-zone.b]
+x = 0.6666667
+y = 0.0
+width = 0.3333333
+height = 1.0
 
 [layout.options.game-mode]
 # Only common geometry/border keys are accepted here. Game Mode's
@@ -202,15 +266,15 @@ gaps_inner = 4
 
 [[workspace]]
 workspace = 1
-layout = "tile"
+layout = "scrolling"
 
 [[workspace]]
 workspace = 2
-layout = "monocle"
+layout = "tile"
 
 [[workspace]]
 workspace = 3
-layout = "scrolling"
+layout = "monocle"
 
 [[workspace]]
 workspace = 4

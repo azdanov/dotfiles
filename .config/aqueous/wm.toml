@@ -30,12 +30,12 @@ fallback_profile = ""
 identify_by = "edid"
 rollback_seconds = 0
 
-# [[output]]
-# name = "eDP-1"
-# mode = "1920x1200@60.003"
-# scale = 1.0
-# position = [0, 0]
-# enabled = false
+[[output]]
+name = "eDP-1"
+mode = "1920x1200@60.003"
+scale = 1.25
+position = [0, 0]
+enabled = true
 
 [[output]]
 name = "DP-1"
@@ -43,7 +43,6 @@ mode = "3440x1440@179.989"
 scale = 1.0
 position = [0, 0]
 enabled = true
-primary = true
 
 # Repeat [[output]] for each monitor. `name` accepts connector-name globs.
 # `edid` may be used instead of name and has the form `sha256:<hex digest>` of
@@ -115,8 +114,11 @@ primary = true
 # path = "~/.config/aqueous/input.toml"
 # focus_follows_mouse = false
 # focus_new_windows = false
+# raise_on_focus = true
+# raise_on_focus_delay_ms = 0
 # pointer_acceleration = false
 # pointer_acceleration_factor = 0.0
+# num_lock_state = true
 # repeat_rate = 40       # characters per second; 0 disables repeat
 # repeat_delay = 400     # milliseconds before repeating begins
 # xkb_layout = "us"
@@ -137,6 +139,11 @@ primary = true
 # swipe_3_right = "builtin:focus_workspace_up"
 # pinch_4_in = "builtin:toggle_start_menu"
 #
+
+# DRM overlay-plane promotion is opt-in and startup-only. It is backend-neutral
+# across AMD and NVIDIA KMS drivers; rules select individual windows below.
+[render]
+overlay_planes = false
 
 # -----------------------------------------------------------------------------
 # Per-workspace layout overrides. Each [[workspace]] block forces one workspace
@@ -159,7 +166,7 @@ primary = true
 
 # Reserve additional fixed space after layer-shell exclusive zones are applied.
 [struts]
-top = 32  # Noctalia bar height; adjust to match your bar
+top = 32 # Bar height; adjust to match your bar
 bottom = 0
 left = 0
 right = 0
@@ -169,23 +176,31 @@ right = 0
 # window and layer-shell content with masks controlled by rules.toml.
 # -----------------------------------------------------------------------------
 [blur]
-enabled = true  # set true to enable compositor backdrop blur
-radius = 10  # blur radius in pixels
-passes = 8  # number of blur passes (higher = blurrier, costlier)
-noise = 0.0  # stable screen-space noise, 0.0–1.0
-contrast = 1.0  # backdrop contrast, 0.0–2.0; 1.0 is neutral
-brightness = 1.0  # backdrop brightness, 0.0–2.0; 1.0 is neutral
-vibrancy = 0.0  # saturation boost, 0.0–1.0
-vibrancy_darkness = 0.0  # vibrancy applied to dark colors, 0.0–1.0
+enabled = true # set true to enable compositor backdrop blur
+radius = 10 # blur radius in pixels
+passes = 8 # number of blur passes (higher = blurrier, costlier)
+noise = 0.0 # stable screen-space noise, 0.0–1.0
+contrast = 1.0 # backdrop contrast, 0.0–2.0; 1.0 is neutral
+brightness = 1.0 # backdrop brightness, 0.0–2.0; 1.0 is neutral
+vibrancy = 0.0 # saturation boost, 0.0–1.0
+vibrancy_darkness = 0.0 # vibrancy applied to dark colors, 0.0–1.0
 
 # Default window-content opacity (requires Aqueous with opacity support).
 # Per-window overrides live in rules.toml as `opacity = 0.85`.
 [opacity]
-enabled = false  # set true to apply opacity to window content
-value = 0.85  # stable opacity when focus_sensitive = false
-focus_sensitive = false  # true = use focused/unfocused below per window focus
-focused = 1.0  # focused-window opacity when focus_sensitive = true
-unfocused = 0.9  # unfocused-window opacity when focus_sensitive = true
+enabled = false # set true to apply opacity to window content
+value = 0.85 # stable opacity when focus_sensitive = false
+focus_sensitive = false # true = use focused/unfocused below per window focus
+focused = 1.0 # focused-window opacity when focus_sensitive = true
+unfocused = 0.9 # unfocused-window opacity when focus_sensitive = true
+
+# Client buffer scaling. `native` advertises the exact fractional output scale
+# and is the default. `integer-ceil` asks fractional-aware clients for the next
+# integer-sized backing buffer while retaining fractional logical geometry;
+# this can sharpen some toolkit text at increased GPU/memory cost. Prefer a
+# per-window `buffer_scale_policy` rule for selective testing.
+[scaling]
+buffer_policy = "native" # native | integer-ceil
 
 # Workspace slide animation. `rate = 0` selects the compiled default rate;
 # larger positive values settle more quickly. Animations can also be compiled
@@ -199,10 +214,10 @@ rate = 0.0
 # This is where you set actions that are attached to a keybind
 # -----------------------------------------------------------------------------
 [actions]
-lock_screen = "noctalia msg session lock"
-screenshot = "noctalia msg screenshot-region"
+lock_screen = "dms ipc call lock lock"
+screenshot = "dms screenshot"
 spawn_terminal = "kitty"
-toggle_start_menu = "noctalia msg panel-toggle launcher"
+toggle_start_menu = "dms ipc call spotlight toggle"
 
 # -----------------------------------------------------------------------------
 # Keybindings.
@@ -223,35 +238,35 @@ toggle_start_menu = "noctalia msg panel-toggle launcher"
 # -----------------------------------------------------------------------------
 [keybinds]
 # --- Window / session ---
-toggle_start_menu = "Super+Space"  # default
-spawn_terminal = "Super+Return"  # default
-screenshot = "Print"  # default; select a region and copy it
-close_focused = "Super+Q"  # default
-toggle_overview = "Super+W"  # default; active-workspace window overview
-cycle_focus = "Super+Tab"  # default
-lock_screen = "Super+Shift+L"  # default
+toggle_start_menu = "Super+Space" # default
+spawn_terminal = "Super+Return" # default
+screenshot = "Print" # default; select a region and copy it
+close_focused = "Super+Q" # default
+toggle_overview = "Super+W" # default; active-workspace window overview
+cycle_focus = "Super+Tab" # default
+lock_screen = "Super+Shift+L" # default
 
 # --- Directional focus (scrolling: left/right columns, up/down column members) ---
-focus_left = "Super+H"  # default
-focus_right = "Super+L"  # default
-focus_up = "Super+K"  # default
-focus_down = "Super+J"  # default
+focus_left = "Super+H" # default
+focus_right = "Super+L" # default
+focus_up = "Super+K" # default
+focus_down = "Super+J" # default
 
 # --- Scrolling-layout viewport, stacking, and column movement ---
-scroll_viewport_left = "Super+Comma"  # legacy alias
-scroll_viewport_right = "Super+Period"  # legacy alias
-scroll_viewport_left_arrow = "Super+Left"  # default
-scroll_viewport_right_arrow = "Super+Right"  # default
-scroll_viewport_up = "Super+Up"  # scroll the focused column without changing focus
-scroll_viewport_down = "Super+Down"  # scroll the focused column without changing focus
-move_column_left = "Super+Shift+H"  # default
-move_column_right = "Super+Shift+L"  # default
-toggle_scrolling_full_width = "Super+Shift+Z"  # expand only the focused column; press again to restore
-consume_window_into_column = "Super+Ctrl+J"  # pull the first window from the right into this column
-expel_window_from_column = "Super+Ctrl+K"  # move the focused stacked window into a new column
+scroll_viewport_left = "Super+Comma" # legacy alias
+scroll_viewport_right = "Super+Period" # legacy alias
+scroll_viewport_left_arrow = "Super+Left" # default
+scroll_viewport_right_arrow = "Super+Right" # default
+scroll_viewport_up = "Super+Up" # scroll the focused column without changing focus
+scroll_viewport_down = "Super+Down" # scroll the focused column without changing focus
+move_column_left = "Super+Shift+H" # default
+move_column_right = "Super+Shift+L" # default
+toggle_scrolling_full_width = "Super+Ctrl+F" # expand only the focused column; press again to restore
+consume_window_into_column = "Super+Ctrl+J" # pull the first window from the right into this column
+expel_window_from_column = "Super+Ctrl+K" # move the focused stacked window into a new column
 
 # --- Opt-in actions (no default chord) ---
-reload_config = "Super+R"  # immediately reload all TOML snapshots
+reload_config = "Super+R" # immediately reload all TOML snapshots
 # reload_rules        = "Super+Shift+R"    # reload only rules.toml
 
 # Per-engine semantics:
@@ -262,17 +277,17 @@ reload_config = "Super+R"  # immediately reload all TOML snapshots
 #                       remainder joins columns like scrolling (anchor immovable)
 #   composable        → delegate to the focused window's configured child;
 #                       cross-region drops exchange region membership
-#   float             → no-op (use rules.toml / future nudge_floating_*)
-move_window_left = "Super+Shift+Left"  # default
-move_window_right = "Super+Shift+Right"  # default
-move_window_up = "Super+Shift+Up"  # default
-move_window_down = "Super+Shift+Down"  # default
+#   float/stacking    → use the nudge/resize/snap actions documented below
+move_window_left = "Super+Shift+Left" # default
+move_window_right = "Super+Shift+Right" # default
+move_window_up = "Super+Shift+Up" # default
+move_window_down = "Super+Shift+Down" # default
 
 # Layout-switch sugar: resolves through [layout.slots] above.
-set_layout_primary = "Super+T"  # → tile
-set_layout_secondary = "Super+F"  # → scrolling
-set_layout_tertiary = "Super+M"  # → monocle
-set_layout_quaternary = "Super+G"  # → grid
+set_layout_primary = "Super+T" # → tile
+set_layout_secondary = "Super+F" # → scrolling
+set_layout_tertiary = "Super+M" # → monocle
+set_layout_quaternary = "Super+G" # → grid
 
 # --- Workspaces (ext-workspace-v1) ---
 # Workspaces are exclusive: a window lives on exactly one workspace and exactly
@@ -302,17 +317,19 @@ move_to_workspace_8 = "Super+Shift+8"
 move_to_workspace_9 = "Super+Shift+9"
 
 # Directional switching / moving + back-and-forth.
-focus_workspace_up = "Super+Bracketleft"  # previous workspace in the list
-focus_workspace_down = "Super+Bracketright"  # next workspace in the list
-focus_previous_workspace = "Super+BackSpace"  # back-and-forth
+focus_workspace_up = "Super+Bracketleft" # previous workspace in the list
+focus_workspace_down = "Super+Bracketright" # next workspace in the list
+focus_previous_workspace = "Super+BackSpace" # back-and-forth
 move_to_workspace_up = "Super+Shift+Bracketleft"
 move_to_workspace_down = "Super+Shift+Bracketright"
 
-# Per-output focus / move (relative to the focused output, no wrap).
+# Per-output focus / move (relative to the selected output, no wrap).
+# Also moves the pointer to the destination output's center, even when empty.
 focus_output_left = "Super+Ctrl+Comma"
 focus_output_right = "Super+Ctrl+Period"
 move_to_output_left = "Super+Shift+Comma"
 move_to_output_right = "Super+Shift+Period"
+rotate_output_clockwise  = "Super+Ctrl+R"       # rotate the output beneath the mouse by 90°
 # The following chords are FREE in the exclusive workspace model. Bind them to
 # anything you like, e.g. under [keybinds.custom]:
 #   Super+0, Super+Shift+0
@@ -324,16 +341,33 @@ move_to_output_right = "Super+Shift+Period"
 # state so a second press round-trips. Only ONE
 # fullscreen window per output is allowed (toggling another auto-restores
 # the prior). Minimized windows are excluded from layout + focus cycle.
-toggle_fullscreen = "Super+Shift+F"  # default
-toggle_maximize = "Super+Shift+M"  # default
-toggle_floating = "Super+Shift+Space"  # default
-toggle_minimize = "Super+N"  # default — hide from layout
-unminimize_last = "Super+Shift+N"  # default — restore most-recent minimized
+toggle_fullscreen = "Super+Shift+F" # default
+toggle_maximize = "Super+Shift+M" # default
+toggle_floating = "Super+Shift+Space" # default
+toggle_minimize = "Super+N" # default — hide from layout
+unminimize_last = "Super+Shift+N" # default — restore most-recent minimized
+
+# Stacking/freeform actions are opt-in so existing chords remain unchanged:
+# raise_window = "Super+PageUp"
+# lower_window = "Super+PageDown"
+# toggle_always_above = "Super+Shift+A"
+# toggle_always_below = "Super+Shift+B"
+# nudge_floating_left/right/up/down
+# nudge_floating_coarse_left/right/up/down
+# resize_floating_left/right/up/down and shrink_floating_left/right/up/down
+# snap_left/right/up/down, snap_up_left/up_right/down_left/down_right, unsnap
+# toggle_maximize_horizontal, toggle_maximize_vertical
+# fit_floating_to_output, move_floating_to_edge_<direction>,
+# grow_floating_to_edge_<direction>
+# Named stacking zones use `builtin:snap_zone:<layout>/<zone>`,
+# `builtin:set_snap_layout:<layout>`, `builtin:cycle_snap_layout`, and
+# `builtin:cycle_snap_layout_reverse`. Legacy `builtin:snap_zone:a` and
+# `builtin:cycle_snap_zone` remain available.
 
 # --- Pointer ---
 # Hold-to-untrap: while this chord is held down any active pointer constraint
 # (mouse "trap" from games etc.) is released; on release the trap re-engages.
-untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
+untrap_pointer = "Super+grave" # default; reserved for pointer untrap
 
 # Examples of the array form and explicit unbind:
 #   cycle_focus = ["Super+Tab", "Alt+Tab"]
@@ -346,8 +380,10 @@ untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
 #
 # Action verbs:
 #   spawn:<command>         — run through /bin/sh -c as a detached child
+#   launch:<profile>        — launch a typed [[application]] profile directly,
+#                             without shell parsing
 #   set_layout:<id-or-slot> — switch layout; IDs are tile, monocle, grid, rows,
-#                             dwindle, reverse-dwindle, scrolling, float/floating, game-mode,
+#                             dwindle, reverse-dwindle, scrolling, float/floating/stack/stacking, game-mode,
 #                             composable;
 #                             slots are primary..quaternary
 #   builtin:<action_name>   — invoke any canonical [keybinds] action name
@@ -357,18 +393,18 @@ untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
 # -----------------------------------------------------------------------------
 [keybinds.custom]
 "Super+E" = "spawn:nemo"
-"Super+Shift+S" = "builtin:screenshot"
+"Ctrl+Print" = "spawn:dms screenshot full"
 "Super+B" = "spawn:zen-browser"
-"Super+V" = "spawn:noctalia msg panel-toggle clipboard"
-"XF86AudioRaiseVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-"XF86AudioLowerVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-"XF86AudioMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-"XF86AudioMicMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-"XF86MonBrightnessUp" = "spawn:brightnessctl set +5%"
-"XF86MonBrightnessDown" = "spawn:brightnessctl set 5%-"
-"XF86AudioPlay" = "spawn:playerctl play-pause"
-"XF86AudioNext" = "spawn:playerctl next"
-"XF86AudioPrev" = "spawn:playerctl previous"
+"Super+V" = "spawn:dms ipc call clipboard toggle"
+"XF86AudioRaiseVolume" = "spawn:dms ipc call audio increment 5"
+"XF86AudioLowerVolume" = "spawn:dms ipc call audio decrement 5"
+"XF86AudioMute" = "spawn:dms ipc call audio mute"
+"XF86AudioMicMute" = "spawn:dms ipc call mic mute"
+"XF86MonBrightnessUp" = "spawn:dms ipc call brightness increment 5 backlight:amdgpu_bl1"
+"XF86MonBrightnessDown" = "spawn:dms ipc call brightness decrement 5 backlight:amdgpu_bl1"
+"XF86AudioPlay" = "spawn:dms ipc call mpris playPause"
+"XF86AudioNext" = "spawn:dms ipc call mpris next"
+"XF86AudioPrev" = "spawn:dms ipc call mpris previous"
 
 # Direct layout switches (bypassing slots).
 # NOTE: Super+1..9 are reserved by the workspace bindings above (focus_workspace_1..9).
@@ -389,6 +425,23 @@ untrap_pointer = "Super+grave"  # default; reserved for pointer untrap
 
 # Re-route a built-in onto an extra chord:
 "Alt+F4" = "builtin:close_focused"
+
+# -----------------------------------------------------------------------------
+# Shell-free application launch profiles
+# -----------------------------------------------------------------------------
+# Use these for application-specific Wayland/decorations flags. `command` must
+# be an absolute executable path. `args` and `env` are passed as distinct argv
+# and environment entries, so shell quoting and expansion do not apply.
+# `desktop_id` is optional metadata for matching a desktop launcher override.
+# Bind a profile with, for example:
+#   "Super+Shift+V" = "launch:vesktop-ssd"
+#
+# [[application]]
+# name = "vesktop-ssd"
+# desktop_id = "vesktop.desktop"
+# command = "/usr/bin/vesktop"
+# args = ["--enable-features=WaylandWindowDecorations"]
+# env = { ELECTRON_OZONE_PLATFORM_HINT = "auto" }
 
 # -----------------------------------------------------------------------------
 # Managed startup/reload commands
