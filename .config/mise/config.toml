@@ -4,7 +4,6 @@
 "aqua:gradle/gradle" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:prettier" = "latest"
-"npm:pnpm" = "latest"
 bun = "latest"
 go = "latest"
 node = "lts"
@@ -17,6 +16,13 @@ kotlin = { version = "latest", asset_pattern = "kotlin-compiler-*.zip", bin_path
 k6 = "latest"
 shellcheck = "latest"
 shfmt = "latest"
+"npm:@qwen-code/qwen-code" = "latest"
+mongosh = "latest"
+aws = { version = "latest", symlink_bins = "true" }
+tflint = "latest"
+pnpm = "latest"
+"npm:json-sort-cli" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
+auto_update = true
