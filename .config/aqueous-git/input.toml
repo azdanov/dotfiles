@@ -1,0 +1,139 @@
+# =============================================================================
+# Aqueous input configuration reference
+# Copy to: ~/.config/aqueous/input.toml
+# =============================================================================
+#
+# Discovery order (first path wins):
+#   1. $AQUEOUS_INPUT (~ is expanded)
+#   2. [input].path from wm.toml
+#   3. $XDG_CONFIG_HOME/aqueous/input.toml
+#   4. ~/.config/aqueous/input.toml
+#   5. /etc/xdg/aqueous/input.toml
+#
+# This file overlays [input] settings from wm.toml and is hot-reloaded. Device
+# options are nullable overrides: omit a key to retain the libinput default.
+# The legacy pointer scalar settings below are best defined in only one file:
+# their default values cannot clear non-default values inherited from wm.toml.
+# Keyboard repeat and Num Lock track explicit presence and can override any wm.toml
+# value, including by restoring the documented defaults.
+
+# Gesture bindings may live here or in wm.toml. When the same gesture appears
+# in both files, the binding in this input sidecar takes precedence.
+[gestures]
+swipe_3_left = "builtin:focus_workspace_down"
+swipe_3_right = "builtin:focus_workspace_up"
+pinch_4_in = "builtin:toggle_start_menu"
+
+[input]
+# Focus a window when the pointer enters it.
+focus_follows_mouse = false
+# Move into newly focused windows, including keyboard and wheel bindings.
+# Hover and click focus do not move the pointer.
+# Output navigation still moves the pointer when this is disabled.
+mouse_follows_focus = false
+focus_new_windows = true
+# Focus and raising are independent. A nonzero delay is especially useful with
+# focus_follows_mouse, where briefly crossing a window should not restack it.
+raise_on_focus = true
+raise_on_focus_delay_ms = 0
+
+# Legacy global mouse acceleration controls. Per-device accel_profile and
+# accel_speed below take precedence. pointer_acceleration=true selects the
+# adaptive profile for non-touchpad pointer devices; false selects flat.
+pointer_acceleration = false
+pointer_acceleration_factor = 0.0 # libinput speed, -1.0 through 1.0
+
+# XKB rule names. Empty/omitted values use xkbcommon/XKB_DEFAULT_* defaults.
+xkb_layout = "us" # comma-separated layouts are accepted, e.g. "us,de"
+xkb_variant = "" # e.g. "dvorak"
+xkb_options = "caps:escape" # e.g. "caps:escape,grp:alt_shift_toggle"
+
+# Keyboard repeat. A rate of 0 disables repeat; delay is milliseconds before
+# repeating begins. Changes apply to connected and subsequently added keyboards.
+repeat_rate = 45
+repeat_delay = 270
+
+# Initial Num Lock state for physical keyboards (default: false). An explicit
+# true or false overrides wm.toml. Changes also apply to connected keyboards
+# on reload; leaving the configured value unchanged preserves manual toggles.
+# num_lock_state = true
+
+# Optional when selecting this sidecar from wm.toml:
+# path = "~/.config/aqueous/input.toml"
+
+# -----------------------------------------------------------------------------
+# Mouse / other non-touchpad pointer devices
+# -----------------------------------------------------------------------------
+[input.mouse]
+accel_profile = "flat" # flat | adaptive
+accel_speed = 0.67 # -1.0 through 1.0
+natural_scroll = false
+left_handed = false
+middle_emulation = false
+dwt = false # disable-while-typing, when supported by the device
+
+# tap, click_method, and scroll_method are accepted by the parser in every
+# device section but are only applied to devices detected as touchpads.
+# tap = false
+# click_method = "button-areas" # clickfinger | button-areas
+# scroll_method = "no-scroll"   # two-finger | edge | no-scroll
+
+# -----------------------------------------------------------------------------
+# Touchpads
+# -----------------------------------------------------------------------------
+[input.touchpad]
+accel_profile = "adaptive" # flat | adaptive
+accel_speed = 0.0 # -1.0 through 1.0
+natural_scroll = true
+tap = true
+dwt = true
+left_handed = false
+middle_emulation = false
+click_method = "clickfinger" # clickfinger | button-areas
+scroll_method = "two-finger" # two-finger | edge | no-scroll
+
+# -----------------------------------------------------------------------------
+# Trackpoints
+# -----------------------------------------------------------------------------
+# These keys are accepted and retained by the configuration parser. The current
+# libinput application path classifies non-touchpad pointer devices as mice, so
+# [input.mouse] is presently the effective policy for trackpoints as well.
+[input.trackpoint]
+accel_profile = "adaptive"
+accel_speed = 0.0
+natural_scroll = false
+tap = false
+dwt = false
+left_handed = false
+middle_emulation = false
+click_method = "button-areas"
+scroll_method = "no-scroll"
+
+# -----------------------------------------------------------------------------
+# Tablets: generate exact identities using aqueousctl in the running session.
+# -----------------------------------------------------------------------------
+# aqueousctl input devices --json
+# aqueousctl input generate-config --device DEVICE_ID --id kamvas-pen --output OUTPUT
+# Add --write ~/.config/aqueous/input.toml to update this file atomically.
+# For a Kamvas, select its display. For an Intuos, select your drawing monitor.
+# Replace placeholders before uncommenting; device names match exactly.
+# [[input.tablet]]
+# id = "kamvas-pen"
+# match_name = "<reported pen device name>"
+# output = "<display connector>"
+#
+# A second independently mapped tablet:
+# [[input.tablet]]
+# id = "intuos-pen"
+# match_name = "<reported Intuos pen device name>"
+# output = "<drawing monitor connector>"
+#
+# Optional AND selectors: match_vendor = 0x056a, match_product = 0x033b,
+# match_path = "<udev ID_PATH>". Require name, path, or BOTH vendor/product IDs.
+# output_edid = "sha256:<64 hex digits>" may replace output (never use both).
+# For full-desktop mapping omit output/output_edid and set mapping = "desktop".
+# To disable pen delivery omit mapping/output/output_edid and set enabled = false.
+# Last matching rule wins. Sidecar rules completely replace wm.toml rules by id.
+# Configured missing/disabled/ambiguous outputs suspend pen input until restored.
+# Valid remaps take effect after proximity-out. Invalid reloads retain prior rules.
+# See docs/tablet-configuration.md for the full contract and diagnostics.

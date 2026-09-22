@@ -1,0 +1,407 @@
+# =============================================================================
+# Aqueous window-rules configuration reference
+# Copy to: ~/.config/aqueous/rules.toml
+# =============================================================================
+#
+# Discovery order (first path wins):
+#   1. $AQUEOUS_RULES (~ is expanded)
+#   2. [rules].path from wm.toml
+#   3. $XDG_CONFIG_HOME/aqueous/rules.toml
+#   4. ~/.config/aqueous/rules.toml
+#
+# Rules are hot-reloaded with the rest of the configuration. The unbound
+# builtin action `reload_rules` can also reload only this file.
+
+# -----------------------------------------------------------------------------
+# Game Mode policy
+# -----------------------------------------------------------------------------
+[game_mode]
+# Layout used for non-anchor companion windows. Each surviving side column gets
+# an independent instance of this layout.
+remainder_layout = "grid" # tile | monocle | grid | rows | dwindle | reverse-dwindle | scrolling | float
+# Layout used on an output/workspace where Game Mode has no matching anchor.
+fallback_layout = "grid" # same accepted values as remainder_layout
+# Gap between the anchor and companion columns.
+gaps_inner = 8 # integer >= 0
+
+# [layout.options.game-mode] is not a substitute for this section: only common
+# layout geometry/border keys are accepted there.
+
+# -----------------------------------------------------------------------------
+# Rule fields
+# -----------------------------------------------------------------------------
+# To open an application with the Super+Shift+Z scrolling preset enabled:
+# [[window]]
+# app_id = "firefox"
+# scrolling_full_width = true
+# This field preserves the current layout when layout is omitted. False starts
+# with the preset disabled; unset leaves it alone. Manual toggles, horizontal
+# resizing, and size reset override it until a different matcher becomes active.
+#
+# To use a custom base width instead of the global scrolling column fraction:
+# [[window]]
+# app_id = "firefox"
+# scrolling_width = 0.65 # 65%; finite number greater than 0 and at most 1
+# This scales the complete tile width (including borders) within the local
+# viewport after reserved areas and outer gaps. Height is unchanged. It also
+# works in composable regions and game-mode scrolling remainders/fallbacks.
+# Full width temporarily takes priority; toggling it off reveals the base.
+# Stacked members share a stable width owner. Horizontal resizing overrides all
+# current members' fractions; size reset returns to the global column fraction.
+# Vertical resizing preserves the fraction. Reloads update rule-owned widths;
+# manual overrides survive until a different matcher becomes active. Add this
+# field to the first matching rule rather than a later duplicate.
+#
+# Rules use first-match-wins order. At least one matcher is required; a block
+# without app_id, class, title, or content_type is silently discarded. Every
+# matcher present in a block must match. app_id is used by native Wayland
+# clients, class is useful for XWayland clients, and title matches the current
+# window title. Matchers support `*` and `?` globs.
+#
+# Accepted fields inside [[window]]:
+#
+# Matchers:
+#   app_id, class, title
+#   content_type    none | photo | video | game; matches the wp_content_type_v1
+#                   state committed by the client. Rules with this matcher only
+#                   apply blur, opacity, hdr_expand, buffer_scale_policy, and
+#                   overlay_plane -
+#                   layout and placement edits are ignored because the content
+#                   type commonly arrives long after map and must never move an
+#                   arranged window.
+#
+# Layout/state:
+#   layout          tile | monocle | grid | rows | dwindle | reverse-dwindle |
+#                   reverse_dwindle | scrolling | float | floating | stack | stacking |
+#                   game-mode | game_mode | composable
+#                   omitted: preserve the workspace layout; Game Mode requires
+#                   an explicit layout = "game-mode"
+#   output          exact enabled connector name from `aqueousctl outputs`;
+#                   without workspace, uses that output's active workspace
+#   workspace       1-based workspace number; without output, uses the normal
+#                   admission output
+#   floating        true/false; enables floating placement independently of
+#                   layout (layout="float" also sets floating=true)
+#   fullscreen      true/false
+#   scrolling_width finite fraction in (0, 1], e.g. 0.65 for 65% width
+#   ignore_struts   true/false; use the full output instead of panel struts
+#   stack_layer     below | normal | above
+#   focus           true/false; false excludes the window from focus actions
+#   fixed_position  true/false; reject pointer and keyboard geometry changes
+#   skip_switcher   true/false; omit from MRU cycling and overview
+#   skip_taskbar    true/false; exported through window-info state
+#
+# Floating placement:
+#   width, height   positive pixel sizes; 0/invalid means automatic
+#   x, y            offsets from the usable area's origin; 0 means centered
+#   placement_policy cascade | center | under-pointer | minimal-overlap
+#
+# Game Mode placement:
+#   anchor          center | top | bottom | left | right
+#   size            native, pixels ("2560x1080"), or output fractions
+#                   ("0.7x0.8", each component > 0 and <= 1)
+#   scale           positive multiplier applied to the resolved anchor size
+#
+# Visuals:
+#   blur            true/false per-window preference; false is useful for
+#                   games/video.
+#   opacity         0.0 through 1.0
+#   buffer_scale_policy
+#                   native | integer-ceil; integer-ceil requests a larger
+#                   integer-scale client buffer while preserving fractional
+#                   logical geometry. It is opt-in and costs GPU/memory.
+#   hdr_expand      true/false; expand SDR highlights toward the HDR peak on
+#                   auto_hdr outputs. Unset follows the default (fullscreen
+#                   windows and game content).
+#   overlay_plane   off | prefer; request zero-copy DRM overlay promotion when
+#                   [render].overlay_planes is enabled. Aqueous tests one
+#                   deterministic candidate per output and composes on rejection.
+#
+# Stateful rule properties have lifecycle ownership. A manual workspace/output
+# move, fullscreen toggle, or floating toggle overrides that property until a
+# new matcher becomes active; the rule is not blindly enforced every manage
+# cycle. A missing or disabled output falls back to normal admission placement
+# and does not move the established window if that output appears later.
+
+# -----------------------------------------------------------------------------
+# Complete Game Mode example
+# -----------------------------------------------------------------------------
+# [[window]]
+# app_id = "steam_app_*"
+# title = "*"
+# layout     = "game-mode"
+# output = "DP-2"
+# workspace = 9
+# anchor     = "center"
+# size = "0.70x0.80"
+# scale = 1.0
+# fullscreen = false
+# ignore_struts = false
+# blur = false
+# opacity = 1.0
+
+# -----------------------------------------------------------------------------
+# Complete floating placement example
+# -----------------------------------------------------------------------------
+# [[window]]
+# app_id = "org.example.Dialog"
+# class = "ExampleDialog"
+# title = "Preferences*"
+# layout = "float"
+# floating = true
+# workspace = 2
+# width = 900
+# height = 640
+# x = 120
+# y = 80
+# fullscreen = false
+# ignore_struts = false
+# blur = true
+# opacity = 0.95
+# buffer_scale_policy = "integer-ceil"
+
+# -----------------------------------------------------------------------------
+# Content-type example
+# -----------------------------------------------------------------------------
+# Clients such as Steam commit wp_content_type_v1 once a window is a game.
+# Content-type rules are visual-only, so they are safe to place ahead of
+# broader rules: they never move a window when the tag arrives late.
+#
+# [[window]]
+# content_type = "game"
+# blur = false
+# opacity = 1.0
+# hdr_expand = true
+# overlay_plane = "prefer"
+
+# -----------------------------------------------------------------------------
+# Layer-shell blur examples
+# -----------------------------------------------------------------------------
+# Layer rules match the namespace advertised by panels, launchers, notification
+# surfaces, and other layer-shell clients. blur covers the main surface;
+# blur_popups also covers its XDG popups and nested popups. Global blur must be
+# enabled in wm.toml, and blur_popups only takes effect when blur is also true.
+#
+# Run `aqueousctl scene` to discover a mapped surface's namespace.
+#
+# Blur a panel and its menus/popups:
+# [[layer]]
+# namespace = "waybar"
+# blur = true
+# blur_popups = true
+#
+# Blur only the main surface, leaving its popups unblurred:
+# [[layer]]
+# namespace = "launcher"
+# blur = true
+# blur_popups = false
+#
+# Namespace matchers support `*` and `?` globs:
+# [[layer]]
+# namespace = "notifications-*"
+# blur = true
+# blur_popups = true
+#
+# Explicitly keep a matching layer surface and its popups unblurred:
+# [[layer]]
+# namespace = "screen-locker"
+# blur = false
+# blur_popups = false
+#
+# Layer rules are first-match-wins. Put exact exceptions before broader glob
+# rules when their namespace patterns overlap.
+
+# -----------------------------------------------------------------------------
+# Other valid size forms
+# -----------------------------------------------------------------------------
+# [[window]]
+# app_id = "cs2"
+# layout = "game-mode"
+# anchor = "left"
+# size = "2560x1080"
+# scale = 1.0
+#
+# [[window]]
+# app_id = "dota2"
+# layout     = "game-mode"
+# anchor     = "center"
+# size       = "native"
+# scale = 1.0
+
+# Migration: older versions defaulted most rules with no layout to Game Mode.
+# Add layout = "game-mode" to game rules that relied on that default.
+# Visual-only and placement-only rules can omit layout to preserve the workspace layout.
+
+# Native Wayland apps may identify a window's untranslated purpose with a tag.
+# Use aqueousctl inspect --rule to discover and quote tags correctly.
+# [[window]]
+# app_id = "org.example.Editor"
+# tag = "settings"
+# floating = true
+
+# XWayland notification/menu rules (explicitly unmanaged scope).
+# Discover the actual class/title/types with `aqueousctl windows --json` or
+# generate a starting rule with `aqueousctl inspect --rule`. This is an example;
+# Steam versions may use different class/title/type values.
+# [[window]]
+# scope = "override_redirect"
+# class = "Steam*"
+# window_type = "notification"
+# opacity = 1.0
+# focus = false
+# output = "DP-1"
+# x = 24
+# y = 24
+#
+# scope defaults to "managed". Override-redirect rules support only scope,
+# class, title, window_type, opacity, focus=false, output, x and y. At least
+# one of class/title/window_type is required. All present matchers must match;
+# the first matching rule in the same scope wins. window_type matches any
+# advertised EWMH type (notification, popup_menu, dropdown_menu, tooltip,
+# normal, dialog, menu, utility, splash, toolbar, dock, desktop, combo, dnd).
+# Unsupported properties and focus=true reject the reload; the old rules stay.
+# x/y are logical offsets from the output's full origin; zero is explicit.
+# Without output, use the popup's normal projection. Without an axis, preserve
+# its client-requested offset. An unavailable output leaves placement at the
+# client request until that output becomes available. Coordinates outside the
+# X11 signed 16-bit range after projection also leave client placement intact.
+# Removing a rule restores the latest client-requested position, inherited
+# owner/default opacity, and normal focus eligibility (without stealing focus).
+
+# [[window]]
+# app_id = "code"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# app_id = "com.shellyorg.shelly"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# class = "jetbrains-toolbox"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# app_id = "com.danklinux.dms"
+# buffer_scale_policy = "integer-ceil"
+# scrolling_width = 1
+#
+# [[window]]
+# app_id = "helium"
+# buffer_scale_policy = "integer-ceil"
+# scrolling_width = 1
+#
+# [[window]]
+# app_id = "chromium"
+# buffer_scale_policy = "integer-ceil"
+# scrolling_width = 1
+#
+# [[window]]
+# app_id = "google-chrome"
+# buffer_scale_policy = "integer-ceil"
+# scrolling_width = 1
+#
+# [[window]]
+# app_id = "zen"
+# scrolling_width = 1
+#
+# [[window]]
+# app_id = "org.gnome.FileRoller"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# app_id = "org.aqueous.Phyto.Git"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# # app_id = "org.aqueous.Pearl.Git.Settings"
+# title = "Pearl Settings"
+# buffer_scale_policy = "integer-ceil"
+#
+# [[window]]
+# app_id = "com.mitchellh.ghostty"
+# buffer_scale_policy = "integer-ceil"
+
+# -----------------------------------------------------------------------------
+# Common dialogs set to float in center of screen
+# -----------------------------------------------------------------------------
+[[window]]
+title = "Open File*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Authentication"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Open Folder*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Select*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Choose a wallpaper*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Choose Where to Download*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Save As*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Library*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "File Operation Progress*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Rename*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Copy Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Move Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Search Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Wizard*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+app_id = "opensnitch_ui"
+title = "OpenSnitch v*"
+floating = true
+placement_policy = "center"
+stack_layer = "above"
+
+[[window]]
+title = "Extension: (Bitwarden Password Manager)*"
+floating = true
+placement_policy = "center"
