@@ -4,6 +4,6 @@ family = "Adwaita Sans"
 style = ""
 
 [desktop.cursor]
-size = 20
+size = 22
 managed = true
 theme = "Adwaita"

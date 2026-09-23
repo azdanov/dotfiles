@@ -197,6 +197,32 @@ resistance = 12
 top_edge_maximize = true
 border_width = 2
 
+# -----------------------------------------------------------------------------
+# Output layout selection
+# -----------------------------------------------------------------------------
+# Optional. These blocks select a default layout for matching outputs; display
+# mode/scale/position fields belong in wm.toml. Matching priority is connector
+# name, then EDID, then make/model/serial metadata.
+#
+# [[output]]
+# name   = "DP-1"
+# layout = "scrolling"
+#
+# [[output]]
+# edid   = "edid-identifier"
+# make   = "Example Vendor"
+# model  = "Example Display"
+# serial = "1234"
+# layout = "grid"
+
+# -----------------------------------------------------------------------------
+# Workspace layout selection
+# -----------------------------------------------------------------------------
+# workspace is 1-based. Omit output for a global workspace override, or set an
+# output connector name for a more specific output/workspace mapping.
+# Resolution order is runtime selection, output+workspace, workspace-only,
+# output default, then [layout].default.
+
 [layout.options.game-mode]
 # Only common geometry/border keys are accepted here. Game Mode's
 # remainder_layout, fallback_layout, and gaps_inner policy lives in the
@@ -263,38 +289,6 @@ x = 0.6666667
 y = 0.0
 width = 0.3333333
 height = 1.0
-
-[layout.options.game-mode]
-# Only common geometry/border keys are accepted here. Game Mode's
-# remainder_layout, fallback_layout, and gaps_inner policy lives in the
-# [game_mode] section of rules.toml.
-gaps_inner = 4
-
-# -----------------------------------------------------------------------------
-# Output layout selection
-# -----------------------------------------------------------------------------
-# Optional. These blocks select a default layout for matching outputs; display
-# mode/scale/position fields belong in wm.toml. Matching priority is connector
-# name, then EDID, then make/model/serial metadata.
-#
-# [[output]]
-# name   = "DP-1"
-# layout = "scrolling"
-#
-# [[output]]
-# edid   = "edid-identifier"
-# make   = "Example Vendor"
-# model  = "Example Display"
-# serial = "1234"
-# layout = "grid"
-
-# -----------------------------------------------------------------------------
-# Workspace layout selection
-# -----------------------------------------------------------------------------
-# workspace is 1-based. Omit output for a global workspace override, or set an
-# output connector name for a more specific output/workspace mapping.
-# Resolution order is runtime selection, output+workspace, workspace-only,
-# output default, then [layout].default.
 
 [[workspace]]
 workspace = 1
