@@ -2,27 +2,31 @@
 "aqua:apache/maven" = "latest"
 "aqua:ast-grep/ast-grep" = "latest"
 "aqua:gradle/gradle" = "latest"
+"github:google/google-java-format" = "latest"
+"npm:@qwen-code/qwen-code" = "latest"
+"npm:json-sort-cli" = "latest"
 "npm:npm-check-updates" = "latest"
 "npm:prettier" = "latest"
+aws = { version = "latest", symlink_bins = "true" }
 bun = "latest"
 go = "latest"
-node = "lts"
-usage = "latest"
-uv = "latest"
 java = "lts"
-"github:google/google-java-format" = "latest"
-tree-sitter = "latest"
-kotlin = { version = "latest", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
 k6 = "latest"
+kotlin = { version = "latest", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
+mongosh = "latest"
+node = "lts"
+pnpm = "latest"
 shellcheck = "latest"
 shfmt = "latest"
-"npm:@qwen-code/qwen-code" = "latest"
-mongosh = "latest"
-aws = { version = "latest", symlink_bins = "true" }
 tflint = "latest"
-pnpm = "latest"
-"npm:json-sort-cli" = "latest"
+tree-sitter = "latest"
+usage = "latest"
+uv = "latest"
+terraform = "latest"
+ruff = "latest"
+ty = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
 auto_update = true
+minimum_release_age_excludes = ["npm:@qwen-code/qwen-code"]
