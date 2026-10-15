@@ -1,46 +1,72 @@
 [
   {
-    "context": "Editor",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-s": "workspace::Save"
-    }
+    },
+    "context": "Editor"
   },
   {
-    "context": "Editor && vim_mode == normal",
     "bindings": {
-      "ctrl-up": "vim::ResizePaneUp",
-      "ctrl-down": "vim::ResizePaneDown",
-      "ctrl-left": "vim::ResizePaneLeft",
-      "ctrl-right": "vim::ResizePaneRight",
-      "ctrl-q": "zed::Quit",
-      "ctrl-f5": "debugger::Restart",
-      "f9": "editor::ToggleBreakpoint",
-      "shift-f9": "editor::EditLogBreakpoint",
-      "f10": "debugger::StepOver",
-      "f11": "debugger::StepInto",
-      "shift-f11": "debugger::StepOut",
+      "< b": "pane::SwapItemLeft",
+      "> b": "pane::SwapItemRight",
       "H": "pane::ActivatePreviousItem",
       "K": "editor::Hover",
       "L": "pane::ActivateNextItem",
       "[ b": "pane::ActivatePreviousItem",
-      "] b": "pane::ActivateNextItem",
       "[ d": "editor::GoToPreviousDiagnostic",
-      "] d": "editor::GoToDiagnostic",
-      "[ e": ["editor::GoToPreviousDiagnostic", { "severity": { "min": "error", "max": "error" } }],
-      "] e": ["editor::GoToDiagnostic", { "severity": { "min": "error", "max": "error" } }],
+      "[ e": [
+        "editor::GoToPreviousDiagnostic",
+        {
+          "severity": {
+            "max": "error",
+            "min": "error"
+          }
+        }
+      ],
       "[ w": [
         "editor::GoToPreviousDiagnostic",
-        { "severity": { "min": "warning", "max": "warning" } }
+        {
+          "severity": {
+            "max": "warning",
+            "min": "warning"
+          }
+        }
       ],
-      "] w": ["editor::GoToDiagnostic", { "severity": { "min": "warning", "max": "warning" } }],
-      "< b": "pane::SwapItemLeft",
-      "> b": "pane::SwapItemRight",
       "\\": "pane::SplitDown",
-      "|": "pane::SplitRight",
+      "] b": "pane::ActivateNextItem",
+      "] d": "editor::GoToDiagnostic",
+      "] e": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "max": "error",
+            "min": "error"
+          }
+        }
+      ],
+      "] w": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "max": "warning",
+            "min": "warning"
+          }
+        }
+      ],
+      "ctrl-'": "workspace::NewTerminal",
+      "ctrl-down": "vim::ResizePaneDown",
+      "ctrl-f5": "debugger::Restart",
+      "ctrl-left": "vim::ResizePaneLeft",
+      "ctrl-q": "zed::Quit",
+      "ctrl-right": "vim::ResizePaneRight",
+      "ctrl-up": "vim::ResizePaneUp",
+      "f10": "debugger::StepOver",
+      "f11": "debugger::StepInto",
+      "f9": "editor::ToggleBreakpoint",
       "g D": "editor::GoToDeclaration",
       "g I": "editor::GoToImplementation",
       "g K": "editor::ShowSignatureHelp",
@@ -54,10 +80,12 @@
       "g r n": "editor::Rename",
       "g r r": "editor::FindAllReferences",
       "g y": "editor::GoToTypeDefinition",
+      "shift-f11": "debugger::StepOut",
+      "shift-f9": "editor::EditLogBreakpoint",
       "space /": "vim::ToggleComments",
+      "space b C": "pane::CloseAllItems",
       "space b [": "pane::ActivatePreviousItem",
       "space b ]": "pane::ActivateNextItem",
-      "space b C": "pane::CloseAllItems",
       "space b b": "tab_switcher::ToggleAll",
       "space b c": "pane::CloseOtherItems",
       "space b d": "pane::CloseActiveItem",
@@ -69,8 +97,16 @@
       "space c a": "editor::ToggleCodeActions",
       "space c f": "editor::Format",
       "space c r": "editor::Rename",
+      "space d O": "debugger::StepOut",
+      "space d b": "editor::ToggleBreakpoint",
+      "space d c": "debugger::Start",
+      "space d i": "debugger::StepInto",
+      "space d o": "debugger::StepOver",
+      "space d p": "debugger::Pause",
+      "space d q": "debugger::Stop",
+      "space d r": "debugger::Restart",
+      "space d u": "debug_panel::ToggleFocus",
       "space e": "project_panel::ToggleFocus",
-      "space o": "project_panel::ToggleFocus",
       "space f C": "command_palette::Toggle",
       "space f b": "tab_switcher::ToggleAll",
       "space f f": "file_finder::Toggle",
@@ -96,106 +132,105 @@
       "space l s": "outline::Toggle",
       "space l w": "diagnostics::Deploy",
       "space n": "workspace::NewFile",
+      "space o": "project_panel::ToggleFocus",
       "space q q": "zed::Quit",
       "space s d": "diagnostics::Deploy",
       "space s g": "workspace::NewSearch",
       "space s w": "buffer_search::Deploy",
       "space space": "file_finder::Toggle",
-      "space d b": "editor::ToggleBreakpoint",
-      "space d c": "debugger::Start",
-      "space d i": "debugger::StepInto",
-      "space d O": "debugger::StepOut",
-      "space d o": "debugger::StepOver",
-      "space d p": "debugger::Pause",
-      "space d q": "debugger::Stop",
-      "space d r": "debugger::Restart",
-      "space d u": "debug_panel::ToggleFocus",
-      "ctrl-'": "workspace::NewTerminal",
       "space t f": "workspace::NewTerminal",
       "space t h": "workspace::NewTerminal",
       "space t t": "terminal_panel::Toggle",
       "space t v": "workspace::NewTerminal",
       "space u D": "workspace::ClearAllNotifications",
+      "space u Z": "workspace::ToggleZoom",
       "space u h": "editor::ToggleInlayHints",
       "space u n": "editor::ToggleLineNumbers",
       "space u w": "editor::ToggleSoftWrap",
-      "space u Z": "workspace::ToggleZoom",
-      "space |": "pane::SplitRight"
-    }
+      "space |": "pane::SplitRight",
+      "|": "pane::SplitRight"
+    },
+    "context": "Editor && vim_mode == normal"
   },
   {
-    "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j j": ["workspace::SendKeystrokes", "escape"],
-      "j k": ["workspace::SendKeystrokes", "escape"],
       "alt-h": "vim::Left",
       "alt-j": "vim::Down",
       "alt-k": "vim::Up",
-      "alt-l": "vim::Right"
-    }
+      "alt-l": "vim::Right",
+      "j j": [
+        "workspace::SendKeystrokes",
+        "escape"
+      ],
+      "j k": [
+        "workspace::SendKeystrokes",
+        "escape"
+      ]
+    },
+    "context": "Editor && vim_mode == insert"
   },
   {
-    "context": "Editor && vim_mode == visual",
     "bindings": {
       "space /": "vim::ToggleComments",
       "space l a": "editor::ToggleCodeActions"
-    }
+    },
+    "context": "Editor && vim_mode == visual"
   },
   {
-    "context": "Editor && vim_mode == insert && showing_completions",
     "bindings": {
+      "ctrl-d": "vim::ScrollDown",
+      "ctrl-e": "editor::Cancel",
       "ctrl-j": "editor::ContextMenuNext",
       "ctrl-k": "editor::ContextMenuPrevious",
-      "ctrl-e": "editor::Cancel",
-      "ctrl-d": "vim::ScrollDown",
       "ctrl-u": "vim::ScrollUp"
-    }
+    },
+    "context": "Editor && vim_mode == insert && showing_completions"
   },
   {
-    "context": "Workspace && !debugger_running && !debugger_stopped > Editor && vim_mode == normal",
     "bindings": {
       "f5": "debugger::Start"
-    }
+    },
+    "context": "Workspace && !debugger_running && !debugger_stopped > Editor && vim_mode == normal"
   },
   {
-    "context": "debugger_stopped > Editor && vim_mode == normal",
     "bindings": {
       "f5": "debugger::Continue"
-    }
+    },
+    "context": "debugger_stopped > Editor && vim_mode == normal"
   },
   {
-    "context": "ProjectPanel",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
       "space o": "editor::ToggleFocus"
-    }
+    },
+    "context": "ProjectPanel"
   },
   {
-    "context": "Terminal",
     "bindings": {
+      "ctrl-'": "terminal_panel::Toggle",
       "ctrl-/": "terminal_panel::Toggle",
       "f7": "terminal_panel::Toggle",
-      "ctrl-'": "terminal_panel::Toggle",
       "space t f": "terminal_panel::Toggle",
       "space t h": "terminal_panel::Toggle",
       "space t t": "terminal_panel::Toggle",
       "space t v": "terminal_panel::Toggle"
-    }
+    },
+    "context": "Terminal"
   },
   {
-    "context": "Dock",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight"
-    }
+    },
+    "context": "Dock"
   },
   {
-    "context": "Editor && edit_prediction",
     "bindings": {
       "alt-\\": "editor::AcceptEditPrediction"
-    }
+    },
+    "context": "Editor && edit_prediction"
   },
   {
     "context": "Editor && edit_prediction",
