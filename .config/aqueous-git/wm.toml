@@ -251,7 +251,7 @@ unfocused = 0.9 # unfocused-window opacity when focus_sensitive = true
 # this can sharpen some toolkit text at increased GPU/memory cost. Prefer a
 # per-window `buffer_scale_policy` rule for selective testing.
 [scaling]
-buffer_policy = "native" # native | integer-ceil
+buffer_policy = "integer-ceil" # native | integer-ceil
 
 # Workspace slide animation. `rate = 0` selects the compiled default rate;
 # larger positive values settle more quickly. Animations can also be compiled
@@ -475,7 +475,8 @@ untrap_pointer = "Super+grave" # default; reserved for pointer untrap
 "Super+E" = "spawn:nemo"
 "XF86SelectiveScreenshot" = "spawn:aqueous-shell-action-git screenshot"
 "Ctrl+XF86SelectiveScreenshot" = "spawn:grabit -F -o"
-"Super+B" = "spawn:helium-browser"
+"Super+B" = "spawn:firefox-developer-edition"
+"Super+V" = "spawn:pearlctl-git clipboard toggle"
 "XF86AudioRaiseVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 "XF86AudioLowerVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 "XF86AudioMute" = "spawn:wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle"

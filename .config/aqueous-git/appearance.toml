@@ -5,5 +5,5 @@ style = ""
 
 [desktop.cursor]
 size = 22
-managed = true
+managed = false
 theme = "Adwaita"

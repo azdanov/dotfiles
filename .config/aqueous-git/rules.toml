@@ -268,58 +268,29 @@ gaps_inner = 8 # integer >= 0
 # Removing a rule restores the latest client-requested position, inherited
 # owner/default opacity, and normal focus eligibility (without stealing focus).
 
-# [[window]]
-# app_id = "code"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# app_id = "com.shellyorg.shelly"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# class = "jetbrains-toolbox"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# app_id = "com.danklinux.dms"
-# buffer_scale_policy = "integer-ceil"
-# scrolling_width = 1
-#
-# [[window]]
-# app_id = "helium"
-# buffer_scale_policy = "integer-ceil"
-# scrolling_width = 1
-#
-# [[window]]
-# app_id = "chromium"
-# buffer_scale_policy = "integer-ceil"
-# scrolling_width = 1
-#
-# [[window]]
-# app_id = "google-chrome"
-# buffer_scale_policy = "integer-ceil"
-# scrolling_width = 1
-#
-# [[window]]
-# app_id = "zen"
-# scrolling_width = 1
-#
-# [[window]]
-# app_id = "org.gnome.FileRoller"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# app_id = "org.aqueous.Phyto.Git"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# # app_id = "org.aqueous.Pearl.Git.Settings"
-# title = "Pearl Settings"
-# buffer_scale_policy = "integer-ceil"
-#
-# [[window]]
-# app_id = "com.mitchellh.ghostty"
-# buffer_scale_policy = "integer-ceil"
+[[window]]
+app_id = "code"
+scrolling_width = 1
+
+[[window]]
+app_id = "com.danklinux.dms"
+scrolling_width = 1
+
+[[window]]
+app_id = "helium"
+scrolling_width = 1
+
+[[window]]
+app_id = "chromium"
+scrolling_width = 1
+
+[[window]]
+app_id = "google-chrome"
+scrolling_width = 1
+
+[[window]]
+app_id = "zen"
+scrolling_width = 1
 
 # -----------------------------------------------------------------------------
 # Common dialogs set to float in center of screen
@@ -405,3 +376,17 @@ stack_layer = "above"
 title = "Extension: (Bitwarden Password Manager)*"
 floating = true
 placement_policy = "center"
+
+# -----------------------------------------------------------------------------
+# Global integer-ceil opt-outs for fullscreen media. First-match-wins: keep
+# these last so the app rules above retain their buffer policy and scrolling
+# widths. Content-type tags arrive after map, so matching windows briefly
+# start integer-ceil before flipping to native.
+# -----------------------------------------------------------------------------
+[[window]]
+content_type = "video"
+buffer_scale_policy = "native"
+
+[[window]]
+content_type = "game"
+buffer_scale_policy = "native"
