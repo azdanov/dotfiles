@@ -1,9 +1,0 @@
-[desktop.font]
-size_pt = 12
-family = "Adwaita Sans"
-style = ""
-
-[desktop.cursor]
-size = 22
-managed = false
-theme = "Adwaita"
