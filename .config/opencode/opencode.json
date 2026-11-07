@@ -70,8 +70,8 @@
             { "id": "high", "body": { "reasoning_effort": "xhigh" } }
           ],
           "limit": {
-            "context": 262144,
-            "input": 245760,
+            "context": 204800,
+            "input": 188416,
             // output caps OpenCode's own compaction summary. `strata connect opencode --write`
             // rewrites this to its OUTPUT_CAP of 4096, which makes compaction fail.
             "output": 16384

@@ -197,14 +197,6 @@
       "enabled": true,
       "url": "https://learn.microsoft.com/api/mcp"
     },
-    "ddg-search": {
-      "args": [
-        "duckduckgo-mcp-server"
-      ],
-      "command": "uvx",
-      "enabled": false,
-      "remote": false
-    },
     "kagi": {
       "args": [
         "kagimcp"
@@ -298,25 +290,8 @@
             "display_name": "Qwen3.8-Flash-Next (local)",
             "max_completion_tokens": 16384,
             "max_output_tokens": 16384,
-            "max_tokens": 262144,
+            "max_tokens": 204800,
             "name": "qwen3.8-flash-next-iq3_xxs",
-            "reasoning_effort": "xhigh"
-          },
-          {
-            "capabilities": {
-              "chat_completions": true,
-              "images": false,
-              "interleaved_reasoning": false,
-              "max_tokens_parameter": false,
-              "parallel_tool_calls": false,
-              "prompt_cache_key": false,
-              "tools": true
-            },
-            "display_name": "Qwen3.8-Flash-Next Avalon (local)",
-            "max_completion_tokens": 16384,
-            "max_output_tokens": 16384,
-            "max_tokens": 262144,
-            "name": "Qwen3.8-Flash-Next-Avalon-IQ3KS-00001-of-00033.gguf",
             "reasoning_effort": "xhigh"
           }
         ]
