@@ -1,0 +1,20 @@
+[global]
+line-length = 120
+flavor = "standard"
+disable = ["MD067", "MD036", "MD013"]
+
+[per-file-flavor]
+"**/*.mdx" = "mdx"
+
+[MD033]
+disallowed-elements = ["gfm"]
+
+[MD041]
+allow-preamble = true
+
+[MD060]
+enabled = true
+style = "compact"
+
+[code-block-tools]
+enabled = true

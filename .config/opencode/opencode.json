@@ -1,0 +1,164 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "strata/qwen3.8-flash-next-iq3_xxs",
+  "formatter": true,
+  "permissions": [
+    { "action": "github_create_branch", "resource": "*", "effect": "deny" },
+    { "action": "github_create_repository", "resource": "*", "effect": "deny" },
+    {
+      "action": "github_create_pull_request_with_copilot",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "github_assign_copilot_to_issue",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "github_request_copilot_review",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "github_get_copilot_job_status",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "github_run_secret_scanning",
+      "resource": "*",
+      "effect": "deny"
+    },
+    { "action": "github_sub_issue_write", "resource": "*", "effect": "deny" },
+    {
+      "action": "github_add_reply_to_pull_request_comment",
+      "resource": "*",
+      "effect": "deny"
+    },
+    { "action": "github_fork_repository", "resource": "*", "effect": "deny" }
+  ],
+  "providers": {
+    "alibaba-token-plan": {
+      "settings": {
+        "baseURL": "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1"
+      }
+    },
+    "strata": {
+      "name": "Strata",
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
+        "baseURL": "http://192.168.50.34:8080/v1",
+        "apiKey": "strata-local"
+      },
+      "models": {
+        "qwen3.8-flash-next-iq3_xxs": {
+          "name": "Qwen3.8-Flash-Next",
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "variants": [
+            { "id": "none", "body": { "reasoning_effort": "none" } },
+            { "id": "low", "body": { "reasoning_effort": "low" } },
+            { "id": "medium", "body": { "reasoning_effort": "medium" } },
+            // The template has no separate "high": its top tier is xhigh, which is also its default.
+            { "id": "high", "body": { "reasoning_effort": "xhigh" } }
+          ],
+          "limit": {
+            "context": 262144,
+            "input": 245760,
+            // output caps OpenCode's own compaction summary. `strata connect opencode --write`
+            // rewrites this to its OUTPUT_CAP of 4096, which makes compaction fail.
+            "output": 16384
+          }
+        }
+      }
+    }
+  },
+  "experimental": {
+    "background_compaction": true
+  },
+  "plugins": [
+    {
+      "package": "opencode-kagi-search",
+      "options": { "defaultProvider": true }
+    }
+  ],
+  "mcp": {
+    "timeout": {
+      "startup": 60000
+    },
+    // Catalog: every MCP is defined here but disabled, except github which is used in all repos.
+    // Projects opt in by redeclaring the full server definition; overrides replace the whole object.
+    "servers": {
+      "mdn": {
+        "type": "remote",
+        "url": "https://mcp.mdn.mozilla.net",
+        "disabled": true
+      },
+      "microsoft": {
+        "type": "remote",
+        "url": "https://learn.microsoft.com/api/mcp",
+        "disabled": true
+      },
+      "github": {
+        "oauth": false,
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "headers": {
+          "Authorization": "Bearer {env:GITHUB_API_KEY}"
+        }
+      },
+      "playwright": {
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp@latest"],
+        "disabled": true
+      },
+      "sequential": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ],
+        "disabled": true
+      },
+      "tailwindplus": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "git+https://git@github.com/richardkmichael/mcp-tailwindplus@latest",
+          "--tailwindplus-data",
+          "/home/azdanov/Projects/tailwindplus/tailwindplus-components-2026-09-14-090126.json"
+        ],
+        "timeout": {
+          "startup": 120000
+        },
+        "disabled": true
+      },
+      "k6": {
+        "type": "local",
+        "command": ["docker", "run", "--rm", "-i", "grafana/mcp-k6"],
+        "timeout": {
+          "startup": 120000
+        },
+        "disabled": true
+      },
+      "next-devtools": {
+        "type": "local",
+        "command": ["npx", "-y", "next-devtools-mcp@latest"],
+        "disabled": true
+      },
+      "astro-docs": {
+        "type": "remote",
+        "url": "https://mcp.docs.astro.build/mcp",
+        "disabled": true
+      }
+    }
+  }
+}
