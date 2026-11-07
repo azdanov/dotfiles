@@ -206,11 +206,12 @@
       "remote": false
     },
     "kagi": {
+      "args": [
+        "kagimcp"
+      ],
+      "command": "uvx",
       "enabled": true,
-      "headers": {
-        "Authorization": "Bearer aDxjI6nTVHLqCFQOG609vJ-es5S0qCmEtddeuSC-w1U.S3erN1vupxP0GWtrNOJPv02skjD0lG4lFiPNMEJR9RY"
-      },
-      "url": "https://mcp.kagi.com/mcp"
+      "remote": false
     },
     "mcp-server-github": {
       "enabled": true,
