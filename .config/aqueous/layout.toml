@@ -42,11 +42,19 @@ gaps_inner = 4 # pixels between placements; >= 0
 master_ratio = 0.55 # master share used by tile/dwindle/reverse-dwindle; strictly 0 < value < 1
 master_count = 1 # number of windows in tile's master area; >= 1
 
+# Center a lone tiled window in tile, grid, rows, dwindle and reverse-dwindle.
+# Keep the available height and cap width at height * aspect ratio. Narrower
+# outputs keep their available width. Floating/dialog/minimized/fullscreen and
+# maximized windows do not count. Each composable child counts independently.
+# Opening a second tile restores normal tiling; returning to one centers again.
+center_single_window = false
+single_window_aspect_ratio = 1.7777777777777777 # approximately 16:9; finite and > 0
+
 # Border colors use 0xAARRGGBB.
 border_width = 2
-border_focused = 0xFF333343
-border_normal = 0xFF1f1f28
-border_urgent = 0xFFc4746e
+border_focused = 0xFFD0BCFF
+border_normal = 0xFF79747E
+border_urgent = 0xFFFFB4AB
 
 # Force server-side mode for native clients. Aqueous enforces the mode for
 # clients that create an xdg-decoration object and publishes the matching
@@ -117,11 +125,13 @@ p4 = [0.5, 1.0]
 # -----------------------------------------------------------------------------
 # Per-layout options
 # -----------------------------------------------------------------------------
-# Every [layout.options.<leaf-id>] section accepts the eight common
+# Every [layout.options.<leaf-id>] section accepts the common
 # geometry/border keys from [layout]: gaps_outer, gaps_inner, master_ratio,
 # master_count,
 # border_width, border_focused, border_normal, and border_urgent.
 # Unknown options are ignored; there is no generic Extra option map.
+# tile, grid, rows, dwindle and reverse-dwindle also honor center_single_window
+# and single_window_aspect_ratio. Omit either key to inherit its global value.
 
 [layout.options.tile]
 # Master/stack layout: the first master_count windows occupy master_ratio of
@@ -145,6 +155,9 @@ gaps_inner = 4
 gaps_inner = 4
 
 [layout.options.dwindle]
+# Enable for dwindle only, overriding the global setting:
+# center_single_window = true
+# single_window_aspect_ratio = 1.7777777777777777
 # Fraction assigned to each recursive split, strictly between 0 and 1.
 split_ratio = 0.5
 # First split: vertical = left/right; horizontal = top/bottom.
@@ -162,7 +175,7 @@ column_fraction = 0.5
 # Automatically pan to keep the focused column centered.
 # When false, pan only enough to keep it visible, preserving other columns that
 # fit beside it in the viewport.
-center_focused = true
+center_focused = false
 # Pan to a newly managed window when it extends the column order.
 follow_new_windows = true
 # Insert immediately after the focused column instead of at the far right.
@@ -196,6 +209,64 @@ snap_threshold = 24
 resistance = 12
 top_edge_maximize = true
 border_width = 2
+
+# -----------------------------------------------------------------------------
+# Output layout selection
+# -----------------------------------------------------------------------------
+# Optional. These blocks select a default layout for matching outputs; display
+# mode/scale/position fields belong in wm.toml. Matching priority is connector
+# name, then EDID, then make/model/serial metadata.
+#
+# [[output]]
+# name   = "DP-1"
+# layout = "scrolling"
+#
+# [[output]]
+# edid   = "edid-identifier"
+# make   = "Example Vendor"
+# model  = "Example Display"
+# serial = "1234"
+# layout = "grid"
+
+# -----------------------------------------------------------------------------
+# Workspace layout selection
+# -----------------------------------------------------------------------------
+# workspace is 1-based. Omit output for a global workspace override, or set an
+# output connector name for a more specific output/workspace mapping.
+# Resolution order is runtime selection, output+workspace, workspace-only,
+# output default, then [layout].default.
+
+[layout.options.game-mode]
+# Only common geometry/border keys are accepted here. Game Mode's
+# remainder_layout, fallback_layout, and gaps_inner policy lives in the
+# [game_mode] section of rules.toml.
+gaps_inner = 4
+
+# -----------------------------------------------------------------------------
+# Output layout selection
+# -----------------------------------------------------------------------------
+# Optional. These blocks select a default layout for matching outputs; display
+# mode/scale/position fields belong in wm.toml. Matching priority is connector
+# name, then EDID, then make/model/serial metadata.
+#
+# [[output]]
+# name   = "DP-1"
+# layout = "scrolling"
+#
+# [[output]]
+# edid   = "edid-identifier"
+# make   = "Example Vendor"
+# model  = "Example Display"
+# serial = "1234"
+# layout = "grid"
+
+# -----------------------------------------------------------------------------
+# Workspace layout selection
+# -----------------------------------------------------------------------------
+# workspace is 1-based. Omit output for a global workspace override, or set an
+# output connector name for a more specific output/workspace mapping.
+# Resolution order is runtime selection, output+workspace, workspace-only,
+# output default, then [layout].default.
 
 # Named zone sets are available only while the workspace uses stacking. The
 # active set is tracked per output; padding is applied after resolving each

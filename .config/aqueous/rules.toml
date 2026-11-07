@@ -30,6 +30,28 @@ gaps_inner = 8 # integer >= 0
 # -----------------------------------------------------------------------------
 # Rule fields
 # -----------------------------------------------------------------------------
+# To open an application with the Super+Shift+Z scrolling preset enabled:
+# [[window]]
+# app_id = "firefox"
+# scrolling_full_width = true
+# This field preserves the current layout when layout is omitted. False starts
+# with the preset disabled; unset leaves it alone. Manual toggles, horizontal
+# resizing, and size reset override it until a different matcher becomes active.
+#
+# To use a custom base width instead of the global scrolling column fraction:
+# [[window]]
+# app_id = "firefox"
+# scrolling_width = 0.65 # 65%; finite number greater than 0 and at most 1
+# This scales the complete tile width (including borders) within the local
+# viewport after reserved areas and outer gaps. Height is unchanged. It also
+# works in composable regions and game-mode scrolling remainders/fallbacks.
+# Full width temporarily takes priority; toggling it off reveals the base.
+# Stacked members share a stable width owner. Horizontal resizing overrides all
+# current members' fractions; size reset returns to the global column fraction.
+# Vertical resizing preserves the fraction. Reloads update rule-owned widths;
+# manual overrides survive until a different matcher becomes active. Add this
+# field to the first matching rule rather than a later duplicate.
+#
 # Rules use first-match-wins order. At least one matcher is required; a block
 # without app_id, class, title, or content_type is silently discarded. Every
 # matcher present in a block must match. app_id is used by native Wayland
@@ -52,6 +74,8 @@ gaps_inner = 8 # integer >= 0
 #   layout          tile | monocle | grid | rows | dwindle | reverse-dwindle |
 #                   reverse_dwindle | scrolling | float | floating | stack | stacking |
 #                   game-mode | game_mode | composable
+#                   omitted: preserve the workspace layout; Game Mode requires
+#                   an explicit layout = "game-mode"
 #   output          exact enabled connector name from `aqueousctl outputs`;
 #                   without workspace, uses that output's active workspace
 #   workspace       1-based workspace number; without output, uses the normal
@@ -59,6 +83,7 @@ gaps_inner = 8 # integer >= 0
 #   floating        true/false; enables floating placement independently of
 #                   layout (layout="float" also sets floating=true)
 #   fullscreen      true/false
+#   scrolling_width finite fraction in (0, 1], e.g. 0.65 for 65% width
 #   ignore_struts   true/false; use the full output instead of panel struts
 #   stack_layer     below | normal | above
 #   focus           true/false; false excludes the window from focus actions
@@ -203,7 +228,185 @@ gaps_inner = 8 # integer >= 0
 # size       = "native"
 # scale = 1.0
 
-# Note: the current rule snapshot defaults an omitted layout to game-mode.
-# Specify layout explicitly in every rule so visual-only or placement-only
-# rules cannot unexpectedly select Game Mode for their output/workspace.
+# Migration: older versions defaulted most rules with no layout to Game Mode.
+# Add layout = "game-mode" to game rules that relied on that default.
+# Visual-only and placement-only rules can omit layout to preserve the workspace layout.
 
+# Native Wayland apps may identify a window's untranslated purpose with a tag.
+# Use aqueousctl inspect --rule to discover and quote tags correctly.
+# [[window]]
+# app_id = "org.example.Editor"
+# tag = "settings"
+# floating = true
+
+# XWayland notification/menu rules (explicitly unmanaged scope).
+# Discover the actual class/title/types with `aqueousctl windows --json` or
+# generate a starting rule with `aqueousctl inspect --rule`. This is an example;
+# Steam versions may use different class/title/type values.
+# [[window]]
+# scope = "override_redirect"
+# class = "Steam*"
+# window_type = "notification"
+# opacity = 1.0
+# focus = false
+# output = "DP-1"
+# x = 24
+# y = 24
+#
+# scope defaults to "managed". Override-redirect rules support only scope,
+# class, title, window_type, opacity, focus=false, output, x and y. At least
+# one of class/title/window_type is required. All present matchers must match;
+# the first matching rule in the same scope wins. window_type matches any
+# advertised EWMH type (notification, popup_menu, dropdown_menu, tooltip,
+# normal, dialog, menu, utility, splash, toolbar, dock, desktop, combo, dnd).
+# Unsupported properties and focus=true reject the reload; the old rules stay.
+# x/y are logical offsets from the output's full origin; zero is explicit.
+# Without output, use the popup's normal projection. Without an axis, preserve
+# its client-requested offset. An unavailable output leaves placement at the
+# client request until that output becomes available. Coordinates outside the
+# X11 signed 16-bit range after projection also leave client placement intact.
+# Removing a rule restores the latest client-requested position, inherited
+# owner/default opacity, and normal focus eligibility (without stealing focus).
+
+[[window]]
+app_id = "code"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "helium"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "chromium"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "org.aqueous.Pearl.Settings"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "org.aqueous.Coral"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "org.aqueous.Phyto"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "google-chrome"
+scrolling_width = 1
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "com.shellyorg.shelly"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "zen"
+
+[[window]]
+app_id = "GTK Application"
+buffer_scale_policy = "integer-ceil"
+
+[[window]]
+app_id = "com.microsoft.VSCode"
+buffer_scale_policy = "integer-ceil"
+
+# -----------------------------------------------------------------------------
+# Common dialogs set to float in center of screen
+# -----------------------------------------------------------------------------
+[[window]]
+title = "Open File*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Authentication"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Open Folder*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Select*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Choose a wallpaper*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Choose Where to Download*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Save As*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Library*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "File Operation Progress*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Rename*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Copy Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Move Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Search Files*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+title = "Wizard*"
+floating = true
+placement_policy = "center"
+
+[[window]]
+app_id = "opensnitch_ui"
+title = "OpenSnitch v*"
+floating = true
+placement_policy = "center"
+stack_layer = "above"
+
+[[window]]
+title = "Extension: (Bitwarden Password Manager)*"
+floating = true
+placement_policy = "center"
+
+# -----------------------------------------------------------------------------
+# Global integer-ceil opt-outs for fullscreen media. First-match-wins: keep
+# these last so the app rules above retain their buffer policy and scrolling
+# widths. Content-type tags arrive after map, so matching windows briefly
+# start integer-ceil before flipping to native.
+# -----------------------------------------------------------------------------
+[[window]]
+content_type = "video"
+buffer_scale_policy = "native"
+
+[[window]]
+content_type = "game"
+buffer_scale_policy = "native"

@@ -5,6 +5,7 @@ signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
 autocrlf = input
+excludesfile = /home/azdanov/.gitignore
 
 [filter "lfs"]
 required = true
@@ -49,16 +50,19 @@ updateRefs = true          # Allow rebasing a stack of branches at the same time
 
 [credential "https://github.com"]
 helper =
-helper = !/usr/bin/gh auth git-credential
+helper = !/home/azdanov/.local/share/mise/shims/gh auth git-credential
 
 [credential "https://gist.github.com"]
 helper =
-helper = !/usr/bin/gh auth git-credential
+helper = !/home/azdanov/.local/share/mise/shims/gh auth git-credential
 
 [gpg]
 format = ssh
 
 [commit]
 gpgsign = true
+
 [push]
-	autoSetupRemote = true
+autoSetupRemote = true
+[url "https://github.com/"]
+	insteadOf = git@github.com:

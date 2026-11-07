@@ -1,10 +1,10 @@
 {
   "agent": {
     "default_model": {
-      "effort": "medium",
+      "effort": "high",
       "enable_thinking": true,
-      "model": "qwen3.8-27b",
-      "provider": "Zoey"
+      "model": "qwen3.8-flash-next-iq3_xxs",
+      "provider": "Home"
     },
     "default_profile": "write",
     "dock": "right",
@@ -116,7 +116,9 @@
     },
     "sandbox_permissions": {
       "allow_unsandboxed": true,
-      "network_hosts": ["github.com"],
+      "network_hosts": [
+        "github.com"
+      ],
       "write_paths": [
         {
           "requested": "/home/azdanov/.cache/zig",
@@ -146,6 +148,12 @@
     }
   },
   "agent_servers": {
+    "opencode-v2": {
+      "default_config_options": {
+        "effort": "high"
+      },
+      "type": "registry"
+    },
     "github-copilot-cli": {
       "type": "registry"
     },
@@ -165,7 +173,9 @@
   },
   "base_keymap": "JetBrains",
   "bottom_dock_layout": "contained",
-  "buffer_font_fallbacks": ["MesloLGS Nerd Font"],
+  "buffer_font_fallbacks": [
+    "MesloLGS Nerd Font"
+  ],
   "buffer_font_family": "MonoLisa",
   "buffer_font_size": 17.0,
   "cli_default_open_behavior": "existing_window",
@@ -188,7 +198,9 @@
       "url": "https://learn.microsoft.com/api/mcp"
     },
     "ddg-search": {
-      "args": ["duckduckgo-mcp-server"],
+      "args": [
+        "duckduckgo-mcp-server"
+      ],
       "command": "uvx",
       "enabled": false,
       "remote": false
@@ -196,25 +208,29 @@
     "kagi": {
       "enabled": true,
       "headers": {
-        "Authorization": "Bearer "
+        "Authorization": "Bearer aDxjI6nTVHLqCFQOG609vJ-es5S0qCmEtddeuSC-w1U.S3erN1vupxP0GWtrNOJPv02skjD0lG4lFiPNMEJR9RY"
       },
       "url": "https://mcp.kagi.com/mcp"
     },
     "mcp-server-github": {
       "enabled": true,
       "remote": false,
-      "settings": {
-        "github_personal_access_token": ""
-      }
+      "settings": {}
     },
     "playwright": {
-      "args": ["-y", "@playwright/mcp@latest"],
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
       "command": "npx",
       "enabled": true,
       "remote": false
     },
     "sequential-thinking": {
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "command": "npx",
       "enabled": true,
       "remote": false
@@ -244,7 +260,12 @@
   },
   "extend_comment_on_newline": false,
   "file_types": {
-    "XML": ["rdf", "gpx", "kml", "ui"]
+    "XML": [
+      "rdf",
+      "gpx",
+      "kml",
+      "ui"
+    ]
   },
   "git": {
     "inline_blame": {
@@ -260,24 +281,42 @@
   "icon_theme": "Soft Charmed Icons",
   "language_models": {
     "openai_compatible": {
-      "Zoey": {
-        "api_url": "http://ai.zoey-gaming.net/v1",
+      "Home": {
+        "api_url": "http://192.168.50.34:8080/v1",
         "available_models": [
           {
-            "name": "swift-1.5-qwen3.8-27b",
-            "display_name": "Swift 1.5 Qwen 27B Thinking",
-            "max_tokens": 524288,
-            "max_output_tokens": 16000,
-            "reasoning_effort": "medium",
             "capabilities": {
-              "tools": true,
+              "chat_completions": true,
               "images": false,
+              "interleaved_reasoning": false,
+              "max_tokens_parameter": false,
               "parallel_tool_calls": false,
               "prompt_cache_key": false,
+              "tools": true
+            },
+            "display_name": "Qwen3.8-Flash-Next (local)",
+            "max_completion_tokens": 16384,
+            "max_output_tokens": 16384,
+            "max_tokens": 262144,
+            "name": "qwen3.8-flash-next-iq3_xxs",
+            "reasoning_effort": "xhigh"
+          },
+          {
+            "capabilities": {
               "chat_completions": true,
-              "interleaved_reasoning": true,
-              "max_tokens_parameter": true
-            }
+              "images": false,
+              "interleaved_reasoning": false,
+              "max_tokens_parameter": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "tools": true
+            },
+            "display_name": "Qwen3.8-Flash-Next Avalon (local)",
+            "max_completion_tokens": 16384,
+            "max_output_tokens": 16384,
+            "max_tokens": 262144,
+            "name": "Qwen3.8-Flash-Next-Avalon-IQ3KS-00001-of-00033.gguf",
+            "reasoning_effort": "xhigh"
           }
         ]
       },
@@ -321,41 +360,17 @@
             "reasoning_effort": "high"
           }
         ]
-      },
-      "Z.ai": {
-        "api_url": "https://api.z.ai/api/coding/paas/v4",
-        "available_models": [
-          {
-            "capabilities": {
-              "images": true,
-              "parallel_tool_calls": true,
-              "prompt_cache_key": true,
-              "tools": true
-            },
-            "display_name": "GLM-5.3",
-            "max_output_tokens": 131072,
-            "max_tokens": 1000000,
-            "name": "glm-5.3"
-          },
-          {
-            "capabilities": {
-              "images": true,
-              "parallel_tool_calls": true,
-              "prompt_cache_key": true,
-              "tools": true
-            },
-            "display_name": "GLM-5.3 Flash",
-            "max_output_tokens": 131072,
-            "max_tokens": 1000000,
-            "name": "glm-5.3-flash"
-          }
-        ]
       }
     }
   },
   "languages": {
     "CSharp": {
-      "language_servers": ["csharp-ls", "!roslyn", "!omnisharp", "..."]
+      "language_servers": [
+        "csharp-ls",
+        "!roslyn",
+        "!omnisharp",
+        "..."
+      ]
     },
     "Fish": {
       "formatter": {
@@ -373,18 +388,29 @@
           "name": "rumdl"
         }
       },
-      "language_servers": ["rumdl", "..."]
+      "language_servers": [
+        "rumdl",
+        "..."
+      ]
     },
     "Python": {
       "code_actions_on_format": {
         "source.organizeImports.ruff": true
       },
-      "language_servers": ["ty", "ruff"]
+      "language_servers": [
+        "ty",
+        "ruff"
+      ]
     },
     "Shell Script": {
       "formatter": {
         "external": {
-          "arguments": ["--filename", "{buffer_path}", "--indent", "2"],
+          "arguments": [
+            "--filename",
+            "{buffer_path}",
+            "--indent",
+            "2"
+          ],
           "command": "shfmt"
         }
       }
@@ -476,8 +502,8 @@
   },
   "telemetry": {
     "anthropic_retention": false,
-    "diagnostics": true,
-    "metrics": true
+    "diagnostics": false,
+    "metrics": false
   },
   "terminal": {
     "copy_on_select": true,
@@ -485,7 +511,7 @@
   },
   "theme": {
     "dark": "JetBrains Dark",
-    "light": "JetBrains Light",
+    "light": "One Light",
     "mode": "system"
   },
   "title_bar": {

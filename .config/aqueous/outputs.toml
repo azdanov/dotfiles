@@ -26,6 +26,10 @@
 # transform = "normal"
 # position = [0, 0]
 # adaptive_sync = true
+# Restrict enabled adaptive sync to a visible fullscreen app on this monitor's
+# active workspace. Default false; requires adaptive_sync = true. Focus on a
+# different monitor does not disable it. Off during overview or session lock.
+# fullscreen_only_adaptive_sync = true
 # hdr = false
 # HDR peak-luminance preset used for the HDR10 mastering metadata: 100, 400,
 # or 1000 (cd/m²). "auto" picks the preset nearest the display's EDID
@@ -55,3 +59,17 @@
 # enabled = true
 # mode = "2560x1440@144"
 # position = [0, 0]
+
+[[output]]
+name = "eDP-1"
+mode = "1920x1200@60.003"
+scale = 1.25
+position = [0, 0]
+enabled = true
+
+[[output]]
+name = "DP-1"
+mode = "3440x1440@179.989"
+scale = 1.0
+position = [0, 0]
+enabled = true
