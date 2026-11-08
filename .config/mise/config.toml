@@ -39,6 +39,8 @@ fzf = "latest"
 rumdl = "latest"
 "github:harehare/mq" = "latest"
 "npm:opencode-kagi-search" = "latest"
+stylua = "latest"
+"aqua:Kampfkarren/selene" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
