@@ -14,7 +14,6 @@ return {
           showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
           splitkeep = "screen",
           swapfile = false,
-          undojump = true,
           wrap = false,
         },
       },
