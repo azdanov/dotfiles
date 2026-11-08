@@ -32,6 +32,7 @@ return {
       "rust-analyzer",
       "sqlfluff",
       "tailwindcss-language-server",
+      "taplo",
       "tombi",
       "tsgo",
       "typos-lsp",
