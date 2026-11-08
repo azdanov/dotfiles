@@ -50,7 +50,7 @@ rollback_seconds = 0
 # position = [0, 0]
 # adaptive_sync = true
 # hdr = true # HDR10 profile: 10-bit BT.2020 with PQ; capable DRM outputs only
-# hdr_level = "auto" # mastering peak preset: 100, 400, 1000 cd/m², or "auto" from EDID (default 1000)
+# hdr_level = "auto" # mastering peak preset: 100, 400, 600, 1000 cd/m², or "auto" from EDID (default 1000)
 # sdr_white_level = 200 # SDR diffuse white on the HDR output in cd/m² (80–1000, default 200)
 # auto_hdr = false # expand SDR highlights toward the HDR peak (fullscreen windows by default; hdr_expand rule overrides)
 # auto_hdr_boost = 0.5 # Auto HDR expansion strength, 0.0–1.0
@@ -146,6 +146,9 @@ rollback_seconds = 0
 # Output navigation still moves the pointer when this is disabled.
 # mouse_follows_focus = false
 # focus_new_windows = false
+# Super+H/L past the last window continue into the previous/next workspace,
+# wrapping between the last workspace and workspace 1.
+# focus_crosses_workspaces = true
 # raise_on_focus = true
 # raise_on_focus_delay_ms = 0
 # pointer_acceleration = false
@@ -207,6 +210,14 @@ top = 0
 bottom = 0
 left = 0
 right = 0
+
+# -----------------------------------------------------------------------------
+# Window corners (available in the default Vulkan-effects build).
+# Applies live to content, borders and blur. 0 disables compositor rounding;
+# transparent corners drawn by applications cannot be filled by this setting.
+# -----------------------------------------------------------------------------
+[decoration]
+corner_radius = 15 # logical pixels, 0–128; try 8 for subtler rounding
 
 # -----------------------------------------------------------------------------
 # Backdrop blur (available in the default Vulkan-effects build). Applied behind
@@ -282,7 +293,8 @@ spawn_terminal = "Super+Return" # default
 screenshot = "Print" # default; select a region and copy it
 close_focused = "Super+Q" # default
 toggle_overview = "Super+W" # default; active-workspace window overview
-cycle_focus = "Super+Tab" # default
+cycle_focus = ["Super+Tab", "Alt+Tab"] # animated cycling within this workspace
+cycle_focus_reverse = ["Super+Shift+Tab", "Alt+Shift+Tab"]
 lock_screen = "Super+Ctrl+L" # default; runs [actions].lock_screen
 
 # --- Directional focus (scrolling: left/right columns, up/down column members) ---
