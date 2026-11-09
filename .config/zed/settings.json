@@ -150,6 +150,7 @@
   "agent_servers": {
     "opencode-v2": {
       "default_config_options": {
+        "mode": "build",
         "effort": "high"
       },
       "type": "registry"
@@ -249,7 +250,7 @@
   "document_symbols": "on",
   "edit_predictions": {
     "disabled_globs": [],
-    "provider": "zed"
+    "provider": "copilot"
   },
   "extend_comment_on_newline": false,
   "file_types": {
@@ -290,7 +291,7 @@
             "display_name": "Qwen3.8-Flash-Next (local)",
             "max_completion_tokens": 16384,
             "max_output_tokens": 16384,
-            "max_tokens": 204800,
+            "max_tokens": 262144,
             "name": "qwen3.8-flash-next-iq3_xxs",
             "reasoning_effort": "xhigh"
           }
