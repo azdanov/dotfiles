@@ -149,6 +149,11 @@
         "type": "remote",
         "url": "https://mcp.docs.astro.build/mcp",
         "disabled": true
+      },
+      "aws-knowledge-mcp-server": {
+        "type": "remote",
+        "url": "https://knowledge-mcp.global.api.aws",
+        "disabled": true
       }
     }
   }
