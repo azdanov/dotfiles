@@ -56,4 +56,6 @@
     "https://spec.openapis.org/": true,
     "https://www.schemastore.org/": true,
   },
+  "python.languageServer": "Default",
+  "python.analysis.typeCheckingMode": "standard",
 }
