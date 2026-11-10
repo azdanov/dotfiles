@@ -45,4 +45,46 @@ stylua = "latest"
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
 auto_update = true
-minimum_release_age_excludes = ["npm:@qwen-code/qwen-code"]
+# Vendor-backed and mainstream tools skip the 24h release-age holdback; small
+# third-party packages (json-sort-cli, npm-check-updates, opencode-kagi-search,
+# harehare/mq, rumdl) keep it. Entries are short names or full backend IDs.
+minimum_release_age_excludes = [
+  "aqua:Kampfkarren/selene",
+  "aqua:apache/maven",
+  "aqua:ast-grep/ast-grep",
+  "aqua:gradle/gradle",
+  "aqua:tailwindlabs/tailwindcss",
+  "aqua:yadm-dev/yadm",
+  "aws",
+  "bun",
+  "eza",
+  "fd",
+  "fzf",
+  "gh",
+  "github:google/google-java-format",
+  "go",
+  "java",
+  "k6",
+  "kotlin",
+  "lazygit",
+  "mongosh",
+  "node",
+  "npm:@qwen-code/qwen-code",
+  "npm:prettier",
+  "opencode",
+  "pnpm",
+  "rg",
+  "ruff",
+  "shellcheck",
+  "shfmt",
+  "stylua",
+  "tealdeer",
+  "terraform",
+  "tflint",
+  "tree-sitter",
+  "ty",
+  "usage",
+  "uv",
+  "vivid",
+  "zoxide",
+]
