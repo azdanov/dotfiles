@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "keybinds": {
+    "leader": "ctrl+space",
+    "open.menu": "<leader>o",
+    "session.toggle.thinking": "ctrl+o"
+  },
+  "session": {
+    "permissions": "autoaccept",
+    "thinking": "hide",
+    "sidebar": "hide",
+    "tps": true
+  },
+  "tabs": {
+    "mode": "off"
+  },
+  "prompt": {
+    "image_preview": true
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true
+  }
+}
