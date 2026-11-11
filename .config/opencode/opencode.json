@@ -42,6 +42,33 @@
     "alibaba-token-plan": {
       "settings": {
         "baseURL": "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1"
+      },
+      "models": {
+        // Not in models.dev yet (as of 2026-11). limits/modalities from Model Studio's own
+        // OpenCode setup docs; alias qwen4.0-max-preview bills as qwen4.0-max-preview.
+        "qwen4-max-preview": {
+          "name": "Qwen4.0 Max Preview",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          // qwen4* shares the qwen3.8-max tiered contract: flat reasoning_effort,
+          // ladder low/medium/xhigh with xhigh default; no separate "high" tier.
+          "variants": [
+            { "id": "none", "body": { "reasoning_effort": "none" } },
+            { "id": "low", "body": { "reasoning_effort": "low" } },
+            { "id": "medium", "body": { "reasoning_effort": "medium" } },
+            { "id": "high", "body": { "reasoning_effort": "xhigh" } }
+          ],
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          }
+        }
       }
     },
     "strata": {

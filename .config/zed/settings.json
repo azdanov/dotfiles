@@ -150,8 +150,9 @@
   "agent_servers": {
     "opencode-v2": {
       "default_config_options": {
+        "model": "alibaba-token-plan/qwen3.8-flash",
         "mode": "build",
-        "effort": "high"
+        "effort": "xhigh"
       },
       "type": "registry"
     },
@@ -300,6 +301,18 @@
       "Qwen": {
         "api_url": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
         "available_models": [
+          {
+            "capabilities": {
+              "images": true,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "tools": true
+            },
+            "max_output_tokens": 131072,
+            "max_tokens": 1000000,
+            "name": "qwen4-max-preview",
+            "reasoning_effort": "xhigh"
+          },
           {
             "capabilities": {
               "images": true,
