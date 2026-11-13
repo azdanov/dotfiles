@@ -20,3 +20,120 @@
 !/.pi/agent/skills/
 !/.pi/agent/prompts/
 !/.pi/agent/themes/
+
+# Credentials and per-machine identity. Never in the repo, even by git add -A.
+.ssh/
+.gnupg/
+.secrets/
+.aws/
+.copilot/
+.steam/
+.wine/
+.pki/
+.config/gh/hosts.yml
+.config/grabit/
+.config/pearl/
+.config/wordcraft/
+.config/github-copilot/
+.config/opencode/service.json
+*.pem
+*.key
+*.priv.pem
+
+# Caches, build output and app state
+**/node_modules/
+**/.cache/
+**/__pycache__/
+**/.pytest_cache/
+**/.parcel-cache/
+**/.venv/
+**/venv/
+**/Cache/
+**/Cache_Data/
+**/CachedData/
+**/CachedExtensionVSIXs/
+**/CachedProfilesData/
+**/Code Cache/
+**/GPUCache/
+**/DawnCache/
+**/DawnWebGPUCache/
+**/DawnGraphiteCache/
+**/WebStorage/
+**/Local Storage/
+**/Session Storage/
+**/Service Worker/
+**/blob_storage/
+**/Network/
+**/Network Persistent State
+**/Cookies
+**/Cookies-journal
+**/Login Data
+**/Trust Tokens
+**/TransportSecurity
+**/History/
+**/Backups/
+**/logs/
+**/Crashpad/
+**/crashpad/
+**/globalStorage/
+**/workspaceStorage/
+**/chatSessions/
+**/chatLanguageModels.json
+**/agentSessionData/
+**/agentPlugins/
+**/sitestorage/
+**/urlcrate-index/
+**/urlcrate-hostnames/
+**/*.wants/
+.config/opencode/node_modules/
+.config/go/
+.config/pulse/
+.config/dconf/
+.config/.idea/
+.config/mozilla/
+.config/librewolf/
+.config/google-chrome/
+.config/JetBrains/
+.config/net.imput.helium/
+.config/autostart/mimeinfo.cache
+
+# VS Code: the profile dir holds 2400+ generated files; track only these three.
+/.config/Code/*
+!/.config/Code/User/
+/.config/Code/User/*
+!/.config/Code/User/settings.json
+!/.config/Code/User/mcp.json
+!/.config/Code/User/keybindings.json
+
+# Toolchain and package-manager trees
+/.cache/
+/.local/
+/.npm/
+/.nuget/
+/.rustup/
+/.cargo/
+/.bun/
+/.dotnet/
+/.aspnet/
+/.templateengine/
+/.zvm/
+/go/
+/.java/
+/.jetbrains/
+/.junie/
+/.mongodb/
+/.next-devtools-mcp/
+/.sonarlint/
+/.terraform.d/
+/.var/
+/.vscode/
+/.vscode-shared/
+
+# Machine-local state
+.bash_history
+.zsh_history
+.viminfo
+.pulse-cookie
+.steampath
+.steampid
+*.bak
