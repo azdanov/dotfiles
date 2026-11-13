@@ -27,6 +27,6 @@
     "strata/qwen3.8-flash-next-iq3_s": "xhigh"
   },
   "packages": [
-    "npm:@adeildo/pi-ask-questions"
+    "npm:@juicesharp/rpiv-ask-user-question"
   ]
 }
