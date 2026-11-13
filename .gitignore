@@ -1,4 +1,22 @@
 **/QWEN.md
 **/.qwen/
 **/.opencode/
+**/.pi/
 **/chunks/
+
+# Pi keeps its global config in ~/.pi/agent, alongside auth.json (API keys and
+# OAuth tokens), session transcripts and caches. Re-include the directory, then
+# allowlist config files only; add a line here to sync anything else.
+!/.pi/
+/.pi/*
+!/.pi/agent/
+/.pi/agent/*
+!/.pi/agent/settings.json
+!/.pi/agent/mcp.json
+!/.pi/agent/models.json
+!/.pi/agent/AGENTS.md
+!/.pi/agent/keybindings.json
+!/.pi/agent/extensions/
+!/.pi/agent/skills/
+!/.pi/agent/prompts/
+!/.pi/agent/themes/

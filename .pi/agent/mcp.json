@@ -1,0 +1,84 @@
+{
+  "mcpServers": {
+    "astro-docs": {
+      "enabled": false,
+      "url": "https://mcp.docs.astro.build/mcp"
+    },
+    "aws-knowledge-mcp-server": {
+      "enabled": false,
+      "url": "https://knowledge-mcp.global.api.aws"
+    },
+    "github": {
+      "description": "GitHub repositories, issues, pull requests, code search, and Actions.",
+      "exposure": "codemode",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_API_KEY}"
+      },
+      "toolExposure": {
+        "add_reply_to_pull_request_comment": "hidden",
+        "assign_copilot_to_issue": "hidden",
+        "create_branch": "hidden",
+        "create_pull_request_with_copilot": "hidden",
+        "create_repository": "hidden",
+        "fork_repository": "hidden",
+        "get_copilot_job_status": "hidden",
+        "request_copilot_review": "hidden",
+        "run_secret_scanning": "hidden",
+        "sub_issue_write": "hidden"
+      },
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "k6": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "grafana/mcp-k6"
+      ],
+      "command": "docker",
+      "enabled": false,
+      "timeout": 120
+    },
+    "kagi": {
+      "description": "Kagi web search and page extraction.",
+      "headers": {
+        "Authorization": "Bearer ${KAGI_API_KEY}"
+      },
+      "url": "https://mcp.kagi.com/mcp"
+    },
+    "mdn": {
+      "enabled": false,
+      "url": "https://mcp.mdn.mozilla.net"
+    },
+    "microsoft": {
+      "enabled": false,
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "next-devtools": {
+      "args": [
+        "-y",
+        "next-devtools-mcp@latest"
+      ],
+      "command": "npx",
+      "enabled": false
+    },
+    "playwright": {
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx",
+      "enabled": false
+    },
+    "tailwindplus": {
+      "args": [
+        "git+https://git@github.com/richardkmichael/mcp-tailwindplus@latest",
+        "--tailwindplus-data",
+        "/home/azdanov/Projects/tailwindplus/tailwindplus-components-2026-09-14-090126.json"
+      ],
+      "command": "uvx",
+      "enabled": false,
+      "timeout": 120
+    }
+  }
+}

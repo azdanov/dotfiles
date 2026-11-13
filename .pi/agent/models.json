@@ -1,0 +1,82 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "alibaba-token-plan": {
+      "api": "openai-completions",
+      "baseUrl": "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1",
+      "models": [
+        {
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": true,
+            "supportsStore": false,
+            "supportsStrictMode": true,
+            "thinkingFormat": "openai"
+          },
+          "contextWindow": 1000000,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "id": "qwen4-max-preview",
+          "input": [
+            "text",
+            "image"
+          ],
+          "maxTokens": 131072,
+          "name": "Qwen4.0 Max Preview",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "xhigh",
+            "low": "low",
+            "max": null,
+            "medium": "medium",
+            "minimal": null,
+            "off": "none",
+            "xhigh": "xhigh"
+          }
+        }
+      ],
+      "name": "Alibaba Token Plan"
+    },
+    "strata": {
+      "api": "openai-completions",
+      "apiKey": "strata-local",
+      "baseUrl": "http://192.168.50.34:8080/v1",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": true,
+        "thinkingFormat": "openai"
+      },
+      "models": [
+        {
+          "contextWindow": 262144,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "id": "qwen3.8-flash-next-iq3_s",
+          "input": [
+            "text"
+          ],
+          "maxTokens": 32768,
+          "name": "Qwen3.8-Flash-Next (Strata, local)",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "high": "xhigh",
+            "low": "low",
+            "max": null,
+            "medium": "medium",
+            "minimal": null,
+            "off": "none",
+            "xhigh": "xhigh"
+          }
+        }
+      ]
+    }
+  }
+}
