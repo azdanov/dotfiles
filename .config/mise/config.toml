@@ -42,6 +42,7 @@ rumdl = "latest"
 stylua = "latest"
 "aqua:Kampfkarren/selene" = "latest"
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
+pi = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]

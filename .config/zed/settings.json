@@ -3,7 +3,7 @@
     "default_model": {
       "effort": "high",
       "enable_thinking": true,
-      "model": "qwen3.8-flash-next-iq3_xxs",
+      "model": "qwen3.8-flash-next-iq3_s",
       "provider": "Home"
     },
     "default_profile": "write",
@@ -148,6 +148,9 @@
     }
   },
   "agent_servers": {
+    "pi-acp": {
+      "type": "registry"
+    },
     "opencode-v2": {
       "default_config_options": {
         "model": "alibaba-token-plan/qwen3.8-flash",
@@ -293,7 +296,7 @@
             "max_completion_tokens": 16384,
             "max_output_tokens": 16384,
             "max_tokens": 262144,
-            "name": "qwen3.8-flash-next-iq3_xxs",
+            "name": "qwen3.8-flash-next-iq3_s",
             "reasoning_effort": "xhigh"
           }
         ]
