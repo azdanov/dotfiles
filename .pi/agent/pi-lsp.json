@@ -1,0 +1,88 @@
+{
+  "timeout": 30000,
+  "servers": {
+    "biome": {
+      "command": ["biome", "lsp-proxy"],
+      "extensions": [
+        ".js",
+        ".jsx",
+        ".mjs",
+        ".cjs",
+        ".ts",
+        ".tsx",
+        ".mts",
+        ".cts",
+        ".json",
+        ".jsonc",
+        ".css",
+        ".graphql",
+        ".gql",
+        ".html",
+        ".vue",
+        ".astro",
+        ".svelte"
+      ]
+    },
+    "ty": { "command": ["ty", "server"], "extensions": [".py", ".pyi"] },
+    "ruff": { "command": ["ruff", "server"], "extensions": [".py", ".pyi"] },
+    "rust-analyzer": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"],
+      "pullDiagnosticsGraceMs": 5000
+    },
+    "clangd": {
+      "command": ["clangd", "--background-index", "--clang-tidy"],
+      "extensions": [
+        ".c",
+        ".h",
+        ".cpp",
+        ".cc",
+        ".cxx",
+        ".c++",
+        ".hpp",
+        ".hh",
+        ".hxx",
+        ".h++"
+      ]
+    },
+    "csharp": {
+      "command": ["csharp-ls"],
+      "extensions": [".cs"],
+      "pushDiagnosticsGraceMs": 3000
+    },
+    "bash": {
+      "command": ["bash-language-server", "start"],
+      "extensions": [".sh", ".bash"]
+    },
+    "yaml": {
+      "command": ["yaml-language-server", "--stdio"],
+      "extensions": [".yaml", ".yml"]
+    },
+    "terraform": {
+      "command": ["terraform-ls", "serve"],
+      "extensions": [".tf", ".tfvars"],
+      "pushDiagnosticsGraceMs": 2000
+    },
+    "markdown": {
+      "command": ["rumdl", "server"],
+      "extensions": [".md", ".markdown"]
+    },
+    "zls": {
+      "command": ["zls"],
+      "extensions": [".zig", ".zon"]
+    },
+    "lua": {
+      "command": ["lua-language-server"],
+      "extensions": [".lua"],
+      "pushDiagnosticsGraceMs": 3000
+    },
+    "taplo": {
+      "command": ["taplo", "lsp", "stdio"],
+      "extensions": [".toml"]
+    },
+    "fish": {
+      "command": ["fish-lsp", "start"],
+      "extensions": [".fish"]
+    }
+  }
+}

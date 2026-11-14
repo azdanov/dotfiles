@@ -14,6 +14,7 @@
 !/.pi/agent/settings.json
 !/.pi/agent/mcp.json
 !/.pi/agent/models.json
+!/.pi/agent/pi-lsp.json
 !/.pi/agent/AGENTS.md
 !/.pi/agent/keybindings.json
 !/.pi/agent/extensions/
