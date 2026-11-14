@@ -51,6 +51,7 @@ lua-language-server = "latest"
 hadolint = "latest"
 "npm:fish-lsp" = "latest"
 tombi = "latest"
+"npm:vscode-langservers-extracted" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]

@@ -56,7 +56,10 @@
     },
     "yaml": {
       "command": ["yaml-language-server", "--stdio"],
-      "extensions": [".yaml", ".yml"]
+      "extensions": [".yaml", ".yml"],
+      "initialization": {
+        "redhat": { "telemetry": { "enabled": false } }
+      }
     },
     "terraform": {
       "command": ["terraform-ls", "serve"],
@@ -83,6 +86,27 @@
     "fish": {
       "command": ["fish-lsp", "start"],
       "extensions": [".fish"]
+    },
+    "json": {
+      "command": ["vscode-json-language-server", "--stdio"],
+      "extensions": [".json", ".jsonc"],
+      "initialization": {
+        "json": {
+          "validate": { "enable": true },
+          "schemas": [
+            { "fileMatch": ["package.json"], "url": "https://json.schemastore.org/package.json" },
+            { "fileMatch": ["tsconfig.json", "tsconfig.*.json"], "url": "https://json.schemastore.org/tsconfig.json" },
+            { "fileMatch": ["jsconfig.json", "jsconfig.*.json"], "url": "https://json.schemastore.org/jsconfig.json" },
+            { "fileMatch": ["biome.json", "biome.jsonc"], "url": "https://biomejs.dev/schemas/2.6.7/schema.json" },
+            { "fileMatch": [".eslintrc", ".eslintrc.json"], "url": "https://json.schemastore.org/eslintrc.json" },
+            { "fileMatch": [".prettierrc", ".prettierrc.json"], "url": "https://json.schemastore.org/prettierrc.json" },
+            { "fileMatch": [".babelrc", ".babelrc.json", "babel.config.json"], "url": "https://json.schemastore.org/babelrc.json" },
+            { "fileMatch": ["global.json"], "url": "https://json.schemastore.org/global.json" },
+            { "fileMatch": ["launchSettings.json"], "url": "https://json.schemastore.org/launchsettings.json" },
+            { "fileMatch": ["appsettings.json", "appsettings.*.json"], "url": "https://json.schemastore.org/appsettings.json" }
+          ]
+        }
+      }
     }
   }
 }
