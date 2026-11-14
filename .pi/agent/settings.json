@@ -29,6 +29,7 @@
   "modelThinkingLevels": {
     "strata/qwen3.8-flash-next-iq3_s": "xhigh"
   },
+  "selfUpdateCommand": ["mise", "upgrade", "--global", "pi"],
   "packages": [
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@narumitw/pi-lsp"
