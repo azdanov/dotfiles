@@ -48,9 +48,9 @@ terraform-ls = "latest"
 "npm:bash-language-server" = "latest"
 "npm:yaml-language-server" = "latest"
 lua-language-server = "latest"
-taplo = "latest"
 hadolint = "latest"
 "npm:fish-lsp" = "latest"
+tombi = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
