@@ -1,8 +1,8 @@
 {
   "timeout": 30000,
   "servers": {
-    "biome": {
-      "command": ["biome", "lsp-proxy"],
+    "oxlint": {
+      "command": ["oxlint", "--lsp"],
       "extensions": [
         ".js",
         ".jsx",
@@ -12,12 +12,6 @@
         ".tsx",
         ".mts",
         ".cts",
-        ".json",
-        ".jsonc",
-        ".css",
-        ".graphql",
-        ".gql",
-        ".html",
         ".vue",
         ".astro",
         ".svelte"
@@ -97,7 +91,6 @@
             { "fileMatch": ["package.json"], "url": "https://json.schemastore.org/package.json" },
             { "fileMatch": ["tsconfig.json", "tsconfig.*.json"], "url": "https://json.schemastore.org/tsconfig.json" },
             { "fileMatch": ["jsconfig.json", "jsconfig.*.json"], "url": "https://json.schemastore.org/jsconfig.json" },
-            { "fileMatch": ["biome.json", "biome.jsonc"], "url": "https://biomejs.dev/schemas/2.6.7/schema.json" },
             { "fileMatch": [".eslintrc", ".eslintrc.json"], "url": "https://json.schemastore.org/eslintrc.json" },
             { "fileMatch": [".prettierrc", ".prettierrc.json"], "url": "https://json.schemastore.org/prettierrc.json" },
             { "fileMatch": [".babelrc", ".babelrc.json", "babel.config.json"], "url": "https://json.schemastore.org/babelrc.json" },
