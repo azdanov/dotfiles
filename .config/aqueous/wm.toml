@@ -263,7 +263,7 @@ rate = 0.0
 # -----------------------------------------------------------------------------
 [actions]
 toggle_start_menu = "aqueous-shell-action launcher"
-screenshot = "aqueous-shell-action screenshot"
+screenshot = "grabit -c" # native freeze + region selector, copy to clipboard
 lock_screen = "aqueous-shell-action lock"
 spawn_terminal = "kitty"
 
@@ -471,7 +471,9 @@ untrap_pointer = "Super+grave" # default; reserved for pointer untrap
 # -----------------------------------------------------------------------------
 [keybinds.custom]
 "Super+E" = "spawn:nemo"
-"XF86SelectiveScreenshot" = "spawn:aqueous-shell-action screenshot"
+# Immediate full-monitor capture: save via grabit, then copy the file (grabit rejects -c -o together).
+"Shift+Print" = 'spawn:f=$(grabit -F -o) && wl-copy --type image/png < "$f"'
+"XF86SelectiveScreenshot" = "spawn:grabit -c"
 "Ctrl+XF86SelectiveScreenshot" = "spawn:grabit -F -o"
 "Super+B" = "spawn:firefox-developer-edition"
 "Super+V" = "spawn:pearlctl clipboard toggle"
