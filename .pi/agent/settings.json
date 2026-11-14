@@ -12,11 +12,14 @@
   "enableAnalytics": true,
   "enabledModels": [
     "strata/qwen3.8-flash-next-iq3_s",
-    "alibaba-token-plan/qwen4-max-preview",
-    "qwen-token-plan/qwen3.8-max"
+    "qwen-token-plan/qwen4-max-preview",
+    "qwen-token-plan/deepseek-v4.1-flash-1017",
+    "qwen-token-plan/qwen3.8-flash"
   ],
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1"
+    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
+    "{\"source\":\"npm:@narumitw/pi-starship\",\"scope\":\"user\"}": "0.67.2",
+    "{\"source\":\"npm:@narumitw/pi-lsp\",\"scope\":\"user\"}": "0.49.12"
   },
   "extensions": [
     "-builtin:llama.cpp"
@@ -27,6 +30,7 @@
     "strata/qwen3.8-flash-next-iq3_s": "xhigh"
   },
   "packages": [
-    "npm:@juicesharp/rpiv-ask-user-question"
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@narumitw/pi-lsp"
   ]
 }

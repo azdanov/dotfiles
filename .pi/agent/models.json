@@ -1,9 +1,7 @@
 {
   "$schema": "https://pi.dev/schemas/models.schema.json",
   "providers": {
-    "alibaba-token-plan": {
-      "api": "openai-completions",
-      "baseUrl": "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1",
+    "qwen-token-plan": {
       "models": [
         {
           "compat": {
@@ -11,7 +9,7 @@
             "supportsReasoningEffort": true,
             "supportsStore": false,
             "supportsStrictMode": true,
-            "thinkingFormat": "openai"
+            "thinkingFormat": "qwen"
           },
           "contextWindow": 1000000,
           "cost": {
@@ -38,8 +36,7 @@
             "xhigh": "xhigh"
           }
         }
-      ],
-      "name": "Alibaba Token Plan"
+      ]
     },
     "strata": {
       "api": "openai-completions",
