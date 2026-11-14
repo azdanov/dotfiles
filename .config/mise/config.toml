@@ -43,6 +43,14 @@ stylua = "latest"
 "aqua:Kampfkarren/selene" = "latest"
 opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
 pi = "latest"
+biome = "latest"
+terraform-ls = "latest"
+"npm:bash-language-server" = "latest"
+"npm:yaml-language-server" = "latest"
+lua-language-server = "latest"
+taplo = "latest"
+hadolint = "latest"
+"npm:fish-lsp" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
