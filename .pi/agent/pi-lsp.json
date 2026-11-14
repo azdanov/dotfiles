@@ -96,7 +96,15 @@
             { "fileMatch": [".babelrc", ".babelrc.json", "babel.config.json"], "url": "https://json.schemastore.org/babelrc.json" },
             { "fileMatch": ["global.json"], "url": "https://json.schemastore.org/global.json" },
             { "fileMatch": ["launchSettings.json"], "url": "https://json.schemastore.org/launchsettings.json" },
-            { "fileMatch": ["appsettings.json", "appsettings.*.json"], "url": "https://json.schemastore.org/appsettings.json" }
+            { "fileMatch": ["appsettings.json", "appsettings.*.json"], "url": "https://json.schemastore.org/appsettings.json" },
+            { "fileMatch": ["opencode.json", "opencode.jsonc", "**/.opencode/opencode.json", "**/.opencode/opencode.jsonc"], "url": "https://opencode.ai/config.json" },
+            { "fileMatch": [".oxlintrc.json", ".oxlintrc.jsonc"], "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxlint/configuration_schema.json" },
+            { "fileMatch": [".oxfmtrc.json", ".oxfmtrc.jsonc"], "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxfmt/configuration_schema.json" },
+            { "fileMatch": ["dotnet-tools.json"], "url": "https://www.schemastore.org/dotnet-tools.json" },
+            { "fileMatch": ["**/.pi/agent/settings.json", "**/.pi/settings.json"], "url": "https://pi.dev/schemas/settings.schema.json" },
+            { "fileMatch": ["**/.pi/agent/models.json"], "url": "https://pi.dev/schemas/models.schema.json" },
+            { "fileMatch": ["**/.pi/agent/keybindings.json"], "url": "https://pi.dev/schemas/keybindings.schema.json" },
+            { "fileMatch": ["**/.pi/agent/themes/*.json"], "url": "https://pi.dev/schemas/theme.schema.json" }
           ]
         }
       }
