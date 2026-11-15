@@ -1,7 +1,7 @@
 {
   "$schema": "https://pi.dev/schemas/models.schema.json",
   "providers": {
-    "qwen-token-plan": {
+    "qwen-token-plan-individual": {
       "models": [
         {
           "compat": {

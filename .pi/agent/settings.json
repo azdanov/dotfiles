@@ -12,9 +12,9 @@
   "enableAnalytics": true,
   "enabledModels": [
     "strata/qwen3.8-flash-next-iq3_s",
-    "qwen-token-plan/qwen4-max-preview",
-    "qwen-token-plan/deepseek-v4.1-flash-1017",
-    "qwen-token-plan/qwen3.8-flash"
+    "qwen-token-plan-individual/qwen4-max-preview",
+    "qwen-token-plan-individual/deepseek-v4.1-flash-1017",
+    "qwen-token-plan-individual/qwen3.8-flash"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
