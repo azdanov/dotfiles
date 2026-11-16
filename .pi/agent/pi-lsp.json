@@ -1,8 +1,240 @@
 {
-  "timeout": 30000,
   "servers": {
+    "bash": {
+      "command": [
+        "bash-language-server",
+        "start"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash"
+      ],
+      "initialization": {
+        "bashIde": {
+          "globPattern": "*@(.sh|.inc|.bash|.command)"
+        }
+      }
+    },
+    "clangd": {
+      "command": [
+        "clangd",
+        "--background-index",
+        "--clang-tidy"
+      ],
+      "extensions": [
+        ".c",
+        ".h",
+        ".cpp",
+        ".cc",
+        ".cxx",
+        ".c++",
+        ".hpp",
+        ".hh",
+        ".hxx",
+        ".h++"
+      ],
+      "skipDirectories": [
+        "build",
+        "_build",
+        "subprojects"
+      ]
+    },
+    "csharp": {
+      "command": [
+        "csharp-ls"
+      ],
+      "extensions": [
+        ".cs"
+      ],
+      "skipDirectories": [
+        "bin",
+        "obj"
+      ],
+      "pushDiagnosticsGraceMs": 3000
+    },
+    "dart": {
+      "command": [
+        "dart",
+        "language-server",
+        "--protocol=lsp"
+      ],
+      "extensions": [
+        ".dart"
+      ],
+      "pushDiagnosticsGraceMs": 4000,
+      "skipDirectories": [
+        ".dart_tool",
+        "build",
+        ".fvm"
+      ]
+    },
+    "fish": {
+      "command": [
+        "fish-lsp",
+        "start"
+      ],
+      "extensions": [
+        ".fish"
+      ]
+    },
+    "json": {
+      "command": [
+        "vscode-json-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".json",
+        ".jsonc"
+      ],
+      "initialization": {
+        "json": {
+          "schemas": [
+            {
+              "fileMatch": [
+                "package.json"
+              ],
+              "url": "https://json.schemastore.org/package.json"
+            },
+            {
+              "fileMatch": [
+                "tsconfig.json",
+                "tsconfig.*.json"
+              ],
+              "url": "https://json.schemastore.org/tsconfig.json"
+            },
+            {
+              "fileMatch": [
+                "jsconfig.json",
+                "jsconfig.*.json"
+              ],
+              "url": "https://json.schemastore.org/jsconfig.json"
+            },
+            {
+              "fileMatch": [
+                ".eslintrc",
+                ".eslintrc.json"
+              ],
+              "url": "https://json.schemastore.org/eslintrc.json"
+            },
+            {
+              "fileMatch": [
+                ".prettierrc",
+                ".prettierrc.json"
+              ],
+              "url": "https://json.schemastore.org/prettierrc.json"
+            },
+            {
+              "fileMatch": [
+                ".babelrc",
+                ".babelrc.json",
+                "babel.config.json"
+              ],
+              "url": "https://json.schemastore.org/babelrc.json"
+            },
+            {
+              "fileMatch": [
+                "global.json"
+              ],
+              "url": "https://json.schemastore.org/global.json"
+            },
+            {
+              "fileMatch": [
+                "launchSettings.json"
+              ],
+              "url": "https://json.schemastore.org/launchsettings.json"
+            },
+            {
+              "fileMatch": [
+                "appsettings.json",
+                "appsettings.*.json"
+              ],
+              "url": "https://json.schemastore.org/appsettings.json"
+            },
+            {
+              "fileMatch": [
+                "opencode.json",
+                "opencode.jsonc",
+                "**/.opencode/opencode.json",
+                "**/.opencode/opencode.jsonc"
+              ],
+              "url": "https://opencode.ai/config.json"
+            },
+            {
+              "fileMatch": [
+                ".oxlintrc.json",
+                ".oxlintrc.jsonc"
+              ],
+              "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxlint/configuration_schema.json"
+            },
+            {
+              "fileMatch": [
+                ".oxfmtrc.json",
+                ".oxfmtrc.jsonc"
+              ],
+              "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxfmt/configuration_schema.json"
+            },
+            {
+              "fileMatch": [
+                "dotnet-tools.json"
+              ],
+              "url": "https://www.schemastore.org/dotnet-tools.json"
+            },
+            {
+              "fileMatch": [
+                "**/.pi/agent/settings.json",
+                "**/.pi/settings.json"
+              ],
+              "url": "https://pi.dev/schemas/settings.schema.json"
+            },
+            {
+              "fileMatch": [
+                "**/.pi/agent/models.json"
+              ],
+              "url": "https://pi.dev/schemas/models.schema.json"
+            },
+            {
+              "fileMatch": [
+                "**/.pi/agent/keybindings.json"
+              ],
+              "url": "https://pi.dev/schemas/keybindings.schema.json"
+            },
+            {
+              "fileMatch": [
+                "**/.pi/agent/themes/*.json"
+              ],
+              "url": "https://pi.dev/schemas/theme.schema.json"
+            }
+          ],
+          "validate": {
+            "enable": true
+          }
+        }
+      }
+    },
+    "lua": {
+      "command": [
+        "lua-language-server"
+      ],
+      "extensions": [
+        ".lua"
+      ],
+      "pushDiagnosticsGraceMs": 3000
+    },
+    "markdown": {
+      "command": [
+        "rumdl",
+        "server"
+      ],
+      "extensions": [
+        ".md",
+        ".markdown"
+      ]
+    },
     "oxlint": {
-      "command": ["oxlint", "--lsp"],
+      "command": [
+        "oxlint",
+        "--lsp"
+      ],
       "extensions": [
         ".js",
         ".jsx",
@@ -17,97 +249,94 @@
         ".svelte"
       ]
     },
-    "ty": { "command": ["ty", "server"], "extensions": [".py", ".pyi"] },
-    "ruff": { "command": ["ruff", "server"], "extensions": [".py", ".pyi"] },
-    "rust-analyzer": {
-      "command": ["rust-analyzer"],
-      "extensions": [".rs"],
-      "pullDiagnosticsGraceMs": 5000
-    },
-    "clangd": {
-      "command": ["clangd", "--background-index", "--clang-tidy"],
+    "ruff": {
+      "command": [
+        "ruff",
+        "server"
+      ],
       "extensions": [
-        ".c",
-        ".h",
-        ".cpp",
-        ".cc",
-        ".cxx",
-        ".c++",
-        ".hpp",
-        ".hh",
-        ".hxx",
-        ".h++"
+        ".py",
+        ".pyi"
       ]
     },
-    "csharp": {
-      "command": ["csharp-ls"],
-      "extensions": [".cs"],
-      "pushDiagnosticsGraceMs": 3000
-    },
-    "bash": {
-      "command": ["bash-language-server", "start"],
-      "extensions": [".sh", ".bash"]
-    },
-    "yaml": {
-      "command": ["yaml-language-server", "--stdio"],
-      "extensions": [".yaml", ".yml"],
-      "initialization": {
-        "redhat": { "telemetry": { "enabled": false } }
+    "rust-analyzer": {
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ],
+      "pullDiagnosticsGraceMs": 10000,
+      "skipDirectories": [
+        "target"
+      ],
+      "env": {
+        "RUSTUP_TOOLCHAIN": "stable"
       }
     },
     "terraform": {
-      "command": ["terraform-ls", "serve"],
-      "extensions": [".tf", ".tfvars"],
+      "command": [
+        "terraform-ls",
+        "serve"
+      ],
+      "extensions": [
+        ".tf",
+        ".tfvars"
+      ],
+      "skipDirectories": [
+        ".terraform"
+      ],
       "pushDiagnosticsGraceMs": 2000
     },
-    "markdown": {
-      "command": ["rumdl", "server"],
-      "extensions": [".md", ".markdown"]
-    },
-    "zls": {
-      "command": ["zls"],
-      "extensions": [".zig", ".zon"]
-    },
-    "lua": {
-      "command": ["lua-language-server"],
-      "extensions": [".lua"],
-      "pushDiagnosticsGraceMs": 3000
-    },
     "tombi": {
-      "command": ["tombi", "lsp"],
-      "extensions": [".toml"]
+      "command": [
+        "tombi",
+        "lsp"
+      ],
+      "extensions": [
+        ".toml"
+      ]
     },
-    "fish": {
-      "command": ["fish-lsp", "start"],
-      "extensions": [".fish"]
+    "ty": {
+      "command": [
+        "ty",
+        "server"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
     },
-    "json": {
-      "command": ["vscode-json-language-server", "--stdio"],
-      "extensions": [".json", ".jsonc"],
+    "yaml": {
+      "command": [
+        "yaml-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".yaml",
+        ".yml"
+      ],
       "initialization": {
-        "json": {
-          "validate": { "enable": true },
-          "schemas": [
-            { "fileMatch": ["package.json"], "url": "https://json.schemastore.org/package.json" },
-            { "fileMatch": ["tsconfig.json", "tsconfig.*.json"], "url": "https://json.schemastore.org/tsconfig.json" },
-            { "fileMatch": ["jsconfig.json", "jsconfig.*.json"], "url": "https://json.schemastore.org/jsconfig.json" },
-            { "fileMatch": [".eslintrc", ".eslintrc.json"], "url": "https://json.schemastore.org/eslintrc.json" },
-            { "fileMatch": [".prettierrc", ".prettierrc.json"], "url": "https://json.schemastore.org/prettierrc.json" },
-            { "fileMatch": [".babelrc", ".babelrc.json", "babel.config.json"], "url": "https://json.schemastore.org/babelrc.json" },
-            { "fileMatch": ["global.json"], "url": "https://json.schemastore.org/global.json" },
-            { "fileMatch": ["launchSettings.json"], "url": "https://json.schemastore.org/launchsettings.json" },
-            { "fileMatch": ["appsettings.json", "appsettings.*.json"], "url": "https://json.schemastore.org/appsettings.json" },
-            { "fileMatch": ["opencode.json", "opencode.jsonc", "**/.opencode/opencode.json", "**/.opencode/opencode.jsonc"], "url": "https://opencode.ai/config.json" },
-            { "fileMatch": [".oxlintrc.json", ".oxlintrc.jsonc"], "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxlint/configuration_schema.json" },
-            { "fileMatch": [".oxfmtrc.json", ".oxfmtrc.jsonc"], "url": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxfmt/configuration_schema.json" },
-            { "fileMatch": ["dotnet-tools.json"], "url": "https://www.schemastore.org/dotnet-tools.json" },
-            { "fileMatch": ["**/.pi/agent/settings.json", "**/.pi/settings.json"], "url": "https://pi.dev/schemas/settings.schema.json" },
-            { "fileMatch": ["**/.pi/agent/models.json"], "url": "https://pi.dev/schemas/models.schema.json" },
-            { "fileMatch": ["**/.pi/agent/keybindings.json"], "url": "https://pi.dev/schemas/keybindings.schema.json" },
-            { "fileMatch": ["**/.pi/agent/themes/*.json"], "url": "https://pi.dev/schemas/theme.schema.json" }
-          ]
+        "redhat": {
+          "telemetry": {
+            "enabled": false
+          }
         }
       }
+    },
+    "zls": {
+      "command": [
+        "zls"
+      ],
+      "extensions": [
+        ".zig",
+        ".zon"
+      ],
+      "skipDirectories": [
+        ".zig-cache",
+        "zig-out"
+      ]
     }
-  }
+  },
+  "timeout": 30000
 }
