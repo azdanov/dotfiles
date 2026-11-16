@@ -66,3 +66,9 @@ gpgsign = true
 autoSetupRemote = true
 [url "https://github.com/"]
 	insteadOf = git@github.com:
+
+# The yadm repository tracks $HOME, so it wants terser status output than the
+# repos in Projects/. Pattern has no trailing slash: git matches the gitdir
+# itself, and a missing include file is not an error on fresh machines.
+[includeIf "gitdir:~/.local/share/yadm/repo.git"]
+	path = ~/.config/git/yadm.conf
