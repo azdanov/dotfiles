@@ -49,12 +49,12 @@ missingCommitsCheck = warn # Print a warning if a rebase removes commits.
 updateRefs = true          # Allow rebasing a stack of branches at the same time.
 
 [credential "https://github.com"]
-helper =
-helper = !/home/azdanov/.local/share/mise/shims/gh auth git-credential
+	helper = 
+	helper = !/home/azdanov/.local/share/mise/installs/gh/2.105.0/gh_2.105.0_linux_amd64/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-helper =
-helper = !/home/azdanov/.local/share/mise/shims/gh auth git-credential
+	helper = 
+	helper = !/home/azdanov/.local/share/mise/installs/gh/2.105.0/gh_2.105.0_linux_amd64/bin/gh auth git-credential
 
 [gpg]
 format = ssh

@@ -79,6 +79,10 @@
       "command": "uvx",
       "enabled": false,
       "timeout": 120
+    },
+    "gtk-mcp": {
+      "command": "/usr/bin/gtk-mcp",
+      "description": "Inspect and drive a running GTK4 app from inside its process: widget tree, queries, clicks and entry text, layout/CSS, actions and shortcuts, a11y, per-widget PNG captures."
     }
   }
 }
