@@ -52,6 +52,9 @@ hadolint = "latest"
 tombi = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 oxlint = "latest"
+dart = "3.12.2"
+meson = "1.12.1"
+just = "1.59.0"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
@@ -83,6 +86,7 @@ minimum_release_age_excludes = [
   "npm:@qwen-code/qwen-code",
   "npm:prettier",
   "opencode",
+  "pi",
   "pnpm",
   "rg",
   "ruff",

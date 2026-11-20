@@ -59,4 +59,7 @@
   "python.analysis.typeCheckingMode": "standard",
   "pi-agent-studio.mcp.enabled": true,
   "pi-agent-studio.ui": "webview",
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
 }
