@@ -19,7 +19,8 @@
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
     "{\"source\":\"npm:@narumitw/pi-starship\",\"scope\":\"user\"}": "0.67.2",
-    "{\"source\":\"npm:@narumitw/pi-lsp\",\"scope\":\"user\"}": "0.49.12"
+    "{\"source\":\"npm:@narumitw/pi-lsp\",\"scope\":\"user\"}": "0.49.12",
+    "{\"source\":\"npm:@aliou/pi-processes\",\"scope\":\"user\"}": "0.13.6"
   },
   "extensions": [
     "-builtin:llama.cpp"
@@ -38,6 +39,6 @@
   "packages": [
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@narumitw/pi-lsp",
-    "npm:pi-background"
+    "npm:@aliou/pi-processes"
   ]
 }
