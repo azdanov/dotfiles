@@ -1,43 +1,6 @@
 {
   "$schema": "https://pi.dev/schemas/models.schema.json",
   "providers": {
-    "qwen-token-plan-individual": {
-      "models": [
-        {
-          "compat": {
-            "supportsDeveloperRole": false,
-            "supportsReasoningEffort": true,
-            "supportsStore": false,
-            "supportsStrictMode": true,
-            "thinkingFormat": "qwen"
-          },
-          "contextWindow": 1000000,
-          "cost": {
-            "cacheRead": 0,
-            "cacheWrite": 0,
-            "input": 0,
-            "output": 0
-          },
-          "id": "qwen4-max-preview",
-          "input": [
-            "text",
-            "image"
-          ],
-          "maxTokens": 131072,
-          "name": "Qwen4.0 Max Preview",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "high": "xhigh",
-            "low": "low",
-            "max": null,
-            "medium": "medium",
-            "minimal": null,
-            "off": "none",
-            "xhigh": "xhigh"
-          }
-        }
-      ]
-    },
     "strata": {
       "api": "openai-completions",
       "apiKey": "strata-local",
