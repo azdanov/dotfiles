@@ -26,7 +26,7 @@
     "-builtin:llama.cpp"
   ],
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "modelThinkingLevels": {
     "strata/qwen3.8-flash-next-iq3_s": "xhigh"
   },
