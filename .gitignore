@@ -25,6 +25,10 @@
 !/.pi/agent/prompts/
 !/.pi/agent/themes/
 
+# pi-processes writes this state file (widget prefs plus a schema version that
+# lags the installed release), so it churns on every bump.
+/.pi/agent/extensions/processes.json
+
 # Credentials and per-machine identity. Never in the repo, even by git add -A.
 .ssh/
 .gnupg/
