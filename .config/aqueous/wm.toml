@@ -484,6 +484,8 @@ untrap_pointer = "Super+grave" # default; reserved for pointer untrap
 "Shift+Print" = 'spawn:f=$(grabit -F -o) && wl-copy --type image/png < "$f"'
 "XF86SelectiveScreenshot" = "spawn:grabit -c"
 "Ctrl+XF86SelectiveScreenshot" = "spawn:grabit -F -o"
+# Region capture through grabit's annotator (-e); the default action copies it.
+"Ctrl+Shift+Print" = "spawn:grabit -e"
 "Super+B" = "spawn:firefox-developer-edition"
 "Super+V" = "spawn:pearlctl clipboard toggle"
 "XF86AudioRaiseVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
