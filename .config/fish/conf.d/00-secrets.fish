@@ -9,6 +9,7 @@ if status is-interactive
 
     __load_secret GITHUB_API_KEY ~/.secrets/github
     __load_secret KAGI_API_KEY ~/.secrets/kagi
+    __load_secret CDN77_TOKEN ~/.secrets/cdn77
 
     functions -e __load_secret # don't leave the helper defined
 
