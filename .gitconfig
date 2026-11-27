@@ -48,13 +48,15 @@ autosquash = true          # Squash/fixup commits starting with squash!/fixup! +
 missingCommitsCheck = warn # Print a warning if a rebase removes commits.
 updateRefs = true          # Allow rebasing a stack of branches at the same time.
 
+# Resolve gh through PATH: mise rewrites its install paths on every upgrade,
+# so a pinned helper path breaks pushes once gh moves to a new version.
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/azdanov/.local/share/mise/installs/gh/2.105.0/gh_2.105.0_linux_amd64/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/azdanov/.local/share/mise/installs/gh/2.105.0/gh_2.105.0_linux_amd64/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [gpg]
 format = ssh
