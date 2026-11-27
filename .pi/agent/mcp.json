@@ -8,6 +8,10 @@
       "enabled": false,
       "url": "https://knowledge-mcp.global.api.aws"
     },
+    "cloudflare-docs": {
+      "url": "https://docs.mcp.cloudflare.com/mcp",
+      "enabled": false
+    },
     "github": {
       "description": "GitHub repositories, issues, pull requests, code search, and Actions.",
       "exposure": "codemode",
@@ -83,6 +87,13 @@
     "gtk-mcp": {
       "command": "/usr/bin/gtk-mcp",
       "description": "Inspect and drive a running GTK4 app from inside its process: widget tree, queries, clicks and entry text, layout/CSS, actions and shortcuts, a11y, per-widget PNG captures.",
+      "enabled": false
+    },
+    "wordcraft": {
+      "command": "wordcraft-cli",
+      "args": [
+        "mcp"
+      ],
       "enabled": false
     }
   }

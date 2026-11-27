@@ -2,8 +2,8 @@
   "name": "pi-extensions",
   "private": true,
   "dependencies": {
-    "@aliou/pi-processes": "^0.13.7",
-    "@juicesharp/rpiv-ask-user-question": "^2.15.0",
+    "@aliou/pi-processes": "^0.13.9",
+    "@juicesharp/rpiv-ask-user-question": "^2.16.0",
     "@narumitw/pi-lsp": "^0.49.12"
   }
 }
