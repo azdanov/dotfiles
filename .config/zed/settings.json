@@ -1,10 +1,10 @@
 {
   "agent": {
     "default_model": {
-      "effort": "high",
+      "effort": "medium",
       "enable_thinking": true,
-      "model": "qwen3.8-flash-next-iq3_s",
-      "provider": "Home"
+      "model": "qwen4-max",
+      "provider": "Qwen"
     },
     "default_profile": "write",
     "dock": "right",
@@ -149,13 +149,31 @@
   },
   "agent_servers": {
     "pi-acp": {
+      "favorite_config_option_values": {
+        "model": [
+          "qwen-token-plan-individual/qwen4-max",
+          "strata/qwen3.8-flash-next-iq3_s",
+          "qwen-token-plan-individual/qwen3.8-flash"
+        ]
+      },
+      "default_config_options": {
+        "thought_level": "xhigh",
+        "model": "strata/qwen3.8-flash-next-iq3_s"
+      },
       "type": "registry"
     },
     "opencode-v2": {
+      "favorite_config_option_values": {
+        "model": [
+          "alibaba-token-plan/qwen4-max",
+          "alibaba-token-plan/qwen3.8-flash",
+          "strata/qwen3.8-flash-next-iq3_s"
+        ]
+      },
       "default_config_options": {
-        "model": "alibaba-token-plan/qwen3.8-flash",
+        "model": "strata/qwen3.8-flash-next-iq3_s",
         "mode": "build",
-        "effort": "xhigh"
+        "effort": "high"
       },
       "type": "registry"
     },
@@ -311,9 +329,9 @@
               "prompt_cache_key": true,
               "tools": true
             },
-            "max_output_tokens": 131072,
+            "max_output_tokens": 262144,
             "max_tokens": 1000000,
-            "name": "qwen4-max-preview",
+            "name": "qwen4-max",
             "reasoning_effort": "xhigh"
           },
           {
