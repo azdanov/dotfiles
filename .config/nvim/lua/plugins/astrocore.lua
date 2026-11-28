@@ -39,10 +39,10 @@ return {
             event = "User",
             desc = "Auto hide tabline",
             pattern = "AstroBufsUpdated",
-            callback = function()
+            callback = vim.schedule_wrap(function()
               local new_showtabline = #vim.t.bufs > 1 and 2 or 1
               if new_showtabline ~= vim.opt.showtabline:get() then vim.opt.showtabline = new_showtabline end
-            end,
+            end),
           },
         },
       },
@@ -88,12 +88,14 @@ return {
     maps.o.N = { "'nN'[v:searchforward]", expr = true, desc = "Prev Search Result" }
 
     -- add line text object
-    for lhs, rhs in pairs {
-      il = { ":<C-u>normal! $v^<CR>", desc = "inside line" },
-      al = { ":<C-u>normal! V<CR>", desc = "around line" },
-    } do
-      maps.o[lhs] = rhs
-      maps.x[lhs] = rhs
+    if vim.fn.has "nvim-0.13" == 0 then
+      for lhs, rhs in pairs {
+        il = { ":<C-u>normal! $v^<CR>", desc = "inside line" },
+        al = { ":<C-u>normal! V<CR>", desc = "around line" },
+      } do
+        maps.o[lhs] = rhs
+        maps.x[lhs] = rhs
+      end
     end
 
     -- add missing in between and around two character pairs
