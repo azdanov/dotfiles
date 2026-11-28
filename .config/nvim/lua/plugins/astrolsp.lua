@@ -6,7 +6,8 @@ return {
   opts = {
     servers = { "zls" },
     features = {
-      codelens = false,
+      codelens = true,
+      inlay_hints = true,
     },
     autocmds = {
       eslint_fix_on_save = {
