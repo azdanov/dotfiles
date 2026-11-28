@@ -93,8 +93,7 @@
       "command": "wordcraft-cli",
       "args": [
         "mcp"
-      ],
-      "enabled": false
+      ]
     }
   }
 }
