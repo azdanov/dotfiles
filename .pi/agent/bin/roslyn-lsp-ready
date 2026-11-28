@@ -1,22 +1,54 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = []
+# ///
 """Run roslyn-language-server, deferring diagnostics until project load finishes.
 
 pi-lsp opens a document and immediately pulls textDocument/diagnostic. Roslyn
-answers that early pull with an empty report, then analyses the project once
-it finishes loading, and never pushes later results. Holding diagnostic
-requests until workspace/projectInitializationComplete (or a timeout) lets the
-pull observe real diagnostics.
+answers that early pull with an empty report until the workspace is fully loaded
+(dotnet/roslyn#66761), then analyses the project and never pushes later
+results. Holding diagnostic requests until workspace/projectInitializationComplete
+(or a timeout) lets the pull observe real diagnostics.
+
+The LSP-native alternative is workspace/diagnostic/refresh, which Roslyn sends
+only to clients advertising workspace.diagnostics.refreshSupport; pi-lsp
+advertises neither that nor a handler for the initialization notification, so
+the early pull is held here instead. Roslyn only completes initialization after
+loading a solution or project, so the hold is skipped in workspaces that
+contain neither.
 
 All other traffic is proxied unchanged; extra argv is passed to the server.
+ROSLYN_LSP_READY_TIMEOUT (seconds, default 20) must stay below pi-lsp's request
+timeout, otherwise the pull fails instead of returning early.
 """
 
+import contextlib
 import json
 import os
+import pathlib
 import subprocess
 import sys
 import threading
+import time
+from collections.abc import Iterator, Sequence
+from typing import IO, TypeAlias
+from urllib.parse import urlparse
+from urllib.request import url2pathname
 
 READY_TIMEOUT_S = float(os.environ.get("ROSLYN_LSP_READY_TIMEOUT", "20"))
+CHUNK_SIZE = 1 << 16
+DIAGNOSTIC_METHOD = "textDocument/diagnostic"
+READY_METHOD = "workspace/projectInitializationComplete"
+
+# Project files --autoLoadProjects can pick up, and directories that never hold
+# them. The scan is time- and entry-bounded; an undecided scan keeps deferring.
+PROJECT_SUFFIXES = (".sln", ".slnx", ".slnf", ".csproj", ".vbproj")
+SKIPPED_DIRS = frozenset({".git", ".hg", ".svn", ".venv", "bin", "node_modules", "obj", "venv"})
+SCAN_BUDGET_S = 0.15
+SCAN_ENTRY_CAP = 20_000
+
+JsonMessage: TypeAlias = dict[str, object]
 
 child = subprocess.Popen(
     ["roslyn-language-server", *sys.argv[1:]],
@@ -24,76 +56,188 @@ child = subprocess.Popen(
     stdout=subprocess.PIPE,
 )
 
+
+def _pipe(stream: IO[bytes] | None) -> IO[bytes]:
+    """Narrow a Popen pipe to the non-optional type it has when PIPE is set."""
+    if stream is None:
+        msg = "child process started without pipes"
+        raise RuntimeError(msg)
+    return stream
+
+
+child_stdin = _pipe(child.stdin)
+child_stdout = _pipe(child.stdout)
+
 lock = threading.Lock()
 ready = threading.Event()
-held = []
+held: list[JsonMessage] = []
 
 
-def frame(message):
+def frame(message: JsonMessage) -> bytes:
+    """Encode one JSON-RPC message as an LSP Content-Length frame."""
     body = json.dumps(message).encode()
     return b"Content-Length: %d\r\n\r\n" % len(body) + body
 
 
-def send(message, stream):
-    with lock:
-        try:
-            stream.write(frame(message))
-            stream.flush()
-        except (BrokenPipeError, ValueError):
-            pass
+def send(message: JsonMessage, stream: IO[bytes]) -> None:
+    """Write a message unless the reader on the other end already closed."""
+    with lock, contextlib.suppress(BrokenPipeError, ValueError):
+        stream.write(frame(message))
+        stream.flush()
 
 
-def flush_held():
+def flush_held() -> None:
+    """Forward held diagnostic requests in arrival order."""
     with lock:
         pending, held[:] = list(held), []
     for message in pending:
-        send(message, child.stdin)
+        send(message, child_stdin)
 
 
-def read_messages(stream):
+def content_length(header: bytes) -> int:
+    """Return the Content-Length value, the sole header LSP frames rely on."""
+    for line in header.split(b"\r\n"):
+        name, _, value = line.partition(b":")
+        if name.strip().lower() == b"content-length":
+            return int(value)
+    msg = "missing Content-Length header"
+    raise ValueError(msg)
+
+
+def read_messages(stream: IO[bytes]) -> Iterator[JsonMessage]:
+    """Yield JSON-RPC messages as their frames arrive on a byte stream."""
     buf = b""
     while True:
-        chunk = os.read(stream.fileno(), 1 << 16)
+        chunk = os.read(stream.fileno(), CHUNK_SIZE)
         if not chunk:
             return
         buf += chunk
         while b"\r\n\r\n" in buf:
             header, rest = buf.split(b"\r\n\r\n", 1)
-            length = int(
-                [line for line in header.split(b"\r\n") if line.lower().startswith(b"content-length")][0]
-                .split(b":")[1]
-            )
+            length = content_length(header)
             if len(rest) < length:
                 break
             body, buf = rest[:length], rest[length:]
             yield json.loads(body)
 
 
-def pump_client():
+def workspace_roots(params: object) -> list[pathlib.Path]:
+    """Return the local workspace folders named in an initialize request."""
+    if not isinstance(params, dict):
+        return []
+    uris: list[object] = [params.get("rootUri")]
+    folders = params.get("workspaceFolders")
+    if isinstance(folders, list):
+        uris.extend(folder.get("uri") for folder in folders if isinstance(folder, dict))
+    roots = []
+    for uri in uris:
+        if not isinstance(uri, str):
+            continue
+        parsed = urlparse(uri)
+        if parsed.scheme == "file":
+            roots.append(pathlib.Path(url2pathname(parsed.path)))
+    return roots
+
+
+def workspace_has_projects(roots: Sequence[pathlib.Path]) -> bool | None:
+    """Report whether a workspace folder holds a project the server would load.
+
+    Returns None when the bounded scan gives up or finds nothing to scan, so
+    callers keep deferring diagnostics.
+    """
+    pending = [root for root in roots if root.is_dir()]
+    if not pending:
+        return None
+    deadline = time.monotonic() + SCAN_BUDGET_S
+    inspected = 0
+    while pending:
+        if time.monotonic() > deadline:
+            return None
+        try:
+            with os.scandir(pending.pop()) as entries:
+                for entry in entries:
+                    inspected += 1
+                    if inspected > SCAN_ENTRY_CAP:
+                        return None
+                    if entry.is_dir(follow_symlinks=False):
+                        if entry.name not in SKIPPED_DIRS:
+                            pending.append(pathlib.Path(entry.path))
+                    elif entry.name.endswith(PROJECT_SUFFIXES):
+                        return True
+        except OSError:
+            continue
+    return False
+
+
+def workspace_mentions_default_solution(roots: Sequence[pathlib.Path]) -> bool:
+    """Report whether a folder pins dotnet.defaultSolution in its VS Code settings."""
+    for root in roots:
+        settings = root / ".vscode" / "settings.json"
+        try:
+            if "dotnet.defaultSolution" in settings.read_text(encoding="utf-8", errors="replace"):
+                return True
+        except OSError:
+            continue
+    return False
+
+
+def should_defer(roots: Sequence[pathlib.Path]) -> bool:
+    """Decide whether deferring diagnostics can pay off for these workspace folders."""
+    if workspace_mentions_default_solution(roots):
+        return True
+    return workspace_has_projects(roots) is not False
+
+
+def pump_client() -> None:
+    """Proxy client traffic to the server, holding early diagnostic pulls."""
+    hold = True
     for message in read_messages(sys.stdin.buffer):
-        if message.get("method") == "textDocument/diagnostic" and not ready.is_set():
+        method = message.get("method")
+        if method == "initialize":
+            send(message, child_stdin)
+            hold = should_defer(workspace_roots(message.get("params")))
+            continue
+        if method == DIAGNOSTIC_METHOD and hold and not ready.is_set():
             with lock:
                 held.append(message)
             continue
-        send(message, child.stdin)
+        send(message, child_stdin)
     flush_held()
-    try:
-        child.stdin.close()
-    except OSError:
-        pass
+    with contextlib.suppress(OSError):
+        child_stdin.close()
 
 
-def pump_server():
-    for message in read_messages(child.stdout):
-        send(message, sys.stdout.buffer)
-        if message.get("method") == "workspace/projectInitializationComplete":
-            ready.set()
-            flush_held()
+def mark_ready() -> None:
+    """Stop deferring diagnostics and release the requests already held."""
     ready.set()
     flush_held()
 
 
+def expire() -> None:
+    """Release held pulls when project loading outlasts the timeout."""
+    with lock:
+        deferred = len(held)
+    if deferred:
+        sys.stderr.write(
+            f"roslyn-lsp-ready: no {READY_METHOD} within {READY_TIMEOUT_S:g}s; "
+            f"releasing {deferred} deferred diagnostic request(s)\n"
+        )
+        sys.stderr.flush()
+    mark_ready()
+
+
+def pump_server() -> None:
+    """Proxy server traffic to the client and release holds once projects load."""
+    for message in read_messages(child_stdout):
+        send(message, sys.stdout.buffer)
+        if message.get("method") == READY_METHOD:
+            mark_ready()
+    mark_ready()
+
+
 threading.Thread(target=pump_client, daemon=True).start()
-threading.Timer(READY_TIMEOUT_S, lambda: (ready.set(), flush_held())).start()
+timer = threading.Timer(READY_TIMEOUT_S, expire)
+timer.daemon = True
+timer.start()
 pump_server()
 sys.exit(child.wait())
