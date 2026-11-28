@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Run roslyn-language-server, deferring diagnostics until project load finishes.
+
+pi-lsp opens a document and immediately pulls textDocument/diagnostic. Roslyn
+answers that early pull with an empty report, then analyses the project once
+it finishes loading, and never pushes later results. Holding diagnostic
+requests until workspace/projectInitializationComplete (or a timeout) lets the
+pull observe real diagnostics.
+
+All other traffic is proxied unchanged; extra argv is passed to the server.
+"""
+
+import json
+import os
+import subprocess
+import sys
+import threading
+
+READY_TIMEOUT_S = float(os.environ.get("ROSLYN_LSP_READY_TIMEOUT", "20"))
+
+child = subprocess.Popen(
+    ["roslyn-language-server", *sys.argv[1:]],
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE,
+)
+
+lock = threading.Lock()
+ready = threading.Event()
+held = []
+
+
+def frame(message):
+    body = json.dumps(message).encode()
+    return b"Content-Length: %d\r\n\r\n" % len(body) + body
+
+
+def send(message, stream):
+    with lock:
+        try:
+            stream.write(frame(message))
+            stream.flush()
+        except (BrokenPipeError, ValueError):
+            pass
+
+
+def flush_held():
+    with lock:
+        pending, held[:] = list(held), []
+    for message in pending:
+        send(message, child.stdin)
+
+
+def read_messages(stream):
+    buf = b""
+    while True:
+        chunk = os.read(stream.fileno(), 1 << 16)
+        if not chunk:
+            return
+        buf += chunk
+        while b"\r\n\r\n" in buf:
+            header, rest = buf.split(b"\r\n\r\n", 1)
+            length = int(
+                [line for line in header.split(b"\r\n") if line.lower().startswith(b"content-length")][0]
+                .split(b":")[1]
+            )
+            if len(rest) < length:
+                break
+            body, buf = rest[:length], rest[length:]
+            yield json.loads(body)
+
+
+def pump_client():
+    for message in read_messages(sys.stdin.buffer):
+        if message.get("method") == "textDocument/diagnostic" and not ready.is_set():
+            with lock:
+                held.append(message)
+            continue
+        send(message, child.stdin)
+    flush_held()
+    try:
+        child.stdin.close()
+    except OSError:
+        pass
+
+
+def pump_server():
+    for message in read_messages(child.stdout):
+        send(message, sys.stdout.buffer)
+        if message.get("method") == "workspace/projectInitializationComplete":
+            ready.set()
+            flush_held()
+    ready.set()
+    flush_held()
+
+
+threading.Thread(target=pump_client, daemon=True).start()
+threading.Timer(READY_TIMEOUT_S, lambda: (ready.set(), flush_held())).start()
+pump_server()
+sys.exit(child.wait())

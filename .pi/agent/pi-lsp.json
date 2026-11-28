@@ -39,9 +39,13 @@
         "subprojects"
       ]
     },
-    "csharp": {
+    "roslyn": {
       "command": [
-        "csharp-ls"
+        "/home/azdanov/.pi/agent/bin/roslyn-lsp-ready",
+        "--stdio",
+        "--autoLoadProjects",
+        "--telemetryLevel",
+        "off"
       ],
       "extensions": [
         ".cs"
@@ -49,8 +53,7 @@
       "skipDirectories": [
         "bin",
         "obj"
-      ],
-      "pushDiagnosticsGraceMs": 3000
+      ]
     },
     "dart": {
       "command": [

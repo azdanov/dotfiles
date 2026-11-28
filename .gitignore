@@ -18,6 +18,7 @@
 !/.pi/agent/AGENTS.md
 !/.pi/agent/keybindings.json
 !/.pi/agent/extensions/
+!/.pi/agent/bin/
 !/.pi/agent/npm/
 /.pi/agent/npm/*
 !/.pi/agent/npm/package.json

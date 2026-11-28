@@ -55,6 +55,7 @@ oxlint = "latest"
 dart = "3.12.2"
 meson = "1.12.1"
 just = "1.59.0"
+"dotnet:roslyn-language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["java"]
